@@ -1,54 +1,127 @@
-# MIZ OKI 3.5 Website
+# MIZ OKI 3.5 — Verifiable Autonomous Decision Intelligence
 
-Verifiable Autonomous Decision Intelligence Platform Website
+[![Deploy to Cloud Run](https://img.shields.io/badge/Deploy-Cloud%20Run-4285F4?logo=google-cloud)](https://console.cloud.google.com/run)
+[![GitHub](https://img.shields.io/badge/GitHub-mediaintelligence%2Fmizoki--website-181717?logo=github)](https://github.com/mediaintelligence/mizoki-website)
 
-**7-Stage SRDPV-DAL Pipeline:** SENSE → REASON → PLAN → VALIDATE → DECIDE → ACT → LEARN
+> **Decisions verified before execution—not explained after failure.**
 
-## Quick Deploy to Google Cloud Run
+MIZ OKI 3.5 is the first Business General Intelligence platform where autonomous agents propose actions, but a **Decision Control Plane** verifies, simulates, and authorizes every decision before execution.
+
+---
+
+## 🏗️ The SRDPV-DAL Pipeline
+
+```
+SENSE → REASON → PLAN → VALIDATE → DECIDE → ACT → LEARN
+   ↑                                              |
+   └──────────── Continuous Learning ─────────────┘
+```
+
+| Stage | Controller | Function |
+|-------|------------|----------|
+| **SENSE** | SENSE-ADC | Autonomous attention allocation, priority scoring |
+| **REASON** | REASON-ADC | Causal GraphRAG, confounder detection |
+| **PLAN** | PLAN-ADC | Multi-objective strategy generation |
+| **VALIDATE** | VAL | Independent verification by multiple agents |
+| **DECIDE** | DCP | Authorization scoring, approve/modify/reject |
+| **ACT** | ACT-ADC | Execution with adaptive rollback |
+| **LEARN** | LEARN-ADC | Outcome-based model updates |
+
+---
+
+## 🌐 Live URLs
+
+| Domain | Purpose |
+|--------|---------|
+| [mizoki3.com](https://mizoki3.com) | Main website |
+| [www.mizoki3.com](https://www.mizoki3.com) | Main website (www) |
+| [mizoki.mizoki3.com](https://mizoki.mizoki3.com) | Platform login portal |
+| [miz.mizoki3.com](https://miz.mizoki3.com) | Documentation portal |
+
+---
+
+## 📁 Repository Structure
+
+```
+mizoki-website/
+│
+├── 🏠 Core Pages
+│   ├── index.html              # Homepage
+│   ├── login.html              # Platform login (mizoki.mizoki3.com)
+│   ├── how-it-works.html       # SRDPV-DAL pipeline deep-dive
+│   ├── platform.html           # Four-layer architecture
+│   ├── security.html           # Quantum-resistant security
+│   ├── industries.html         # Industry templates
+│   └── pricing.html            # Enterprise/Growth/Pilot tiers
+│
+├── 📊 Business Pages
+│   ├── case-studies.html       # Customer success stories
+│   ├── roi.html                # Interactive ROI calculator
+│   ├── walkthrough.html        # 12-minute demo request
+│   ├── investor.html           # Investor overview
+│   ├── sales-one-pager.html    # Quick sales summary
+│   └── resources.html          # Documentation hub
+│
+├── 📝 Blog
+│   ├── blog/index.html                      # Blog listing
+│   ├── blog/decision-control-plane.html     # DCP deep-dive
+│   └── blog/relu-lens-meta-algorithm.html   # ReLU Lens article
+│
+├── 🎨 Assets
+│   ├── assets/css/             # Stylesheets
+│   ├── assets/img/             # Images
+│   └── assets/pdf/             # Downloadable documents
+│
+├── ⚙️ Infrastructure
+│   ├── Dockerfile              # nginx:alpine container
+│   ├── nginx.conf              # Web server + subdomain routing
+│   ├── cloudbuild.yaml         # Google Cloud Build config
+│   ├── deploy.sh               # One-click deployment
+│   ├── master-deploy.sh        # Multi-service deploy
+│   └── github-push.sh          # Git helper script
+│
+└── 📚 Documentation
+    ├── README.md               # This file
+    └── CLAUDE.md               # AI assistant guide
+```
+
+---
+
+## 🚀 Quick Deploy
 
 ### Prerequisites
 
-1. **Google Cloud SDK** installed ([Install Guide](https://cloud.google.com/sdk/docs/install))
-2. **Google Cloud Project** with billing enabled
-3. **Docker** installed (optional - Cloud Build handles this)
+- [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) installed
+- Google Cloud Project with billing enabled
+- Authenticated: `gcloud auth login`
 
 ### One-Click Deployment
 
 ```bash
-# Clone or download this repository
+# Clone the repository
+git clone https://github.com/mediaintelligence/mizoki-website.git
 cd mizoki-website
 
-# Make deploy script executable
+# Deploy to Cloud Run
 chmod +x deploy.sh
-
-# Run the deployment
 ./deploy.sh
 ```
 
-That's it! The script will:
+The script will:
 1. ✅ Authenticate with Google Cloud
 2. ✅ Enable required APIs (Cloud Build, Container Registry, Cloud Run)
-3. ✅ Initialize Git repository
-4. ✅ Build Docker container using Cloud Build
-5. ✅ Deploy to Cloud Run
-6. ✅ Output your live URL
+3. ✅ Build Docker container
+4. ✅ Deploy to Cloud Run
+5. ✅ Output your live URL
 
-### Manual Deployment (Alternative)
-
-If you prefer manual control:
+### Manual Deployment
 
 ```bash
-# Set your project
 export PROJECT_ID="your-project-id"
 gcloud config set project $PROJECT_ID
 
-# Enable APIs
-gcloud services enable cloudbuild.googleapis.com containerregistry.googleapis.com run.googleapis.com
-
-# Build and push image
+# Build and deploy
 gcloud builds submit --tag gcr.io/$PROJECT_ID/mizoki-website
-
-# Deploy to Cloud Run
 gcloud run deploy mizoki-website \
   --image gcr.io/$PROJECT_ID/mizoki-website \
   --region us-central1 \
@@ -57,116 +130,181 @@ gcloud run deploy mizoki-website \
   --port 8080
 ```
 
-### Custom Domain Setup
+---
 
-After deployment, add your custom domain:
+## 🔧 Domain Configuration
+
+### Adding Custom Domains
 
 ```bash
-# Map custom domain
-gcloud run domain-mappings create \
+# Map a custom domain
+gcloud beta run domain-mappings create \
   --service mizoki-website \
-  --domain mizoki3.com \
+  --domain your-domain.com \
   --region us-central1
-
-# Follow the DNS verification steps provided
 ```
 
-### Environment Configuration
-
-| Variable | Default | Description |
-|----------|---------|-------------|
-| REGION | us-central1 | GCP region for deployment |
-| MEMORY | 256Mi | Container memory allocation |
-| CPU | 1 | vCPU allocation |
-| MIN_INSTANCES | 0 | Minimum running instances (0 = scale to zero) |
-| MAX_INSTANCES | 10 | Maximum instances during load |
-
-### File Structure
-
-```
-mizoki-website/
-├── index.html              # Homepage
-├── how-it-works.html       # Technical deep dive
-├── platform.html           # Architecture overview
-├── security.html           # Security & compliance
-├── industries.html         # Industry templates
-├── pricing.html            # Pricing tiers
-├── case-studies.html       # Customer success stories
-├── resources.html          # Documentation hub
-├── roi.html                # ROI calculator
-├── walkthrough.html        # Demo request
-├── investor.html           # Investor overview
-├── sales-one-pager.html    # Sales summary
-├── assets/                 # Static assets
-│   ├── css/
-│   ├── img/
-│   └── pdf/
-├── Dockerfile              # Container definition
-├── nginx.conf              # Web server config
-├── cloudbuild.yaml         # Cloud Build config
-├── deploy.sh               # One-click deploy script
-└── README.md               # This file
-```
-
-### Monitoring & Logs
+### Current Domain Mappings
 
 ```bash
-# View logs
+# List all domain mappings
+gcloud beta run domain-mappings list --region us-central1
+```
+
+### DNS Records Required
+
+| Domain | Record Type | Value |
+|--------|-------------|-------|
+| `@` (root) | A | (provided by Cloud Run) |
+| `www` | CNAME | `ghs.googlehosted.com.` |
+| `mizoki` | CNAME | `ghs.googlehosted.com.` |
+
+---
+
+## 🎨 Design System
+
+### Colors
+
+| Variable | Hex | Usage |
+|----------|-----|-------|
+| `--bg-primary` | `#0a0a0f` | Page background |
+| `--accent-cyan` | `#00d4ff` | Primary CTAs, links |
+| `--accent-blue` | `#4f8fff` | Secondary accents |
+| `--accent-green` | `#10b981` | Success, VALIDATE |
+| `--accent-orange` | `#f59e0b` | SENSE stage |
+| `--accent-purple` | `#a855f7` | REASON stage |
+| `--accent-red` | `#ef4444` | ACT stage, warnings |
+
+### Typography
+
+- **Headlines:** Instrument Serif
+- **Body:** DM Sans
+- **Code:** JetBrains Mono
+
+---
+
+## 📈 Key Metrics
+
+| Metric | Value |
+|--------|-------|
+| Decision Velocity | **50-75× faster** |
+| Revenue Leakage Reduction | **↓35%** |
+| Operational Cost Reduction | **↓41%** |
+| Payback Period | **3.2 months** |
+| Automation Coverage | **89%** |
+| Query Latency | **<100ms** |
+| Full Decision Cycle | **<60 seconds** |
+
+---
+
+## 🔒 Security Features
+
+- **Quantum-Resistant Cryptography** — CRYSTALS-Kyber (key encapsulation), CRYSTALS-Dilithium (signatures)
+- **Immutable Audit Logs** — Every decision cryptographically signed and logged
+- **Human-in-the-Loop** — Full override capability, configurable escalation
+- **Multi-Tenant Isolation** — Kubernetes namespace separation
+- **Federated Learning** — Cross-tenant improvement with differential privacy
+
+---
+
+## 🛠️ Development
+
+### Local Testing
+
+```bash
+# Build and run locally with Docker
+docker build -t mizoki-website .
+docker run -p 8080:8080 mizoki-website
+
+# Open http://localhost:8080
+```
+
+### Making Changes
+
+1. Edit HTML files directly (styles are inline)
+2. Test locally with Docker
+3. Commit changes: `git add -A && git commit -m "Your message"`
+4. Deploy: `./deploy.sh`
+
+### Adding New Pages
+
+1. Copy an existing page as template
+2. Update navigation in ALL HTML files
+3. Add to Dockerfile if in a subdirectory
+4. Update CLAUDE.md structure section
+
+---
+
+## 📊 Monitoring
+
+```bash
+# View service logs
 gcloud run services logs read mizoki-website --region us-central1
 
-# View metrics in console
+# View service status
+gcloud run services describe mizoki-website --region us-central1
+
+# View in console
 # https://console.cloud.google.com/run/detail/us-central1/mizoki-website/metrics
 ```
 
-### Updating the Site
+---
 
-After making changes:
+## 💰 Cost Estimate
+
+Cloud Run pricing (scale-to-zero enabled):
+
+| Resource | Cost |
+|----------|------|
+| CPU | $0.00002400/vCPU-second |
+| Memory | $0.00000250/GiB-second |
+| Requests | $0.40/million |
+
+**Typical cost for marketing website: $5-20/month**
+
+---
+
+## 🐛 Troubleshooting
+
+### Build Fails
 
 ```bash
-# Simply re-run the deploy script
-./deploy.sh
-
-# Or manually
-gcloud builds submit --tag gcr.io/$PROJECT_ID/mizoki-website:v2
-gcloud run deploy mizoki-website --image gcr.io/$PROJECT_ID/mizoki-website:v2 --region us-central1
-```
-
-### Cost Estimate
-
-Cloud Run pricing (as of 2026):
-- **CPU**: $0.00002400/vCPU-second
-- **Memory**: $0.00000250/GiB-second
-- **Requests**: $0.40/million requests
-
-With scale-to-zero enabled, you only pay when the site is accessed. Typical cost for a marketing website: **$5-20/month**.
-
-### Troubleshooting
-
-**Build fails:**
-```bash
-# Check Cloud Build logs
 gcloud builds list --limit=5
 gcloud builds log BUILD_ID
 ```
 
-**Deploy fails:**
+### Deploy Fails
+
 ```bash
-# Check service status
 gcloud run services describe mizoki-website --region us-central1
 ```
 
-**Site not loading:**
+### Site Not Loading
+
 ```bash
-# Check container logs
 gcloud run services logs read mizoki-website --region us-central1 --limit=50
 ```
 
-### Support
+### SSL Certificate Issues
 
-- Documentation: [resources.html](resources.html)
-- Demo Request: [walkthrough.html](walkthrough.html)
-- Contact: sales@mizoki.com
+Certificates auto-provision when DNS is correctly configured. Check:
+```bash
+gcloud beta run domain-mappings describe --domain your-domain.com --region us-central1
+```
 
 ---
 
+## 📞 Contact
+
+- **Sales:** sales@mizoki.com
+- **Documentation:** [resources.html](https://mizoki3.com/resources.html)
+- **Demo Request:** [walkthrough.html](https://mizoki3.com/walkthrough.html)
+- **GitHub:** [mediaintelligence/mizoki-website](https://github.com/mediaintelligence/mizoki-website)
+
+---
+
+## 📄 License
+
 © 2026 MIZ OKI. All rights reserved.
+
+*Every action logged. Every decision auditable.*
