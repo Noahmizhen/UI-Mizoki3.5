@@ -9,6 +9,26 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/intelligence")
+def intelligence():
+    return render_template("intelligence.html")
+
+
+@app.route("/vision")
+def vision():
+    return render_template("vision.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+@app.route("/health")
+def health():
+    return "healthy", 200
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
