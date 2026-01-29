@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIZ OKI | Autonomous Business Intelligence</title>
+    <title>Contact | MIZ OKI</title>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +17,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100%;
             background-color: var(--bg-color);
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
@@ -94,84 +94,126 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 120px 40px 60px;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            width: 100%;
             text-align: center;
-            padding: 100px 20px 40px;
-            background: radial-gradient(circle at center, transparent 0%, var(--bg-color) 120%);
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            margin-bottom: 0.2em;
+            margin-bottom: 0.3em;
             text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
-            line-height: 1.1;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
+        .subtitle {
+            font-size: 1.3rem;
             color: var(--accent-color);
-            margin-bottom: 2rem;
-            letter-spacing: 2px;
+            margin-bottom: 50px;
         }
 
-        .copy-block {
-            max-width: 800px;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            border-left: 3px solid var(--highlight-color);
-            padding-left: 20px;
-            text-align: left;
+        .contact-form {
             background: rgba(255, 255, 255, 0.02);
-            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            text-align: left;
         }
 
-        .cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-            justify-content: center;
+        .form-group {
+            margin-bottom: 25px;
         }
 
-        .btn-main,
-        .btn-secondary {
-            padding: 15px 40px;
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--accent-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-family: 'Rajdhani', sans-serif;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
             font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
             border: none;
             cursor: pointer;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-main {
             color: var(--bg-color);
             background-color: var(--highlight-color);
             box-shadow: 0 0 15px rgba(255, 159, 28, 0.4);
+            font-family: 'Rajdhani', sans-serif;
         }
 
-        .btn-main:hover {
+        .btn-submit:hover {
             background-color: #fff;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
         }
 
-        .btn-secondary {
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            background: transparent;
+        .contact-alt {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .btn-secondary:hover {
-            border-color: var(--accent-color);
+        .contact-alt p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-alt a {
             color: var(--accent-color);
-            box-shadow: 0 0 18px rgba(0, 212, 255, 0.25);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-alt a:hover {
+            color: var(--highlight-color);
         }
 
         @media (max-width: 768px) {
@@ -179,11 +221,8 @@
             nav { padding: 15px 20px; }
             .nav-links { gap: 20px; }
             .nav-links a { font-size: 0.85rem; }
-            .copy-block {
-                text-align: center;
-                border-left: none;
-                border-top: 3px solid var(--highlight-color);
-            }
+            .content { padding: 100px 20px 40px; }
+            .contact-form { padding: 25px; }
         }
     </style>
 </head>
@@ -194,26 +233,57 @@
     <nav>
         <a href="/" class="logo">MIZ OKI</a>
         <div class="nav-links">
-            <a href="/" class="active">Home</a>
+            <a href="/">Home</a>
             <a href="/intelligence">Intelligence</a>
             <a href="/vision">Vision</a>
-            <a href="/contact">Contact</a>
+            <a href="/contact" class="active">Contact</a>
         </div>
     </nav>
 
     <div class="content">
-        <h1>Intelligence That Moves<br>Faster Than the Market</h1>
-        <h2>MIZ OKI: Autonomous Business Intelligence</h2>
+        <div class="contact-container">
+            <h1>Initialize Protocol</h1>
+            <p class="subtitle">Ready to transform your decision infrastructure?</p>
 
-        <div class="copy-block">
-            <p><strong>This is the shift from managing your business to unleashing it.</strong></p>
-            <p>In a world of static data, MIZ OKI introduces the era of kinetic insight. We do not simply report the past; our autonomous engines ingest the chaotic noise of the global economy and distill it into clear, executed directives.</p>
-            <p><strong>Observe. Decide. Act.</strong></p>
-        </div>
+            <form class="contact-form" action="https://formspree.io/f/placeholder" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                </div>
 
-        <div class="cta-row">
-            <a class="btn-main" href="/contact">Initialize Protocol</a>
-            <a class="btn-secondary" href="/intelligence">Explore Platform</a>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" placeholder="Your organization">
+                </div>
+
+                <div class="form-group">
+                    <label for="interest">Area of Interest</label>
+                    <select id="interest" name="interest">
+                        <option value="demo">Request a Demo</option>
+                        <option value="pilot">Pilot Program</option>
+                        <option value="enterprise">Enterprise Solution</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your decision intelligence needs..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Transmit Request</button>
+            </form>
+
+            <div class="contact-alt">
+                <p>Prefer direct contact?</p>
+                <p><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></p>
+            </div>
         </div>
     </div>
 
