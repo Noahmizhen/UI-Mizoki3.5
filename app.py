@@ -130,7 +130,7 @@ def login():
 
     if email in USERS and USERS[email] == password:
         session['user'] = email
-        return redirect('https://mizoki.mizoki3.com/dashboard')
+        return redirect('https://miz-oki-command-center-ui-698171499447.us-central1.run.app/dashboard')
     else:
         flash('Invalid email or password.', 'error')
         return redirect(url_for('login_page'))
