@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unlocking Meta's Ad Algorithm With the ReLU Lens — MIZ OKI</title>
-    <meta name="description" content="A practical, non-technical playbook for threshold-aware media buying and why it stabilizes performance on Meta ads.">
+    <title>Unlocking Meta's Ad Algorithm With the ReLU Lens — MIZ OKI 3.5</title>
+    <meta name="description" content="A practical, image-driven playbook for threshold-aware media buying on Meta and how MIZ OKI 3.5 turns signal density into stable learning and cleaner scale.">
+    <link rel="canonical" href="https://mizoki3.com/blog/relu-lens-meta-algorithm">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Unlocking Meta's Ad Algorithm With the ReLU Lens">
+    <meta property="og:description" content="A practical, image-driven playbook for threshold-aware media buying on Meta and how MIZ OKI 3.5 turns signal density into stable learning and cleaner scale.">
+    <meta property="og:url" content="https://mizoki3.com/blog/relu-lens-meta-algorithm">
+    <meta property="og:image" content="https://mizoki3.com/assets/img/blog/meta-relu/og_meta_relu_1200x627.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Unlocking Meta's Ad Algorithm With the ReLU Lens">
+    <meta name="twitter:description" content="A practical, image-driven playbook for threshold-aware media buying on Meta and how MIZ OKI 3.5 turns signal density into stable learning and cleaner scale.">
+    <meta name="twitter:image" content="https://mizoki3.com/assets/img/blog/meta-relu/og_meta_relu_1200x627.png">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "Unlocking Meta's Ad Algorithm With the ReLU Lens",
+            "description": "A practical, image-driven playbook for threshold-aware media buying on Meta and how MIZ OKI 3.5 turns signal density into stable learning and cleaner scale.",
+            "author": {
+                "@type": "Person",
+                "name": "Boris Mizhen"
+            },
+            "datePublished": "2026-01-26",
+            "dateModified": "2026-01-26",
+            "mainEntityOfPage": "https://mizoki3.com/blog/relu-lens-meta-algorithm",
+            "image": [
+                "https://mizoki3.com/assets/img/blog/meta-relu/og_meta_relu_1200x627.png"
+            ],
+            "publisher": {
+                "@type": "Organization",
+                "name": "MIZ OKI 3.5",
+                "url": "https://mizoki3.com"
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -232,6 +265,22 @@
             border-top: 1px solid var(--border);
             margin: 3rem 0;
         }
+        .article-content figure {
+            margin: 2rem 0;
+        }
+        .article-content img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--bg-secondary);
+        }
+        .article-content figcaption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+        }
 
         .callout {
             background: var(--bg-secondary);
@@ -324,18 +373,18 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="../index.html" class="logo">MIZ OKI <span class="logo-version">3.5</span></a>
+            <a href="/" class="logo">MIZ OKI <span class="logo-version">3.5</span></a>
             <div class="nav-links">
-                <a href="../how-it-works.html">How It Works</a>
-                <a href="../platform.html">Platform</a>
-                <a href="../industries.html">Industries</a>
-                <a href="../pricing.html">Pricing</a>
-                <a href="index.html">Blog</a>
+                <a href="/how-it-works.html">How It Works</a>
+                <a href="/platform.html">Platform</a>
+                <a href="/industries.html">Industries</a>
+                <a href="/pricing.html">Pricing</a>
+                <a href="/blog">Blog</a>
             </div>
             <div class="nav-cta">
                 <a href="https://mizoki.mizoki3.com" class="btn btn-ghost">Login</a>
-                <a href="../roi.html" class="btn btn-ghost">ROI Calculator</a>
-                <a href="../walkthrough.html" class="btn btn-primary">Get Demo</a>
+                <a href="/roi.html" class="btn btn-ghost">ROI Calculator</a>
+                <a href="/walkthrough.html" class="btn btn-primary">Get Demo</a>
             </div>
         </div>
     </nav>
@@ -343,7 +392,7 @@
     <article>
         <header class="article-header">
             <div class="breadcrumb">
-                <a href="index.html">Blog</a> / Media Buying
+                <a href="/blog">Blog</a> / Media Buying
             </div>
             <span class="post-tag">Media Buying</span>
             <h1>Unlocking Meta's Ad Algorithm With the ReLU Lens</h1>
@@ -371,6 +420,11 @@
 
             <p>That's the exact <em>shape</em> many advertisers experience on Meta: you can be "close" and still get punished… then you cross a line and the system suddenly starts rewarding you.</p>
 
+            <figure>
+                <img src="/assets/img/blog/meta-relu/01_relu_gate.png" alt="Conceptual ReLU gate showing weak signals filtered out and strong signals amplified once the threshold is crossed.">
+                <figcaption>Figure 1. Below the activation line, delivery feels invisible. Above it, signal starts compounding.</figcaption>
+            </figure>
+
             <div class="callout">
                 <div class="callout-title">Important Nuance</div>
                 <p>Meta doesn't publicly disclose the exact internal architecture of its ad models, so don't treat "ReLU thresholds" as literal knobs you can turn inside their code. Treat it as a <strong>mental model</strong> for the very real, very observable reality: <strong>Meta's delivery + optimization behaves non-linearly</strong>.</p>
@@ -394,6 +448,11 @@
 
             <p>That's ReLU-like behavior in the wild.</p>
 
+            <figure>
+                <img src="/assets/img/blog/meta-relu/02_nonlinear_activation_curve.png" alt="Nonlinear activation curve showing a sudden increase in stability and delivery after a threshold is crossed.">
+                <figcaption>Figure 2. Performance often does not improve linearly. Stability tends to arrive after enough signal quality and density accumulate.</figcaption>
+            </figure>
+
             <hr>
 
             <h2>The most important "real" threshold: Learning Phase + Learning Limited</h2>
@@ -411,6 +470,11 @@
             <p>❌ Not enough events → "Learning Limited" dynamics → volatility + inefficiency</p>
 
             <p>This is why many campaigns feel like they're stuck below an invisible line.</p>
+
+            <figure>
+                <img src="/assets/img/blog/meta-relu/03_learning_50_events.png" alt="Threshold diagram referencing roughly 50 optimization events per week as a heuristic for stable learning.">
+                <figcaption>Figure 3. The learning threshold is less about a magic number than about whether each optimization unit receives enough clean outcomes to learn.</figcaption>
+            </figure>
 
             <hr>
 
@@ -469,6 +533,11 @@
             <p>So if your target CPA is $20, you may need roughly ~$140/day <em>per learning unit</em> to give the system enough signal.</p>
 
             <p>You don't have to force that number—but you should understand what you're asking the system to do when you split $50/day across 5 ad sets.</p>
+
+            <figure>
+                <img src="/assets/img/blog/meta-relu/05_budget_dilution_vs_concentration.png" alt="Comparison chart showing that concentrated budget reaches event thresholds while diluted budget keeps every ad set below activation.">
+                <figcaption>Figure 4. Fragmentation feels safer, but it often starves every ad set. Concentration is what gives the system enough evidence to trust your optimization target.</figcaption>
+            </figure>
 
             <h3>3) Fix signal quality before you scale spend</h3>
 
@@ -578,6 +647,13 @@
 
             <p>That's how you stop "reinventing the wheel" every campaign.</p>
 
+            <p>Inside <strong>MIZ OKI 3.5</strong>, that loop becomes operational: the Decision Control Plane can surface threshold risk, the validation layer can block noisy changes, and the causal memory can preserve what actually moved CPA, conversion rate, and learning stability.</p>
+
+            <figure>
+                <img src="/assets/img/blog/meta-relu/04_compounding_feedback_loop.png" alt="Feedback loop diagram showing better creative and conversion rate creating more learning events, stronger predictions, more auctions won, and lower CPA.">
+                <figcaption>Figure 5. Above-threshold media buying creates a feedback loop: better signal improves predicted action rate, which improves delivery, which generates even more signal.</figcaption>
+            </figure>
+
             <hr>
 
             <h2>What benefits this approach can create</h2>
@@ -627,8 +703,8 @@
                 <h2>Ready to Apply Threshold-Aware Media Buying?</h2>
                 <p>MIZ OKI 3.5 automates the ReLU playbook with autonomous decision intelligence—detecting Learning Limited trends, recommending consolidation, and protecting stability in real-time.</p>
                 <div class="cta-buttons">
-                    <a href="../walkthrough.html" class="btn btn-primary">Get Demo</a>
-                    <a href="../case-studies.html" class="btn btn-ghost">See Case Studies</a>
+                    <a href="/walkthrough.html" class="btn btn-primary">Get Demo</a>
+                    <a href="/case-studies.html" class="btn btn-ghost">See Case Studies</a>
                 </div>
             </div>
         </div>

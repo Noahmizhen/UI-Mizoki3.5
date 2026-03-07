@@ -95,22 +95,57 @@ def demo_opener():
     return send_from_directory('.', 'demo-opener.html')
 
 
+@app.route('/blogs')
+@app.route('/blogs/')
 @app.route('/blogs.html')
 def blogs_page():
-    return send_from_directory('.', 'blogs.html')
+    return redirect(url_for('blog_index'), code=301)
 
 
 # ==================== BLOG ROUTES ====================
 
-@app.route('/blog/')
-@app.route('/blog/index.html')
+@app.route('/blog')
 def blog_index():
     return send_from_directory('blog', 'index.html')
+
+
+@app.route('/blog/')
+@app.route('/blog/index.html')
+def blog_index_legacy():
+    return redirect(url_for('blog_index'), code=301)
+
+
+@app.route('/blog/relu-lens-meta-algorithm')
+def blog_relu_lens_article():
+    return send_from_directory('blog', 'relu-lens-meta-algorithm.html')
+
+
+@app.route('/blog/relu-lens-meta-algorithm/')
+@app.route('/blog/relu-lens-meta-algorithm.html')
+@app.route('/blog/meta-relu-gate-go-deep-before-wide')
+@app.route('/blog/meta-relu-gate-go-deep-before-wide/')
+@app.route('/blog/meta-relu-gate-go-deep-before-wide.html')
+@app.route('/blog/meta-relu-gate-go-deep-before-wide/index.html')
+def legacy_blog_relu_lens_article():
+    return redirect(url_for('blog_relu_lens_article'), code=301)
 
 
 @app.route('/blog/<path:filename>')
 def blog_post(filename):
     return send_from_directory('blog', filename)
+
+
+# ==================== VERSION 1.1 ROUTES ====================
+
+@app.route('/11/')
+@app.route('/11/index.html')
+def v11_home():
+    return send_from_directory('11', 'index.html')
+
+
+@app.route('/11/<path:filename>')
+def v11_page(filename):
+    return send_from_directory('11', filename)
 
 
 # ==================== LOGIN/AUTH ====================
@@ -119,7 +154,7 @@ def blog_post(filename):
 @app.route('/login.html', methods=['GET'])
 def login_page():
     if 'user' in session:
-        return redirect(url_for('dashboard'))
+        return redirect('https://mizoki.mizoki3.com/dashboard')
     return send_from_directory('.', 'login.html')
 
 
@@ -130,7 +165,7 @@ def login():
 
     if email in USERS and USERS[email] == password:
         session['user'] = email
-        return redirect('https://miz-oki-command-center-ui-698171499447.us-central1.run.app/dashboard')
+        return redirect('https://mizoki.mizoki3.com/dashboard')
     else:
         flash('Invalid email or password.', 'error')
         return redirect(url_for('login_page'))
@@ -146,107 +181,8 @@ def logout():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return f'''
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>Dashboard — MIZ OKI 3.5</title>
-        <link rel="icon" href="/assets/svg/favicon.svg" type="image/svg+xml"/>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/css/styles.css"/>
-        <style>
-            .dashboard {{ min-height: 100vh; padding: 2rem; }}
-            .dashboard-header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }}
-            .dashboard-card {{ background: linear-gradient(180deg, rgba(15,26,46,.85), rgba(11,18,32,.75)); border: 1px solid rgba(25,245,255,.18); border-radius: 12px; padding: 24px; margin-bottom: 1rem; }}
-            .dashboard-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }}
-            .stat {{ font-size: 2.5rem; font-weight: 700; color: var(--accent); }}
-            .stat-label {{ color: var(--muted); font-size: 0.875rem; }}
-        </style>
-    </head>
-    <body>
-        <div class="dashboard">
-            <div class="dashboard-header">
-                <div class="brand">
-                    <div class="mark" aria-hidden="true"></div>
-                    <span>MIZ OKI <small>3.5</small></span>
-                </div>
-                <div>
-                    <span style="color: var(--muted); margin-right: 1rem;">Logged in as: {session['user']}</span>
-                    <a href="/logout" class="btn secondary">Logout</a>
-                </div>
-            </div>
-
-            <h1 style="margin-bottom: 0.5rem;">Decision Control Center</h1>
-            <p style="color: var(--muted); margin-bottom: 2rem;">Verifiable Autonomous Decision Intelligence Dashboard</p>
-
-            <div class="dashboard-grid">
-                <div class="dashboard-card">
-                    <div class="stat">147</div>
-                    <div class="stat-label">Decisions Processed Today</div>
-                </div>
-                <div class="dashboard-card">
-                    <div class="stat">98.7%</div>
-                    <div class="stat-label">Validation Success Rate</div>
-                </div>
-                <div class="dashboard-card">
-                    <div class="stat">23ms</div>
-                    <div class="stat-label">Avg Pipeline Latency</div>
-                </div>
-                <div class="dashboard-card">
-                    <div class="stat">$1.2M</div>
-                    <div class="stat-label">Value Protected</div>
-                </div>
-            </div>
-
-            <div class="dashboard-card" style="margin-top: 2rem;">
-                <h2 style="margin-bottom: 1rem;">SRDPV-DAL Pipeline Status</h2>
-                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; text-align: center;">
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">SENSE</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">REASON</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">PLAN</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">VALIDATE</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">DECIDE</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">ACT</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(25,245,255,0.1); border-radius: 8px;">
-                        <div style="color: var(--accent); font-weight: 600;">LEARN</div>
-                        <div style="color: #4ade80; font-size: 0.75rem;">ACTIVE</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dashboard-card" style="margin-top: 1rem;">
-                <h2 style="margin-bottom: 1rem;">Quick Links</h2>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="/" class="btn secondary">Homepage</a>
-                    <a href="/blog/" class="btn secondary">Blog</a>
-                    <a href="/how-it-works.html" class="btn secondary">How It Works</a>
-                    <a href="/platform.html" class="btn secondary">Platform</a>
-                </div>
-            </div>
-        </div>
-    </body>
-    </html>
-    '''
+    # Redirect to the real MIZ OKI Command Center UI (Next.js app)
+    return redirect('https://mizoki.mizoki3.com/dashboard')
 
 
 # ==================== TEMPLATES ====================

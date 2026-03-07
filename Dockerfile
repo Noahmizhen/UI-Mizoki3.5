@@ -12,6 +12,7 @@ COPY *.html ./
 COPY assets/ ./assets/
 COPY blog/ ./blog/
 COPY templates/ ./templates/
+COPY 11/ ./11/
 
 # Cloud Run uses PORT environment variable
 ENV PORT=8080

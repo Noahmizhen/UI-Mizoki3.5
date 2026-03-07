@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog — MIZ OKI 3.5</title>
+    <meta name="description" content="Research and field notes from MIZ OKI 3.5 on threshold-aware media buying, decision intelligence, and causal autonomous systems.">
+    <link rel="canonical" href="https://mizoki3.com/blog">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MIZ OKI 3.5 Blog">
+    <meta property="og:description" content="Research and field notes on threshold-aware media buying, decision intelligence, and causal autonomous systems.">
+    <meta property="og:url" content="https://mizoki3.com/blog">
+    <meta property="og:image" content="https://mizoki3.com/assets/img/blog/meta-relu/og_meta_relu_1200x627.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MIZ OKI 3.5 Blog">
+    <meta name="twitter:description" content="Research and field notes on threshold-aware media buying, decision intelligence, and causal autonomous systems.">
+    <meta name="twitter:image" content="https://mizoki3.com/assets/img/blog/meta-relu/og_meta_relu_1200x627.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -128,15 +139,24 @@
         }
         .featured-image {
             height: 300px;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            background:
+                linear-gradient(135deg, rgba(10, 10, 15, 0.2), rgba(10, 10, 15, 0.72)),
+                url('/assets/img/blog/meta-relu/og_meta_relu_1200x627.png') center/cover no-repeat;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
+            justify-content: flex-start;
         }
         .featured-image-text {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 4rem;
-            color: rgba(0,0,0,0.3);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            margin: 0 0 1.5rem 1.5rem;
+            padding: 0.45rem 0.65rem;
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 999px;
+            background: rgba(10, 10, 15, 0.65);
         }
         .featured-content {
             padding: 2rem;
@@ -251,19 +271,8 @@
             gap: 0.75rem;
             max-width: 400px;
             margin: 0 auto;
-        }
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.75rem 1rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 0.9rem;
-        }
-        .newsletter-form input:focus {
-            outline: none;
-            border-color: var(--accent-cyan);
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         footer {
@@ -286,65 +295,54 @@
 <body>
     <nav>
         <div class="nav-container">
-            <a href="../index.html" class="logo">MIZ OKI <span class="logo-version">3.5</span></a>
+            <a href="/" class="logo">MIZ OKI <span class="logo-version">3.5</span></a>
             <div class="nav-links">
-                <a href="../how-it-works.html">How It Works</a>
-                <a href="../platform.html">Platform</a>
-                <a href="../industries.html">Industries</a>
-                <a href="../pricing.html">Pricing</a>
-                <a href="index.html" class="active">Blog</a>
+                <a href="/how-it-works.html">How It Works</a>
+                <a href="/platform.html">Platform</a>
+                <a href="/industries.html">Industries</a>
+                <a href="/pricing.html">Pricing</a>
+                <a href="/blog" class="active">Blog</a>
             </div>
             <div class="nav-cta">
                 <a href="https://mizoki.mizoki3.com" class="btn btn-ghost">Login</a>
-                <a href="../roi.html" class="btn btn-ghost">ROI Calculator</a>
-                <a href="../walkthrough.html" class="btn btn-primary">Get Demo</a>
+                <a href="/roi.html" class="btn btn-ghost">ROI Calculator</a>
+                <a href="/walkthrough.html" class="btn btn-primary">Get Demo</a>
             </div>
         </div>
     </nav>
 
     <section class="page-header">
-        <h1>Insights & Research</h1>
-        <p>Thought leadership on autonomous decision intelligence, media buying optimization, and the future of enterprise AI</p>
+        <h1>MIZ OKI 3.5 Journal</h1>
+        <p>Threshold-aware media buying, decision intelligence, and causal operating guidance for teams building above the activation line.</p>
     </section>
 
     <div class="blog-container">
         <article class="featured-post">
             <div class="featured-image">
-                <span class="featured-image-text">ADC</span>
+                <span class="featured-image-text">Featured Research</span>
             </div>
             <div class="featured-content">
-                <span class="post-tag">Architecture</span>
-                <h2><a href="adc-decision-framework.html">How an Autonomous Decision Controller (ADC) Thinks</a></h2>
-                <p>A plain-English guide to the 7 alerts that power real intelligence. Learn how an ADC thinks through decisions the same way a disciplined human expert would—but faster, more consistently, and with perfect memory.</p>
+                <span class="post-tag">Threshold-Aware Media Buying</span>
+                <h2><a href="/blog/relu-lens-meta-algorithm">Unlocking Meta's Ad Algorithm With the ReLU Lens</a></h2>
+                <p>The canonical main-domain publication of our ReLU playbook for Meta advertisers: where signal density, learning stability, and decision intelligence intersect.</p>
                 <div class="post-meta">
                     <div class="post-author">
                         <div class="author-avatar">BM</div>
                         <span>Boris Mizhen</span>
                     </div>
                     <span>•</span>
-                    <span>10 min read</span>
+                    <span>12 min read</span>
                     <span>•</span>
-                    <span>February 2026</span>
+                    <span>January 2026</span>
                 </div>
             </div>
         </article>
 
         <div class="posts-grid">
             <article class="post-card">
-                <span class="post-tag">Media Buying</span>
-                <h3><a href="relu-lens-meta-algorithm.html">Unlocking Meta's Ad Algorithm With the ReLU Lens</a></h3>
-                <p>A practical, non-technical playbook for "threshold-aware" media buying and why it stabilizes performance.</p>
-                <div class="post-meta">
-                    <span>Boris Mizhen</span>
-                    <span>•</span>
-                    <span>12 min read</span>
-                </div>
-            </article>
-
-            <article class="post-card">
                 <span class="post-tag">Architecture</span>
-                <h3><a href="decision-control-plane.html">Why Agents Need a Decision Control Plane</a></h3>
-                <p>The architectural innovation that separates action proposal from authorization—and why it's essential for enterprise AI.</p>
+                <h3><a href="/blog/decision-control-plane.html">Why Agents Need a Decision Control Plane</a></h3>
+                <p>Why autonomous systems need explicit arbitration between action proposal, validation, and approval.</p>
                 <div class="post-meta">
                     <span>Boris Mizhen</span>
                     <span>•</span>
@@ -353,46 +351,47 @@
             </article>
 
             <article class="post-card">
-                <span class="post-tag">Technical</span>
-                <h3><a href="srdpv-dal-pipeline.html">The 7-Stage SRDPV-DAL Pipeline Explained</a></h3>
-                <p>Deep dive into SENSE → REASON → PLAN → VALIDATE → DECIDE → ACT → LEARN and why each stage matters.</p>
+                <span class="post-tag">Decision Intelligence</span>
+                <h3><a href="/blog/adc-decision-framework.html">How an Autonomous Decision Controller Thinks</a></h3>
+                <p>A plain-English walkthrough of the seven-stage reasoning loop behind disciplined autonomous execution.</p>
                 <div class="post-meta">
                     <span>Boris Mizhen</span>
                     <span>•</span>
-                    <span>15 min read</span>
-                </div>
-            </article>
-
-            <article class="post-card">
-                <span class="post-tag">Research</span>
-                <h3><a href="meta-knowledge-graph.html">Meta's Knowledge Graph Marketing Architecture</a></h3>
-                <p>Complete technical analysis of TAO, Andromeda, Meta Lattice, and how to exploit their ad delivery system.</p>
-                <div class="post-meta">
-                    <span>Boris Mizhen</span>
-                    <span>•</span>
-                    <span>20 min read</span>
+                    <span>10 min read</span>
                 </div>
             </article>
 
             <article class="post-card">
                 <span class="post-tag">Case Study</span>
-                <h3><a href="../case-studies.html">How a Fortune 500 Reduced Learning Limited by 68%</a></h3>
-                <p>Real results from applying threshold-aware media buying with MIZ OKI's autonomous decision intelligence.</p>
+                <h3><a href="/case-studies.html">Learning Limited Reduction in Practice</a></h3>
+                <p>See how MIZ OKI 3.5 ties threshold-aware execution to measured CPA stability and faster learning cycles.</p>
                 <div class="post-meta">
                     <span>MIZ OKI Team</span>
                     <span>•</span>
                     <span>6 min read</span>
                 </div>
             </article>
+
+            <article class="post-card">
+                <span class="post-tag">Platform</span>
+                <h3><a href="/platform.html">How MIZ OKI 3.5 Operationalizes This</a></h3>
+                <p>See how the Decision Control Plane, validation layer, and causal graph operationalize media buying signals.</p>
+                <div class="post-meta">
+                    <span>MIZ OKI Team</span>
+                    <span>•</span>
+                    <span>9 min read</span>
+                </div>
+            </article>
         </div>
 
         <div class="newsletter-section">
-            <h2>Subscribe to Our Newsletter</h2>
-            <p>Get the latest insights on autonomous decision intelligence delivered to your inbox</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Enter your email">
-                <button type="submit" class="btn btn-primary">Subscribe</button>
-            </form>
+            <h2>Continue the Main-Domain Journey</h2>
+            <p>Move from threshold-aware insight into platform detail, ROI modeling, and a working MIZ OKI 3.5 walkthrough.</p>
+            <div class="newsletter-form">
+                <a href="/platform.html" class="btn btn-ghost">Explore Platform</a>
+                <a href="/roi.html" class="btn btn-ghost">Run ROI Model</a>
+                <a href="/walkthrough.html" class="btn btn-primary">Request Demo</a>
+            </div>
         </div>
     </div>
 
