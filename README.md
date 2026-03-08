@@ -10,6 +10,11 @@ Verifiable Autonomous Decision Intelligence Platform Website
 - Counterfactual Simulation Engine
 - Temporal-Causal Knowledge Graph (TCO-KG)
 
+**Recent Updates:**
+- Restructured site to use a robust Python/Flask routing engine (`app.py`).
+- Implemented canonical URL resolving for the corporate blog directly under `/blog/` on the main domain.
+- Stripped legacy subdomains natively with automatic 301 handlers.
+
 ---
 
 ## 🚀 One-Click Master Deployment
@@ -125,10 +130,12 @@ mizoki-website/
 │   ├── css/
 │   ├── img/
 │   └── pdf/
-├── Dockerfile              # Container definition
-├── nginx.conf              # Web server config
-├── cloudbuild.yaml         # Cloud Build config
+├── app.py                  # Core Flask application and routing engine
+├── requirements.txt        # Python pip dependencies
+├── Dockerfile              # Container definition (runs `app.py` with gunicorn)
+├── cloudbuild.yaml         # Cloud Build deployment config
 ├── deploy.sh               # One-click deploy script
+├── master-deploy.sh        # Advanced deploy and synchronization script
 └── README.md               # This file
 ```
 

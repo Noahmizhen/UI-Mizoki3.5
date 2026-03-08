@@ -7,8 +7,9 @@
 ## Architecture
 
 - **Deployment**: Docker container on Google Cloud Run
-- **Web Server**: Nginx serving static HTML
+- **Web Server**: Python Flask application served via Gunicorn
 - **Domain**: mizoki3.com (Cloud Run custom domain)
+- **Routing**: Client and API routes managed natively in Flask (`app.py`)
 
 ## Core Technology (7-Stage SRDPV-DAL Pipeline)
 
@@ -55,8 +56,10 @@ mizoki-website/
 │   │   └── README.md             # Image kit documentation
 │   └── pdf/                      # Downloadable resources
 │
-├── Dockerfile                    # Container definition
-├── nginx.conf                    # Web server config
+├── app.py                        # Python/Flask routing engine
+├── requirements.txt              # Python dependencies
+├── Dockerfile                    # Container definition (Gunicorn)
+├── nginx.conf                    # Legacy Nginx config (deprecated)
 ├── cloudbuild.yaml               # Cloud Build config
 ├── deploy.sh                     # One-click deploy to Cloud Run
 ├── master-deploy.sh              # Full deployment (Cloud Run + GitHub)
@@ -85,7 +88,16 @@ mizoki-website/
 
 ---
 
-## Recent Work (January 2026)
+## Recent Work (March 2026)
+
+### Canonical Blog Routing via Flask
+Migrated legacy subdomain-dependent blogs to canonical main-domain paths internally using Python/Flask (`app.py`):
+- Stripped all meta-refresh `blogs.html` redirections to external domains, pointing them 301 to `/blog/`.
+- Configured dynamic, extensionless URL resolving for `relu-lens-meta-algorithm`.
+- Added legacy redirect fallbacks for slugs like `meta-relu-gate-go-deep-before-wide`.
+- Consolidated article static paths and structure exclusively under `/blog`.
+
+## Previous Work (January 2026)
 
 ### ReLU Lens LinkedIn Content Kit
 
