@@ -3,686 +3,1919 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIZ OKI 3.5 — Verifiable Autonomous Decision Intelligence</title>
+    <title>MIZ OKI 3.5 | Governed Autonomous Decision Intelligence</title>
+    <meta name="description" content="MIZ OKI 3.5 helps revenue, risk, and operations teams cut decision time from weeks to minutes with governed autonomous intelligence, simulation, and auditability.">
+    <meta name="theme-color" content="#081018">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-tertiary: #1a1a24;
-            --text-primary: #f0f0f5;
-            --text-secondary: #9090a0;
-            --text-muted: #606070;
-            --accent-blue: #4f8fff;
-            --accent-cyan: #00d4ff;
-            --accent-purple: #a855f7;
-            --accent-green: #10b981;
-            --accent-orange: #f59e0b;
-            --accent-red: #ef4444;
-            --border: rgba(255,255,255,0.08);
-            --glow-blue: rgba(79, 143, 255, 0.15);
-            --glow-cyan: rgba(0, 212, 255, 0.15);
+            --bg: #081018;
+            --bg-deep: #050b11;
+            --panel: rgba(15, 24, 35, 0.8);
+            --panel-strong: #111c29;
+            --panel-soft: rgba(255, 255, 255, 0.04);
+            --text: #edf3f8;
+            --muted: #95a8b8;
+            --muted-strong: #cad6df;
+            --line: rgba(151, 177, 201, 0.16);
+            --cyan: #57d1ff;
+            --cyan-strong: #2f8bff;
+            --amber: #ffb169;
+            --amber-strong: #ff8a3d;
+            --green: #66d89c;
+            --red: #ff7f73;
+            --shadow: 0 30px 80px rgba(2, 8, 18, 0.46);
+            --radius-lg: 32px;
+            --radius-md: 24px;
+            --radius-sm: 18px;
+            --max: 1260px;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
+            margin: 0;
+            color: var(--text);
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            background:
+                radial-gradient(circle at 16% 14%, rgba(87, 209, 255, 0.18), transparent 34%),
+                radial-gradient(circle at 84% 18%, rgba(255, 177, 105, 0.17), transparent 27%),
+                linear-gradient(180deg, #09121c 0%, #071018 35%, #050b11 100%);
             line-height: 1.6;
             overflow-x: hidden;
         }
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .logo-version {
-            font-size: 0.7rem;
-            padding: 0.15rem 0.4rem;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            border-radius: 4px;
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--text-primary); }
-        .nav-cta { display: flex; gap: 0.75rem; }
-        .btn {
-            padding: 0.6rem 1.25rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border);
-        }
-        .btn-ghost:hover { background: var(--bg-tertiary); color: var(--text-primary); }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px var(--glow-cyan);
-        }
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
+
+        body::before {
             content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, var(--glow-cyan) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 80% 60%, var(--glow-blue) 0%, transparent 40%);
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 88%);
             pointer-events: none;
+            opacity: 0.22;
         }
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        main,
+        footer {
             position: relative;
             z-index: 1;
         }
-        .hero-badge {
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 1.5rem 0;
+        }
+
+        .nav-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--line);
+            border-radius: 22px;
+            background: rgba(8, 15, 24, 0.74);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .brand {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-        .hero-badge-dot {
-            width: 8px; height: 8px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .hero h1 {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 400;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            max-width: 900px;
-        }
-        .hero h1 em { font-style: italic; color: var(--accent-cyan); }
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-        .hero-trust { font-size: 0.85rem; color: var(--text-muted); }
-        .core-loop {
-            padding: 6rem 2rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .section-container { max-width: 1200px; margin: 0 auto; }
-        .section-label {
+            gap: 0.85rem;
+            color: var(--text);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-cyan);
-            margin-bottom: 1rem;
+            font-weight: 600;
         }
-        .section-title {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 400;
-            margin-bottom: 1rem;
+
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(87, 209, 255, 0.96), rgba(87, 209, 255, 0.2) 55%, transparent 58%),
+                radial-gradient(circle at 72% 72%, rgba(255, 177, 105, 0.88), rgba(255, 177, 105, 0.2) 52%, transparent 56%),
+                #0f1b29;
+            border: 1px solid rgba(87, 209, 255, 0.34);
+            box-shadow: 0 14px 34px rgba(87, 209, 255, 0.14);
         }
-        .section-subtitle { color: var(--text-secondary); max-width: 600px; margin-bottom: 3rem; }
-        .loop-container {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            overflow: hidden;
-        }
-        .loop-header { text-align: center; margin-bottom: 2rem; }
-        .loop-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-        .loop-name {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            color: var(--accent-cyan);
-            letter-spacing: 0.05em;
-        }
-        .loop-visual {
+
+        .brand-copy {
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
+            gap: 0.6rem;
+            letter-spacing: 0.08em;
         }
-        .loop-step { display: flex; align-items: center; gap: 0.5rem; }
-        .loop-node {
-            padding: 0.75rem 1.25rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            cursor: default;
+
+        .brand-copy span:last-child {
+            padding: 0.18rem 0.42rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--amber), var(--cyan));
+            color: var(--bg-deep);
+            font-size: 0.74rem;
+            font-weight: 700;
         }
-        .loop-node:hover { border-color: var(--accent-cyan); box-shadow: 0 0 20px var(--glow-cyan); }
-        .loop-node.sense { color: var(--accent-orange); }
-        .loop-node.reason { color: var(--accent-purple); }
-        .loop-node.plan { color: var(--accent-blue); }
-        .loop-node.validate { color: var(--accent-green); }
-        .loop-node.decide { color: var(--accent-cyan); }
-        .loop-node.act { color: var(--accent-red); }
-        .loop-node.learn { color: #f472b6; }
-        .loop-arrow { color: var(--text-muted); font-size: 1.25rem; }
-        .loop-feedback { text-align: center; font-size: 0.8rem; color: var(--text-muted); font-style: italic; }
-        .innovations { padding: 6rem 2rem; }
-        .innovations-grid {
+
+        .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .nav-links,
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-links a {
+            padding: 0.65rem 0.9rem;
+            border-radius: 999px;
+            color: var(--muted);
+            font-size: 0.92rem;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            min-height: 46px;
+            padding: 0 1.15rem;
+            border: 1px solid transparent;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--amber), var(--cyan));
+            color: #071018;
+            box-shadow: 0 18px 30px rgba(87, 209, 255, 0.14);
+        }
+
+        .btn-secondary {
+            border-color: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(87, 209, 255, 0.3);
+            background: rgba(87, 209, 255, 0.08);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            border-radius: 999px;
+            background: currentColor;
+            box-shadow: 0 6px 0 currentColor, 0 -6px 0 currentColor;
+        }
+
+        .section {
+            padding: clamp(5rem, 10vw, 7rem) 1.5rem;
+        }
+
+        .section-frame {
+            max-width: var(--max);
+            margin: 0 auto;
+        }
+
+        .hero {
+            padding-top: clamp(4.5rem, 8vw, 6.5rem);
+            padding-bottom: 4.5rem;
+        }
+
+        .hero-frame {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
+            gap: 2rem;
+            align-items: center;
         }
-        .innovation-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
+
+        .eyebrow,
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+
+        .eyebrow::before,
+        .section-kicker::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 0 7px rgba(102, 216, 156, 0.12);
+        }
+
+        .hero h1 {
+            margin: 1.2rem 0 1rem;
+            max-width: 10ch;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+        }
+
+        .hero h1 span {
+            color: var(--amber);
+            font-style: italic;
+        }
+
+        .hero-lead {
+            margin: 0;
+            max-width: 41rem;
+            color: var(--muted-strong);
+            font-size: 1.14rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .hero-chip {
+            padding: 0.7rem 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--muted-strong);
+            font-size: 0.9rem;
+        }
+
+        .hero-proof {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+            margin-top: 1.7rem;
+        }
+
+        .proof-card,
+        .problem-card,
+        .promise-card,
+        .pillar-card,
+        .stage-card,
+        .mini-case,
+        .trust-card,
+        .stat-box,
+        .detail-block {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.16);
+        }
+
+        .proof-card {
+            padding: 1.15rem 1.2rem;
+        }
+
+        .proof-card strong {
+            display: block;
+            margin-bottom: 0.45rem;
+            font-size: 1rem;
+        }
+
+        .proof-card p,
+        .problem-card p,
+        .pillar-card p,
+        .stage-card p,
+        .mini-case p,
+        .trust-card p,
+        .stat-box p,
+        .detail-block p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .hero-visual {
             position: relative;
+        }
+
+        .decision-canvas {
+            position: relative;
+            padding: 1.4rem;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(180deg, rgba(14, 23, 34, 0.92), rgba(9, 16, 24, 0.88));
+            box-shadow: var(--shadow);
             overflow: hidden;
         }
-        .innovation-card::before {
+
+        .decision-canvas::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-            transform: scaleX(0);
-            transition: transform 0.3s;
+            inset: 0;
+            background:
+                radial-gradient(circle at 100% 0%, rgba(87, 209, 255, 0.18), transparent 32%),
+                radial-gradient(circle at 0% 100%, rgba(255, 177, 105, 0.14), transparent 30%);
+            pointer-events: none;
         }
-        .innovation-card:hover::before { transform: scaleX(1); }
-        .innovation-card:hover { border-color: rgba(79, 143, 255, 0.3); transform: translateY(-2px); }
-        .innovation-icon {
-            width: 48px; height: 48px;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
+
+        .canvas-top,
+        .canvas-grid,
+        .audit-strip {
+            position: relative;
+            z-index: 1;
+        }
+
+        .canvas-top {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.25rem;
-            font-size: 1.5rem;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
         }
-        .innovation-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .innovation-abbr {
+
+        .canvas-top h2 {
+            margin: 0.45rem 0 0;
+            max-width: 17ch;
+            font-size: 1.34rem;
+            line-height: 1.22;
+        }
+
+        .canvas-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--accent-cyan);
-            margin-bottom: 0.75rem;
+            font-size: 0.74rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cyan);
         }
-        .innovation-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-        .metrics {
-            padding: 6rem 2rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
+
+        .status-pill {
+            padding: 0.55rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(102, 216, 156, 0.1);
+            border: 1px solid rgba(102, 216, 156, 0.28);
+            color: var(--green);
+            font-size: 0.78rem;
+            white-space: nowrap;
         }
-        .metrics-grid {
+
+        .canvas-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr) minmax(0, 0.92fr);
+            gap: 1rem;
         }
-        .metric-card { text-align: center; padding: 2rem; }
-        .metric-value {
+
+        .canvas-column,
+        .canvas-center {
+            padding: 1rem;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .column-label {
+            margin: 0 0 0.9rem;
+            color: var(--muted);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 3rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
-        .metric-label { font-size: 0.9rem; color: var(--text-secondary); }
-        .how-works { padding: 6rem 2rem; }
-        .steps-container { display: grid; gap: 3rem; margin-top: 3rem; }
-        .step-row { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; align-items: start; }
-        .step-number {
-            width: 80px; height: 80px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+
+        .signal-card,
+        .proposal-card,
+        .outcome-card {
+            padding: 0.9rem;
+            border-radius: 18px;
+            background: rgba(7, 12, 18, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .signal-card + .signal-card,
+        .proposal-card + .proposal-card,
+        .outcome-card + .outcome-card {
+            margin-top: 0.75rem;
+        }
+
+        .signal-top,
+        .outcome-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .signal-card strong,
+        .proposal-card strong,
+        .outcome-card strong {
+            display: block;
+            font-size: 0.96rem;
+            line-height: 1.35;
+        }
+
+        .signal-value,
+        .outcome-status {
+            padding: 0.22rem 0.48rem;
+            border-radius: 999px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+        }
+
+        .signal-card:nth-child(2) .signal-value {
+            background: rgba(87, 209, 255, 0.12);
+            color: var(--cyan);
+        }
+
+        .signal-card:nth-child(3) .signal-value {
+            background: rgba(255, 177, 105, 0.12);
+            color: var(--amber);
+        }
+
+        .signal-card:nth-child(4) .signal-value {
+            background: rgba(255, 127, 115, 0.12);
+            color: var(--red);
+        }
+
+        .signal-card p,
+        .proposal-card p,
+        .outcome-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.87rem;
+            line-height: 1.55;
+        }
+
+        .proposal-card {
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .proposal-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.9rem;
+            bottom: 0.9rem;
+            width: 3px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, var(--amber), var(--cyan));
+        }
+
+        .control-plane {
+            margin-top: 0.9rem;
+            padding: 1.15rem;
+            border-radius: 24px;
+            background: linear-gradient(135deg, rgba(87, 209, 255, 0.12), rgba(47, 139, 255, 0.08));
+            border: 1px solid rgba(87, 209, 255, 0.24);
+        }
+
+        .control-plane-badge {
+            display: inline-flex;
+            padding: 0.3rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted-strong);
+        }
+
+        .control-plane strong {
+            display: block;
+            margin: 0.7rem 0 0.45rem;
+            font-size: 1.08rem;
+            line-height: 1.35;
+        }
+
+        .control-plane p {
+            margin: 0;
+            color: var(--muted-strong);
+            font-size: 0.92rem;
+        }
+
+        .control-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 0.9rem;
+        }
+
+        .control-tags span,
+        .audit-item,
+        .node-tag,
+        .stage-meta,
+        .case-tag,
+        .detail-tag {
+            padding: 0.45rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted-strong);
+            font-size: 0.78rem;
+        }
+
+        .outcome-status.approved {
+            background: rgba(102, 216, 156, 0.12);
+            color: var(--green);
+        }
+
+        .outcome-status.deferred {
+            background: rgba(255, 177, 105, 0.12);
+            color: var(--amber);
+        }
+
+        .outcome-status.escalated {
+            background: rgba(255, 127, 115, 0.12);
+            color: var(--red);
+        }
+
+        .audit-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .audit-item {
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-heading {
+            display: grid;
+            grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+            gap: 2rem;
+            align-items: end;
+            margin-bottom: 2rem;
+        }
+
+        .section-heading h2 {
+            margin: 0.8rem 0 0;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.5rem, 5vw, 4.4rem);
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+        }
+
+        .section-heading p {
+            margin: 0;
+            max-width: 44rem;
+            color: var(--muted-strong);
+            font-size: 1.06rem;
+        }
+
+        .narrative-gap {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .problem-card,
+        .promise-card {
+            padding: 1.5rem;
+        }
+
+        .problem-index {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.1rem;
+            height: 2.1rem;
+            border-radius: 999px;
+            margin-bottom: 1.1rem;
+            background: rgba(255, 255, 255, 0.08);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--amber);
+        }
+
+        .problem-card h3,
+        .promise-card h3,
+        .pillar-card h3,
+        .mini-case h3,
+        .trust-card h3 {
+            margin: 0 0 0.7rem;
+            font-size: 1.1rem;
+            line-height: 1.3;
+        }
+
+        .promise-card {
+            background:
+                radial-gradient(circle at top right, rgba(255, 177, 105, 0.18), transparent 36%),
+                linear-gradient(180deg, rgba(17, 28, 41, 0.96), rgba(10, 17, 26, 0.96));
+        }
+
+        .promise-card p {
+            color: var(--muted-strong);
+        }
+
+        .control-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr);
+            gap: 1rem;
+        }
+
+        .control-graphic,
+        .pipeline-shell,
+        .feature-story,
+        .feature-graphic,
+        .decision-detail,
+        .stats-panel,
+        .cta-frame {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: linear-gradient(180deg, rgba(16, 26, 37, 0.9), rgba(9, 16, 24, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .control-graphic {
+            padding: 1.5rem;
+            overflow: hidden;
+        }
+
+        .model-ribbon {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .ribbon-pill {
+            padding: 0.5rem 0.72rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.07);
+            color: var(--muted-strong);
+            font-size: 0.82rem;
+        }
+
+        .model-flow {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+            gap: 0.85rem;
+            align-items: stretch;
+        }
+
+        .model-node {
+            padding: 1.2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03));
+        }
+
+        .model-node strong {
+            display: block;
+            margin: 0.55rem 0 0.6rem;
+            font-size: 1.08rem;
+        }
+
+        .model-node p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .model-node .node-tag {
+            display: inline-flex;
+            margin-top: 1rem;
+        }
+
+        .flow-arrow {
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--cyan);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--accent-cyan);
+            font-size: 1.2rem;
         }
-        .step-content h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .pillar-card {
+            padding: 1.3rem;
+        }
+
+        .pillar-code,
+        .stage-code,
+        .case-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 3rem;
+            padding: 0.36rem 0.65rem;
+            border-radius: 999px;
+            margin-bottom: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--amber);
+        }
+
+        .pipeline-shell {
+            padding: 1.4rem;
+        }
+
+        .pipeline-track {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(0, 1fr));
+            gap: 0.8rem;
+        }
+
+        .stage-card {
+            padding: 1.15rem;
+            min-height: 100%;
+        }
+
+        .stage-card h3 {
+            margin: 0 0 0.55rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+        }
+
+        .stage-card p {
+            font-size: 0.87rem;
+            line-height: 1.58;
+        }
+
+        .stage-meta {
+            display: inline-flex;
+            margin-top: 0.9rem;
+            font-size: 0.74rem;
+            color: var(--muted);
+        }
+
+        .stage-card.sense .stage-code,
+        .stage-card.sense .stage-meta {
+            color: #ffbe68;
+        }
+
+        .stage-card.reason .stage-code,
+        .stage-card.reason .stage-meta {
+            color: #cf9aff;
+        }
+
+        .stage-card.plan .stage-code,
+        .stage-card.plan .stage-meta {
+            color: #83c9ff;
+        }
+
+        .stage-card.validate .stage-code,
+        .stage-card.validate .stage-meta {
+            color: #84e5a8;
+        }
+
+        .stage-card.decide .stage-code,
+        .stage-card.decide .stage-meta {
+            color: var(--cyan);
+        }
+
+        .stage-card.act .stage-code,
+        .stage-card.act .stage-meta {
+            color: #ff9b8a;
+        }
+
+        .stage-card.learn .stage-code,
+        .stage-card.learn .stage-meta {
+            color: #ffb5cf;
+        }
+
+        .pipeline-note {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .pipeline-note p {
+            margin: 0;
+            color: var(--muted-strong);
+        }
+
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            gap: 1rem;
+        }
+
+        .feature-story,
+        .feature-graphic,
+        .stats-panel,
+        .decision-detail,
+        .cta-frame {
+            padding: 1.5rem;
+        }
+
+        .feature-story {
+            background:
+                radial-gradient(circle at top left, rgba(255, 177, 105, 0.14), transparent 33%),
+                linear-gradient(180deg, rgba(17, 28, 41, 0.96), rgba(9, 16, 24, 0.96));
+        }
+
+        .feature-story h3 {
+            margin: 1rem 0 0.8rem;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+        }
+
+        .feature-story p {
+            margin: 0;
+            color: var(--muted-strong);
+            font-size: 1rem;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 0.8rem;
+            margin: 1.4rem 0;
+        }
+
+        .feature-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.7rem;
+            padding: 0.9rem 1rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-item span:first-child {
+            color: var(--amber);
+        }
+
+        .feature-graphic {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1rem;
+            overflow: hidden;
+        }
+
+        .feature-graphic img {
+            width: 100%;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .graphic-caption {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .mini-case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .mini-case {
+            padding: 1.3rem;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+            gap: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-box {
+            padding: 1.2rem;
+        }
+
+        .stat-value {
+            margin-bottom: 0.55rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.4rem;
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--cyan);
+        }
+
+        .stats-footnote {
+            margin-top: 1rem;
+            padding: 1rem 1.1rem;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--muted-strong);
+        }
+
+        .decision-detail {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .detail-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .detail-header h3 {
+            margin: 0.6rem 0 0;
+            font-size: 1.32rem;
+        }
+
+        .detail-status {
+            padding: 0.5rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(102, 216, 156, 0.1);
+            border: 1px solid rgba(102, 216, 156, 0.28);
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .detail-block {
+            padding: 1rem;
+        }
+
+        .detail-block strong {
+            display: block;
+            margin: 0.65rem 0 0.45rem;
+            font-size: 1rem;
+        }
+
+        .detail-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+        }
+
+        .detail-tag {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .decision-timeline {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 0.75rem;
         }
-        .step-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.25rem 0.5rem;
-            background: var(--bg-tertiary);
-            border-radius: 4px;
-            color: var(--text-muted);
+
+        .timeline-step {
+            padding: 0.95rem;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .step-content p { color: var(--text-secondary); line-height: 1.7; }
-        .media-buying {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
-            border-top: 1px solid var(--border);
+
+        .timeline-step strong {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
         }
-        .relu-callout {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--accent-orange);
-            border-radius: 8px;
-            padding: 1.5rem 2rem;
-            margin: 2rem 0;
+
+        .timeline-step p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.5;
         }
-        .relu-callout h4 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-orange);
-            margin-bottom: 0.5rem;
-        }
-        .relu-callout p { color: var(--text-secondary); font-size: 0.95rem; }
-        .threshold-list { display: grid; gap: 1rem; margin-top: 2rem; }
-        .threshold-item {
-            display: flex;
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 1rem;
-            align-items: flex-start;
-            padding: 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
         }
-        .threshold-icon {
-            width: 40px; height: 40px;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+
+        .trust-card {
+            padding: 1.3rem;
         }
-        .threshold-item h5 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .threshold-item p { font-size: 0.85rem; color: var(--text-secondary); }
-        .industries { padding: 6rem 2rem; }
-        .industry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-        .industry-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-        .industry-card:hover { border-color: var(--accent-blue); }
-        .industry-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .industry-card p { font-size: 0.85rem; color: var(--text-secondary); }
-        .trust {
-            padding: 6rem 2rem;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-        }
-        .trust-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .trust-feature { display: flex; gap: 1rem; align-items: flex-start; }
+
         .trust-icon {
-            width: 44px; height: 44px;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            font-size: 1.25rem;
-        }
-        .trust-feature h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .trust-feature p { font-size: 0.85rem; color: var(--text-secondary); }
-        .cta-section { padding: 6rem 2rem; text-align: center; }
-        .cta-section h2 {
-            font-family: 'Instrument Serif', Georgia, serif;
-            font-size: 2.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
             margin-bottom: 1rem;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--amber);
         }
-        .cta-section p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+
+        .cta {
+            padding-top: 0;
         }
-        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        .cta-frame {
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+            gap: 1.5rem;
+            align-items: center;
+            background:
+                radial-gradient(circle at 15% 50%, rgba(87, 209, 255, 0.16), transparent 34%),
+                radial-gradient(circle at 90% 30%, rgba(255, 177, 105, 0.16), transparent 30%),
+                linear-gradient(180deg, rgba(17, 28, 41, 0.98), rgba(9, 16, 24, 0.98));
+        }
+
+        .cta-frame h2 {
+            margin: 1rem 0 0.8rem;
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 0.98;
+            letter-spacing: -0.03em;
+        }
+
+        .cta-frame p {
+            margin: 0;
+            max-width: 33rem;
+            color: var(--muted-strong);
+            font-size: 1.04rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.9rem;
+        }
+
         footer {
-            padding: 4rem 2rem 2rem;
-            border-top: 1px solid var(--border);
-            background: var(--bg-secondary);
+            padding: 0 1.5rem 2.5rem;
         }
-        .footer-container { max-width: 1200px; margin: 0 auto; }
+
+        .footer-inner {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding-top: 2.2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
         .footer-top {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
         }
+
+        .footer-brand p,
+        .footer-links a,
+        .footer-bottom {
+            color: var(--muted);
+        }
+
         .footer-brand p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            max-width: 300px;
+            max-width: 28rem;
+            margin: 1rem 0 0;
         }
-        .footer-links h5 {
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-muted);
+
+        .footer-links h3 {
+            margin: 0 0 0.9rem;
+            font-size: 0.88rem;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            color: var(--muted-strong);
         }
+
         .footer-links a {
             display: block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 0.25rem 0;
-            transition: color 0.2s;
+            padding: 0.28rem 0;
+            font-size: 0.94rem;
         }
-        .footer-links a:hover { color: var(--text-primary); }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
         .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1.8rem;
+            margin-top: 1.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.88rem;
         }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .footer-top { grid-template-columns: 1fr 1fr; }
-            .step-row { grid-template-columns: 1fr; }
-            .step-number { width: 60px; height: 60px; }
-            .loop-visual { flex-direction: column; }
-            .loop-arrow { transform: rotate(90deg); }
+
+        @media (max-width: 1140px) {
+            .hero-frame,
+            .section-heading,
+            .control-layout,
+            .use-case-grid,
+            .evidence-grid,
+            .cta-frame {
+                grid-template-columns: 1fr;
+            }
+
+            .problem-grid,
+            .trust-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .mini-case-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                max-width: 12ch;
+            }
+
+            .cta-actions {
+                justify-content: flex-start;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            .nav-group {
+                position: absolute;
+                top: calc(100% + 0.85rem);
+                left: 0;
+                right: 0;
+                display: none;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1rem;
+                border: 1px solid var(--line);
+                border-radius: 22px;
+                background: rgba(8, 15, 24, 0.95);
+                backdrop-filter: blur(24px);
+            }
+
+            .nav-group.open {
+                display: flex;
+            }
+
+            .nav-links,
+            .nav-actions {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+            }
+
+            .nav-links a,
+            .nav-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .canvas-grid,
+            .audit-strip,
+            .detail-grid,
+            .decision-timeline,
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-track {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .model-flow {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+                min-height: 1.4rem;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .site-nav,
+            .section,
+            footer {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .hero h1,
+            .section-heading h2,
+            .feature-story h3,
+            .cta-frame h2 {
+                font-size: clamp(2.6rem, 14vw, 4rem);
+            }
+
+            .hero-proof,
+            .problem-grid,
+            .pillar-grid,
+            .stats-grid,
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-track {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-note {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">MIZ OKI <span class="logo-version">3.5</span></a>
-            <div class="nav-links">
-                <a href="how-it-works.html">How It Works</a>
-                <a href="platform.html">Platform</a>
-                <a href="security.html">Security</a>
-                <a href="industries.html">Industries</a>
-                <a href="pricing.html">Pricing</a>
-                <a href="case-studies.html">Case Studies</a>
-                <a href="/blog/">Blog</a>
-            </div>
-            <div class="nav-cta">
-                <a href="/login.html" class="btn btn-ghost">Login</a>
-                <a href="roi.html" class="btn btn-ghost">Estimate ROI</a>
-                <a href="walkthrough.html" class="btn btn-primary">12-Min Walkthrough</a>
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="brand" aria-label="MIZ OKI home">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-copy">
+                    <span>MIZ OKI</span>
+                    <span>3.5</span>
+                </span>
+            </a>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation">
+                <span></span>
+            </button>
+            <div class="nav-group" id="site-menu">
+                <div class="nav-links">
+                    <a href="how-it-works.html">How It Works</a>
+                    <a href="platform.html">Platform</a>
+                    <a href="security.html">Security</a>
+                    <a href="industries.html">Industries</a>
+                    <a href="pricing.html">Pricing</a>
+                    <a href="case-studies.html">Case Studies</a>
+                    <a href="/blog/">Blog</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="/login.html" class="btn btn-secondary">Login</a>
+                    <a href="roi.html" class="btn btn-secondary">Estimate ROI</a>
+                    <a href="walkthrough.html" class="btn btn-primary">12-Min Walkthrough</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Verifiable Autonomous Decision Intelligence
-            </div>
-            <h1>Decisions <em>verified before execution</em>—not explained after failure</h1>
-            <p class="hero-subtitle">MIZ OKI 3.5 is the first Business General Intelligence platform where autonomous agents propose actions, but a Decision Control Plane verifies, simulates, and authorizes every decision before execution. No more black-box AI. Full auditability. 50-75× faster decisions.</p>
-            <div class="hero-actions">
-                <a href="walkthrough.html" class="btn btn-primary">See 12-Minute Walkthrough →</a>
-                <a href="roi.html" class="btn btn-ghost">Estimate Your ROI</a>
-            </div>
-            <p class="hero-trust">No rip-and-replace. No black-box autonomy. Agents cannot bypass governance.</p>
-        </div>
-    </section>
-
-    <section class="core-loop">
-        <div class="section-container">
-            <span class="section-label">The Cognitive Architecture</span>
-            <h2 class="section-title">Seven-Stage Autonomous Intelligence Loop</h2>
-            <p class="section-subtitle">Every decision flows through a verifiable pipeline. PLAN and VALIDATE stages ensure proposals are challenged before the Decision Control Plane authorizes execution.</p>
-            <div class="loop-container">
-                <div class="loop-header">
-                    <div class="loop-title">SRDPV-DAL Pipeline (Patent Pending)</div>
-                    <div class="loop-name">Sense → Reason → Plan → Validate → Decide → Act → Learn</div>
+    <main>
+        <section class="section hero">
+            <div class="section-frame hero-frame">
+                <div class="hero-copy">
+                    <span class="eyebrow">Verifiable Autonomous Decision Intelligence</span>
+                    <h1>Cut decision time from weeks to minutes without <span>surrendering control.</span></h1>
+                    <p class="hero-lead">MIZ OKI 3.5 gives revenue, risk, and operations teams a governed system for action. Autonomous agents surface options. The Decision Control Plane simulates, challenges, and authorizes every move before execution, so automation can operate inside policy instead of around it.</p>
+                    <div class="hero-actions">
+                        <a href="walkthrough.html" class="btn btn-primary">See the 12-minute walkthrough</a>
+                        <a href="roi.html" class="btn btn-secondary">Estimate your ROI</a>
+                    </div>
+                    <div class="hero-chips" aria-label="Key proof points">
+                        <span class="hero-chip">50-75x faster decision velocity</span>
+                        <span class="hero-chip">3.2 month typical payback</span>
+                        <span class="hero-chip">Immutable decision trail</span>
+                        <span class="hero-chip">Agents cannot bypass governance</span>
+                    </div>
+                    <div class="hero-proof">
+                        <article class="proof-card">
+                            <strong>For executives</strong>
+                            <p>Move faster on pricing, spend, risk, and operations while keeping accountability, traceability, and clear approval logic.</p>
+                        </article>
+                        <article class="proof-card">
+                            <strong>For operators</strong>
+                            <p>Work from policy-aware recommendations, rollout plans, and rollback protections instead of disconnected dashboards and ad hoc playbooks.</p>
+                        </article>
+                    </div>
                 </div>
-                <div class="loop-visual">
-                    <div class="loop-step"><span class="loop-node sense">SENSE</span><span class="loop-arrow">→</span></div>
-                    <div class="loop-step"><span class="loop-node reason">REASON</span><span class="loop-arrow">→</span></div>
-                    <div class="loop-step"><span class="loop-node plan">PLAN</span><span class="loop-arrow">→</span></div>
-                    <div class="loop-step"><span class="loop-node validate">VALIDATE</span><span class="loop-arrow">→</span></div>
-                    <div class="loop-step"><span class="loop-node decide">DECIDE</span><span class="loop-arrow">→</span></div>
-                    <div class="loop-step"><span class="loop-node act">ACT</span><span class="loop-arrow">→</span></div>
-                    <div class="loop-step"><span class="loop-node learn">LEARN</span></div>
+
+                <div class="hero-visual">
+                    <div class="decision-canvas">
+                        <div class="canvas-top">
+                            <div>
+                                <span class="canvas-label">Live decision session</span>
+                                <h2>Margin pressure detected across paid media and inventory.</h2>
+                            </div>
+                            <span class="status-pill">Policy guardrails active</span>
+                        </div>
+
+                        <div class="canvas-grid">
+                            <div class="canvas-column">
+                                <p class="column-label">Signals</p>
+                                <div class="signal-card">
+                                    <div class="signal-top">
+                                        <strong>Customer acquisition cost</strong>
+                                        <span class="signal-value">+18%</span>
+                                    </div>
+                                    <p>Meta spend is rising faster than conversion efficiency in two priority campaigns.</p>
+                                </div>
+                                <div class="signal-card">
+                                    <div class="signal-top">
+                                        <strong>High-margin SKU availability</strong>
+                                        <span class="signal-value">0.63 risk</span>
+                                    </div>
+                                    <p>Projected stockout windows are widening in the same regions showing demand acceleration.</p>
+                                </div>
+                                <div class="signal-card">
+                                    <div class="signal-top">
+                                        <strong>Protected margin floor</strong>
+                                        <span class="signal-value">hard stop</span>
+                                    </div>
+                                    <p>Budget, discount, and promo actions must stay inside policy and human approval thresholds.</p>
+                                </div>
+                            </div>
+
+                            <div class="canvas-center">
+                                <p class="column-label">Agent proposals</p>
+                                <div class="proposal-card">
+                                    <strong>Consolidate three low-signal ad sets into one stronger learning pool.</strong>
+                                    <p>Expected to reduce CAC drift while keeping spend concentrated where signal quality is strongest.</p>
+                                </div>
+                                <div class="proposal-card">
+                                    <strong>Hold pricing, cut low-margin placements, and protect stable learning windows.</strong>
+                                    <p>Avoid reactive edits that reset optimization while inventory risk remains elevated.</p>
+                                </div>
+                                <div class="proposal-card">
+                                    <strong>Stage replenishment before opening discount expansion in the two highest-demand regions.</strong>
+                                    <p>Sequence operational fixes before promotional spend so supply can support demand.</p>
+                                </div>
+
+                                <div class="control-plane">
+                                    <span class="control-plane-badge">Decision Control Plane</span>
+                                    <strong>Authorize only after challenge.</strong>
+                                    <p>The proposed move is stress-tested against no-action and alternative scenarios, checked against policy, and scored against historical performance before execution.</p>
+                                    <div class="control-tags">
+                                        <span>Counterfactual simulation</span>
+                                        <span>Risk arbitration</span>
+                                        <span>Policy compliance</span>
+                                        <span>Signed audit log</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="canvas-column">
+                                <p class="column-label">Decision outputs</p>
+                                <div class="outcome-card">
+                                    <div class="outcome-top">
+                                        <strong>Budget shift</strong>
+                                        <span class="outcome-status approved">approved</span>
+                                    </div>
+                                    <p>Expected margin delta of +11.4% with a guarded two-step rollout and rollback trigger.</p>
+                                </div>
+                                <div class="outcome-card">
+                                    <div class="outcome-top">
+                                        <strong>Price change</strong>
+                                        <span class="outcome-status deferred">deferred</span>
+                                    </div>
+                                    <p>Waiting on supplier confirmation because confidence is below the policy threshold.</p>
+                                </div>
+                                <div class="outcome-card">
+                                    <div class="outcome-top">
+                                        <strong>Promo expansion</strong>
+                                        <span class="outcome-status escalated">escalated</span>
+                                    </div>
+                                    <p>Escalated to a human approver because it would push inventory exposure beyond the allowed ceiling.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="audit-strip" aria-label="Decision evidence trail">
+                            <span class="audit-item">Signal lineage attached</span>
+                            <span class="audit-item">3 scenarios simulated</span>
+                            <span class="audit-item">Policy verdict recorded</span>
+                            <span class="audit-item">Execution signed and logged</span>
+                        </div>
+                    </div>
                 </div>
-                <p class="loop-feedback">↺ LEARN feeds outcomes back into SENSE — continuous improvement from real results</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="innovations">
-        <div class="section-container">
-            <span class="section-label">Core Innovations</span>
-            <h2 class="section-title">What Makes 3.5 Different</h2>
-            <p class="section-subtitle">Four architectural breakthroughs that enable verifiable, governed autonomy—suitable for enterprise and regulated environments.</p>
-            <div class="innovations-grid">
-                <div class="innovation-card">
-                    <div class="innovation-icon">⚡</div>
-                    <h3>Decision Control Plane</h3>
-                    <div class="innovation-abbr">DCP</div>
-                    <p>Centralized authority that receives proposals from autonomous agents and authorizes, rejects, modifies, or defers them. Agents cannot bypass the DCP—this separation of proposal from authorization is a fundamental architectural constraint.</p>
+        <section class="section narrative-gap">
+            <div class="section-frame">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Why this exists</span>
+                        <h2>Most AI stops at recommendation. Your business needs signed decisions.</h2>
+                    </div>
+                    <p>High-stakes workflows break when speed, judgment, and governance live in different systems. MIZ OKI unifies them into one operating layer that can move fast without losing control.</p>
                 </div>
-                <div class="innovation-card">
-                    <div class="innovation-icon">🔍</div>
-                    <h3>Validation & Arbitration Layer</h3>
-                    <div class="innovation-abbr">VAL</div>
-                    <p>Planner, Verifier, Risk, and Policy agents independently evaluate each proposal. Disagreement is signal, not error. Arbitration resolves conflicts based on confidence thresholds and historical accuracy.</p>
+
+                <div class="problem-grid">
+                    <article class="problem-card">
+                        <span class="problem-index">01</span>
+                        <h3>Dashboards explain after the fact.</h3>
+                        <p>By the time teams agree on what happened, the market, campaign, inventory state, or risk window has already shifted.</p>
+                    </article>
+                    <article class="problem-card">
+                        <span class="problem-index">02</span>
+                        <h3>Copilots suggest, but they do not arbitrate.</h3>
+                        <p>Most AI can draft an answer. Very little of it can challenge itself, compare alternatives, and document why a decision is safe to execute.</p>
+                    </article>
+                    <article class="problem-card">
+                        <span class="problem-index">03</span>
+                        <h3>Uncontrolled agents move faster than governance.</h3>
+                        <p>When automation touches pricing, spend, or risk without hard controls, every gain comes with hidden exposure.</p>
+                    </article>
+                    <article class="promise-card">
+                        <span class="problem-index">04</span>
+                        <h3>Every consequential action needs evidence, challenge, and authorization.</h3>
+                        <p>That is the core shift from assistants and dashboards to a governed decision system that can operate in revenue-critical and regulated environments.</p>
+                    </article>
                 </div>
-                <div class="innovation-card">
-                    <div class="innovation-icon">🔮</div>
-                    <h3>Counterfactual Simulation Engine</h3>
-                    <div class="innovation-abbr">CSE</div>
-                    <p>Before execution, simulate the proposed action, alternatives, and a no-action baseline. Learn from simulated outcomes without real-world risk. Authorization denied when alternatives score higher.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-frame">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">The control model</span>
+                        <h2>Agents propose. The platform challenges. The control plane decides.</h2>
+                    </div>
+                    <p>MIZ OKI is built around a simple rule: no autonomous action reaches production until it has survived simulation, risk review, policy review, and authorization inside the same system.</p>
                 </div>
-                <div class="innovation-card">
-                    <div class="innovation-icon">🕸️</div>
-                    <h3>Temporal-Causal Knowledge Graph</h3>
-                    <div class="innovation-abbr">TCO-KG</div>
-                    <p>Decision memory and audit spine. Stores facts, proposals, simulations, outcomes, and causal confidence with timestamps. Every decision is traceable. Every outcome feeds learning.</p>
+
+                <div class="control-layout">
+                    <div class="control-graphic">
+                        <div class="model-ribbon">
+                            <span class="ribbon-pill">Revenue</span>
+                            <span class="ribbon-pill">Risk</span>
+                            <span class="ribbon-pill">Operations</span>
+                            <span class="ribbon-pill">Human approval when needed</span>
+                        </div>
+                        <div class="model-flow">
+                            <article class="model-node">
+                                <span class="pillar-code">Observe</span>
+                                <strong>Live signals become structured proposals.</strong>
+                                <p>The system senses what matters, enriches it with context, and generates multiple candidate actions instead of one brittle recommendation.</p>
+                                <span class="node-tag">Signal + context + options</span>
+                            </article>
+                            <div class="flow-arrow" aria-hidden="true">-&gt;</div>
+                            <article class="model-node">
+                                <span class="pillar-code">Challenge</span>
+                                <strong>Independent agents test the move before it is allowed to run.</strong>
+                                <p>Verification, risk, policy, and simulation layers treat disagreement as a useful signal and compare the proposal against alternatives.</p>
+                                <span class="node-tag">Verifier + risk + policy + simulation</span>
+                            </article>
+                            <div class="flow-arrow" aria-hidden="true">-&gt;</div>
+                            <article class="model-node">
+                                <span class="pillar-code">Authorize</span>
+                                <strong>The control plane signs the action and captures the evidence.</strong>
+                                <p>The final action can be approved, modified, deferred, rejected, or escalated. Whatever happens is logged for traceability and future learning.</p>
+                                <span class="node-tag">Signed action + full audit packet</span>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="pillar-grid">
+                        <article class="pillar-card">
+                            <span class="pillar-code">DCP</span>
+                            <h3>Decision Control Plane</h3>
+                            <p>Central authority for approval, modification, deferral, rejection, and escalation. Agents cannot bypass it.</p>
+                        </article>
+                        <article class="pillar-card">
+                            <span class="pillar-code">VAL</span>
+                            <h3>Validation and Arbitration Layer</h3>
+                            <p>Planner, verifier, risk, and policy agents evaluate every proposal from different angles before execution.</p>
+                        </article>
+                        <article class="pillar-card">
+                            <span class="pillar-code">CSE</span>
+                            <h3>Counterfactual Simulation Engine</h3>
+                            <p>Compare the intended action against alternatives and no-action baselines before touching the real world.</p>
+                        </article>
+                        <article class="pillar-card">
+                            <span class="pillar-code">TCO-KG</span>
+                            <h3>Temporal-Causal Knowledge Graph</h3>
+                            <p>Store facts, proposals, simulations, outcomes, and confidence over time so each decision becomes reusable intelligence.</p>
+                        </article>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="metrics">
-        <div class="section-container">
-            <span class="section-label">Measurable Impact</span>
-            <h2 class="section-title">This is not analytics. This is operational intelligence.</h2>
-            <p class="section-subtitle">Every action is logged. Every decision is auditable. Performance improves continuously through the Learn cycle.</p>
-            <div class="metrics-grid">
-                <div class="metric-card"><div class="metric-value">50-75×</div><div class="metric-label">Faster decision velocity</div></div>
-                <div class="metric-card"><div class="metric-value">↓35%</div><div class="metric-label">Revenue leakage reduction</div></div>
-                <div class="metric-card"><div class="metric-value">↓41%</div><div class="metric-label">Operational cost reduction</div></div>
-                <div class="metric-card"><div class="metric-value">3.2mo</div><div class="metric-label">Typical payback period</div></div>
-                <div class="metric-card"><div class="metric-value">89%</div><div class="metric-label">Automation coverage</div></div>
-            </div>
-        </div>
-    </section>
+        <section class="section">
+            <div class="section-frame">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Operating loop</span>
+                        <h2>One governed pipeline from signal to signed action.</h2>
+                    </div>
+                    <p>The SRDPV-DAL pipeline is the operating spine of the platform. It keeps decision logic explicit, observable, and measurable from first signal to learned outcome.</p>
+                </div>
 
-    <section class="how-works">
-        <div class="section-container">
-            <span class="section-label">The Pipeline</span>
-            <h2 class="section-title">How Autonomous Decision Controllers Work</h2>
-            <p class="section-subtitle">Each stage is powered by a specialized Autonomous Decision Controller (ADC) with explicit algorithms and audit trails.</p>
-            <div class="steps-container">
-                <div class="step-row"><div class="step-number">S</div><div class="step-content"><h3>SENSE <span class="step-tag">SENSE-ADC</span></h3><p>Autonomous attention allocation calculates priority scores based on impact magnitude, uncertainty, time criticality, and strategic alignment. Ingests live signals from ERP, CRM, market data, and operations. Dynamic thresholds adapt to system load.</p></div></div>
-                <div class="step-row"><div class="step-number">R</div><div class="step-content"><h3>REASON <span class="step-tag">REASON-ADC</span></h3><p>Causal GraphRAG traverses the knowledge graph using causally-informed queries—not just semantic similarity. Automated confounder detection. Analysis depth scales with decision value and uncertainty reduction potential.</p></div></div>
-                <div class="step-row"><div class="step-number">P</div><div class="step-content"><h3>PLAN <span class="step-tag">PLAN-ADC</span></h3><p>Generates candidate actions through causal reasoning over the knowledge graph. Multi-objective optimization considers probability, value, and ethical alignment. Multiple alternatives are always generated.</p></div></div>
-                <div class="step-row"><div class="step-number">V</div><div class="step-content"><h3>VALIDATE <span class="step-tag">Validation Layer</span></h3><p>Independent Verifier, Risk, and Policy agents challenge every proposal. Disagreement is measured and weighted. The system doesn't require consensus—arbitration resolves based on confidence thresholds.</p></div></div>
-                <div class="step-row"><div class="step-number">D</div><div class="step-content"><h3>DECIDE <span class="step-tag">Decision Control Plane</span></h3><p>The DCP calculates authorization scores combining causal confidence, validation agreement, simulation delta, policy compliance, and historical performance. Approve, modify, defer, reject, or escalate.</p></div></div>
-                <div class="step-row"><div class="step-number">A</div><div class="step-content"><h3>ACT <span class="step-tag">ACT-ADC</span></h3><p>Orchestrates execution with dependency resolution and adaptive rollback. Performance deviation triggers automatic rollback strategies—immediate, gradual, partial, or checkpoint-based.</p></div></div>
-                <div class="step-row"><div class="step-number">L</div><div class="step-content"><h3>LEARN <span class="step-tag">LEARN-ADC</span></h3><p>Prioritizes learning by prediction error, business impact, knowledge gap, and frequency. Updates models with stability-plasticity balance. Feeds outcomes back into SENSE for continuous improvement.</p></div></div>
-            </div>
-        </div>
-    </section>
+                <div class="pipeline-shell">
+                    <div class="pipeline-track">
+                        <article class="stage-card sense">
+                            <span class="stage-code">S</span>
+                            <h3>SENSE</h3>
+                            <p>Prioritize the signals worth attention across market, operational, and internal data streams.</p>
+                            <span class="stage-meta">Attention allocation</span>
+                        </article>
+                        <article class="stage-card reason">
+                            <span class="stage-code">R</span>
+                            <h3>REASON</h3>
+                            <p>Pull causal context, dependencies, and memory so the system understands the situation before acting.</p>
+                            <span class="stage-meta">Causal retrieval</span>
+                        </article>
+                        <article class="stage-card plan">
+                            <span class="stage-code">P</span>
+                            <h3>PLAN</h3>
+                            <p>Generate multiple candidate actions and surface the tradeoffs instead of forcing a single answer.</p>
+                            <span class="stage-meta">Option generation</span>
+                        </article>
+                        <article class="stage-card validate">
+                            <span class="stage-code">V</span>
+                            <h3>VALIDATE</h3>
+                            <p>Challenge the plan with verifier, risk, and policy agents so disagreement is exposed before execution.</p>
+                            <span class="stage-meta">Risk and policy review</span>
+                        </article>
+                        <article class="stage-card decide">
+                            <span class="stage-code">D</span>
+                            <h3>DECIDE</h3>
+                            <p>Authorize, modify, defer, reject, or escalate based on simulation deltas, confidence, and operating policy.</p>
+                            <span class="stage-meta">Governed authorization</span>
+                        </article>
+                        <article class="stage-card act">
+                            <span class="stage-code">A</span>
+                            <h3>ACT</h3>
+                            <p>Execute with orchestration, sequencing, and rollback controls so actions remain reversible and measured.</p>
+                            <span class="stage-meta">Controlled execution</span>
+                        </article>
+                        <article class="stage-card learn">
+                            <span class="stage-code">L</span>
+                            <h3>LEARN</h3>
+                            <p>Feed outcomes back into the system so future prioritization, policy, and confidence get sharper over time.</p>
+                            <span class="stage-meta">Outcome feedback</span>
+                        </article>
+                    </div>
 
-    <section class="media-buying">
-        <div class="section-container">
-            <span class="section-label">Featured Use Case</span>
-            <h2 class="section-title">Media Buying Intelligence with Threshold Awareness</h2>
-            <p class="section-subtitle">Meta's ad system behaves non-linearly. Below thresholds, effort feels invisible. Above thresholds, learning compounds. MIZ OKI 3.5 understands these dynamics.</p>
-            <div class="relu-callout">
-                <h4>The ReLU Lens</h4>
-                <p>Meta's delivery + optimization behaves like a ReLU activation function: below certain thresholds, nothing really happens. Above them, momentum kicks in. MIZ OKI's Counterfactual Simulation Engine models these non-linear dynamics to find optimal operating points.</p>
+                    <div class="pipeline-note">
+                        <p>PLAN, VALIDATE, and DECIDE are where MIZ OKI separates governed autonomy from generic AI assistance.</p>
+                        <a href="how-it-works.html" class="btn btn-secondary">See the full architecture</a>
+                    </div>
+                </div>
             </div>
-            <div class="threshold-list">
-                <div class="threshold-item"><div class="threshold-icon">📊</div><div><h5>Learning Phase Detection</h5><p>Detects when ad sets are trending toward "Learning Limited" (~50 events/week threshold) and recommends consolidation or budget concentration before performance degrades.</p></div></div>
-                <div class="threshold-item"><div class="threshold-icon">🎯</div><div><h5>Signal Quality Optimization</h5><p>Monitors Event Match Quality, deduplication accuracy, and funnel completeness. Clean tracking as "voltage"—you can't cross thresholds with noisy instrumentation.</p></div></div>
-                <div class="threshold-item"><div class="threshold-icon">🧠</div><div><h5>Institutional Memory</h5><p>Knowledge Graph captures what you tested, what changed, what worked, what failed, and under what conditions. Stop reinventing the wheel every campaign.</p></div></div>
-                <div class="threshold-item"><div class="threshold-icon">⚖️</div><div><h5>Stability Windows</h5><p>Protects learning by limiting edits that reset optimization dynamics. Turns campaign management into a system, not a reaction.</p></div></div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="industries">
-        <div class="section-container">
-            <span class="section-label">Industry Templates</span>
-            <h2 class="section-title">Pre-configured for Your Domain</h2>
-            <p class="section-subtitle">Deploy in weeks, not months. Each template includes pre-trained causal models, agent configurations, and compliance frameworks.</p>
-            <div class="industry-grid">
-                <div class="industry-card"><h4>🏪 Retail & Commerce</h4><p>Demand forecasting • Pricing optimization • Inventory risk • Customer behavior models</p></div>
-                <div class="industry-card"><h4>💰 Finance & Capital</h4><p>Risk exposure • Scenario simulation • Portfolio automation • Fraud patterns</p></div>
-                <div class="industry-card"><h4>⚙️ Operations & Supply Chain</h4><p>Bottleneck prediction • Cost optimization • Disruption response • Production flows</p></div>
-                <div class="industry-card"><h4>🏥 Healthcare</h4><p>Compliance automation • Resource optimization • Clinical pathways • Outcome forecasting</p></div>
-                <div class="industry-card"><h4>📺 Media Buying</h4><p>Attribution models • Channel optimization • Creative performance • Threshold-aware bidding</p></div>
-                <div class="industry-card"><h4>🏭 Manufacturing</h4><p>Quality models • Maintenance schedules • Supply chain optimization • Production optimization</p></div>
-            </div>
-        </div>
-    </section>
+        <section class="section">
+            <div class="section-frame">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Where it lands first</span>
+                        <h2>Built for non-linear systems where timing and discipline matter.</h2>
+                    </div>
+                    <p>The platform is strongest where results do not move in straight lines, where thresholds matter, and where changing the wrong variable at the wrong moment destroys signal.</p>
+                </div>
 
-    <section class="trust">
-        <div class="section-container">
-            <span class="section-label">Enterprise Ready</span>
-            <h2 class="section-title">Built for Boards, CISOs, and Regulators</h2>
-            <p class="section-subtitle">Full decision traceability. Explainable reasoning. Quantum-resistant security. Deploy on your cloud or ours.</p>
-            <div class="trust-features">
-                <div class="trust-feature"><div class="trust-icon">🔐</div><div><h4>Quantum-Resistant Security</h4><p>CRYSTALS-Kyber key encapsulation, CRYSTALS-Dilithium signatures. Future-proof cryptography.</p></div></div>
-                <div class="trust-feature"><div class="trust-icon">📋</div><div><h4>Immutable Audit Logs</h4><p>Every proposal, validation, simulation, and execution is cryptographically signed and logged.</p></div></div>
-                <div class="trust-feature"><div class="trust-icon">🎛️</div><div><h4>Human-in-the-Loop Controls</h4><p>Full override capability. Configurable thresholds. Automatic escalation for novel situations.</p></div></div>
-                <div class="trust-feature"><div class="trust-icon">🏢</div><div><h4>Multi-Tenant Isolation</h4><p>Kubernetes namespace isolation. Tenant-specific knowledge graphs. Federated learning with differential privacy.</p></div></div>
-                <div class="trust-feature"><div class="trust-icon">📊</div><div><h4>Explainable Decisions</h4><p>Causal pathways for every decision. Transparent reasoning. No black-box mystery.</p></div></div>
-                <div class="trust-feature"><div class="trust-icon">⚡</div><div><h4>Sub-100ms Latency</h4><p>Operational queries under 100ms. Full decision cycle under 60 seconds. Real-time intelligence.</p></div></div>
-            </div>
-        </div>
-    </section>
+                <div class="use-case-grid">
+                    <article class="feature-story">
+                        <span class="case-tag">Featured use case</span>
+                        <h3>Media buying that knows when the system is below threshold.</h3>
+                        <p>MIZ OKI understands the jump behavior inside platforms like Meta. It can detect when learning is starving, when signal quality is too noisy, and when the next action should be consolidation instead of more spend.</p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <span>01</span>
+                                <span>Detect learning-limited patterns before performance plateaus and spend starts leaking.</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>02</span>
+                                <span>Concentrate budget where signal quality is strong enough to move the model instead of diluting it.</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>03</span>
+                                <span>Protect stability windows so each optimization compounds instead of resetting learned performance.</span>
+                            </div>
+                        </div>
+                        <a href="/blog/relu-lens-meta-algorithm" class="btn btn-secondary">Read the ReLU Lens brief</a>
+                    </article>
 
-    <section class="cta-section">
-        <div class="section-container">
-            <h2>Ready to see verifiable autonomy in action?</h2>
-            <p>Estimate your ROI in 60 seconds, or see the full platform in a 12-minute walkthrough.</p>
-            <div class="cta-buttons">
-                <a href="roi.html" class="btn btn-ghost">Estimate ROI →</a>
-                <a href="walkthrough.html" class="btn btn-primary">Watch 12-Min Walkthrough →</a>
+                    <article class="feature-graphic">
+                        <img src="assets/img/relu-article/02_nonlinear_activation_curve.svg" alt="Nonlinear activation curve showing performance jump after crossing a learning threshold.">
+                        <p class="graphic-caption">The operating principle: performance often looks flat until a threshold is crossed. The platform treats that as a control problem, not a reporting problem.</p>
+                    </article>
+                </div>
+
+                <div class="mini-case-grid">
+                    <article class="mini-case">
+                        <span class="case-tag">Retail</span>
+                        <h3>Price, demand, and inventory can be tuned in one loop.</h3>
+                        <p>Coordinate promotions, stock coverage, and margin policy so commerce teams stop optimizing one variable at the expense of another.</p>
+                    </article>
+                    <article class="mini-case">
+                        <span class="case-tag">Finance</span>
+                        <h3>Risk actions can be simulated before they become policy.</h3>
+                        <p>Test portfolio, exposure, and fraud interventions against alternatives and no-action baselines before execution.</p>
+                    </article>
+                    <article class="mini-case">
+                        <span class="case-tag">Operations</span>
+                        <h3>Exception routing becomes an orchestrated decision system.</h3>
+                        <p>Prioritize bottlenecks, stage responses, and keep humans focused on the edge cases that truly require escalation.</p>
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="section">
+            <div class="section-frame">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Business impact</span>
+                        <h2>Proof for executives. Instrumentation for operators.</h2>
+                    </div>
+                    <p>The platform is designed to improve decision speed and quality while making every action easier to inspect, defend, and refine over time.</p>
+                </div>
+
+                <div class="evidence-grid">
+                    <div class="stats-panel">
+                        <div class="stats-grid">
+                            <article class="stat-box">
+                                <div class="stat-value">50-75x</div>
+                                <p>faster decision velocity in high-friction workflows</p>
+                            </article>
+                            <article class="stat-box">
+                                <div class="stat-value">35%</div>
+                                <p>reduction in revenue leakage by acting earlier and with better sequencing</p>
+                            </article>
+                            <article class="stat-box">
+                                <div class="stat-value">41%</div>
+                                <p>lower operating cost from policy-aware automation and fewer manual handoffs</p>
+                            </article>
+                            <article class="stat-box">
+                                <div class="stat-value">3.2 mo</div>
+                                <p>typical payback window for first deployed workflow</p>
+                            </article>
+                        </div>
+                        <div class="stats-footnote">Automation coverage can expand safely because each additional workflow inherits the same simulation, approval, and audit structure.</div>
+                    </div>
+
+                    <div class="decision-detail">
+                        <div class="detail-header">
+                            <div>
+                                <span class="section-kicker">Approved decision packet</span>
+                                <h3>What one production action carries with it.</h3>
+                            </div>
+                            <span class="detail-status">approved for rollout</span>
+                        </div>
+
+                        <div class="detail-grid">
+                            <article class="detail-block">
+                                <span class="detail-tag">Simulation delta</span>
+                                <strong>Expected lift of +11.4% over the no-action baseline.</strong>
+                                <p>The chosen path outperformed two alternatives in the counterfactual run and stayed inside policy.</p>
+                            </article>
+                            <article class="detail-block">
+                                <span class="detail-tag">Validation record</span>
+                                <strong>Planner, verifier, risk, and policy all register inside threshold.</strong>
+                                <p>The system records where agents agreed, where they disagreed, and why the final action still passed authorization.</p>
+                            </article>
+                            <article class="detail-block">
+                                <span class="detail-tag">Execution controls</span>
+                                <strong>Two-step rollout with automatic rollback on variance.</strong>
+                                <p>The system defines the rollout envelope before the action runs, including rollback triggers and escalation conditions.</p>
+                            </article>
+                            <article class="detail-block">
+                                <span class="detail-tag">Audit trail</span>
+                                <strong>Cryptographic signature, timestamps, lineage, and outcome tracking.</strong>
+                                <p>Every approved action is inspectable after the fact without reconstructing the logic from Slack, spreadsheets, or memory.</p>
+                            </article>
+                        </div>
+
+                        <div class="decision-timeline">
+                            <div class="timeline-step">
+                                <strong>Signal</strong>
+                                <p>Source data and confidence are attached to the decision.</p>
+                            </div>
+                            <div class="timeline-step">
+                                <strong>Challenge</strong>
+                                <p>Simulation, policy, and risk evaluations are preserved.</p>
+                            </div>
+                            <div class="timeline-step">
+                                <strong>Execute</strong>
+                                <p>Approved changes are sequenced with guardrails.</p>
+                            </div>
+                            <div class="timeline-step">
+                                <strong>Learn</strong>
+                                <p>Outcomes update future confidence and thresholds.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-frame">
+                <div class="section-heading">
+                    <div>
+                        <span class="section-kicker">Enterprise trust</span>
+                        <h2>Built for boards, CISOs, and regulators.</h2>
+                    </div>
+                    <p>The system is designed so autonomy can be deployed in serious operating environments, with the control surfaces needed for security, compliance, and executive oversight.</p>
+                </div>
+
+                <div class="trust-grid">
+                    <article class="trust-card">
+                        <span class="trust-icon">01</span>
+                        <h3>Human override and escalation rules</h3>
+                        <p>Keep people in the loop wherever novelty, exposure, or policy demands it. Thresholds are explicit and configurable.</p>
+                    </article>
+                    <article class="trust-card">
+                        <span class="trust-icon">02</span>
+                        <h3>Immutable logs and explainable reasoning</h3>
+                        <p>Every proposal, validation, simulation, and execution record is preserved so the decision path can be reconstructed on demand.</p>
+                    </article>
+                    <article class="trust-card">
+                        <span class="trust-icon">03</span>
+                        <h3>Deployment on your cloud or ours</h3>
+                        <p>Run the platform where the data, policies, and security controls need to live, with clear tenant and workflow separation.</p>
+                    </article>
+                    <article class="trust-card">
+                        <span class="trust-icon">04</span>
+                        <h3>Rollback, containment, and future-ready security</h3>
+                        <p>Execution stays bounded by policy, while cryptographic logging and modern security design support long-horizon trust requirements.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta">
+            <div class="section-frame cta-frame">
+                <div>
+                    <span class="section-kicker">Next step</span>
+                    <h2>See the first workflow you would actually let run under policy.</h2>
+                    <p>We will map the decision loop, show the controls that keep it safe, and estimate the payback window for deploying it in production.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="walkthrough.html" class="btn btn-primary">Book the walkthrough</a>
+                    <a href="roi.html" class="btn btn-secondary">Estimate ROI</a>
+                    <a href="sales-one-pager.html" class="btn btn-secondary">Download the sales brief</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-container">
+        <div class="footer-inner">
             <div class="footer-top">
-                <div class="footer-brand"><a href="index.html" class="logo">MIZ OKI <span class="logo-version">3.5</span></a><p>Verifiable Autonomous Decision Intelligence. Agents propose. The Decision Control Plane authorizes. Every decision auditable.</p></div>
-                <div class="footer-links"><h5>Platform</h5><a href="how-it-works.html">How It Works</a><a href="platform.html">Architecture</a><a href="security.html">Security</a><a href="industries.html">Industries</a></div>
-                <div class="footer-links"><h5>Resources</h5><a href="case-studies.html">Case Studies</a><a href="roi.html">ROI Calculator</a><a href="walkthrough.html">Walkthrough</a><a href="resources.html">Documentation</a></div>
-                <div class="footer-links"><h5>Company</h5><a href="investor.html">Investors</a><a href="sales-one-pager.html">Sales Brief</a><a href="demo-opener.html">Demo Script</a></div>
+                <div class="footer-brand">
+                    <a href="index.html" class="brand">
+                        <span class="brand-mark" aria-hidden="true"></span>
+                        <span class="brand-copy">
+                            <span>MIZ OKI</span>
+                            <span>3.5</span>
+                        </span>
+                    </a>
+                    <p>Governed autonomous decision intelligence for revenue, risk, and operations. Agents propose. The control plane authorizes. Every action is logged.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Platform</h3>
+                    <a href="how-it-works.html">How It Works</a>
+                    <a href="platform.html">Architecture</a>
+                    <a href="security.html">Security</a>
+                    <a href="industries.html">Industries</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <a href="case-studies.html">Case Studies</a>
+                    <a href="resources.html">Documentation</a>
+                    <a href="roi.html">ROI Calculator</a>
+                    <a href="/blog/">Blog</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <a href="walkthrough.html">Walkthrough</a>
+                    <a href="sales-one-pager.html">Sales Brief</a>
+                    <a href="investor.html">Investor Overview</a>
+                    <a href="demo-opener.html">Demo Script</a>
+                </div>
             </div>
-            <div class="footer-bottom"><span>© 2026 MIZ OKI. All rights reserved.</span><span>Every action logged. Every decision auditable.</span></div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 MIZ OKI. All rights reserved.</span>
+                <span>Every decision traceable. Every action auditable.</span>
+            </div>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            const toggle = document.querySelector('.menu-toggle');
+            const menu = document.getElementById('site-menu');
+            const closeMenu = () => {
+                menu.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+
+            toggle.addEventListener('click', function () {
+                const isOpen = menu.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 980) {
+                    closeMenu();
+                }
+            });
+        }());
+    </script>
 </body>
 </html>
