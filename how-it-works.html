@@ -152,6 +152,47 @@
             margin-bottom: 3rem;
         }
 
+        .integration-alert {
+            padding: 0 2rem 1rem;
+        }
+        .integration-card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(79, 143, 255, 0.08));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+        .integration-card h2 {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+        .integration-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+        .integration-grid {
+            display: grid;
+            gap: 0.75rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+        .integration-item {
+            border: 1px solid var(--border);
+            background: rgba(10, 10, 15, 0.5);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            color: var(--text-primary);
+            font-size: 0.92rem;
+        }
+        .integration-item span {
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
         .pipeline-overview {
             background: var(--bg-secondary);
             border: 1px solid var(--border);
@@ -389,6 +430,19 @@
         <h1>How MIZ OKI 3.5 Works</h1>
         <p>A seven-stage autonomous intelligence pipeline with built-in validation, simulation, and governance. Every decision is proposed, challenged, simulated, and authorized before execution.</p>
     </header>
+
+    <section class="integration-alert">
+        <div class="integration-card">
+            <h2>Priority Integration: Cells 1-34 + Boss Agent Tooling</h2>
+            <p>This deployment path is optimized for end-to-end orchestration across the full cell chain (1 through 34), with synchronized Boss Agent skills, tools, and MCP-compatible interfaces for consistent control-plane execution.</p>
+            <div class="integration-grid">
+                <div class="integration-item"><span>Cells 1-34</span>Sequential dependency handoffs with auditable stage boundaries.</div>
+                <div class="integration-item"><span>Boss Agent Skills</span>Skill routing mapped to pipeline stage intent and risk profile.</div>
+                <div class="integration-item"><span>Tools + MCP</span>Shared interfaces for data exchange, state sync, and governance updates.</div>
+                <div class="integration-item"><span>Operational Priority</span>Fail-safe validation before execution at every critical transition.</div>
+            </div>
+        </div>
+    </section>
 
     <section class="section">
         <div class="section-container">
