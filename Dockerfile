@@ -1,24 +1,8 @@
-FROM python:3.11-slim
-
-WORKDIR /app
-
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy application files
-COPY app.py .
-COPY *.html ./
-COPY assets/ ./assets/
-COPY blog/ ./blog/
-COPY templates/ ./templates/
-COPY 11/ ./11/
-
-# Cloud Run uses PORT environment variable
-ENV PORT=8080
-
-# Expose port
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html /usr/share/nginx/html/
+COPY base.css /usr/share/nginx/html/
+COPY style.css /usr/share/nginx/html/
+COPY app.js /usr/share/nginx/html/
 EXPOSE 8080
-
-# Run Flask app with gunicorn for production
-CMD exec gunicorn --bind :$PORT --workers 2 --threads 4 app:app
+CMD ["nginx", "-g", "daemon off;"]
