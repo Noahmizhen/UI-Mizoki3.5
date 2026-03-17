@@ -17,10 +17,6 @@
 
 set -e  # Exit on any error
 
-# Bypass gcloud auth config permission issues
-cp -a ~/.config/gcloud /tmp/gcloud || true
-export CLOUDSDK_CONFIG=/tmp/gcloud
-
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'

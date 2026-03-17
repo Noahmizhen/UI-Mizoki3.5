@@ -1,92 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Login — MIZ OKI 3.5</title>
-  <meta name="description" content="Access the MIZ OKI 3.5 platform."/>
-  <meta name="theme-color" content="#050A12"/>
-  <link rel="icon" href="assets/svg/favicon.svg" type="image/svg+xml"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css"/>
-  <style>
-    .loginPage {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-    .loginCard {
-      width: 100%;
-      max-width: 420px;
-      background: linear-gradient(180deg, rgba(15,26,46,.85), rgba(11,18,32,.75));
-      border: 1px solid rgba(25,245,255,.18);
-      border-radius: var(--radius);
-      padding: 32px;
-      box-shadow: var(--shadow);
-    }
-    .loginCard h1 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
-    .loginCard p {
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-    .loginForm {
-      display: grid;
-      gap: 16px;
-    }
-    .loginBtn {
-      width: 100%;
-      padding: 14px;
-      font-size: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MIZ OKI 3.5</title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <a href="#content" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
-  
-  <main id="content" class="loginPage">
-    <div class="loginCard">
-      <div class="brand" style="margin-bottom:24px;">
-        <div class="mark" aria-hidden="true"></div>
-        <span>
-          MIZ OKI <small>3.5</small>
-        </span>
-      </div>
-      
-      <h1>Welcome back</h1>
-      <p>Sign in to access the MIZ OKI 3.5 platform and Decision Control Center.</p>
-      
-      <form class="loginForm" action="/login" method="post">
-        <div>
-          <div class="label">Email address</div>
-          <input class="input" type="email" name="email" placeholder="you@company.com" required/>
-        </div>
-        
-        <div>
-          <div class="label">Password</div>
-          <input class="input" type="password" name="password" placeholder="••••••••" required/>
-        </div>
-        
-        <button type="submit" class="btn primary loginBtn">Sign in</button>
-      </form>
-      
-      <div style="margin-top:20px; text-align:center;">
-        <a href="index.html" style="color:var(--muted); font-size:14px;">← Back to homepage</a>
-      </div>
-      
-      <div style="margin-top:24px;" class="notice">
-        <strong>Verifiable Autonomous Decision Intelligence</strong><br/>
-        <span style="font-size:13px;">Agents propose. The Decision Control Plane authorizes.</span>
-      </div>
-    </div>
-  </main>
+<body class="theme-light" style="background:var(--bg-50); height:100vh; display:flex; align-items:center; justify-content:center;">
 
-  <script src="assets/js/main.js" defer></script>
+    <div style="width:100%; max-width:440px; padding:var(--space-8);">
+        
+        <div style="text-align:center; margin-bottom:var(--space-8);">
+            <a href="index.html" style="display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display); font-size:32px; font-weight:800; color:var(--text-dark); text-decoration:none;">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M9 13a4.5 4.5 0 0 0 3-4"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M6 18a4 4 0 0 1-1.968-.516"/><path d="M10.996 14.828A4 4 0 0 0 12 14.5"/></svg>
+                MIZ<span style="color:var(--accent);">OKI</span>
+            </a>
+            <h2 style="margin-top:var(--space-6); font-size:24px; color:var(--text-dark);">Sign in to your instance</h2>
+            <p style="color:var(--text-600); margin-top:var(--space-2);">Enterprise authentication required</p>
+        </div>
+
+        <div class="card" style="background:white; border:1px solid #e2e8f0; border-radius:16px; padding:32px; box-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1);">
+            <form onsubmit="event.preventDefault();">
+                <div style="margin-bottom:24px;">
+                    <input type="email" placeholder="Corporate Email Address" required style="width:100%; padding:12px 16px; border:1px solid #cbd5e1; border-radius:8px; font-size:16px; outline:none;" />
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; padding:14px; border-radius:8px; font-size:16px;">Continue with Email</button>
+            </form>
+
+            <div style="margin:24px 0; display:flex; align-items:center;">
+                <div style="flex:1; border-top:1px solid #e2e8f0;"></div>
+                <div style="padding:0 16px; color:var(--text-500); font-size:14px;">Or continue with</div>
+                <div style="flex:1; border-top:1px solid #e2e8f0;"></div>
+            </div>
+
+            <div style="display:flex; gap:12px;">
+                <button class="btn btn-secondary" style="flex:1; padding:10px; border-radius:8px; background:white;">Microsoft</button>
+                <button class="btn btn-secondary" style="flex:1; padding:10px; border-radius:8px; background:white;">Okta</button>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
