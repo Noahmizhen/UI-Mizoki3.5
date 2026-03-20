@@ -111,6 +111,12 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
             abort(400, description="JSON body must be an object.")
         return payload
 
+    def run_runtime_call(operation):
+        try:
+            return operation()
+        except ValueError as exc:
+            abort(400, description=str(exc))
+
     def serve_page(filename: str):
         return send_from_directory(BASE_DIR, filename)
 
@@ -274,7 +280,7 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
             abort(400, description="Field 'name' must be a non-empty string.")
         if not isinstance(arguments, dict):
             abort(400, description="Field 'arguments' must be an object.")
-        return jsonify(get_runtime().call_tool(tool_name, arguments))
+        return jsonify(run_runtime_call(lambda: get_runtime().call_tool(tool_name, arguments)))
 
     @app.route("/api/boss/discover", methods=["GET"])
     def discover_boss_capabilities():
@@ -287,7 +293,7 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
         for field in required_fields:
             if field not in payload:
                 abort(400, description=f"Missing required field: {field}")
-        return jsonify({"skill": get_runtime().learn_skill(payload)})
+        return jsonify({"skill": run_runtime_call(lambda: get_runtime().learn_skill(payload))})
 
     @app.route("/api/boss/execute", methods=["POST"])
     def execute_with_boss():
@@ -298,7 +304,7 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
             abort(400, description="Field 'intent' must be a non-empty string.")
         if not isinstance(arguments, dict):
             abort(400, description="Field 'arguments' must be an object.")
-        return jsonify(get_runtime().execute(intent, arguments))
+        return jsonify(run_runtime_call(lambda: get_runtime().execute(intent, arguments)))
 
     @app.route("/api/boss/traces", methods=["GET"])
     def boss_traces():

@@ -4,6 +4,7 @@ import html
 import json
 import re
 import time
+from copy import deepcopy
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
@@ -49,6 +50,68 @@ def _strip_markup(raw_text: str) -> str:
     without_tags = re.sub(r"(?s)<[^>]+>", " ", without_blocks)
     collapsed = re.sub(r"\s+", " ", html.unescape(without_tags)).strip()
     return collapsed
+
+
+def _load_json_list(file_path: Path, label: str) -> list[Any]:
+    if not file_path.exists():
+        return []
+    raw_payload = file_path.read_text(encoding="utf-8").strip()
+    if not raw_payload:
+        return []
+    try:
+        payload = json.loads(raw_payload)
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"{label} file is not valid JSON: {file_path}") from exc
+    if not isinstance(payload, list):
+        raise RuntimeError(f"{label} file must contain a JSON array: {file_path}")
+    return payload
+
+
+def _require_non_empty_string(value: Any, field_name: str) -> str:
+    if not isinstance(value, str):
+        raise ValueError(f"{field_name} must be a string")
+    cleaned = value.strip()
+    if not cleaned:
+        raise ValueError(f"{field_name} must not be empty")
+    return cleaned
+
+
+def _clean_string_list(values: Any, field_name: str, minimum: int = 0) -> list[str]:
+    if not isinstance(values, list):
+        raise ValueError(f"{field_name} must be an array of strings")
+
+    cleaned: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        if not isinstance(value, str):
+            raise ValueError(f"{field_name} must contain only strings")
+        normalized = value.strip()
+        if not normalized:
+            continue
+        dedupe_key = normalized.casefold()
+        if dedupe_key in seen:
+            continue
+        seen.add(dedupe_key)
+        cleaned.append(normalized)
+
+    if len(cleaned) < minimum:
+        raise ValueError(f"{field_name} must contain at least {minimum} non-empty string(s)")
+    return cleaned
+
+
+def _extract_quoted_phrases(value: str) -> list[str]:
+    matches = re.findall(r'"([^"]+)"|\'([^\']+)\'', value)
+    return [first or second for first, second in matches if (first or second).strip()]
+
+
+def _titleize_phrase(value: str, suffix: str = "") -> str:
+    words = re.findall(r"[A-Za-z0-9]+", value)
+    if not words:
+        return suffix or "Generated"
+    title = " ".join(word.capitalize() for word in words[:6])
+    if suffix and not title.endswith(suffix):
+        return f"{title} {suffix}".strip()
+    return title
 
 
 def _coerce_value(expected_type: str, value: Any) -> Any:
@@ -105,7 +168,16 @@ class ToolParameter:
             "required": self.required,
         }
         if self.default is not None:
-            payload["default"] = self.default
+            payload["default"] = deepcopy(self.default)
+        return payload
+
+    def to_json_schema(self) -> dict[str, Any]:
+        payload = {
+            "type": self.type,
+            "description": self.description,
+        }
+        if self.default is not None:
+            payload["default"] = deepcopy(self.default)
         return payload
 
 
@@ -120,19 +192,31 @@ class ToolDefinition:
     alias_target: str | None = None
     default_arguments: dict[str, Any] = field(default_factory=dict)
 
+    def argument_schema(self) -> dict[str, Any]:
+        schema: dict[str, Any] = {
+            "type": "object",
+            "properties": {parameter.name: parameter.to_json_schema() for parameter in self.parameters},
+            "additionalProperties": False,
+        }
+        required = [parameter.name for parameter in self.parameters if parameter.required]
+        if required:
+            schema["required"] = required
+        return schema
+
     def to_public_dict(self) -> dict[str, Any]:
         payload = {
             "name": self.name,
             "description": self.description,
             "category": self.category,
             "parameters": [parameter.to_dict() for parameter in self.parameters],
+            "argument_schema": self.argument_schema(),
             "tags": list(self.tags),
             "kind": "alias" if self.alias_target else "tool",
         }
         if self.alias_target:
             payload["alias_target"] = self.alias_target
             if self.default_arguments:
-                payload["default_arguments"] = self.default_arguments
+                payload["default_arguments"] = deepcopy(self.default_arguments)
         return payload
 
 
@@ -608,10 +692,8 @@ class SkillStore:
         self._skills: list[LearnedSkill] = self._load()
 
     def _load(self) -> list[LearnedSkill]:
-        if not self.file_path.exists():
-            return []
-        payload = json.loads(self.file_path.read_text(encoding="utf-8"))
-        return [LearnedSkill.from_dict(item) for item in payload]
+        payload = _load_json_list(self.file_path, "skill store")
+        return [LearnedSkill.from_dict(item) for item in payload if isinstance(item, dict)]
 
     def _save(self) -> None:
         payload = [skill.to_dict() for skill in self._skills]
@@ -621,7 +703,7 @@ class SkillStore:
         return list(self._skills)
 
     def add(self, skill: LearnedSkill) -> LearnedSkill:
-        if any(existing.name == skill.name for existing in self._skills):
+        if any(existing.name.casefold() == skill.name.casefold() for existing in self._skills):
             raise ValueError(f"skill already exists: {skill.name}")
         self._skills.append(skill)
         self._save()
@@ -629,10 +711,18 @@ class SkillStore:
 
     def match(self, intent: str) -> list[LearnedSkill]:
         normalized_intent = intent.lower()
+        intent_tokens = set(_normalize_tokens(intent))
         matches = []
         for skill in self._skills:
-            if any(trigger.lower() in normalized_intent for trigger in skill.trigger_phrases):
-                matches.append(skill)
+            for trigger in skill.trigger_phrases:
+                normalized_trigger = trigger.strip().lower()
+                trigger_tokens = set(_normalize_tokens(trigger))
+                if normalized_trigger and normalized_trigger in normalized_intent:
+                    matches.append(skill)
+                    break
+                if trigger_tokens and trigger_tokens.issubset(intent_tokens):
+                    matches.append(skill)
+                    break
         return matches
 
 
@@ -657,7 +747,7 @@ class ToolRegistry:
     def list_tools(self) -> list[dict[str, Any]]:
         return [definition.to_public_dict() for definition in sorted(self._definitions.values(), key=lambda item: item.name)]
 
-    def _validate_arguments(self, definition: ToolDefinition, arguments: dict[str, Any] | None) -> dict[str, Any]:
+    def _validate_partial_arguments(self, definition: ToolDefinition, arguments: dict[str, Any] | None) -> dict[str, Any]:
         arguments = dict(arguments or {})
         allowed_parameters = {parameter.name: parameter for parameter in definition.parameters}
         unexpected = sorted(key for key in arguments if key not in allowed_parameters)
@@ -665,12 +755,17 @@ class ToolRegistry:
             raise ValueError(f"unexpected parameters for {definition.name}: {', '.join(unexpected)}")
 
         validated: dict[str, Any] = {}
+        for name, value in arguments.items():
+            validated[name] = _coerce_value(allowed_parameters[name].type, value)
+        return validated
+
+    def _validate_arguments(self, definition: ToolDefinition, arguments: dict[str, Any] | None) -> dict[str, Any]:
+        validated = self._validate_partial_arguments(definition, arguments)
         for parameter in definition.parameters:
-            if parameter.name in arguments:
-                validated[parameter.name] = _coerce_value(parameter.type, arguments[parameter.name])
+            if parameter.name in validated:
                 continue
             if parameter.default is not None:
-                validated[parameter.name] = parameter.default
+                validated[parameter.name] = deepcopy(parameter.default)
                 continue
             if parameter.required:
                 raise ValueError(f"missing required parameter: {parameter.name}")
@@ -709,9 +804,13 @@ class ToolRegistry:
         tags: list[str] | None = None,
         persist: bool = True,
     ) -> dict[str, Any]:
+        name = _require_non_empty_string(name, "name")
+        description = _require_non_empty_string(description, "description")
+        tags = _clean_string_list(tags or [], "tags")
         if name in self._definitions:
             raise ValueError(f"tool already registered: {name}")
         target_definition = self.get(target_tool)
+        validated_defaults = self._validate_partial_arguments(target_definition, default_arguments)
         alias_definition = ToolDefinition(
             name=name,
             description=description,
@@ -719,19 +818,17 @@ class ToolRegistry:
             parameters=target_definition.parameters,
             tags=tuple(tags or target_definition.tags),
             alias_target=target_tool,
-            default_arguments=dict(default_arguments or {}),
+            default_arguments=validated_defaults,
         )
         self.register(alias_definition)
         if persist:
-            aliases = []
-            if self.alias_file.exists():
-                aliases = json.loads(self.alias_file.read_text(encoding="utf-8"))
+            aliases = _load_json_list(self.alias_file, "tool alias store")
             aliases.append(
                 {
                     "name": name,
                     "description": description,
                     "target_tool": target_tool,
-                    "default_arguments": default_arguments or {},
+                    "default_arguments": validated_defaults,
                     "tags": tags or list(target_definition.tags),
                 }
             )
@@ -739,10 +836,10 @@ class ToolRegistry:
         return alias_definition.to_public_dict()
 
     def load_aliases(self) -> None:
-        if not self.alias_file.exists():
-            return
-        aliases = json.loads(self.alias_file.read_text(encoding="utf-8"))
+        aliases = _load_json_list(self.alias_file, "tool alias store")
         for alias in aliases:
+            if not isinstance(alias, dict):
+                continue
             if alias["name"] in self._definitions:
                 continue
             self.register_alias(
@@ -789,7 +886,11 @@ class BossAgent:
         preferred_tools: list[str] | None = None,
         examples: list[str] | None = None,
     ) -> dict[str, Any]:
-        preferred_tools = preferred_tools or []
+        name = _require_non_empty_string(name, "name")
+        description = _require_non_empty_string(description, "description")
+        trigger_phrases = _clean_string_list(trigger_phrases, "trigger_phrases", minimum=1)
+        preferred_tools = _clean_string_list(preferred_tools or [], "preferred_tools")
+        examples = _clean_string_list(examples or [], "examples")
         for tool_name in preferred_tools:
             self.registry.get(tool_name)
         skill = LearnedSkill(
@@ -797,7 +898,7 @@ class BossAgent:
             description=description,
             trigger_phrases=tuple(trigger_phrases),
             preferred_tools=tuple(preferred_tools),
-            examples=tuple(examples or []),
+            examples=tuple(examples),
         )
         stored = self.skill_store.add(skill)
         return stored.to_dict()
@@ -847,6 +948,123 @@ class BossAgent:
             "matched_skills": skill_matches,
         }
 
+    def _extract_focus_phrase(self, intent: str) -> str:
+        for pattern in (
+            r"\bfor\s+(.+?)(?:[.?!]|$)",
+            r"\babout\s+(.+?)(?:[.?!]|$)",
+            r"\bwhen\s+(.+?)(?:[.?!]|$)",
+        ):
+            match = re.search(pattern, intent, flags=re.IGNORECASE)
+            if match:
+                candidate = match.group(1).strip(" .?!")
+                if candidate:
+                    return candidate
+        if _extract_quoted_phrases(intent):
+            return _extract_quoted_phrases(intent)[0]
+        return ""
+
+    def _infer_preferred_tool(self, intent: str, context: dict[str, Any]) -> str | None:
+        lowered_intent = intent.lower()
+        if any(
+            keyword in lowered_intent
+            for keyword in ("pipeline", "stage", "decision control plane", "dcp", "govern", "authorize")
+        ):
+            return "decision.explain_pipeline"
+        if any(keyword in lowered_intent for keyword in ("neighbor", "relationship", "relates")):
+            return "kg.list_neighbors"
+        if context["matched_entities"]:
+            return "kg.describe_entity"
+        if context["retrieval"]["matches"]:
+            return "graphrag.query"
+        return None
+
+    def _infer_skill_learning_arguments(
+        self,
+        provided_arguments: dict[str, Any],
+        context: dict[str, Any],
+        intent: str,
+    ) -> dict[str, Any]:
+        arguments = dict(provided_arguments)
+        focus_phrase = self._extract_focus_phrase(intent)
+        quoted_phrases = _extract_quoted_phrases(intent)
+
+        if "name" not in arguments:
+            explicit_name_match = re.search(r"\b(?:named|called)\s+['\"]?([A-Za-z0-9][A-Za-z0-9 _.-]{1,80})", intent, flags=re.IGNORECASE)
+            if explicit_name_match:
+                arguments["name"] = explicit_name_match.group(1).strip(" .?!'\"")
+            elif focus_phrase:
+                arguments["name"] = _titleize_phrase(focus_phrase, suffix="Skill")
+            elif context["matched_entities"]:
+                arguments["name"] = f"{context['matched_entities'][0]['name']} Skill"
+
+        if "description" not in arguments and (focus_phrase or context["matched_entities"]):
+            focus_label = focus_phrase or context["matched_entities"][0]["name"]
+            arguments["description"] = f"Auto-learned skill for {focus_label}."
+
+        if "trigger_phrases" not in arguments:
+            triggers: list[str] = []
+            if focus_phrase:
+                triggers.append(focus_phrase)
+            for phrase in quoted_phrases:
+                triggers.append(phrase)
+            for entity in context["matched_entities"][:2]:
+                triggers.append(entity["name"].lower())
+            if triggers:
+                arguments["trigger_phrases"] = _clean_string_list(triggers, "trigger_phrases", minimum=1)
+
+        if "preferred_tools" not in arguments:
+            preferred_tool = self._infer_preferred_tool(intent, context)
+            if preferred_tool:
+                arguments["preferred_tools"] = [preferred_tool]
+
+        arguments.setdefault("examples", [intent.strip()])
+        return arguments
+
+    def _infer_alias_arguments(
+        self,
+        provided_arguments: dict[str, Any],
+        intent: str,
+    ) -> dict[str, Any]:
+        arguments = dict(provided_arguments)
+        lowered_intent = intent.lower()
+
+        if "target_tool" not in arguments:
+            for tool in self.registry.list_tools():
+                if tool["name"].lower() in lowered_intent:
+                    arguments["target_tool"] = tool["name"]
+                    break
+            else:
+                if "graphrag" in lowered_intent or "retrieval" in lowered_intent:
+                    arguments["target_tool"] = "graphrag.query"
+                elif "neighbor" in lowered_intent or "relationship" in lowered_intent:
+                    arguments["target_tool"] = "kg.list_neighbors"
+                elif "entity" in lowered_intent or "knowledge graph" in lowered_intent or "kg" in lowered_intent:
+                    arguments["target_tool"] = "kg.describe_entity"
+                elif "pipeline" in lowered_intent or "dcp" in lowered_intent:
+                    arguments["target_tool"] = "decision.explain_pipeline"
+
+        if "name" not in arguments:
+            explicit_name_match = re.search(r"\b(?:named|called|as)\s+['\"]?([A-Za-z0-9][A-Za-z0-9_.-]{1,80})", intent, flags=re.IGNORECASE)
+            if explicit_name_match:
+                arguments["name"] = explicit_name_match.group(1).strip(" .?!'\"")
+
+        if "description" not in arguments and arguments.get("target_tool"):
+            arguments["description"] = f"Alias for {arguments['target_tool']} inferred from natural-language registration."
+
+        if "default_arguments" not in arguments:
+            inferred_defaults: dict[str, Any] = {}
+            top_k_match = re.search(r"\btop[_ ]?k\s+(\d+)\b", lowered_intent)
+            if top_k_match and arguments.get("target_tool") == "graphrag.query":
+                inferred_defaults["top_k"] = int(top_k_match.group(1))
+            if inferred_defaults:
+                arguments["default_arguments"] = inferred_defaults
+
+        if "tags" not in arguments and arguments.get("target_tool"):
+            target_tags = self.registry.get(arguments["target_tool"]).tags
+            arguments["tags"] = list(target_tags[:3])
+
+        return arguments
+
     def _infer_arguments(
         self,
         tool_name: str,
@@ -875,6 +1093,10 @@ class BossAgent:
         elif tool_name == "kg.list_neighbors":
             if "entity_id" not in arguments and context["matched_entities"]:
                 arguments["entity_id"] = context["matched_entities"][0]["entity_id"]
+        elif tool_name == "skills.learn":
+            arguments = self._infer_skill_learning_arguments(arguments, context, intent)
+        elif tool_name == "tools.register_alias":
+            arguments = self._infer_alias_arguments(arguments, intent)
         elif tool_name == "decision.explain_pipeline":
             lowered_intent = intent.lower()
             for keyword, stage in stage_map.items():
@@ -954,7 +1176,7 @@ class BossAgent:
             reasons.append("required parameters available")
 
         if not complete:
-            score -= 5
+            score -= 8
             reasons.append("missing required parameters")
 
         if definition.alias_target:
@@ -968,14 +1190,15 @@ class BossAgent:
         provided_arguments: dict[str, Any],
         context: dict[str, Any],
     ) -> tuple[ToolSelection, list[dict[str, Any]]]:
-        candidates: list[tuple[float, ToolDefinition, dict[str, Any], list[str]]] = []
+        candidates: list[tuple[float, bool, ToolDefinition, dict[str, Any], list[str]]] = []
         for tool in (self.registry.get(item["name"]) for item in self.registry.list_tools()):
             inferred_arguments, complete = self._infer_arguments(tool.name, provided_arguments, context, intent)
             score, reasons = self._score_tool(tool, intent, inferred_arguments, context, complete)
-            candidates.append((score, tool, inferred_arguments, reasons))
+            candidates.append((score, complete, tool, inferred_arguments, reasons))
 
-        candidates.sort(key=lambda item: item[0], reverse=True)
-        if not candidates or candidates[0][0] <= 0:
+        candidates.sort(key=lambda item: (item[1], item[0]), reverse=True)
+        viable_candidates = [candidate for candidate in candidates if candidate[1] and candidate[0] > 0]
+        if not viable_candidates:
             fallback_arguments, _ = self._infer_arguments("graphrag.query", provided_arguments, context, intent)
             selection = ToolSelection(
                 tool_name="graphrag.query",
@@ -986,8 +1209,8 @@ class BossAgent:
             candidate_payload = []
             return selection, candidate_payload
 
-        top_score, top_tool, top_arguments, top_reasons = candidates[0]
-        second_score = candidates[1][0] if len(candidates) > 1 else 0.0
+        top_score, _, top_tool, top_arguments, top_reasons = viable_candidates[0]
+        second_score = viable_candidates[1][0] if len(viable_candidates) > 1 else 0.0
         confidence = round(min(0.99, 0.45 + max(top_score - second_score, 0) * 0.08 + max(top_score, 0) * 0.02), 2)
         selection = ToolSelection(
             tool_name=top_tool.name,
@@ -999,9 +1222,10 @@ class BossAgent:
             {
                 "tool_name": tool.name,
                 "score": round(score, 2),
+                "complete": complete,
                 "reasons": reasons,
             }
-            for score, tool, _, reasons in candidates[:5]
+            for score, complete, tool, _, reasons in candidates[:5]
         ]
         return selection, candidate_payload
 

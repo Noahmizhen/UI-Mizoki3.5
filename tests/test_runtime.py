@@ -33,6 +33,14 @@ class BossRuntimeTestCase(unittest.TestCase):
             tool_names,
         )
 
+    def test_registered_tools_expose_complete_argument_schema(self) -> None:
+        tools = {tool["name"]: tool for tool in self.runtime.list_tools()}
+        schema = tools["graphrag.query"]["argument_schema"]
+        self.assertEqual("object", schema["type"])
+        self.assertFalse(schema["additionalProperties"])
+        self.assertEqual(["query"], schema["required"])
+        self.assertEqual("integer", schema["properties"]["top_k"]["type"])
+
     def test_alias_tool_registration_is_persisted_and_callable(self) -> None:
         registration = self.runtime.call_tool(
             "tools.register_alias",
@@ -51,6 +59,19 @@ class BossRuntimeTestCase(unittest.TestCase):
         self.assertEqual(1, execution["arguments"]["top_k"])
         self.assertTrue(execution["result"]["matches"])
 
+    def test_alias_registration_rejects_invalid_default_arguments(self) -> None:
+        with self.assertRaises(ValueError):
+            self.runtime.call_tool(
+                "tools.register_alias",
+                {
+                    "name": "graphrag.bad_alias",
+                    "description": "Broken alias that should be rejected.",
+                    "target_tool": "graphrag.query",
+                    "default_arguments": {"top_k": "oops"},
+                    "tags": ["graphrag"],
+                },
+            )
+
     def test_boss_can_learn_skills_and_route_to_preferred_tool(self) -> None:
         learned_skill = self.runtime.learn_skill(
             {
@@ -67,6 +88,16 @@ class BossRuntimeTestCase(unittest.TestCase):
         self.assertEqual("decision.explain_pipeline", execution["selection"]["tool_name"])
         self.assertGreaterEqual(execution["selection"]["confidence"], 0.45)
         self.assertEqual("decision.explain_pipeline", execution["execution"]["resolved_tool"])
+
+    def test_boss_can_learn_skill_from_natural_language_request(self) -> None:
+        execution = self.runtime.execute("Learn a new skill for decision control plane questions.")
+        self.assertEqual("skills.learn", execution["selection"]["tool_name"])
+        learned_skill = execution["execution"]["result"]["skill"]
+        self.assertIn("decision.explain_pipeline", learned_skill["preferred_tools"])
+        self.assertTrue(any("decision control plane" in phrase.lower() for phrase in learned_skill["trigger_phrases"]))
+
+        follow_up = self.runtime.execute("Decision control plane questions")
+        self.assertEqual("decision.explain_pipeline", follow_up["selection"]["tool_name"])
 
     def test_boss_records_decision_traces(self) -> None:
         self.runtime.execute("List the available tools.")

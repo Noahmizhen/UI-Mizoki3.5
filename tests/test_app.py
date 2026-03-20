@@ -49,6 +49,35 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(400, response.status_code)
         self.assertIn("Missing required field", response.get_json()["error"])
 
+    def test_mcp_call_returns_400_for_unknown_tools(self) -> None:
+        response = self.client.post("/api/mcp/call", json={"name": "nope", "arguments": {}})
+        self.assertEqual(400, response.status_code)
+        self.assertIn("unknown tool", response.get_json()["error"])
+
+    def test_duplicate_skill_returns_400_instead_of_server_error(self) -> None:
+        first_response = self.client.post(
+            "/api/boss/skills/learn",
+            json={"name": "dcp", "description": "desc", "trigger_phrases": ["decision control plane"]},
+        )
+        self.assertEqual(200, first_response.status_code)
+
+        second_response = self.client.post(
+            "/api/boss/skills/learn",
+            json={"name": "dcp", "description": "desc", "trigger_phrases": ["decision control plane"]},
+        )
+        self.assertEqual(400, second_response.status_code)
+        self.assertIn("skill already exists", second_response.get_json()["error"])
+
+    def test_boss_can_learn_skill_via_natural_language_execute_request(self) -> None:
+        response = self.client.post(
+            "/api/boss/execute",
+            json={"intent": "Learn a new skill for decision control plane questions."},
+        )
+        self.assertEqual(200, response.status_code)
+        payload = response.get_json()
+        self.assertEqual("skills.learn", payload["selection"]["tool_name"])
+        self.assertIn("decision.explain_pipeline", payload["execution"]["result"]["skill"]["preferred_tools"])
+
 
 if __name__ == "__main__":
     unittest.main()
