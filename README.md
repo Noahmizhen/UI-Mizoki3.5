@@ -16,6 +16,7 @@ Verifiable Autonomous Decision Intelligence Platform Website
 - Exposed Boss/MCP capabilities through Flask JSON APIs for discovery, tool execution, skill learning, and decision traces.
 - Added a graph-native decision intelligence layer that runs SRPVDAL against the in-repo knowledge graph and GraphRAG context, with subagent recommendations, counterfactual simulation, and audit-ready loop traces.
 - Added direct graph-native APIs under `/api/boss/graph/*` and new MCP tools under the `gndi.*` namespace.
+- Added review-driven routing fixes, validation hardening, resilient trace/alias loading, and loop-to-skill promotion so the Boss Agent can learn safely from graph-native traces without misrouting normal requests.
 - Synchronized deployment paths for end-to-end orchestration across Cells 1-34.
 - Restructured site to use a robust Python/Flask routing engine (`app.py`).
 - Implemented canonical URL resolving for the corporate blog directly under `/blog/` on the main domain.
@@ -241,6 +242,36 @@ The graph-native runtime now adds:
 - `skills.learn_from_loop` for promoting a graph-native decision trace into a reusable skill seed
 
 The Boss Agent uses the same graph-native context during normal `/api/boss/execute` routing, so GraphRAG and KG grounding are no longer isolated utilities. Tool selection now returns candidate rankings, graph-native context, and direct routing into `gndi.*` tools when the request implies simulation, governance, loop execution, or subagent discovery.
+
+### Review-Driven Hardening
+
+After the initial graph-native integration, the runtime and API surface were reviewed and corrected so the behavior matches the intended Boss Agent standard:
+
+- Fixed substring-based routing bugs that could confuse `plan` with `plane`, causing incorrect SRPVDAL stage inference during DCP explanations.
+- Prevented the Boss Agent from overfiring `skills.learn` on ordinary explanation requests by gating skill and alias learning behind explicit learning intent.
+- Added bounded validation for `top_k` and trace limits so invalid client payloads fail clearly instead of silently degrading behavior.
+- Hardened persisted alias loading and JSONL trace loading so malformed records do not break runtime startup or trace inspection.
+- Added loop-aware learning behavior:
+  - `skills.learn_from_loop` can convert a graph-native loop trace into a reusable skill.
+  - When a user asks to learn from a loop but no loop exists yet, the Boss Agent now prefers running `gndi.run_decision_loop` first rather than selecting a guaranteed-failure path.
+- Expanded automated verification to cover:
+  - MCP registration completeness
+  - Boss routing correctness
+  - graph-native loop execution
+  - loop-to-skill promotion
+  - endpoint validation and failure handling
+
+Why this work was needed:
+
+- The prior plan assumed a separate agent-service codebase that is not present in this repository.
+- This repo’s real control plane is the Flask runtime in `mizoki_runtime/runtime.py` plus the HTTP surface in `app.py`.
+- Because of that, the integration work had to be implemented and then hardened here so the website repo exposes a working Boss Agent, not just a documented architecture.
+
+Verification performed during this work:
+
+- `python3 -m py_compile mizoki_runtime/runtime.py app.py`
+- `python3 -m unittest tests.test_runtime tests.test_app`
+- Current coverage for this work path: `25` passing tests
 
 ---
 

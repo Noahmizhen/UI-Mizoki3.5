@@ -111,6 +111,26 @@ mizoki-website/
 - In this repo, the actual Boss/KG/GraphRAG integration point is the Flask runtime in `mizoki_runtime/runtime.py` plus the API layer in `app.py`.
 - Any future graph-native or Boss-agent work should land there unless this repository gains the separate agent-service layout.
 
+### Review-Driven Corrections
+- Fixed routing bugs caused by substring matching so `decision control plane` no longer incorrectly maps to the `plan` stage.
+- Constrained skill and alias learning inference so the Boss Agent does not accidentally route normal explanation requests into `skills.learn` or `tools.register_alias`.
+- Added bounded integer validation for `top_k` and trace limits.
+- Hardened trace and alias loading so malformed JSONL or alias records do not break startup or trace inspection.
+- Added discovery metadata describing learning tools, tool-learning tools, and routing behaviors so the Boss Agent is more explicit about its capabilities.
+- Added loop-aware learning behavior:
+  - `skills.learn_from_loop` promotes graph-native loop traces into reusable skills.
+  - If a user asks to learn from a loop before any loop exists, the Boss Agent should prefer generating a loop first.
+
+### Why These Changes Were Made
+- The initial task history mixed this website repository with a different multi-agent Python service layout.
+- The real goal here was not to document graph-native decision intelligence conceptually, but to make the local Boss runtime actually usable, discoverable, and safe.
+- The review phase therefore focused on closing the gap between “tools exist” and “the Boss Agent uses them correctly with the right parameters and the right sequencing.”
+
+### Current Verification Standard
+- `python3 -m py_compile mizoki_runtime/runtime.py app.py`
+- `python3 -m unittest tests.test_runtime tests.test_app`
+- Current regression coverage for this implementation path: 25 passing tests
+
 ### Canonical Blog Routing via Flask
 Migrated legacy subdomain-dependent blogs to canonical main-domain paths internally using Python/Flask (`app.py`):
 - Stripped all meta-refresh `blogs.html` redirections to external domains, pointing them 301 to `/blog/`.
