@@ -209,6 +209,24 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     def v11_page(filename: str):
         return send_from_directory(BASE_DIR / "11", filename)
 
+    @app.route("/console")
+    @app.route("/console/")
+    @app.route("/console/index.html")
+    def console_home():
+        return send_from_directory(BASE_DIR / "mizoki3-site" / "console", "index.html")
+
+    @app.route("/console/<path:filename>")
+    def console_asset(filename: str):
+        return send_from_directory(BASE_DIR / "mizoki3-site" / "console", filename)
+
+    @app.route("/infrastructure/main.tf")
+    def infrastructure_terraform():
+        return send_from_directory(
+            BASE_DIR / "mizoki3-site" / "infrastructure",
+            "main.tf",
+            mimetype="text/plain",
+        )
+
     @app.route("/login", methods=["GET"])
     @app.route("/login.html", methods=["GET"])
     def login_page():
