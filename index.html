@@ -1,320 +1,2021 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MIZOKI3 — Autonomous Strategic Intelligence Infrastructure</title>
-  <meta name="description" content="One intelligence. Many domains. Shared causal memory. MIZOKI3 transforms fragmented enterprise, legal, financial, operational, and customer data into verified autonomous strategic action." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MIZOKI3 — Autonomous Decision Intelligence for the Enterprise</title>
+<meta name="description" content="One Brain. Many Lenses. Shared Memory. MIZOKI3 turns fragmented enterprise signals into threshold-aware actions through a governed canonical loop and a Temporal-Causal Knowledge Graph." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700&family=Familjen+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   MIZOKI3 — Editorial Site
+   ========================================================= */
+:root{
+  --bg-0:        #03050d;
+  --bg-1:        #060a1a;
+  --bg-2:        #0a1230;
+  --ink:         #e6ecff;
+  --ink-2:       #b3bdda;
+  --ink-3:       #7e8aae;
+  --ink-4:       #4d597a;
+
+  --cyan:        #4cc9ff;
+  --azure:       #2e7bff;
+  --violet:      #8a5cff;
+  --violet-hot:  #b58aff;
+  --magenta:     #d156ff;
+  --amber:       #f5b14a;
+  --emerald:     #3ee0c1;
+
+  --grad-brand:  linear-gradient(135deg, #4cc9ff 0%, #8a5cff 55%, #d156ff 100%);
+  --grad-cool:   linear-gradient(135deg, #00e1ff 0%, #2e7bff 100%);
+  --grad-warm:   linear-gradient(135deg, #b58aff 0%, #d156ff 100%);
+
+  --glass:       rgba(13, 22, 56, 0.55);
+  --glass-2:     rgba(20, 32, 78, 0.42);
+  --hairline:    rgba(140, 170, 255, 0.14);
+  --hairline-2:  rgba(140, 170, 255, 0.28);
+
+  --display:     'Sora', system-ui, sans-serif;
+  --serif:       'Instrument Serif', Georgia, serif;
+  --body:        'Familjen Grotesk', system-ui, sans-serif;
+  --mono:        'JetBrains Mono', ui-monospace, monospace;
+
+  --container:   1280px;
+  --container-wide: 1480px;
+  --radius-sm:   8px;
+  --radius:      14px;
+  --radius-lg:   22px;
+  --radius-xl:   32px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body{
+  background: var(--bg-0);
+  color: var(--ink);
+  font-family: var(--body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Atmospheric background ----------------------------------- */
+body::before{
+  content: "";
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(1200px 700px at 12% 8%,  rgba(76, 201, 255, 0.16), transparent 60%),
+    radial-gradient(1100px 800px at 92% 18%, rgba(138, 92, 255, 0.18), transparent 60%),
+    radial-gradient(900px  900px at 50% 110%, rgba(46, 123, 255, 0.16), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after{
+  content: "";
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(140,170,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140,170,255,0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+main, header, footer { position: relative; z-index: 1; }
+
+/* Typography ----------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  color: var(--ink);
+}
+h1 { font-size: clamp(2.8rem, 6.2vw, 5.6rem); font-weight: 300; }
+h2 { font-size: clamp(2rem, 3.8vw, 3.4rem); font-weight: 400; }
+h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 500; letter-spacing: -0.01em; }
+h4 { font-size: 1rem; font-weight: 600; letter-spacing: 0.01em; }
+
+p { color: var(--ink-2); font-size: 1.02rem; }
+a { color: inherit; text-decoration: none; }
+
+.eyebrow{
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.gradient-text{
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.serif-italic{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.container{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.container-wide{
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+header.nav{
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 0;
+  backdrop-filter: blur(20px);
+  background: rgba(3, 5, 13, 0.6);
+  border-bottom: 1px solid var(--hairline);
+}
+.nav-inner{
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo{
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo .mark{
+  width: 26px; height: 26px;
+  border-radius: 7px;
+  background: var(--grad-brand);
+  position: relative;
+  box-shadow: 0 0 30px rgba(138, 92, 255, 0.4);
+}
+.logo .mark::after{
+  content: "";
+  position: absolute; inset: 4px;
+  border-radius: 4px;
+  background: var(--bg-0);
+}
+.logo .three{
+  background: var(--grad-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 500;
+}
+.nav-links{
+  display: flex; gap: 32px;
+  list-style: none;
+}
+.nav-links a{
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active{ color: var(--ink); }
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-family: var(--body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: all 0.3s cubic-bezier(.2,.7,.2,1);
+  cursor: pointer;
+  border: none;
+}
+.btn-primary{
+  background: var(--grad-brand);
+  color: #0a0a14;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1) inset, 0 14px 40px -10px rgba(138, 92, 255, 0.6);
+}
+.btn-primary:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.18) inset, 0 22px 50px -10px rgba(138, 92, 255, 0.85);
+}
+.btn-ghost{
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--hairline-2);
+}
+.btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+.btn .arrow{ display: inline-block; transition: transform 0.3s; }
+.btn:hover .arrow{ transform: translateX(4px); }
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  padding: 160px 0 80px;
+  position: relative;
+  text-align: center;
+}
+.hero .container{ max-width: 980px; }
+
+.hero-eyebrow{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--hairline-2);
+  background: var(--glass);
+  margin-bottom: 36px;
+}
+.hero-eyebrow .pulse{
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 10px var(--emerald);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{ 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+.hero h1{
+  margin-bottom: 28px;
+  letter-spacing: -0.025em;
+}
+.hero h1 .sub{
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.6vw, 2.5rem);
+  color: var(--ink-2);
+  letter-spacing: -0.01em;
+  margin-top: 12px;
+}
+
+.hero-tag{
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 32px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+.hero-tag span{ position: relative; }
+.hero-tag span:not(:last-child)::after{
+  content: "·";
+  position: absolute;
+  right: -14px;
+  color: var(--violet);
+}
+
+.hero-lede{
+  font-size: 1.18rem;
+  max-width: 640px;
+  color: var(--ink-2);
+  margin: 0 auto 44px;
+  line-height: 1.55;
+}
+
+.hero-ctas{
+  display: flex; gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 80px;
+}
+
+.hero-visual{
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.hero-visual::before{
+  content: "";
+  position: absolute;
+  inset: -40px;
+  background:
+    radial-gradient(600px 300px at 30% 50%, rgba(76, 201, 255, 0.25), transparent 70%),
+    radial-gradient(600px 300px at 70% 50%, rgba(138, 92, 255, 0.25), transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+}
+.hero-visual img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    0 50px 120px -30px rgba(0, 0, 0, 0.7),
+    0 0 80px -20px rgba(76, 201, 255, 0.3),
+    0 0 80px -20px rgba(138, 92, 255, 0.3);
+  position: relative;
+}
+
+.scroll-hint{
+  margin-top: 60px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+}
+.scroll-hint .line{
+  width: 1px; height: 40px;
+  background: linear-gradient(180deg, var(--ink-4), transparent);
+  animation: scroll-down 2s ease-in-out infinite;
+}
+@keyframes scroll-down{
+  0%, 100% { transform: scaleY(1); transform-origin: top; }
+  50% { transform: scaleY(0.3); transform-origin: top; }
+}
+
+/* =========================================================
+   CHAPTER STRUCTURE
+   ========================================================= */
+.chapter{
+  padding: 140px 0;
+  position: relative;
+}
+.chapter:nth-child(even){
+  background:
+    radial-gradient(800px 500px at 10% 20%, rgba(76, 201, 255, 0.06), transparent 60%),
+    transparent;
+}
+.chapter:nth-child(odd){
+  background:
+    radial-gradient(800px 500px at 90% 80%, rgba(138, 92, 255, 0.06), transparent 60%),
+    transparent;
+}
+
+.chapter-header{
+  max-width: 920px;
+  margin: 0 auto 80px;
+  text-align: center;
+}
+.chapter-marker{
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.chapter-marker .num{
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  background: var(--grad-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-transform: none;
+}
+.chapter-marker .line{
+  width: 40px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan));
+}
+.chapter-marker .line.right{
+  background: linear-gradient(90deg, var(--violet), transparent);
+}
+
+.chapter-header h2{
+  margin-bottom: 24px;
+}
+.chapter-header .lede{
+  font-size: 1.18rem;
+  max-width: 720px;
+  margin: 0 auto;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* Big image presentation ------------------------------------ */
+.canvas{
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.canvas-img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    0 40px 100px -30px rgba(0, 0, 0, 0.7),
+    0 0 100px -20px var(--glow);
+  position: relative;
+  z-index: 1;
+}
+.canvas::before{
+  content: "";
+  position: absolute;
+  inset: -30px;
+  background: var(--glow-bg);
+  filter: blur(40px);
+  z-index: 0;
+  border-radius: var(--radius-xl);
+  pointer-events: none;
+}
+.canvas.cool{
+  --glow: rgba(76, 201, 255, 0.4);
+  --glow-bg: radial-gradient(600px 300px at 50% 50%, rgba(76, 201, 255, 0.15), transparent 70%);
+}
+.canvas.warm{
+  --glow: rgba(138, 92, 255, 0.4);
+  --glow-bg: radial-gradient(600px 300px at 50% 50%, rgba(138, 92, 255, 0.18), transparent 70%);
+}
+.canvas.hot{
+  --glow: rgba(209, 86, 255, 0.4);
+  --glow-bg: radial-gradient(600px 300px at 50% 50%, rgba(209, 86, 255, 0.18), transparent 70%);
+}
+.canvas.sun{
+  --glow: rgba(245, 177, 74, 0.35);
+  --glow-bg: radial-gradient(600px 300px at 50% 50%, rgba(245, 177, 74, 0.15), transparent 70%);
+}
+
+.canvas-caption{
+  margin-top: 24px;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  text-align: center;
+}
+.canvas-caption span{ color: var(--ink-3); }
+
+/* Commentary blocks below image --------------------------- */
+.commentary{
+  margin-top: 80px;
+  max-width: var(--container);
+  margin-left: auto; margin-right: auto;
+  padding: 0 32px;
+}
+.commentary-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.note{
+  padding: 28px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.note:hover{
+  border-color: var(--hairline-2);
+  transform: translateY(-2px);
+}
+.note::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 32px; height: 1px;
+  background: currentColor;
+}
+.note.cool{ color: var(--cyan); }
+.note.warm{ color: var(--violet); }
+.note.hot{ color: var(--magenta); }
+.note.sun{ color: var(--amber); }
+.note.green{ color: var(--emerald); }
+.note .num{
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: currentColor;
+  margin-bottom: 14px;
+}
+.note h3{
+  color: var(--ink);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.note p{
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+/* Two-column with side notes ------------------------------ */
+.split{
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 60px;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  align-items: start;
+}
+.split.flip{ grid-template-columns: 320px 1fr; }
+
+.side-panel{
+  padding: 36px 28px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  position: sticky;
+  top: 100px;
+}
+.side-panel .head{
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hairline);
+}
+.side-panel ul{
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 16px;
+}
+.side-panel ul li{
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.side-panel ul li .dot{
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  margin-top: 9px;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px var(--cyan);
+}
+.side-panel ul li .text{
+  font-size: 0.86rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+.side-panel ul li .text strong{
+  display: block;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+/* Pull quote --------------------------------------------- */
+.pullquote{
+  max-width: 900px;
+  margin: 80px auto 0;
+  padding: 0 32px;
+  text-align: center;
+}
+.pullquote .q{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+.pullquote .q::before,
+.pullquote .q::after{
+  color: var(--violet-hot);
+  opacity: 0.6;
+}
+.pullquote .q::before{ content: "“"; margin-right: 6px;}
+.pullquote .q::after{ content: "”"; margin-left: 6px;}
+.pullquote .attribution{
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* =========================================================
+   LOOP DETAIL TABLE
+   ========================================================= */
+.steps-grid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  max-width: var(--container-wide);
+  margin: 80px auto 0;
+  padding: 0 32px;
+}
+.step-card{
+  padding: 24px 18px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.step-card:hover{
+  border-color: currentColor;
+  transform: translateY(-4px);
+}
+.step-card::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: currentColor;
+  opacity: 0.7;
+}
+.step-card .num{
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  color: currentColor;
+  margin-bottom: 10px;
+}
+.step-card .name{
+  font-family: var(--display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.step-card .desc{
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.step-card.s1{ color: var(--cyan); }
+.step-card.s2{ color: var(--azure); }
+.step-card.s3{ color: var(--emerald); }
+.step-card.s4{ color: var(--amber); }
+.step-card.s5{ color: var(--violet); }
+.step-card.s6{ color: var(--magenta); }
+.step-card.s7{ color: var(--violet-hot); }
+
+/* =========================================================
+   GOVERNANCE LAYERS (3-column)
+   ========================================================= */
+.gov-row{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: var(--container);
+  margin: 80px auto 0;
+  padding: 0 32px;
+}
+.gov-card{
+  padding: 36px 30px;
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.gov-card:hover{
+  transform: translateY(-3px);
+  border-color: var(--hairline-2);
+}
+.gov-card::after{
+  content: "";
+  position: absolute;
+  bottom: -30%; right: -30%;
+  width: 60%; height: 60%;
+  background: radial-gradient(circle, currentColor, transparent 70%);
+  opacity: 0.12;
+  pointer-events: none;
+}
+.gov-card .tag{
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  color: currentColor;
+  margin-bottom: 14px;
+}
+.gov-card h3{
+  color: var(--ink);
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.gov-card p{
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+}
+.gov-card ul{
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 8px;
+}
+.gov-card ul li{
+  font-size: 0.84rem;
+  color: var(--ink-3);
+  padding-left: 18px;
+  position: relative;
+}
+.gov-card ul li::before{
+  content: "→";
+  position: absolute; left: 0;
+  color: currentColor;
+  opacity: 0.7;
+}
+.gov-card.dcp{ color: var(--cyan); }
+.gov-card.val{ color: var(--violet); }
+.gov-card.del{ color: var(--magenta); }
+
+/* =========================================================
+   CELLS GALLERY
+   ========================================================= */
+.cell-block{
+  margin-top: 100px;
+  position: relative;
+}
+.cell-block:first-of-type{ margin-top: 80px; }
+
+.cell-header{
+  max-width: var(--container);
+  margin: 0 auto 36px;
+  padding: 0 32px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.cell-header .left .marker{
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: currentColor;
+  margin-bottom: 12px;
+}
+.cell-header .left h3{
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.cell-header .left .sub{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-2);
+}
+.cell-header .right{
+  font-size: 0.96rem;
+  color: var(--ink-2);
+  max-width: 460px;
+  line-height: 1.55;
+}
+
+.cell-block.legal{ color: var(--cyan); }
+.cell-block.estate{ color: var(--violet-hot); }
+.cell-block.risk{ color: #ff5a7a; }
+.cell-block.media{ color: var(--magenta); }
+
+.cell-canvas{
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.cell-canvas img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  box-shadow:
+    0 40px 100px -30px rgba(0, 0, 0, 0.7),
+    0 0 80px -20px currentColor;
+  position: relative;
+  z-index: 1;
+}
+.cell-canvas::before{
+  content: "";
+  position: absolute;
+  inset: -30px;
+  background: radial-gradient(600px 300px at 50% 50%, currentColor, transparent 70%);
+  opacity: 0.15;
+  filter: blur(40px);
+  z-index: 0;
+  border-radius: var(--radius-xl);
+  pointer-events: none;
+}
+
+.cell-footer{
+  max-width: var(--container);
+  margin: 32px auto 0;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.cell-stat{
+  padding: 18px 20px;
+  background: var(--glass-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+}
+.cell-stat .label{
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.cell-stat .value{
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: currentColor;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+.cta{
+  padding: 140px 0 100px;
+}
+.cta-card{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 60px;
+  background: var(--glass);
+  border: 1px solid var(--hairline-2);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-card::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px 300px at 30% 0%, rgba(76, 201, 255, 0.2), transparent 60%),
+    radial-gradient(600px 300px at 70% 100%, rgba(138, 92, 255, 0.2), transparent 60%);
+  pointer-events: none;
+}
+.cta-card > *{ position: relative; }
+.cta-card .eyebrow{
+  display: inline-block;
+  margin-bottom: 22px;
+}
+.cta-card h2{ margin-bottom: 18px; font-weight: 300; }
+.cta-card h2 .em{ font-family: var(--serif); font-style: italic; font-weight: 400;}
+.cta-card p{
+  max-width: 600px;
+  margin: 0 auto 36px;
+  font-size: 1.08rem;
+}
+.cta-card .actions{
+  display: flex; gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer{
+  padding: 60px 0 36px;
+  border-top: 1px solid var(--hairline);
+}
+.footer-grid{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 48px;
+}
+.footer-brand p{
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  max-width: 320px;
+  margin-top: 16px;
+}
+.footer-col h5{
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 18px;
+}
+.footer-col ul{
+  list-style: none;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+.footer-col ul li a{
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover{ color: var(--cyan); }
+.footer-bottom{
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 28px 32px 0;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.footer-bottom .signature{
+  display: flex; gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   PROGRESS RAIL (side dots)
+   ========================================================= */
+.rail{
+  position: fixed;
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rail a{
+  display: block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--ink-4);
+  position: relative;
+  transition: all 0.3s;
+}
+.rail a::before{
+  content: attr(data-label);
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: rgba(3, 5, 13, 0.85);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid var(--hairline);
+}
+.rail a:hover::before{ opacity: 1; }
+.rail a.active{
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+/* =========================================================
+   PROCESS MAP — the connector section
+   ========================================================= */
+.processmap{
+  padding: 110px 0 90px;
+  position: relative;
+  background:
+    radial-gradient(900px 500px at 50% 0%, rgba(76, 201, 255, 0.07), transparent 65%),
+    transparent;
+}
+.pm-head{
+  max-width: 880px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+.pm-head .chapter-marker{ margin-bottom: 22px; }
+.pm-head h2{ margin-bottom: 18px; }
+.pm-head p{
+  font-size: 1.1rem;
+  max-width: 660px;
+  margin: 0 auto;
+  color: var(--ink-2);
+}
+
+/* The flow diagram */
+.pm-flow{
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.pm-track{
+  display: grid;
+  grid-template-columns: 1fr auto 1.6fr auto 1fr auto 1fr;
+  align-items: stretch;
+  gap: 0;
+}
+.pm-stage{
+  background: var(--glass);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  padding: 26px 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+.pm-stage:hover{ border-color: var(--hairline-2); transform: translateY(-3px); }
+.pm-stage .pm-kicker{
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: currentColor;
+  margin-bottom: 10px;
+}
+.pm-stage h3{
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.pm-stage > p{
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+.pm-stage.signals{ color: var(--cyan); }
+.pm-stage.engine{ color: var(--violet); }
+.pm-stage.cells{ color: var(--magenta); }
+.pm-stage.outcomes{ color: var(--emerald); }
+
+/* Arrows between stages */
+.pm-arrow{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  color: var(--ink-4);
+}
+.pm-arrow svg{ width: 22px; height: 22px; }
+
+/* Image reference chips inside each stage */
+.pm-imgs{
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.pm-chip{
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.06em;
+  padding: 4px 9px;
+  border-radius: 99px;
+  border: 1px solid currentColor;
+  color: currentColor;
+  background: rgba(76, 201, 255, 0.06);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.pm-chip:hover{
+  background: currentColor;
+}
+.pm-chip:hover span{ color: var(--bg-0); }
+.pm-chip span{ transition: color 0.2s; }
+
+/* The engine stage is special — shows loop + governance + graph stacked */
+.pm-engine-inner{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 6px 0 14px;
+}
+.pm-mini{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--glass-2);
+  border: 1px solid var(--hairline);
+}
+.pm-mini .ic{
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+}
+.pm-mini .ic.loop{ background: rgba(138, 92, 255, 0.16); color: var(--violet-hot); }
+.pm-mini .ic.gov{ background: rgba(209, 86, 255, 0.16); color: var(--magenta); }
+.pm-mini .ic.graph{ background: rgba(76, 201, 255, 0.16); color: var(--cyan); }
+.pm-mini .ic svg{ width: 13px; height: 13px; }
+.pm-mini .tx{ font-size: 0.74rem; color: var(--ink-2); line-height: 1.3; }
+.pm-mini .tx strong{ display:block; color: var(--ink); font-weight: 600; font-size: 0.78rem; }
+
+/* Legend strip */
+.pm-legend{
+  max-width: var(--container);
+  margin: 50px auto 0;
+  padding: 22px 28px;
+  background: var(--glass-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.pm-legend .lg-item{
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+}
+.pm-legend .lg-item .sw{
+  width: 12px; height: 12px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.pm-legend .lg-note{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-2);
+}
+
+/* =========================================================
+   CELL SHARED-LOOP BADGE
+   ========================================================= */
+.loop-badge{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px 9px 11px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: rgba(76, 201, 255, 0.05);
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+.loop-badge .lb-ring{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.loop-badge .lb-dot{
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.45;
+}
+.loop-badge .lb-dot.on{ opacity: 1; box-shadow: 0 0 6px currentColor; }
+.loop-badge .lb-text{
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.loop-badge .lb-text strong{ color: currentColor; font-weight: 500; }
+
+/* =========================================================
+   REVEAL
+   ========================================================= */
+.reveal{ opacity: 0; transform: translateY(24px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
+.reveal.in{ opacity: 1; transform: translateY(0); }
+.stagger > *{ transition-delay: calc(var(--i, 0) * 80ms); }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 1100px){
+  .commentary-grid{ grid-template-columns: 1fr 1fr; }
+  .split, .split.flip{ grid-template-columns: 1fr; }
+  .side-panel{ position: static; }
+  .steps-grid{ grid-template-columns: repeat(4, 1fr); }
+  .gov-row{ grid-template-columns: 1fr; }
+  .cell-header{ flex-direction: column; align-items: flex-start; }
+  .cell-footer{ grid-template-columns: repeat(2, 1fr); }
+  .rail{ display: none; }
+  .pm-track{
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .pm-arrow{
+    width: auto;
+    transform: rotate(90deg);
+  }
+  .pm-arrow.a2{ grid-column: 1 / -1; }
+}
+@media (max-width: 720px){
+  .chapter{ padding: 90px 0; }
+  .hero{ padding: 130px 0 60px; }
+  .container, .container-wide{ padding: 0 22px; }
+  .nav-links{ display: none; }
+  .pm-track{ grid-template-columns: 1fr; }
+  .pm-flow{ padding: 0 22px; }
+  .pm-arrow{ transform: rotate(90deg); }
+  .commentary-grid{ grid-template-columns: 1fr; }
+  .steps-grid{ grid-template-columns: repeat(2, 1fr); }
+  .cta-card{ padding: 48px 26px; }
+  .footer-grid{ grid-template-columns: 1fr 1fr; gap: 40px; }
+  .canvas, .cell-canvas, .hero-visual{ padding: 0 4px; }
+}
+</style>
 </head>
 <body>
 
-  <header class="site-header">
-    <nav class="nav">
-      <a href="index.html" class="brand">MIZOKI3</a>
-      <ul class="nav-links">
-        <li><a href="counsel.html">Counsel</a></li>
-        <li><a href="estate.html">Estate</a></li>
-        <li><a href="capital.html">Capital</a></li>
-        <li><a href="signal.html">Signal</a></li>
-        <li><a href="risk.html">Risk</a></li>
+<!-- =========================================================
+     NAV
+     ========================================================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top">
+      <span class="mark"></span>
+      <span>MIZOKI<span class="three">3</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#processmap" data-section="processmap">Map</a></li>
+      <li><a href="#overview" data-section="overview">Overview</a></li>
+      <li><a href="#loop" data-section="loop">The Loop</a></li>
+      <li><a href="#governance" data-section="governance">Governance</a></li>
+      <li><a href="#memory" data-section="memory">Memory</a></li>
+      <li><a href="#cells" data-section="cells">Cells</a></li>
+      <li><a href="#nexus" data-section="nexus">Nexus</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#cta">Request Demo <span class="arrow">→</span></a>
+  </div>
+</header>
+
+<!-- Progress rail -->
+<nav class="rail" aria-hidden="true">
+  <a href="#top" data-label="Top"></a>
+  <a href="#processmap" data-label="Process Map"></a>
+  <a href="#overview" data-label="Overview"></a>
+  <a href="#loop" data-label="The Loop"></a>
+  <a href="#governance" data-label="Governance"></a>
+  <a href="#memory" data-label="Memory"></a>
+  <a href="#cells" data-label="Cells"></a>
+  <a href="#nexus" data-label="Nexus"></a>
+  <a href="#cta" data-label="Begin"></a>
+</nav>
+
+<!-- =========================================================
+     HERO
+     ========================================================= -->
+<section id="top" class="hero">
+  <div class="container">
+
+    <div class="hero-eyebrow">
+      <span class="pulse"></span>
+      <span class="eyebrow">Governed Autonomy · Production · 2026</span>
+    </div>
+
+    <h1>
+      Autonomous Decision Intelligence
+      <span class="sub">for the modern enterprise.</span>
+    </h1>
+
+    <div class="hero-tag">
+      <span>One Brain</span>
+      <span>Many Lenses</span>
+      <span>Shared Memory</span>
+    </div>
+
+    <p class="hero-lede">
+      MIZOKI3 turns fragmented enterprise signals into threshold-aware actions — not just reports,
+      dashboards, or another chatbot. Temporal-causal reasoning. Governed autonomy.
+      Outcomes that compound.
+    </p>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#cta">Request a Demo <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="#overview">See How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <img src="assets/01-hero-system.png" alt="MIZOKI3 — Autonomous Decision Intelligence system overview" loading="eager" />
+  </div>
+
+  <div class="container">
+    <div class="scroll-hint">
+      <span>Read Below</span>
+      <span class="line"></span>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PROCESS MAP — how the images fit the process
+     ========================================================= -->
+<section id="processmap" class="processmap">
+  <div class="pm-head reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">00</span>
+      <span>How To Read This</span>
+      <span class="line right"></span>
+    </div>
+    <h2>One system, viewed at <span class="serif-italic">six magnifications.</span></h2>
+    <p>
+      What follows isn't a gallery — it's a single process resolving into focus. Signals enter on the left,
+      governed decisions and outcomes exit on the right. Every diagram in this site is a detail pulled from
+      the flow below. This is the legend.
+    </p>
+  </div>
+
+  <div class="pm-flow reveal">
+    <div class="pm-track">
+
+      <!-- STAGE 1 — SIGNALS -->
+      <div class="pm-stage signals">
+        <div class="pm-kicker">Input</div>
+        <h3>Signals</h3>
+        <p>Enterprise data, user &amp; market signals, systems, policies, and historical outcomes — fragmented across sources.</p>
+        <div class="pm-imgs">
+          <a class="pm-chip" href="#overview"><span>The thesis &middot; Ch.01</span></a>
+        </div>
+      </div>
+
+      <div class="pm-arrow a1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <!-- STAGE 2 — THE ENGINE -->
+      <div class="pm-stage engine">
+        <div class="pm-kicker">The Engine</div>
+        <h3>Governed Decision Loop</h3>
+        <div class="pm-engine-inner">
+          <div class="pm-mini">
+            <div class="ic loop">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0115-6.7M21 12a9 9 0 01-15 6.7M21 5v5h-5M3 19v-5h5"/></svg>
+            </div>
+            <div class="tx"><strong>The Loop</strong>Sense → … → Learn</div>
+          </div>
+          <div class="pm-mini">
+            <div class="ic gov">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L3 7v5c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z"/></svg>
+            </div>
+            <div class="tx"><strong>3 Control Layers</strong>DCP · V&amp;A · DEL</div>
+          </div>
+          <div class="pm-mini">
+            <div class="ic graph">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 7l4 10M17 7l-4 10"/></svg>
+            </div>
+            <div class="tx"><strong>Knowledge Graph</strong>Shared memory it runs on</div>
+          </div>
+        </div>
+        <div class="pm-imgs">
+          <a class="pm-chip" href="#loop"><span>Loop &middot; Ch.02</span></a>
+          <a class="pm-chip" href="#governance"><span>Governance &middot; Ch.03</span></a>
+          <a class="pm-chip" href="#memory"><span>Memory &middot; Ch.04</span></a>
+        </div>
+      </div>
+
+      <div class="pm-arrow a2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <!-- STAGE 3 — CELLS -->
+      <div class="pm-stage cells">
+        <div class="pm-kicker">Many Lenses</div>
+        <h3>Domain Cells</h3>
+        <p>The same loop, the same graph — pointed at one domain each. Legal, Estate, Risk, Media. Depth from the lens, not a different process.</p>
+        <div class="pm-imgs">
+          <a class="pm-chip" href="#cells"><span>4 Cells &middot; Ch.05</span></a>
+        </div>
+      </div>
+
+      <div class="pm-arrow a3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </div>
+
+      <!-- STAGE 4 — OUTCOMES -->
+      <div class="pm-stage outcomes">
+        <div class="pm-kicker">Output</div>
+        <h3>Orchestrated Outcomes</h3>
+        <p>Nexus conducts the cells into one system. Traceable, explainable, policy-aligned results that compound over time.</p>
+        <div class="pm-imgs">
+          <a class="pm-chip" href="#nexus"><span>Nexus &middot; Ch.06</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="pm-legend reveal">
+      <div class="lg-item"><span class="sw" style="background:var(--cyan)"></span>Signals In</div>
+      <div class="lg-item"><span class="sw" style="background:var(--violet)"></span>The Governed Engine</div>
+      <div class="lg-item"><span class="sw" style="background:var(--magenta)"></span>Domain Cells</div>
+      <div class="lg-item"><span class="sw" style="background:var(--emerald)"></span>Outcomes Out</div>
+      <div class="lg-note">The hero image above shows all four stages at once — every chapter zooms into one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 01 — OVERVIEW
+     ========================================================= -->
+<section id="overview" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">01</span>
+      <span>The System, Decoded</span>
+      <span class="line right"></span>
+    </div>
+    <h2>A <span class="serif-italic">governed decision factory</span>, not another dashboard.</h2>
+    <p class="lede">
+      Signals enter. AI agents reason and challenge each other. Policies decide whether to execute,
+      route to a human, or stop. Every step leaves an audit trail. Read this as a control loop —
+      each gate narrows uncertainty before the system commits resources.
+    </p>
+  </div>
+
+  <div class="canvas warm reveal">
+    <img class="canvas-img" src="assets/02-editorial-overview.png" alt="MIZ OKI 3.5 editorial infographic — Autonomous Decision Intelligence decoded" loading="lazy" />
+    <div class="canvas-caption">
+      <span>Editorial overview</span> · the full architecture at a glance
+    </div>
+  </div>
+
+  <div class="commentary reveal">
+    <div class="commentary-grid stagger">
+      <div class="note cool" style="--i:0">
+        <div class="num">Premise</div>
+        <h3>Not "can AI act?" — "what must be true first?"</h3>
+        <p>The decisive question isn't whether AI can decide. It's what conditions must be true before it's <em>allowed</em> to. Every gate in the loop exists to answer that.</p>
+      </div>
+      <div class="note warm" style="--i:1">
+        <div class="num">Mechanism</div>
+        <h3>Plug-in architecture. Knowledge graph core. Multi-agent reasoning.</h3>
+        <p>Three foundations — plus human-in-the-loop governance, RBAC, immutable audit logs, and flexible deployment. No rip-and-replace. Governed execution.</p>
+      </div>
+      <div class="note hot" style="--i:2">
+        <div class="num">Posture</div>
+        <h3>High autonomy with strong guardrails.</h3>
+        <p>Autonomy isn't "hands off." The strongest version is high autonomy <em>with</em> accountability — narrow the scope, separate advice from authority, make the audit trail the product.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pullquote reveal">
+    <p class="q">Analytics only matters when it changes decisions and outcomes.</p>
+    <div class="attribution">— Editorial Thesis · MIZOKI3 Research Lens</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 02 — THE LOOP
+     ========================================================= -->
+<section id="loop" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">02</span>
+      <span>The Canonical Loop</span>
+      <span class="line right"></span>
+    </div>
+    <h2>Seven cognitive functions. <span class="gradient-text">One intelligent system.</span></h2>
+    <p class="lede">
+      Sense the world. Reason about it. Plan a response. Validate the plan. Decide what to do.
+      Act. Learn from the outcome. Every domain agent runs this loop on the same brain.
+    </p>
+  </div>
+
+  <div class="canvas cool reveal">
+    <img class="canvas-img" src="assets/03-canonical-loop.png" alt="The Canonical Orchestration Loop — seven cognitive functions" loading="lazy" />
+    <div class="canvas-caption">
+      <span>The canonical loop</span> · Sense → Reason → Plan → Validate → Decide → Act → Learn
+    </div>
+  </div>
+
+  <!-- 7-step breakdown -->
+  <div class="steps-grid reveal stagger">
+    <div class="step-card s1" style="--i:0">
+      <div class="num">01 · Sense</div>
+      <div class="name">Observe</div>
+      <div class="desc">Capture events, telemetry, logs, conversations. Ingest live signals across every source.</div>
+    </div>
+    <div class="step-card s2" style="--i:1">
+      <div class="num">02 · Reason</div>
+      <div class="name">Infer</div>
+      <div class="desc">Model causality and trade-offs. Weigh options, surface hypotheses, anticipate outcomes.</div>
+    </div>
+    <div class="step-card s3" style="--i:2">
+      <div class="num">03 · Plan</div>
+      <div class="name">Propose</div>
+      <div class="desc">Draft an action plan. Generate options with resources, owners, scenarios, constraints.</div>
+    </div>
+    <div class="step-card s4" style="--i:3">
+      <div class="num">04 · Validate</div>
+      <div class="name">Stress-test</div>
+      <div class="desc">Challenge assumptions. Run checks against policy, risk, compliance, feasibility.</div>
+    </div>
+    <div class="step-card s5" style="--i:4">
+      <div class="num">05 · Decide</div>
+      <div class="name">Choose</div>
+      <div class="desc">Score risk and confidence. Approve, reject, or escalate based on thresholds and authority.</div>
+    </div>
+    <div class="step-card s6" style="--i:5">
+      <div class="num">06 · Act</div>
+      <div class="name">Execute</div>
+      <div class="desc">Run automatically through secure governed channels, or route to the right human.</div>
+    </div>
+    <div class="step-card s7" style="--i:6">
+      <div class="num">07 · Learn</div>
+      <div class="name">Compound</div>
+      <div class="desc">Record results, measure impact, refine the models, the policies, and the plans.</div>
+    </div>
+  </div>
+
+  <div class="pullquote reveal">
+    <p class="q">Each gate narrows uncertainty before the system commits resources.</p>
+    <div class="attribution">— Design Principle · Governed Autonomy</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 03 — GOVERNANCE
+     ========================================================= -->
+<section id="governance" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">03</span>
+      <span>Governed Autonomy</span>
+      <span class="line right"></span>
+    </div>
+    <h2>Three layers. One standard. <span class="gradient-text">Zero compromise.</span></h2>
+    <p class="lede">
+      Governance isn't a separate "clear" step bolted onto the end. It's embedded across the loop.
+      Three control surfaces — Decision Control Plane, Verification &amp; Arbitration, Decision Eligibility —
+      sit beneath every Sense → Learn cycle.
+    </p>
+  </div>
+
+  <div class="canvas hot reveal">
+    <img class="canvas-img" src="assets/05-governance.png" alt="AI Orchestration Framework — Internal Governance &amp; Control with DCP, V&amp;A Layer, and DEL" loading="lazy" />
+    <div class="canvas-caption">
+      <span>Internal governance</span> · inputs → loop → outcomes, mediated by three control layers
+    </div>
+  </div>
+
+  <div class="gov-row reveal stagger">
+    <div class="gov-card dcp" style="--i:0">
+      <div class="tag">01 — DCP</div>
+      <h3>Decision Control Plane</h3>
+      <p>The central policy, guardrails, routing, and authority management for all autonomous decisions.</p>
+      <ul>
+        <li>Policy definition &amp; enforcement</li>
+        <li>Strategic objectives &amp; risk appetite</li>
+        <li>Delegated authority and thresholds</li>
+        <li>Permission and role management</li>
       </ul>
-    </nav>
-  </header>
+    </div>
+    <div class="gov-card val" style="--i:1">
+      <div class="tag">02 — V&amp;A LAYER</div>
+      <h3>Verification &amp; Arbitration</h3>
+      <p>Independent verification, consistency checks, and conflict arbitration across agents and models.</p>
+      <ul>
+        <li>Cross-model validation</li>
+        <li>Conflict resolution &amp; tie-breaking</li>
+        <li>Confidence scoring with rationale</li>
+        <li>Independent oversight signals</li>
+      </ul>
+    </div>
+    <div class="gov-card del" style="--i:2">
+      <div class="tag">03 — DEL</div>
+      <h3>Decision Eligibility</h3>
+      <p>Confirms actor identity, permissions, context, and entitlements before any decision can execute.</p>
+      <ul>
+        <li>Data integrity &amp; lineage</li>
+        <li>Context sufficiency checks</li>
+        <li>Identity, RBAC, entitlements</li>
+        <li>Immutable audit trail</li>
+      </ul>
+    </div>
+  </div>
 
-  <!-- ==========================================================
-       HERO — Animated Nexus
-       ========================================================== -->
-  <section class="hero">
-    <div class="ambient-glow"></div>
-    <div class="hero-grid">
-      <div class="hero-content">
-        <div class="hero-eyebrow">MIZOKI3 System Architecture</div>
-        <h1>Autonomous Strategic<br/>Intelligence</h1>
-        <h2 class="hero-tag">One intelligence. Many domains.<br/><span>Shared causal memory.</span></h2>
-        <p class="hero-statement">
-          MIZOKI3 transforms fragmented enterprise, legal, financial, operational, and customer data
-          into verified autonomous strategic action through temporal-causal Knowledge Graphs,
-          SRPVDAL orchestration, continuously learning reasoning agents, and a Decision Control Plane
-          that separates proposal from authorization while refusing to act on correlation alone.
-        </p>
-        <div class="hero-cta">
-          <a href="#brain" class="btn btn-primary">Inside the Brain →</a>
-          <a href="#layers" class="btn btn-ghost">Explore Domains</a>
-        </div>
+  <div class="pullquote reveal">
+    <p class="q">All actions are traceable, explainable, and aligned to enterprise policy, risk appetite, and regulatory requirements.</p>
+    <div class="attribution">— Design Commitment · Governed by default</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CHAPTER 04 — MEMORY (Knowledge Graph)
+     ========================================================= -->
+<section id="memory" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">04</span>
+      <span>The Memory of the System</span>
+      <span class="line right"></span>
+    </div>
+    <h2>The Temporal-Causal <span class="gradient-text">Knowledge Graph.</span></h2>
+    <p class="lede">
+      One brain. Many lenses. Shared memory. The Knowledge Graph connects people, systems, data,
+      policies, and events into a living network — and gives every agent context, lineage, and explainability.
+    </p>
+  </div>
+
+  <div class="canvas warm reveal">
+    <img class="canvas-img" src="assets/06-knowledge-graph.png" alt="MIZOKI3 Temporal-Causal Knowledge Graph — unified, contextual, governed shared memory" loading="lazy" />
+    <div class="canvas-caption">
+      <span>Shared memory</span> · temporal · causal · versioned · governed
+    </div>
+  </div>
+
+  <div class="commentary reveal">
+    <div class="commentary-grid stagger">
+      <div class="note cool" style="--i:0">
+        <div class="num">Temporal</div>
+        <h3>Sequence events. Understand change.</h3>
+        <p>Track state across t−3, t−2, t−1, t, t+1. Predict the next step. Replay any decision from the exact pre-state forward.</p>
       </div>
-      <div class="hero-visual">
-        <canvas id="nexusCanvas"></canvas>
+      <div class="note warm" style="--i:1">
+        <div class="num">Causal</div>
+        <h3>Model relationships. Infer causes.</h3>
+        <p>Move beyond correlation. Evaluate counterfactual impact. Cause → Effect → Impact, all explicit and queryable.</p>
+      </div>
+      <div class="note sun" style="--i:2">
+        <div class="num">Versioned</div>
+        <h3>Track evolution. Compare states.</h3>
+        <p>v3.2 · v3.1 · v3.0 · v2.9 · v2.8. Rewind, replay, validate. Every change reasoned about, never silently overwritten.</p>
       </div>
     </div>
-  </section>
 
-  <!-- ==========================================================
-       CORE PREMISE
-       ========================================================== -->
-  <section>
-    <div class="container">
-      <div class="eyebrow">Core Premise</div>
-      <h2 style="max-width: 22ch;">Not a suite of products. <span style="color: var(--text-2);">One intelligence — expressed through specialized domain layers.</span></h2>
-      <p class="lead" style="margin-top: 24px;">
-        Every division feeds the same brain. Every signal flows through a common Temporal-Causal Knowledge Graph.
-        Every action passes through the same Verification and Authorization Plane. Every decision becomes causal
-        memory the entire system continuously reasons over.
-      </p>
-      <p class="lead" style="color: var(--accent-purple); font-family: var(--mono); font-size: 16px; margin-top: 24px; letter-spacing: 0.04em; font-weight: 700;">
-        // The compounding moat: one brain, many lenses, shared memory.
-      </p>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       NEXUS — THE BRAIN
-       ========================================================== -->
-  <section id="brain">
-    <div class="container">
-      <div class="eyebrow">01 — Nexus</div>
-      <h2>The Brain.<br/><span style="color: var(--text-2);">The central nervous system beneath every division, agent, simulation, and autonomous decision.</span></h2>
-
-      <div style="margin-top: 80px;">
-        <h4>Temporal-Causal Knowledge Graph</h4>
-        <p class="lead">The continuously evolving memory and reasoning substrate of the enterprise. Not visualization — executable enterprise cognition.</p>
-        <div class="grid grid-4" style="margin-top: 32px;">
-          <div class="card"><span class="tag">Stores</span><h3 style="font-size: 16px; font-family: var(--mono); letter-spacing: 0.04em;">Entities &amp; Obligations</h3><p style="font-size: 13px;">Counterparties, agreements, fiduciary duties.</p></div>
-          <div class="card"><span class="tag">Stores</span><h3 style="font-size: 16px; font-family: var(--mono); letter-spacing: 0.04em;">Causal Relationships</h3><p style="font-size: 13px;">How signals propagate across the enterprise.</p></div>
-          <div class="card"><span class="tag">Stores</span><h3 style="font-size: 16px; font-family: var(--mono); letter-spacing: 0.04em;">Temporal States</h3><p style="font-size: 13px;">The shape of obligations across time.</p></div>
-          <div class="card"><span class="tag">Stores</span><h3 style="font-size: 16px; font-family: var(--mono); letter-spacing: 0.04em;">Verification History</h3><p style="font-size: 13px;">Every prior decision, simulation, and outcome.</p></div>
-        </div>
+    <div class="commentary-grid stagger" style="margin-top: 28px;">
+      <div class="note green" style="--i:0">
+        <div class="num">Signal Intelligence</div>
+        <h3>Ingest. Normalize. Correlate. Fuse.</h3>
+        <p>Structured, unstructured, real-time. Extract meaning from telemetry, documents, conversations, and APIs into the same graph.</p>
       </div>
-
-      <div style="margin-top: 100px;">
-        <h4>SRPVDAL Orchestration</h4>
-        <p class="lead">The autonomous reasoning pipeline. Every consequential action traverses this governed loop.</p>
-        <div class="pipeline">
-          <div class="pipeline-step"><div class="step-num">01</div><div class="step-name">Sense</div><div class="step-desc">Ingests operational signals, legal documents, financial telemetry, customer interactions, communication streams.</div></div>
-          <div class="pipeline-step"><div class="step-num">02</div><div class="step-name">Reason</div><div class="step-desc">Builds causal relationships, contradiction analysis, exposure pathways, probabilistic + causal models.</div></div>
-          <div class="pipeline-step"><div class="step-num">03</div><div class="step-name">Plan</div><div class="step-desc">Generates strategic pathways, negotiation options, allocation strategies, simulations.</div></div>
-          <div class="pipeline-step"><div class="step-num">04</div><div class="step-name">Validate</div><div class="step-desc">Cross-checks policies, regulations, risk thresholds, simulation confidence, contradiction states.</div></div>
-          <div class="pipeline-step"><div class="step-num">05</div><div class="step-name">Decide</div><div class="step-desc">Ranks action eligibility, confidence scores, risk-adjusted pathways, expected outcomes.</div></div>
-          <div class="pipeline-step"><div class="step-num">06</div><div class="step-name">Act</div><div class="step-desc">Executes workflows, recommendations, orchestration events, authorized autonomous actions.</div></div>
-          <div class="pipeline-step"><div class="step-num">07</div><div class="step-name">Learn</div><div class="step-desc">Records outcomes, simulation accuracy, operational drift, policy evolution.</div></div>
-        </div>
-        <p style="color: var(--accent-purple); font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; font-weight: 500;">// Every action improves future reasoning.</p>
+      <div class="note hot" style="--i:1">
+        <div class="num">Causal Intelligence</div>
+        <h3>Infer. Simulate. Stress-test. Recommend.</h3>
+        <p>Pattern recognition is the floor. Counterfactual reasoning is the ceiling. The graph supports both — natively.</p>
       </div>
-
-      <div style="margin-top: 100px;">
-        <div class="grid grid-3">
-          <div class="card">
-            <span class="tag">Decision Control Plane</span>
-            <h3 style="font-size: 22px;">Proposal ≠ Authorization.</h3>
-            <p style="font-size: 14px;">The DCP separates reasoning from execution authority. No autonomous action occurs without verification, simulation, policy clearance, risk arbitration, and causal eligibility.</p>
-            <div class="reinforces"><span>Foundation</span> of governed enterprise autonomy</div>
-          </div>
-          <div class="card">
-            <span class="tag">Verification &amp; Arbitration</span>
-            <h3 style="font-size: 22px;">Disagreement is intelligence.</h3>
-            <p style="font-size: 14px;">Independent Planner, Verifier, Risk, Policy, Simulation, and Compliance agents continuously evaluate proposed actions. The system measures confidence divergence, causal inconsistency, and hallucination probability before any authorization.</p>
-            <div class="reinforces"><span>Output</span> agreement metrics, not raw confidence</div>
-          </div>
-          <div class="card">
-            <span class="tag">Counterfactual Simulation</span>
-            <h3 style="font-size: 22px;">Reason against what could have been.</h3>
-            <p style="font-size: 14px;">Every consequential decision is simulated against alternative actions, delayed actions, no-action baselines, adversarial scenarios, regulatory shifts, and market volatility — creating compounding strategic intelligence.</p>
-            <div class="reinforces"><span>Engine</span> for compounding learning</div>
-          </div>
-        </div>
-        <div style="margin-top: 24px;" class="card">
-          <span class="tag">Decision Eligibility Layer</span>
-          <h3 style="font-size: 22px;">Refuses to act on correlation alone.</h3>
-          <p style="font-size: 14px; max-width: 80ch;">DEL programmatically prevents autonomous action based on correlation alone. Only causally grounded, policy-cleared, simulation-verified, risk-authorized decisions can become autonomous. This is the difference between predictive automation and governed strategic autonomy.</p>
-        </div>
+      <div class="note cool" style="--i:2">
+        <div class="num">Cross-Domain</div>
+        <h3>Unify signals across boundaries.</h3>
+        <p>Legal, Estate, Capital, Media, Risk — all consult one truth. Act with confidence because the lineage is intact.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==========================================================
-       DOMAIN LAYERS
-       ========================================================== -->
-  <section id="layers">
-    <div class="container">
-      <div class="eyebrow">02 — Domain Layers</div>
-      <h2>Specialized Intelligence on a Shared Substrate.</h2>
-      <p class="lead">
-        These divisions are not separate products. They are specialized reasoning lenses operating on the
-        same Nexus brain. Each consumes domain-specific signals, contributes memory to the graph, and
-        improves every other layer through shared causal intelligence.
-      </p>
+<!-- =========================================================
+     CHAPTER 05 — INTELLIGENCE CELLS
+     ========================================================= -->
+<section id="cells" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">05</span>
+      <span>Specialized Intelligence Cells</span>
+      <span class="line right"></span>
+    </div>
+    <h2>One brain. <span class="serif-italic">Many lenses.</span></h2>
+    <p class="lede">
+      Each cell is a domain-tuned reasoning surface — Legal, Estate, Risk, Media Acquisition — but they
+      are <em>not</em> four separate products. Every cell runs the identical canonical loop on the identical
+      Knowledge Graph. Watch for the loop badge on each: same process, different lens.
+    </p>
+  </div>
 
-      <div class="grid grid-3" style="margin-top: 64px;">
-
-        <a href="counsel.html" class="card counsel domain-card">
-          <span class="tag">Counsel · Legal Intelligence</span>
-          <h3>Convert legal complexity into verified strategic position.</h3>
-          <p style="font-size: 14px;">Contracts, amendments, litigation filings, discovery, fiduciary documentation — converted to exposure mapping, contradiction detection, litigation pathway analysis, and obligation propagation graphs.</p>
-          <div class="reinforces">Reinforces <span>Risk · Estate · Capital · Nexus</span></div>
-        </a>
-
-        <a href="estate.html" class="card estate domain-card">
-          <span class="tag">Estate · Wealth, Trust &amp; Tax</span>
-          <h3>Make multi-generational wealth structures legible and defensible.</h3>
-          <p style="font-size: 14px;">Trusts, amendments, tax positions, ownership hierarchies, fiduciary communications — turned into restructuring intelligence, succession simulations, beneficiary-conflict mapping, and liquidity forecasting.</p>
-          <div class="reinforces">Reinforces <span>Counsel · Capital · Risk</span></div>
-        </a>
-
-        <a href="capital.html" class="card capital domain-card">
-          <span class="tag">Capital · Banking &amp; Financial</span>
-          <h3>Give the enterprise causal foresight over capital.</h3>
-          <p style="font-size: 14px;">Banking relationships, loan agreements, covenant structures, treasury telemetry, capital stack composition — modeled as covenant-breach forecasting, liquidity stress, refinancing intelligence, and negotiation leverage.</p>
-          <div class="reinforces">Reinforces <span>Estate · Counsel · Signal · Risk</span></div>
-        </a>
-
-        <a href="signal.html" class="card signal domain-card">
-          <span class="tag">Signal · Autonomous Acquisition</span>
-          <h3>Replace correlation-based marketing with causal autonomous acquisition.</h3>
-          <p style="font-size: 14px;">Meta, Google, CRM, journey telemetry, engagement, conversion, retention — converted to causal attribution, churn forecasting, lifetime-value prediction, autonomous bid optimization, and budget reallocation intelligence.</p>
-          <div class="reinforces">Reinforces <span>Capital · Risk · Counsel · Nexus</span></div>
-        </a>
-
-        <a href="risk.html" class="card risk domain-card">
-          <span class="tag">Risk · Verification &amp; Compliance</span>
-          <h3>The conscience, verifier, and governance of the entire system.</h3>
-          <p style="font-size: 14px;">Cross-agent verification, hallucination detection, contradiction arbitration, policy enforcement, regulatory compliance, authorization scoring, tail-risk simulation, confidence arbitration. Every consequential output passes through Risk.</p>
-          <div class="reinforces">Reinforces <span>Every layer. Authorizes every action.</span></div>
-        </a>
-
-        <div class="card" style="background: transparent; border-style: dashed; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
-          <span class="tag">Pattern</span>
-          <h3 style="font-size: 20px;">Shared substrate. Specialized lenses.</h3>
-          <p style="font-size: 13px; color: var(--text-2);">A signal entering one layer reshapes reasoning across every other. The architecture is the moat.</p>
+  <!-- LEGAL -->
+  <div class="cell-block legal reveal">
+    <div class="cell-header">
+      <div class="left">
+        <div class="loop-badge">
+          <span class="lb-ring">
+            <span class="lb-dot on"></span><span class="lb-dot on"></span><span class="lb-dot on"></span>
+            <span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span>
+          </span>
+          <span class="lb-text">Runs the <strong>Canonical Loop</strong> on shared memory</span>
         </div>
-
+        <div class="marker">Cell 01 — Legal Intelligence</div>
+        <h3>Contracts, obligations, evidence — reasoned, validated, governed.</h3>
+        <div class="sub">Autonomous legal intelligence built for modern enterprises.</div>
+      </div>
+      <div class="right">
+        Unifies legal knowledge, contracts, obligations, rules, and evidence relationships into a governed intelligence layer that reasons, validates, and supports better decisions — autonomously.
       </div>
     </div>
-  </section>
-
-  <!-- ==========================================================
-       FLYWHEEL
-       ========================================================== -->
-  <section id="flywheel">
-    <div class="container">
-      <div class="eyebrow">03 — The Flywheel</div>
-      <h2>Why MIZOKI3 compounds.</h2>
-      <p class="lead">A single signal can improve the entire enterprise reasoning substrate.</p>
-
-      <div class="cascade" style="margin-top: 40px;">
-        <div><span class="ent">A clause inside a counterparty email</span> <span class="arrow">→</span> updates <span class="layer">Counsel</span></div>
-        <div><span class="arrow">→</span> modifies fiduciary exposure inside <span class="layer">Estate</span></div>
-        <div><span class="arrow">→</span> recalibrates liquidity and covenant risk inside <span class="layer">Capital</span></div>
-        <div><span class="arrow">→</span> changes negotiation leverage back inside <span class="layer">Counsel</span></div>
-        <div><span class="arrow">→</span> alters enterprise authorization thresholds inside <span class="layer">Risk</span></div>
-        <div><span class="arrow">→</span> improves simulation priors inside <span class="layer">Nexus</span></div>
-        <div><span class="arrow">→</span> permanently upgrades <span class="ent">every future decision</span>.</div>
-      </div>
-
-      <p style="margin-top: 32px; font-family: var(--mono); color: var(--accent-purple); font-size: 14px; letter-spacing: 0.06em; font-weight: 500;">
-        // Compounding strategic intelligence. Not isolated outputs. A continuously evolving cognition system.
-      </p>
+    <div class="cell-canvas">
+      <img src="assets/07-legal-cell.png" alt="MIZOKI3 Legal Intelligence — contracts, obligations, compliance, case reasoning" loading="lazy" />
     </div>
-  </section>
-
-  <!-- ==========================================================
-       CATEGORY
-       ========================================================== -->
-  <section>
-    <div class="container">
-      <div class="eyebrow">04 — The Category</div>
-      <h2>A new category of enterprise software.</h2>
-
-      <div class="category-grid">
-        <div class="cat-col isnt">
-          <h4>// MIZOKI3 IS NOT</h4>
-          <ul>
-            <li>Workflow automation</li>
-            <li>RAG infrastructure</li>
-            <li>Legal AI software</li>
-            <li>CRM augmentation</li>
-            <li>Isolated agents</li>
-            <li>Enterprise copilots</li>
-            <li>Document intelligence</li>
-          </ul>
-        </div>
-        <div class="cat-col is">
-          <h4>// MIZOKI3 DEFINES</h4>
-          <ul>
-            <li>Reasoning</li>
-            <li>Verification</li>
-            <li>Simulation</li>
-            <li>Orchestration</li>
-            <li>Memory</li>
-            <li>Authorization</li>
-            <li>Continuous strategic learning</li>
-          </ul>
-        </div>
-      </div>
-
-      <h3 style="margin-top: 64px; font-size: clamp(28px, 3vw, 40px); max-width: 26ch; letter-spacing: -0.02em;">
-        Autonomous Decision Infrastructure — a governed enterprise cognition layer across legal, financial, operational, estate, customer, and enterprise systems.
-      </h3>
+    <div class="cell-footer">
+      <div class="cell-stat"><div class="label">Capability</div><div class="value">Contracts</div></div>
+      <div class="cell-stat"><div class="label">Capability</div><div class="value">Case Reasoning</div></div>
+      <div class="cell-stat"><div class="label">Capability</div><div class="value">Evidence Graph</div></div>
+      <div class="cell-stat"><div class="label">Capability</div><div class="value">Risk Flags</div></div>
     </div>
-  </section>
+  </div>
 
-  <!-- ==========================================================
-       FINAL POSITIONING
-       ========================================================== -->
-  <section>
-    <div class="container">
-      <div class="positioning">
-        <div class="brand-line">// MIZOKI3</div>
-        <h2>Autonomous Strategic Intelligence Infrastructure.</h2>
-        <p>
-          MIZOKI3 transforms fragmented enterprise, legal, financial, operational, and customer data into
-          verified autonomous strategic action through temporal-causal Knowledge Graphs, SRPVDAL orchestration,
-          continuously learning reasoning agents, and a Decision Control Plane that separates proposal from
-          authorization while refusing to act on correlation alone.
-        </p>
+  <!-- ESTATE -->
+  <div class="cell-block estate reveal">
+    <div class="cell-header">
+      <div class="left">
+        <div class="loop-badge">
+          <span class="lb-ring">
+            <span class="lb-dot on"></span><span class="lb-dot on"></span><span class="lb-dot on"></span>
+            <span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span>
+          </span>
+          <span class="lb-text">Runs the <strong>Canonical Loop</strong> on shared memory</span>
+        </div>
+        <div class="marker">Cell 02 — Estate Intelligence</div>
+        <h3>Intelligence for <span class="serif-italic">what matters most.</span></h3>
+        <div class="sub">People, purpose, and assets — one living model.</div>
+      </div>
+      <div class="right">
+        Unifies family, stakeholders, trusts, entities, holdings, and ownership lines into a complete model of trust, governance, and succession — surfacing concentration risk, control gaps, and liquidity exposure in real time.
       </div>
     </div>
-  </section>
+    <div class="cell-canvas">
+      <img src="assets/08-estate-cell.png" alt="MIZOKI3 Estate Intelligence — trusts, entities, ownership, succession" loading="lazy" />
+    </div>
+    <div class="cell-footer">
+      <div class="cell-stat"><div class="label">Governance Strength</div><div class="value">92%</div></div>
+      <div class="cell-stat"><div class="label">Structure Integrity</div><div class="value">98%</div></div>
+      <div class="cell-stat"><div class="label">Succession Readiness</div><div class="value">87%</div></div>
+      <div class="cell-stat"><div class="label">Liquidity Coverage</div><div class="value">Strong</div></div>
+    </div>
+  </div>
 
-  <!-- ==========================================================
-       FOOTER
-       ========================================================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">MIZOKI3</div>
-          <div class="footer-tag">// One intelligence. Many domains. Shared causal memory.</div>
+  <!-- RISK -->
+  <div class="cell-block risk reveal">
+    <div class="cell-header">
+      <div class="left">
+        <div class="loop-badge">
+          <span class="lb-ring">
+            <span class="lb-dot on"></span><span class="lb-dot on"></span><span class="lb-dot on"></span>
+            <span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span>
+          </span>
+          <span class="lb-text">Runs the <strong>Canonical Loop</strong> on shared memory</span>
         </div>
-        <div class="footer-col">
-          <h5>Domains</h5>
-          <ul>
-            <li><a href="counsel.html">Counsel</a></li>
-            <li><a href="estate.html">Estate</a></li>
-            <li><a href="capital.html">Capital</a></li>
-            <li><a href="signal.html">Signal</a></li>
-            <li><a href="risk.html">Risk</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Architecture</h5>
-          <ul>
-            <li><a href="index.html#brain">Nexus</a></li>
-            <li><a href="index.html#brain">SRPVDAL</a></li>
-            <li><a href="index.html#brain">Decision Control Plane</a></li>
-            <li><a href="index.html#flywheel">Flywheel</a></li>
-          </ul>
-        </div>
+        <div class="marker">Cell 03 — Risk Intelligence</div>
+        <h3>One intelligence. Every risk. <span class="serif-italic">Resilient outcomes.</span></h3>
+        <div class="sub">Anticipate. Simulate. Strengthen. Endure.</div>
       </div>
-      <div class="footer-bottom">
-        <span>© MIZOKI3 · MediaIntelligence.ai</span>
-        <span>// Autonomous Decision Infrastructure</span>
+      <div class="right">
+        Unifies risk, controls, and intelligence in a governed loop — to sense threats, map exposures, simulate scenarios, strengthen controls, and deliver measurable resilience. Resilience isn't an after-action review; it's a continuous state.
       </div>
     </div>
-  </footer>
+    <div class="cell-canvas">
+      <img src="assets/09-risk-cell.png" alt="MIZOKI3 Risk Intelligence — exposures, scenarios, controls, resilience" loading="lazy" />
+    </div>
+    <div class="cell-footer">
+      <div class="cell-stat"><div class="label">Risks Monitored</div><div class="value">1,248</div></div>
+      <div class="cell-stat"><div class="label">Exposures Tracked</div><div class="value">3,672</div></div>
+      <div class="cell-stat"><div class="label">Scenarios Run</div><div class="value">512</div></div>
+      <div class="cell-stat"><div class="label">Resilience Index</div><div class="value">92.7%</div></div>
+    </div>
+  </div>
 
-  <script src="assets/js/nexus.js"></script>
+  <!-- MEDIA -->
+  <div class="cell-block media reveal">
+    <div class="cell-header">
+      <div class="left">
+        <div class="loop-badge">
+          <span class="lb-ring">
+            <span class="lb-dot on"></span><span class="lb-dot on"></span><span class="lb-dot on"></span>
+            <span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span><span class="lb-dot"></span>
+          </span>
+          <span class="lb-text">Runs the <strong>Canonical Loop</strong> on shared memory</span>
+        </div>
+        <div class="marker">Cell 04 — Media Acquisition Intelligence</div>
+        <h3>Autonomous omni-source <span class="serif-italic">customer acquisition.</span></h3>
+        <div class="sub">Every channel. Every decision. One intelligence.</div>
+      </div>
+      <div class="right">
+        Acquisition decisions powered by unified signals, causal reasoning, and real-time intent. Search, social, video, display, email, web behavior, programmatic — fused into a single decision surface that learns and compounds.
+      </div>
+    </div>
+    <div class="cell-canvas">
+      <img src="assets/10-media-cell.png" alt="MIZOKI3 Media Acquisition Intelligence — omni-source signal ingestion, real-time acquisition" loading="lazy" />
+    </div>
+    <div class="cell-footer">
+      <div class="cell-stat"><div class="label">ROAS</div><div class="value">4.71x</div></div>
+      <div class="cell-stat"><div class="label">Conversion Lift</div><div class="value">+38.6%</div></div>
+      <div class="cell-stat"><div class="label">Cost Efficiency</div><div class="value">−27.4%</div></div>
+      <div class="cell-stat"><div class="label">Active Audiences</div><div class="value">8.24M</div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- =========================================================
+     CHAPTER 06 — NEXUS
+     ========================================================= -->
+<section id="nexus" class="chapter">
+  <div class="chapter-header reveal">
+    <div class="chapter-marker">
+      <span class="line"></span>
+      <span class="num">06</span>
+      <span>The Nexus</span>
+      <span class="line right"></span>
+    </div>
+    <h2>Cross-domain orchestration. <span class="gradient-text">Universal intelligence.</span></h2>
+    <p class="lede">
+      Nexus is the orchestration layer and universal gateway — the connective tissue across every cell,
+      every agent, every insight. Specialized agents collaborate under central command. Every interaction
+      strengthens the network.
+    </p>
+  </div>
+
+  <div class="canvas warm reveal">
+    <img class="canvas-img" src="assets/11-nexus.png" alt="MIZOKI3 NEXUS — Cross-Domain Orchestration, Universal Intelligence" loading="lazy" />
+    <div class="canvas-caption">
+      <span>Nexus orchestration core</span> · one brain · many lenses · maximum impact
+    </div>
+  </div>
+
+  <div class="commentary reveal">
+    <div class="commentary-grid stagger">
+      <div class="note warm" style="--i:0">
+        <div class="num">Multi-Agent</div>
+        <h3>Specialized agents under central command.</h3>
+        <p>Each cell brings deep expertise. Nexus coordinates them on cross-domain challenges no single agent can solve alone.</p>
+      </div>
+      <div class="note cool" style="--i:1">
+        <div class="num">Shared Memory</div>
+        <h3>One unified knowledge graph.</h3>
+        <p>Real-time context, relationships, institutional memory. Every agent reads from and writes to the same truth.</p>
+      </div>
+      <div class="note hot" style="--i:2">
+        <div class="num">Network Effects</div>
+        <h3>Every interaction strengthens the network.</h3>
+        <p>Outcomes compound. Patterns surfaced in one domain accelerate decisions in another. Lower risk. Higher leverage.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pullquote reveal">
+    <p class="q">One brain. Many lenses. Infinite outcomes.</p>
+    <div class="attribution">— Nexus · MIZOKI3 Orchestration Core</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     CTA
+     ========================================================= -->
+<section id="cta" class="cta">
+  <div class="container">
+    <div class="cta-card reveal">
+      <div class="eyebrow">Built for serious operators</div>
+      <h2>Move from <span class="em">dashboards</span> to <span class="gradient-text">decisions.</span></h2>
+      <p>See MIZOKI3 reason across your enterprise signals in real time — with governance, lineage, and replayable audit by default.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#">Request a Demo <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#">Talk to an Architect</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="#top">
+        <span class="mark"></span>
+        <span>MIZOKI<span class="three">3</span></span>
+      </a>
+      <p>Autonomous Decision Intelligence for the enterprise. One brain. Many lenses. Shared memory.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Platform</h5>
+      <ul>
+        <li><a href="#loop">Canonical Loop</a></li>
+        <li><a href="#governance">Governed Autonomy</a></li>
+        <li><a href="#memory">Knowledge Graph</a></li>
+        <li><a href="#nexus">Nexus Orchestration</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Intelligence Cells</h5>
+      <ul>
+        <li><a href="#cells">Legal</a></li>
+        <li><a href="#cells">Estate</a></li>
+        <li><a href="#cells">Risk</a></li>
+        <li><a href="#cells">Media Acquisition</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">Trust &amp; Security</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Media Intelligence · MIZOKI3 Platform</div>
+    <div class="signature">
+      <span>Governed Autonomy</span>
+      <span>·</span>
+      <span>SOC 2 · Audit-Ready</span>
+      <span>·</span>
+      <span>Built on GCP</span>
+    </div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     SCRIPTS
+     ========================================================= -->
+<script>
+// Reveal-on-scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Active section tracking — for nav + rail
+const sections = Array.from(document.querySelectorAll('section[id]'));
+const navLinks = document.querySelectorAll('.nav-links a');
+const railLinks = document.querySelectorAll('.rail a');
+
+const setActive = (id) => {
+  navLinks.forEach(l => l.classList.toggle('active', l.dataset.section === id));
+  railLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+};
+
+const sectObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) setActive(e.target.id);
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => sectObserver.observe(s));
+</script>
+
 </body>
 </html>
