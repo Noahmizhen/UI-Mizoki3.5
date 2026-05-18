@@ -123,6 +123,13 @@ Full rebuild of `index.html` to match the official MIZOKI3.com mockups:
 
 Naming consolidation: Legal → **Counsel**, Media Acquisition → **Signal**. The standalone console sidebar was updated to add the Signal lens so the five-division naming is consistent everywhere (homepage, console, Flask routes).
 
+Late-day refinement (2026-05-18, evening):
+- New Chapter 06 "Verification & Arbitration" between the Decision Control Plane and Divisions: an animated execution trace of ACT-991 (Capital proposes a $5M distribution, V&A detects the COV-01 covenant breach, DEL scores it ineligible, DCP stamps VETOED, system re-routes to a safe Option B). The decision shown two ways — animated veto trace + the existing static liquidity chart.
+- SOC 2 / ISO 27001 badge removed from the hero (the company is not certified yet — claiming an in-progress cert on an infrastructure site sold to regulated buyers is a real liability). Replaced with "Customer-Managed Encryption", which is true since the Terraform provisions CMEK.
+- Contact email canonical at `hello@mizoki3.com` (a stray `pilot@mizoki3.com` from an alternate draft was rejected).
+
+Added `mizoki3-site/README.md` packaging doc that walks through four deploy options (any static host / GCS / Cloud Run / Firebase) plus Terraform usage.
+
 ### `mizoki3-site/` Sub-Tree (2026-05-17)
 - `mizoki3-site/console/index.html` — standalone Decision Control Plane (Risk Arbitration Console UI). Sidebar carries Counsel/Estate/Capital/Signal/Risk + Nexus TCKG substrate + Decision Control. SRPVDAL execution trace, TCKG subgraph SVG, decision queue.
 - `mizoki3-site/infrastructure/main.tf` — Google Cloud Terraform module for the fiduciary substrate. Matches the actual stack: private VPC, Cloud Spanner with the GoogleSQL property-graph schema for TCKG, Pub/Sub event bus, Cloud Run for SRPVDAL/LangGraph orchestration, Vertex AI Model Garden for Claude reasoning isolation (publisher-model IAM condition pinning), Cloud KMS for encryption.
