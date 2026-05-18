@@ -4,179 +4,168 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MIZOKI3 — Autonomous Strategic Intelligence Infrastructure</title>
-<meta name="description" content="One Intelligence. Many Domains. Shared Causal Memory. MIZOKI3 unifies legal, financial, operational, and customer intelligence into a single autonomous decision system governed by a Decision Control Plane." />
+<meta name="description" content="One Intelligence. Many Domains. Shared Causal Memory. MIZOKI3 unifies every corporate division into a single autonomous decision system governed by a Decision Control Plane." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   MIZOKI3.com — Design System
-   ========================================================= */
 :root{
-  --bg-0:      #04060f;
-  --bg-1:      #070b1c;
-  --bg-2:      #0b1228;
-  --panel:     rgba(13, 20, 44, 0.72);
-  --panel-2:   rgba(18, 27, 56, 0.55);
-  --ink:       #f3f5fc;
-  --ink-2:     #9aa6c8;
-  --ink-3:     #6c7799;
-  --ink-4:     #46506e;
-
-  /* Division palette — from the brand images */
-  --counsel:   #a855f7;
-  --estate:    #21d07a;
-  --capital:   #34a6ff;
-  --signal:    #f5a623;
-  --risk:      #f4495f;
-  --nexus:     #4cc9ff;
-  --accent:    #7c5cff;
-
-  --hairline:  rgba(120, 150, 230, 0.13);
-  --hairline-2:rgba(120, 150, 230, 0.26);
-
-  --display:   'Sora', system-ui, sans-serif;
-  --body:      'Inter', system-ui, sans-serif;
-  --mono:      'JetBrains Mono', ui-monospace, monospace;
-
-  --container: 1340px;
-  --r-sm: 8px; --r: 14px; --r-lg: 20px; --r-xl: 28px;
+  --bg-0:#04060f; --bg-1:#070b1c; --bg-2:#0b1228;
+  --panel:rgba(13,20,44,0.72); --panel-2:rgba(18,27,56,0.5);
+  --ink:#f3f5fc; --ink-2:#9aa6c8; --ink-3:#6c7799; --ink-4:#46506e;
+  --counsel:#a855f7; --estate:#21d07a; --capital:#34a6ff;
+  --signal:#f5a623; --risk:#f4495f; --nexus:#4cc9ff; --accent:#7c5cff;
+  --hairline:rgba(120,150,230,0.13); --hairline-2:rgba(120,150,230,0.26);
+  --display:'Sora',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --container:1340px; --wide:1480px;
+  --r-sm:8px; --r:14px; --r-lg:20px; --r-xl:28px;
 }
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
 html{ scroll-behavior:smooth; }
 body{
-  background: var(--bg-0);
-  color: var(--ink);
-  font-family: var(--body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  position: relative;
+  background:var(--bg-0); color:var(--ink); font-family:var(--body);
+  line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; position:relative;
 }
 body::before{
   content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
   background:
-    radial-gradient(1100px 700px at 78% 6%, rgba(76,201,255,0.13), transparent 60%),
-    radial-gradient(1000px 800px at 12% 4%, rgba(124,92,255,0.12), transparent 60%),
-    radial-gradient(900px 700px at 50% 108%, rgba(52,166,255,0.10), transparent 60%);
+    radial-gradient(1100px 700px at 78% 4%, rgba(76,201,255,0.13), transparent 60%),
+    radial-gradient(1000px 800px at 12% 3%, rgba(124,92,255,0.12), transparent 60%),
+    radial-gradient(900px 700px at 50% 109%, rgba(52,166,255,0.10), transparent 60%);
+}
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(120,150,230,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(120,150,230,0.03) 1px,transparent 1px);
+  background-size:74px 74px;
+  mask-image:radial-gradient(ellipse at 50% 18%,black 8%,transparent 70%);
 }
 main,header,footer{ position:relative; z-index:1; }
 
 h1,h2,h3,h4{ font-family:var(--display); font-weight:600; letter-spacing:-0.02em; line-height:1.1; color:var(--ink); }
-h1{ font-size:clamp(2.6rem,5.4vw,4.6rem); font-weight:700; }
-h2{ font-size:clamp(1.7rem,2.8vw,2.5rem); }
+h1{ font-size:clamp(2.6rem,5.4vw,4.5rem); font-weight:700; }
+h2{ font-size:clamp(1.7rem,2.9vw,2.6rem); }
 h3{ font-size:1.15rem; font-weight:600; }
 p{ color:var(--ink-2); }
 a{ color:inherit; text-decoration:none; }
+em.serif{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--ink); }
 
 .container{ max-width:var(--container); margin:0 auto; padding:0 28px; }
-.eyebrow{
-  font-family:var(--mono); font-size:0.72rem; font-weight:500;
-  letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-3);
-}
-.section-tag{
-  font-family:var(--mono); font-size:0.72rem; font-weight:700;
-  letter-spacing:0.2em; text-transform:uppercase;
-}
+.wide{ max-width:var(--wide); margin:0 auto; padding:0 28px; }
+.eyebrow{ font-family:var(--mono); font-size:0.72rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--ink-3); }
 
-/* ===== buttons ===== */
 .btn{
-  display:inline-flex; align-items:center; gap:9px;
-  padding:13px 22px; border-radius:var(--r-sm);
-  font-family:var(--body); font-size:0.9rem; font-weight:600;
-  letter-spacing:0.01em; cursor:pointer; border:none;
-  transition:all .25s cubic-bezier(.2,.7,.2,1);
+  display:inline-flex; align-items:center; gap:9px; padding:13px 22px;
+  border-radius:var(--r-sm); font-family:var(--body); font-size:0.9rem;
+  font-weight:600; cursor:pointer; border:none; transition:all .25s cubic-bezier(.2,.7,.2,1);
 }
-.btn-primary{
-  background:linear-gradient(135deg,var(--accent),#9d6bff);
-  color:#fff;
-  box-shadow:0 10px 34px -10px rgba(124,92,255,0.7);
-}
+.btn-primary{ background:linear-gradient(135deg,var(--accent),#9d6bff); color:#fff; box-shadow:0 10px 34px -10px rgba(124,92,255,0.7); }
 .btn-primary:hover{ transform:translateY(-1px); box-shadow:0 16px 42px -10px rgba(124,92,255,0.9); }
 .btn-ghost{ background:rgba(255,255,255,0.04); color:var(--ink); border:1px solid var(--hairline-2); }
 .btn-ghost:hover{ border-color:var(--nexus); color:#fff; }
 .btn .arr{ transition:transform .25s; }
 .btn:hover .arr{ transform:translateX(3px); }
 
-/* =========================================================
-   NAV
-   ========================================================= */
 header.nav{
   position:fixed; inset:0 0 auto 0; z-index:100;
-  background:rgba(4,6,15,0.78); backdrop-filter:blur(16px);
+  background:rgba(4,6,15,0.8); backdrop-filter:blur(16px);
   border-bottom:1px solid var(--hairline);
 }
-.nav-in{
-  max-width:1480px; margin:0 auto; padding:0 28px; height:72px;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.logo{
-  font-family:var(--display); font-weight:700; font-size:1.4rem;
-  letter-spacing:-0.01em; display:flex; align-items:center;
-}
+.nav-in{ max-width:var(--wide); margin:0 auto; padding:0 28px; height:72px; display:flex; align-items:center; justify-content:space-between; }
+.logo{ font-family:var(--display); font-weight:700; font-size:1.4rem; display:flex; align-items:center; }
 .logo .three{ color:var(--nexus); }
-.nav-links{ display:flex; gap:26px; list-style:none; }
-.nav-links a{
-  font-size:0.86rem; font-weight:500; color:var(--ink-2);
-  transition:color .2s; display:flex; align-items:center; gap:4px;
-}
+.nav-links{ display:flex; gap:24px; list-style:none; }
+.nav-links a{ font-size:0.85rem; font-weight:500; color:var(--ink-2); transition:color .2s; }
 .nav-links a:hover,.nav-links a.active{ color:var(--ink); }
-.nav-links a .caret{ font-size:0.6rem; opacity:0.6; }
-.nav-right{ display:flex; align-items:center; gap:18px; }
-.nav-signin{ font-size:0.86rem; font-weight:500; color:var(--ink-2); }
+.nav-right{ display:flex; align-items:center; gap:16px; }
+.nav-signin{ font-size:0.85rem; font-weight:500; color:var(--ink-2); }
 .nav-signin:hover{ color:var(--ink); }
-.nav-toggle{ display:none; }
 
-/* =========================================================
-   HERO
-   ========================================================= */
-.hero{ padding:150px 0 90px; position:relative; }
-.hero-grid{
-  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
-  gap:60px; align-items:center;
+.rail{ position:fixed; top:50%; right:20px; transform:translateY(-50%); z-index:60; display:flex; flex-direction:column; gap:13px; }
+.rail a{ width:7px; height:7px; border-radius:50%; border:1px solid var(--ink-4); position:relative; transition:all .3s; }
+.rail a::before{
+  content:attr(data-l); position:absolute; right:16px; top:50%; transform:translateY(-50%);
+  font-family:var(--mono); font-size:0.58rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--ink-2); white-space:nowrap; opacity:0; transition:opacity .25s;
+  background:rgba(4,6,15,0.92); padding:4px 9px; border-radius:99px; border:1px solid var(--hairline);
 }
-.hero-eyebrow{ margin-bottom:24px; color:var(--accent); }
-.hero h1{ margin-bottom:26px; }
-.hero h1 .cm{ color:var(--counsel); background:linear-gradient(120deg,#a855f7,#5b8cff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
-.hero-lede{ font-size:1.06rem; color:var(--ink-2); max-width:560px; margin-bottom:32px; }
-.hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
-.play{
-  width:24px; height:24px; border-radius:50%;
-  background:rgba(255,255,255,0.08); border:1px solid var(--hairline-2);
-  display:grid; place-items:center;
-}
-.play svg{ width:9px; height:9px; }
+.rail a:hover::before{ opacity:1; }
+.rail a.active{ background:var(--nexus); border-color:var(--nexus); box-shadow:0 0 9px var(--nexus); }
 
-/* hero brain visual */
-.hero-visual{ position:relative; aspect-ratio:1/1; }
-.hero-visual svg{ width:100%; height:100%; filter:drop-shadow(0 0 50px rgba(76,201,255,0.28)); }
-
-/* =========================================================
-   SECTION SHELL
-   ========================================================= */
-section{ padding:90px 0; position:relative; }
-.sec-head{ margin-bottom:46px; }
-.sec-head.center{ text-align:center; max-width:760px; margin-left:auto; margin-right:auto; margin-bottom:54px; }
+section{ padding:96px 0; position:relative; }
+.sec-head{ margin-bottom:48px; }
+.sec-head.center{ text-align:center; max-width:780px; margin-left:auto; margin-right:auto; margin-bottom:56px; }
 .sec-head h2{ margin-bottom:10px; }
 .sec-head .sub{ color:var(--ink-3); font-size:1rem; }
-
-/* =========================================================
-   FLYWHEEL
-   ========================================================= */
-.flywheel{ background:linear-gradient(180deg,transparent,rgba(11,18,40,0.5),transparent); }
-.fly-grid{
-  display:grid; grid-template-columns:300px minmax(0,1fr) 230px;
-  gap:40px; align-items:center;
+.chapter-marker{
+  display:inline-flex; align-items:center; gap:13px; margin-bottom:20px;
+  font-family:var(--mono); font-size:0.7rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--ink-3);
 }
-.fly-steps{ display:flex; flex-direction:column; gap:14px; }
+.chapter-marker .num{
+  font-family:var(--serif); font-style:italic; font-size:1.5rem; letter-spacing:0;
+  background:linear-gradient(120deg,#b58aff,#5b8cff); -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; text-transform:none;
+}
+.chapter-marker .ln{ width:32px; height:1px; background:linear-gradient(90deg,transparent,var(--nexus)); }
+.chapter-marker .ln.r{ background:linear-gradient(90deg,var(--accent),transparent); }
+
+.hero{ padding:148px 0 96px; }
+.hero-grid{ display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:60px; align-items:center; }
+.hero-eyebrow{ margin-bottom:24px; color:var(--accent); }
+.hero h1{ margin-bottom:26px; }
+.hero h1 .cm{ background:linear-gradient(120deg,#a855f7,#5b8cff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+.hero-lede{ font-size:1.06rem; color:var(--ink-2); max-width:560px; margin-bottom:32px; }
+.hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:40px; }
+.play{ width:24px; height:24px; border-radius:50%; background:rgba(255,255,255,0.08); border:1px solid var(--hairline-2); display:grid; place-items:center; }
+.play svg{ width:9px; height:9px; }
+.hero-visual{ position:relative; aspect-ratio:1/1; }
+.hero-visual svg{ width:100%; height:100%; filter:drop-shadow(0 0 50px rgba(76,201,255,0.28)); }
+.hero-trust{ display:flex; gap:26px; flex-wrap:wrap; padding-top:30px; border-top:1px solid var(--hairline); }
+.hero-trust .t{ font-family:var(--mono); font-size:0.72rem; color:var(--ink-3); display:flex; align-items:center; gap:8px; }
+.hero-trust .t .d{ width:6px; height:6px; border-radius:50%; background:var(--estate); box-shadow:0 0 8px var(--estate); }
+
+.manifesto{
+  border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
+  background:radial-gradient(900px 480px at 50% 50%,rgba(244,73,95,0.06),transparent 65%),rgba(7,11,28,0.5);
+  text-align:center;
+}
+.manifesto .container{ max-width:1000px; }
+.manifesto h2{ font-size:clamp(2rem,4.2vw,3.4rem); font-weight:700; margin-bottom:26px; }
+.manifesto h2 .strike{ position:relative; white-space:nowrap; }
+.manifesto h2 .strike::after{
+  content:""; position:absolute; left:-3%; right:-3%; top:56%; height:3px; background:var(--risk);
+  transform:scaleX(0); transform-origin:left; transition:transform 1s cubic-bezier(.2,.7,.2,1) .25s;
+}
+.manifesto h2.in .strike::after{ transform:scaleX(1); }
+.manifesto .mf-body{ font-size:1.12rem; color:var(--ink-2); max-width:740px; margin:0 auto 38px; line-height:1.65; }
+.manifesto .mf-body .hot{ color:var(--ink); font-weight:600; }
+.mf-contrast{ display:grid; grid-template-columns:1fr auto 1fr; max-width:820px; margin:0 auto; }
+.mf-side{ padding:26px 28px; border:1px solid var(--hairline); text-align:left; }
+.mf-side.old{ border-radius:var(--r-lg) 0 0 var(--r-lg); background:rgba(244,73,95,0.04); }
+.mf-side.new{ border-radius:0 var(--r-lg) var(--r-lg) 0; background:rgba(76,201,255,0.05); border-left:none; }
+.mf-side .tag{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:10px; }
+.mf-side.old .tag{ color:var(--risk); }
+.mf-side.new .tag{ color:var(--nexus); }
+.mf-side h4{ font-size:1.05rem; margin-bottom:7px; }
+.mf-side p{ font-size:0.84rem; color:var(--ink-3); }
+.mf-vs{
+  display:flex; align-items:center; justify-content:center; width:54px;
+  font-family:var(--serif); font-style:italic; font-size:1.2rem; color:var(--ink-4);
+  background:var(--bg-0); border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline);
+}
+
+.fly-grid{ display:grid; grid-template-columns:300px minmax(0,1fr) 230px; gap:40px; align-items:center; }
+.fly-steps{ display:flex; flex-direction:column; gap:13px; }
 .fly-step{ display:flex; gap:14px; align-items:flex-start; }
 .fly-step .dot{
-  width:30px; height:30px; flex-shrink:0; border-radius:9px;
-  display:grid; place-items:center;
-  font-family:var(--mono); font-size:0.78rem; font-weight:700;
-  background:rgba(124,92,255,0.12); border:1px solid; color:#fff;
+  width:30px; height:30px; flex-shrink:0; border-radius:9px; display:grid; place-items:center;
+  font-family:var(--mono); font-size:0.78rem; font-weight:700; background:rgba(124,92,255,0.12); border:1px solid; color:#fff;
 }
 .fly-step:nth-child(1) .dot{ border-color:var(--counsel); }
 .fly-step:nth-child(2) .dot{ border-color:var(--estate); }
@@ -184,331 +173,347 @@ section{ padding:90px 0; position:relative; }
 .fly-step:nth-child(4) .dot{ border-color:var(--capital); }
 .fly-step:nth-child(5) .dot{ border-color:var(--risk); }
 .fly-step h4{ font-size:0.92rem; margin-bottom:2px; }
-.fly-step p{ font-size:0.8rem; color:var(--ink-3); line-height:1.45; }
+.fly-step p{ font-size:0.79rem; color:var(--ink-3); line-height:1.45; }
 .fly-visual{ position:relative; aspect-ratio:1/1; }
 .fly-visual svg{ width:100%; height:100%; }
-.fly-result{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r); padding:24px;
-}
-.fly-result h4{
-  font-family:var(--mono); font-size:0.7rem; letter-spacing:0.16em;
-  text-transform:uppercase; color:var(--counsel); margin-bottom:16px;
-}
-.fly-result ul{ list-style:none; display:flex; flex-direction:column; gap:12px; }
-.fly-result li{ display:flex; gap:9px; align-items:center; font-size:0.86rem; color:var(--ink-2); }
+.fly-result{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r); padding:24px; }
+.fly-result h4{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--counsel); margin-bottom:15px; }
+.fly-result ul{ list-style:none; display:flex; flex-direction:column; gap:11px; }
+.fly-result li{ display:flex; gap:9px; align-items:center; font-size:0.85rem; color:var(--ink-2); }
 .fly-result li .ck{ color:var(--estate); flex-shrink:0; }
-
-/* stats strip */
 .stats-strip{
-  margin-top:34px; display:grid; grid-template-columns:repeat(5,1fr);
-  gap:1px; background:var(--hairline); border:1px solid var(--hairline);
-  border-radius:var(--r); overflow:hidden;
+  margin-top:34px; display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
+  background:var(--hairline); border:1px solid var(--hairline); border-radius:var(--r); overflow:hidden;
 }
-.stat{
-  background:var(--bg-1); padding:20px 22px;
-}
-.stat .lbl{
-  font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em;
-  text-transform:uppercase; color:var(--ink-3); margin-bottom:8px;
-}
-.stat .val{ font-family:var(--display); font-size:1.7rem; font-weight:700; color:var(--ink); }
-.stat .delta{ font-family:var(--mono); font-size:0.68rem; margin-top:3px; }
-.stat .delta.up{ color:var(--estate); }
-.stat .delta.down{ color:var(--risk); }
-.stat .delta.flat{ color:var(--nexus); }
+.stat{ background:var(--bg-1); padding:20px 22px; }
+.stat .lbl{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px; }
+.stat .val{ font-family:var(--display); font-size:1.65rem; font-weight:700; }
+.stat .delta{ font-family:var(--mono); font-size:0.66rem; margin-top:3px; }
+.stat .delta.up{ color:var(--estate); } .stat .delta.down{ color:var(--risk); } .stat .delta.flat{ color:var(--nexus); }
 
-/* =========================================================
-   SRPVDAL ORCHESTRATION
-   ========================================================= */
-.srp-loop{
-  display:grid; grid-template-columns:repeat(7,1fr); gap:8px;
-}
+.srp-loop{ display:grid; grid-template-columns:repeat(7,1fr); gap:8px; margin-bottom:56px; }
 .srp-stage{ text-align:center; position:relative; padding:8px; }
-.srp-stage:not(:last-child)::after{
-  content:"→"; position:absolute; right:-10px; top:30px;
-  color:var(--ink-4); font-size:0.9rem;
-}
+.srp-stage:not(:last-child)::after{ content:"→"; position:absolute; right:-10px; top:28px; color:var(--ink-4); font-size:0.9rem; }
 .srp-ico{
-  width:62px; height:62px; margin:0 auto 14px; border-radius:50%;
-  display:grid; place-items:center;
-  background:rgba(76,201,255,0.06); border:1px solid var(--hairline-2);
-  color:var(--nexus); position:relative;
+  width:60px; height:60px; margin:0 auto 13px; border-radius:50%; display:grid; place-items:center;
+  background:rgba(76,201,255,0.06); border:1px solid var(--hairline-2); color:var(--nexus);
 }
-.srp-ico svg{ width:26px; height:26px; }
-.srp-num{
-  font-family:var(--mono); font-size:0.66rem; color:var(--nexus);
-  font-weight:700; margin-bottom:3px;
-}
-.srp-stage h4{ font-size:0.94rem; margin-bottom:6px; }
-.srp-stage p{ font-size:0.74rem; color:var(--ink-3); line-height:1.45; }
+.srp-ico svg{ width:25px; height:25px; }
+.srp-num{ font-family:var(--mono); font-size:0.64rem; color:var(--nexus); font-weight:700; margin-bottom:3px; }
+.srp-stage h4{ font-size:0.92rem; margin-bottom:5px; }
+.srp-stage p{ font-size:0.73rem; color:var(--ink-3); line-height:1.45; }
 
-/* =========================================================
-   DECISION CONTROL PLANE
-   ========================================================= */
+.canvas{ position:relative; max-width:1180px; margin:0 auto; }
+.canvas img{
+  width:100%; height:auto; display:block; border-radius:var(--r-lg);
+  border:1px solid var(--hairline); position:relative; z-index:1;
+  box-shadow:0 40px 100px -34px rgba(0,0,0,0.75), 0 0 90px -30px var(--glow);
+}
+.canvas::before{
+  content:""; position:absolute; inset:-26px; z-index:0; pointer-events:none;
+  background:radial-gradient(560px 280px at 50% 50%,var(--glow),transparent 70%);
+  opacity:0.5; filter:blur(38px); border-radius:var(--r-xl);
+}
+.canvas.cyan{ --glow:rgba(76,201,255,0.3); }
+.canvas.violet{ --glow:rgba(124,92,255,0.32); }
+.canvas-cap{
+  margin-top:18px; text-align:center; font-family:var(--mono);
+  font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-4);
+}
+.canvas-cap span{ color:var(--ink-3); }
+
 .dcp-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-.dcp-card{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r); padding:26px 22px; position:relative; overflow:hidden;
-  transition:transform .3s,border-color .3s;
-}
+.dcp-card{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r); padding:26px 22px; position:relative; overflow:hidden; transition:transform .3s,border-color .3s; }
 .dcp-card:hover{ transform:translateY(-3px); border-color:var(--hairline-2); }
-.dcp-card::before{
-  content:""; position:absolute; inset:0 0 auto 0; height:3px; background:currentColor;
-}
-.dcp-card.propose{ color:var(--counsel); }
-.dcp-card.verify{ color:var(--nexus); }
-.dcp-card.authorize{ color:var(--signal); }
-.dcp-card.execute{ color:var(--estate); }
-.dcp-ico{
-  width:42px; height:42px; border-radius:11px; display:grid; place-items:center;
-  background:rgba(255,255,255,0.04); border:1px solid currentColor; margin-bottom:16px;
-}
+.dcp-card::before{ content:""; position:absolute; inset:0 0 auto 0; height:3px; background:currentColor; }
+.dcp-card.propose{ color:var(--counsel); } .dcp-card.verify{ color:var(--nexus); }
+.dcp-card.authorize{ color:var(--signal); } .dcp-card.execute{ color:var(--estate); }
+.dcp-ico{ width:42px; height:42px; border-radius:11px; display:grid; place-items:center; background:rgba(255,255,255,0.04); border:1px solid currentColor; margin-bottom:16px; }
 .dcp-ico svg{ width:20px; height:20px; }
 .dcp-card h4{ color:var(--ink); font-size:1.05rem; margin-bottom:8px; }
-.dcp-card p{ font-size:0.84rem; color:var(--ink-3); line-height:1.5; }
-.dcp-note{
-  margin-top:24px; text-align:center; font-size:0.9rem; color:var(--ink-3);
-  display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
-}
+.dcp-card p{ font-size:0.83rem; color:var(--ink-3); line-height:1.5; }
+.dcp-note{ margin-top:24px; text-align:center; font-size:0.9rem; color:var(--ink-3); display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
 .dcp-note .lk{ color:var(--nexus); font-weight:600; }
 .dcp-note .lk:hover{ text-decoration:underline; }
 
-/* =========================================================
-   DIVISIONS — bento cards
-   ========================================================= */
-.div-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+.div-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:54px; }
 .div-card{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r); padding:24px 20px; display:flex; flex-direction:column;
-  position:relative; overflow:hidden; transition:transform .3s,border-color .3s;
+  background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r);
+  padding:24px 20px; display:flex; flex-direction:column; position:relative; overflow:hidden;
+  transition:transform .3s,border-color .3s;
 }
-.div-card::before{
-  content:""; position:absolute; inset:0 0 auto 0; height:3px; background:currentColor;
-}
-.div-card::after{
-  content:""; position:absolute; right:-40%; top:-40%; width:80%; height:80%;
-  background:radial-gradient(circle,currentColor,transparent 70%);
-  opacity:0.08; pointer-events:none;
-}
+.div-card::before{ content:""; position:absolute; inset:0 0 auto 0; height:3px; background:currentColor; }
+.div-card::after{ content:""; position:absolute; right:-40%; top:-40%; width:80%; height:80%; background:radial-gradient(circle,currentColor,transparent 70%); opacity:0.08; pointer-events:none; }
 .div-card:hover{ transform:translateY(-4px); border-color:currentColor; }
-.div-card.counsel{ color:var(--counsel); }
-.div-card.estate{ color:var(--estate); }
-.div-card.capital{ color:var(--capital); }
-.div-card.signal{ color:var(--signal); }
-.div-card.risk{ color:var(--risk); }
-.div-ico{
-  width:44px; height:44px; border-radius:11px; display:grid; place-items:center;
-  background:rgba(255,255,255,0.04); border:1px solid currentColor; margin-bottom:16px;
-}
+.div-card.counsel{ color:var(--counsel); } .div-card.estate{ color:var(--estate); }
+.div-card.capital{ color:var(--capital); } .div-card.signal{ color:var(--signal); } .div-card.risk{ color:var(--risk); }
+.div-ico{ width:44px; height:44px; border-radius:11px; display:grid; place-items:center; background:rgba(255,255,255,0.04); border:1px solid currentColor; margin-bottom:16px; }
 .div-ico svg{ width:21px; height:21px; }
-.div-name{
-  font-family:var(--mono); font-size:0.72rem; font-weight:700;
-  letter-spacing:0.08em; color:currentColor; margin-bottom:3px;
-}
-.div-card h3{ color:var(--ink); font-size:0.96rem; margin-bottom:16px; font-weight:600; }
-.div-feats{ list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:20px; flex-grow:1; }
-.div-feats li{
-  font-size:0.78rem; color:var(--ink-2); display:flex; gap:8px; align-items:flex-start; line-height:1.4;
-}
+.div-name{ font-family:var(--mono); font-size:0.7rem; font-weight:700; letter-spacing:0.07em; color:currentColor; margin-bottom:3px; }
+.div-card h3{ color:var(--ink); font-size:0.94rem; margin-bottom:15px; font-weight:600; }
+.div-feats{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:18px; flex-grow:1; }
+.div-feats li{ font-size:0.77rem; color:var(--ink-2); display:flex; gap:8px; align-items:flex-start; line-height:1.4; }
 .div-feats li .ck{ color:currentColor; flex-shrink:0; margin-top:2px; }
-.div-explore{
-  font-size:0.8rem; font-weight:600; color:currentColor;
-  display:flex; align-items:center; gap:6px; margin-top:auto;
-}
+.div-explore{ font-size:0.79rem; font-weight:600; color:currentColor; display:flex; align-items:center; gap:6px; margin-top:auto; }
 .div-explore .arr{ transition:transform .2s; }
 .div-card:hover .div-explore .arr{ transform:translateX(3px); }
 
-/* =========================================================
-   LIVE NEXUS SNAPSHOT
-   ========================================================= */
-.snap-grid{ display:grid; grid-template-columns:minmax(0,1.55fr) 320px; gap:20px; }
-.snap-panel{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r-lg); padding:26px; position:relative; overflow:hidden;
+/* extended divisions — every corporate division */
+.ext-head{ text-align:center; max-width:760px; margin:0 auto 32px; }
+.ext-head .badge{
+  display:inline-block; font-family:var(--mono); font-size:0.64rem; font-weight:700;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--nexus);
+  background:rgba(76,201,255,0.08); border:1px solid var(--hairline-2);
+  padding:6px 14px; border-radius:99px; margin-bottom:18px;
 }
-.snap-graph{ aspect-ratio:16/10; position:relative; }
+.ext-head h3{ font-size:clamp(1.4rem,2.4vw,2rem); font-weight:600; margin-bottom:10px; }
+.ext-head h3 .serif{ font-family:var(--serif); font-style:italic; }
+.ext-head p{ font-size:0.94rem; color:var(--ink-3); line-height:1.6; }
+.ext-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:13px; }
+.ext-card{
+  background:var(--panel-2); border:1px solid var(--hairline); border-radius:var(--r);
+  padding:20px 18px; display:flex; gap:13px; align-items:flex-start;
+  transition:transform .3s,border-color .3s,background .3s; position:relative;
+}
+.ext-card:hover{ transform:translateY(-3px); border-color:var(--hairline-2); background:var(--panel); }
+.ext-ico{
+  width:38px; height:38px; flex-shrink:0; border-radius:9px; display:grid; place-items:center;
+  background:rgba(76,201,255,0.06); border:1px solid var(--hairline-2); color:var(--nexus);
+}
+.ext-ico svg{ width:18px; height:18px; }
+.ext-card h4{ font-size:0.88rem; margin-bottom:3px; color:var(--ink); }
+.ext-card p{ font-size:0.74rem; color:var(--ink-3); line-height:1.4; }
+.ext-foot{
+  margin-top:26px; text-align:center; font-family:var(--mono); font-size:0.74rem;
+  color:var(--ink-3); display:flex; align-items:center; justify-content:center; gap:9px; flex-wrap:wrap;
+}
+.ext-foot .lk{ color:var(--nexus); font-weight:600; }
+.ext-foot .lk:hover{ text-decoration:underline; }
+
+.deep{ margin-top:84px; }
+.deep-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:36px; margin-bottom:30px; }
+.deep-head .marker{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:currentColor; margin-bottom:11px; }
+.deep-head h3{ font-size:clamp(1.5rem,2.3vw,2.1rem); font-weight:600; color:var(--ink); }
+.deep-head h3 .serif{ font-family:var(--serif); font-style:italic; }
+.deep-head .right{ font-size:0.92rem; color:var(--ink-2); max-width:440px; line-height:1.55; }
+.deep.counsel{ color:var(--counsel); } .deep.estate{ color:var(--estate); }
+.deep.capital{ color:var(--capital); } .deep.signal{ color:var(--signal); } .deep.risk{ color:var(--risk); }
+.deep-canvas{ position:relative; max-width:1180px; margin:0 auto; }
+.deep-canvas img{
+  width:100%; height:auto; display:block; border-radius:var(--r-lg);
+  border:1px solid var(--hairline); position:relative; z-index:1;
+  box-shadow:0 40px 100px -34px rgba(0,0,0,0.75), 0 0 80px -28px currentColor;
+}
+.deep-canvas::before{ content:""; position:absolute; inset:-26px; z-index:0; background:radial-gradient(560px 280px at 50% 50%,currentColor,transparent 70%); opacity:0.14; filter:blur(38px); border-radius:var(--r-xl); pointer-events:none; }
+.loop-badge{
+  display:inline-flex; align-items:center; gap:11px; padding:8px 13px 8px 10px;
+  border-radius:99px; border:1px solid currentColor; background:rgba(76,201,255,0.05); margin-bottom:14px;
+}
+.loop-badge .ring{ display:flex; gap:3px; }
+.loop-badge .ring .d{ width:5px; height:5px; border-radius:50%; background:currentColor; opacity:0.4; }
+.loop-badge .ring .d.on{ opacity:1; box-shadow:0 0 6px currentColor; }
+.loop-badge .tx{ font-family:var(--mono); font-size:0.61rem; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink-2); }
+.loop-badge .tx b{ color:currentColor; font-weight:500; }
+
+.cap-viz{
+  position:relative; z-index:1; border-radius:var(--r-lg); border:1px solid var(--hairline);
+  background:linear-gradient(180deg,rgba(11,18,40,0.85),rgba(4,6,16,0.95));
+  box-shadow:0 40px 100px -34px rgba(0,0,0,0.7),0 0 70px -26px var(--capital);
+  padding:38px; display:grid; grid-template-columns:1.3fr 1fr; gap:38px; align-items:center;
+}
+.cap-viz .chart{ width:100%; height:auto; }
+.cap-viz .read h4{ font-family:var(--mono); font-size:0.64rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+.cap-viz .vr{ display:flex; align-items:baseline; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--hairline); }
+.cap-viz .vr:last-of-type{ border-bottom:none; }
+.cap-viz .vr .k{ font-size:0.83rem; color:var(--ink-2); }
+.cap-viz .vr .v{ font-family:var(--display); font-weight:600; font-size:1.05rem; color:var(--ink); }
+.cap-viz .vr .v.floor{ color:var(--nexus); } .cap-viz .vr .v.breach{ color:var(--risk); }
+.cap-viz .verdict{ margin-top:15px; padding:12px 14px; background:rgba(244,73,95,0.08); border:1px solid rgba(244,73,95,0.25); border-radius:var(--r-sm); font-family:var(--mono); font-size:0.71rem; line-height:1.5; color:var(--ink-2); }
+.cap-viz .verdict b{ color:var(--risk); }
+
+.snap-grid{ display:grid; grid-template-columns:minmax(0,1.55fr) 320px; gap:20px; }
+.snap-panel{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r-lg); padding:26px; }
+.snap-graph{ aspect-ratio:16/10; }
 .snap-graph svg{ width:100%; height:100%; }
 .snap-side{ display:flex; flex-direction:column; gap:16px; }
-.snap-stats{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r); padding:8px 20px;
-}
+.snap-stats{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r); padding:8px 20px; }
 .snap-stat{ padding:13px 0; border-bottom:1px solid var(--hairline); }
 .snap-stat:last-child{ border-bottom:none; }
-.snap-stat .lbl{
-  font-family:var(--mono); font-size:0.6rem; letter-spacing:0.13em;
-  text-transform:uppercase; color:var(--ink-3); margin-bottom:3px;
-}
+.snap-stat .lbl{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink-3); margin-bottom:3px; }
 .snap-stat .row{ display:flex; align-items:baseline; gap:10px; }
-.snap-stat .val{ font-family:var(--display); font-size:1.4rem; font-weight:700; }
-.snap-stat .delta{ font-family:var(--mono); font-size:0.64rem; }
-.snap-stat .delta.up{ color:var(--estate); }
-.snap-stat .delta.down{ color:var(--risk); }
-.snap-conf{
-  background:linear-gradient(135deg,rgba(76,201,255,0.1),rgba(124,92,255,0.08));
-  border:1px solid var(--hairline-2); border-radius:var(--r); padding:16px 20px;
-}
-.snap-conf .lbl{
-  font-family:var(--mono); font-size:0.6rem; letter-spacing:0.13em;
-  text-transform:uppercase; color:var(--ink-3); margin-bottom:4px;
-}
-.snap-conf .val{ font-family:var(--display); font-size:2rem; font-weight:700; color:var(--nexus); }
+.snap-stat .val{ font-family:var(--display); font-size:1.38rem; font-weight:700; }
+.snap-stat .delta{ font-family:var(--mono); font-size:0.63rem; }
+.snap-stat .delta.up{ color:var(--estate); } .snap-stat .delta.down{ color:var(--risk); }
+.snap-conf{ background:linear-gradient(135deg,rgba(76,201,255,0.1),rgba(124,92,255,0.08)); border:1px solid var(--hairline-2); border-radius:var(--r); padding:16px 20px; }
+.snap-conf .lbl{ font-family:var(--mono); font-size:0.6rem; letter-spacing:0.13em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4px; }
+.snap-conf .val{ font-family:var(--display); font-size:1.95rem; font-weight:700; color:var(--nexus); }
 .snap-conf .tag{ font-family:var(--mono); font-size:0.62rem; color:var(--ink-3); }
-.snap-feed h4{
-  font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em;
-  text-transform:uppercase; color:var(--ink-3); margin-bottom:14px;
-}
+.snap-feed h4{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:13px; }
 .feed-item{ display:flex; gap:11px; padding:10px 0; border-bottom:1px solid var(--hairline); }
 .feed-item:last-child{ border-bottom:none; }
-.feed-item .tdot{
-  width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px;
-}
-.feed-item .ftime{ font-family:var(--mono); font-size:0.62rem; color:var(--ink-4); }
-.feed-item .ftext{ font-size:0.8rem; color:var(--ink-2); line-height:1.4; }
+.feed-item .tdot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:5px; }
+.feed-item .ftime{ font-family:var(--mono); font-size:0.61rem; color:var(--ink-4); }
+.feed-item .ftext{ font-size:0.79rem; color:var(--ink-2); line-height:1.4; }
 .feed-item .ftext .ent{ color:var(--ink-3); }
 
-/* =========================================================
-   CSE + DEL
-   ========================================================= */
 .gov-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-.gov-panel{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r-lg); padding:30px;
-}
-.gov-panel .gtag{
-  font-family:var(--mono); font-size:0.7rem; font-weight:700; letter-spacing:0.16em;
-  text-transform:uppercase; margin-bottom:8px;
-}
-.gov-panel.cse .gtag{ color:var(--capital); }
-.gov-panel.del .gtag{ color:var(--estate); }
-.gov-panel h3{ font-size:1.4rem; margin-bottom:6px; }
-.gov-panel .gsub{ color:var(--ink-3); font-size:0.92rem; margin-bottom:22px; }
-.gov-list{ list-style:none; display:flex; flex-direction:column; gap:10px; }
-.gov-list li{ font-size:0.84rem; color:var(--ink-2); display:flex; gap:9px; align-items:flex-start; }
+.gov-panel{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r-lg); padding:30px; }
+.gov-panel .gtag{ font-family:var(--mono); font-size:0.68rem; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:8px; }
+.gov-panel.cse .gtag{ color:var(--capital); } .gov-panel.del .gtag{ color:var(--estate); }
+.gov-panel h3{ font-size:1.35rem; margin-bottom:18px; }
+.gov-list{ list-style:none; display:flex; flex-direction:column; gap:9px; }
+.gov-list li{ font-size:0.83rem; color:var(--ink-2); display:flex; gap:9px; align-items:flex-start; }
 .gov-list li .ck{ flex-shrink:0; margin-top:2px; }
-.cse .ck{ color:var(--capital); }
-.del .ck{ color:var(--estate); }
-.cse-chart{ margin-top:22px; }
-.cse-chart svg{ width:100%; height:auto; }
-.cse-foot,.del-foot{
-  margin-top:18px; padding-top:16px; border-top:1px solid var(--hairline);
-  font-size:0.8rem; color:var(--ink-3);
-}
-.del-gauge{ margin:8px auto 0; text-align:center; max-width:320px; }
+.cse .ck{ color:var(--capital); } .del .ck{ color:var(--estate); }
+.cse-chart{ margin-top:20px; } .cse-chart svg{ width:100%; height:auto; }
+.cse-foot,.del-foot{ margin-top:16px; padding-top:15px; border-top:1px solid var(--hairline); font-size:0.79rem; color:var(--ink-3); }
+.del-gauge{ margin:6px auto 0; text-align:center; max-width:300px; }
 .del-gauge svg{ width:100%; height:auto; }
-.del-score{ font-family:var(--display); font-size:3rem; font-weight:700; color:var(--estate); line-height:1; }
-.del-score-lbl{ font-family:var(--mono); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-top:2px; }
+.del-score{ font-family:var(--display); font-size:2.8rem; font-weight:700; color:var(--estate); line-height:1; }
+.del-score-lbl{ font-family:var(--mono); font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-top:2px; }
 .del-badge{
-  display:inline-block; margin-top:16px; padding:8px 18px;
-  background:rgba(33,208,122,0.1); border:1px solid rgba(33,208,122,0.35);
-  border-radius:99px; font-family:var(--mono); font-size:0.68rem; font-weight:700;
-  letter-spacing:0.1em; text-transform:uppercase; color:var(--estate);
+  display:inline-block; margin-top:15px; padding:8px 18px; background:rgba(33,208,122,0.1);
+  border:1px solid rgba(33,208,122,0.35); border-radius:99px; font-family:var(--mono);
+  font-size:0.67rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--estate);
 }
 
-/* =========================================================
-   USE CASES
-   ========================================================= */
+.infra-diagram{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r-lg); padding:34px; }
+.infra-perim{ border:1px dashed rgba(244,73,95,0.4); border-radius:var(--r); padding:28px 22px 22px; position:relative; }
+.infra-perim .plabel{
+  position:absolute; top:-11px; left:22px; background:var(--bg-0); padding:0 11px;
+  font-family:var(--mono); font-size:0.6rem; letter-spacing:0.16em; text-transform:uppercase; color:#ff8a9c;
+}
+.infra-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.infra-node{ padding:20px 17px; background:rgba(4,6,15,0.6); border:1px solid var(--hairline); border-radius:var(--r); position:relative; overflow:hidden; transition:transform .3s,border-color .3s; }
+.infra-node:hover{ transform:translateY(-3px); border-color:currentColor; }
+.infra-node::before{ content:""; position:absolute; inset:0 0 auto 0; height:2px; background:currentColor; }
+.infra-node.graph{ color:var(--nexus); } .infra-node.bus{ color:var(--counsel); }
+.infra-node.orch{ color:var(--signal); } .infra-node.ai{ color:var(--risk); }
+.infra-node .ico{ width:36px; height:36px; border-radius:9px; display:grid; place-items:center; background:rgba(255,255,255,0.03); border:1px solid currentColor; color:currentColor; margin-bottom:13px; }
+.infra-node .ico svg{ width:17px; height:17px; }
+.infra-node .svc{ font-family:var(--mono); font-size:0.57rem; letter-spacing:0.13em; text-transform:uppercase; color:currentColor; margin-bottom:5px; }
+.infra-node h4{ font-size:0.95rem; color:var(--ink); margin-bottom:6px; }
+.infra-node p{ font-size:0.76rem; color:var(--ink-3); line-height:1.5; }
+.infra-base{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
+.infra-base .b{ padding:14px 16px; background:rgba(18,27,56,0.3); border:1px solid var(--hairline); border-radius:var(--r); display:flex; gap:11px; align-items:center; }
+.infra-base .b .ic{ width:28px; height:28px; border-radius:7px; display:grid; place-items:center; background:rgba(33,208,122,0.1); border:1px solid rgba(33,208,122,0.3); color:var(--estate); flex-shrink:0; }
+.infra-base .b .ic svg{ width:13px; height:13px; }
+.infra-base .b .t{ font-size:0.78rem; color:var(--ink-2); }
+.infra-base .b .t strong{ display:block; color:var(--ink); font-weight:600; font-size:0.81rem; }
+.sov-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px; }
+.sov-card{ padding:26px 24px; background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r); transition:transform .3s,border-color .3s; }
+.sov-card:hover{ transform:translateY(-3px); border-color:var(--hairline-2); }
+.sov-card .n{ font-family:var(--serif); font-style:italic; font-size:1.4rem; background:linear-gradient(120deg,#b58aff,#5b8cff); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:10px; }
+.sov-card h4{ font-size:1.05rem; margin-bottom:9px; }
+.sov-card p{ font-size:0.84rem; color:var(--ink-2); line-height:1.55; }
+.sov-card code{ font-family:var(--mono); font-size:0.73rem; color:var(--nexus); background:rgba(76,201,255,0.08); border:1px solid var(--hairline); padding:2px 6px; border-radius:5px; }
+
 .uc-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-.uc-card{
-  background:var(--panel); border:1px solid var(--hairline);
-  border-radius:var(--r); padding:24px; display:flex; gap:16px; align-items:flex-start;
-  transition:transform .3s,border-color .3s;
-}
+.uc-card{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r); padding:24px; display:flex; gap:15px; align-items:flex-start; transition:transform .3s,border-color .3s; }
 .uc-card:hover{ transform:translateY(-3px); border-color:var(--hairline-2); }
-.uc-ico{
-  width:42px; height:42px; flex-shrink:0; border-radius:10px; display:grid; place-items:center;
-  background:rgba(76,201,255,0.07); border:1px solid var(--hairline-2); color:var(--nexus);
-}
+.uc-ico{ width:42px; height:42px; flex-shrink:0; border-radius:10px; display:grid; place-items:center; background:rgba(76,201,255,0.07); border:1px solid var(--hairline-2); color:var(--nexus); }
 .uc-ico svg{ width:20px; height:20px; }
-.uc-card h4{ font-size:0.95rem; margin-bottom:5px; }
-.uc-card p{ font-size:0.8rem; color:var(--ink-3); line-height:1.45; }
+.uc-card h4{ font-size:0.93rem; margin-bottom:5px; }
+.uc-card p{ font-size:0.79rem; color:var(--ink-3); line-height:1.45; }
 
-/* =========================================================
-   DEMO FLOW
-   ========================================================= */
-.demo{ background:linear-gradient(180deg,transparent,rgba(11,18,40,0.55),transparent); }
-.demo-flow{
-  display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:26px;
-}
+.demo-flow{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px; margin-bottom:24px; }
 .demo-step{ text-align:center; position:relative; padding:6px; }
-.demo-step:not(:last-child)::after{
-  content:"→"; position:absolute; right:-8px; top:26px; color:var(--ink-4); font-size:0.85rem;
-}
-.demo-ico{
-  width:52px; height:52px; margin:0 auto 12px; border-radius:13px; display:grid; place-items:center;
-  background:rgba(124,92,255,0.08); border:1px solid var(--hairline-2); color:var(--accent);
-}
-.demo-ico svg{ width:22px; height:22px; }
-.demo-num{ font-family:var(--mono); font-size:0.64rem; font-weight:700; color:var(--accent); margin-bottom:2px; }
-.demo-step h4{ font-size:0.88rem; margin-bottom:5px; }
-.demo-step p{ font-size:0.72rem; color:var(--ink-3); line-height:1.4; }
-.demo-foot{
-  text-align:center; padding:18px; background:var(--panel-2);
-  border:1px solid var(--hairline); border-radius:var(--r);
-  font-family:var(--mono); font-size:0.82rem; color:var(--ink-2); letter-spacing:0.02em;
-}
+.demo-step:not(:last-child)::after{ content:"→"; position:absolute; right:-8px; top:24px; color:var(--ink-4); font-size:0.85rem; }
+.demo-ico{ width:50px; height:50px; margin:0 auto 11px; border-radius:13px; display:grid; place-items:center; background:rgba(124,92,255,0.08); border:1px solid var(--hairline-2); color:var(--accent); }
+.demo-ico svg{ width:21px; height:21px; }
+.demo-num{ font-family:var(--mono); font-size:0.62rem; font-weight:700; color:var(--accent); margin-bottom:2px; }
+.demo-step h4{ font-size:0.86rem; margin-bottom:4px; }
+.demo-step p{ font-size:0.71rem; color:var(--ink-3); line-height:1.4; }
+.demo-foot{ text-align:center; padding:17px; background:var(--panel-2); border:1px solid var(--hairline); border-radius:var(--r); font-family:var(--mono); font-size:0.8rem; color:var(--ink-2); }
 
-/* =========================================================
-   CTA
-   ========================================================= */
 .cta-card{
   background:linear-gradient(135deg,rgba(124,92,255,0.14),rgba(76,201,255,0.08));
-  border:1px solid var(--hairline-2); border-radius:var(--r-xl);
-  padding:60px; display:grid; grid-template-columns:1fr auto; gap:50px; align-items:center;
-  position:relative; overflow:hidden;
+  border:1px solid var(--hairline-2); border-radius:var(--r-xl); padding:58px;
+  display:grid; grid-template-columns:1fr auto; gap:50px; align-items:center; position:relative; overflow:hidden;
 }
-.cta-card::before{
-  content:""; position:absolute; right:-10%; top:-40%; width:50%; height:160%;
-  background:radial-gradient(circle,rgba(124,92,255,0.25),transparent 65%); pointer-events:none;
-}
-.cta-card > *{ position:relative; }
-.cta-card h2{ font-size:clamp(1.8rem,2.6vw,2.4rem); margin-bottom:14px; }
-.cta-card p{ color:var(--ink-2); max-width:520px; margin-bottom:24px; }
+.cta-card::before{ content:""; position:absolute; right:-10%; top:-40%; width:50%; height:160%; background:radial-gradient(circle,rgba(124,92,255,0.25),transparent 65%); pointer-events:none; }
+.cta-card>*{ position:relative; }
+.cta-card h2{ font-size:clamp(1.8rem,2.6vw,2.4rem); margin-bottom:13px; }
+.cta-card p{ color:var(--ink-2); max-width:520px; margin-bottom:22px; }
 .cta-checks{ display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; }
-.cta-checks li{ list-style:none; font-size:0.86rem; color:var(--ink-2); display:flex; gap:8px; align-items:center; }
+.cta-checks li{ list-style:none; font-size:0.85rem; color:var(--ink-2); display:flex; gap:8px; align-items:center; }
 .cta-checks li .ck{ color:var(--estate); }
-.cta-action{ display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
-.cta-contact{ font-size:0.8rem; color:var(--ink-3); }
+.cta-action{ display:flex; flex-direction:column; gap:11px; align-items:flex-start; }
+.cta-contact{ font-size:0.79rem; color:var(--ink-3); }
 .cta-contact a{ color:var(--nexus); }
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
-.foot-grid{
-  display:flex; justify-content:space-between; align-items:flex-start;
-  gap:40px; flex-wrap:wrap; margin-bottom:36px;
-}
+footer{ border-top:1px solid var(--hairline); padding:48px 0 30px; }
+.foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; margin-bottom:34px; }
 .foot-brand .logo{ margin-bottom:8px; }
 .foot-brand p{ font-size:0.8rem; color:var(--ink-3); }
-.foot-links{ display:flex; gap:26px; flex-wrap:wrap; }
-.foot-links a{ font-size:0.83rem; color:var(--ink-2); }
+.foot-links{ display:flex; gap:24px; flex-wrap:wrap; }
+.foot-links a{ font-size:0.82rem; color:var(--ink-2); }
 .foot-links a:hover{ color:var(--ink); }
-.foot-bottom{
-  border-top:1px solid var(--hairline); padding-top:24px;
-  display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
-}
-.foot-bottom .copy{ font-family:var(--mono); font-size:0.72rem; color:var(--ink-4); }
-.foot-social{ display:flex; gap:12px; }
-.foot-social a{
-  width:30px; height:30px; border-radius:7px; display:grid; place-items:center;
-  background:rgba(255,255,255,0.03); border:1px solid var(--hairline); color:var(--ink-3);
-  transition:all .2s;
-}
+.foot-bottom{ border-top:1px solid var(--hairline); padding-top:22px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+.foot-bottom .copy{ font-family:var(--mono); font-size:0.71rem; color:var(--ink-4); }
+.foot-social{ display:flex; gap:11px; }
+.foot-social a{ width:30px; height:30px; border-radius:7px; display:grid; place-items:center; background:rgba(255,255,255,0.03); border:1px solid var(--hairline); color:var(--ink-3); transition:all .2s; }
 .foot-social a:hover{ color:var(--ink); border-color:var(--hairline-2); }
 .foot-social svg{ width:14px; height:14px; }
 
-/* ===== reveal ===== */
 .reveal{ opacity:0; transform:translateY(22px); transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1); }
 .reveal.in{ opacity:1; transform:translateY(0); }
-.stagger>*{ transition-delay:calc(var(--i,0)*70ms); }
+.stagger>*{ transition-delay:calc(var(--i,0)*60ms); }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* ===== V&A VETO TRACE ===== */
+.veto-wrap{ max-width:1080px; margin:0 auto; }
+.veto-layers{ display:grid; grid-template-columns:repeat(3,1fr); gap:13px; margin-bottom:16px; }
+.veto-layer{ background:var(--panel); border:1px solid var(--hairline); border-radius:var(--r); padding:17px 19px; transition:border-color .4s,box-shadow .4s; }
+.veto-layer .vl-tag{ font-family:var(--mono); font-size:0.58rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-4); margin-bottom:7px; }
+.veto-layer h4{ font-size:0.92rem; margin-bottom:9px; }
+.veto-layer .vl-state{ font-family:var(--mono); font-size:0.64rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); display:flex; align-items:center; gap:7px; }
+.veto-layer .vl-state::before{ content:""; width:7px; height:7px; border-radius:50%; background:var(--ink-4); transition:all .4s; }
+.veto-layer.on{ border-color:var(--nexus); box-shadow:0 0 24px -10px rgba(76,201,255,0.6); }
+.veto-layer.on .vl-state{ color:var(--nexus); } .veto-layer.on .vl-state::before{ background:var(--nexus); box-shadow:0 0 8px var(--nexus); }
+.veto-layer.flag{ border-color:var(--signal); box-shadow:0 0 24px -10px rgba(245,166,35,0.6); }
+.veto-layer.flag .vl-state{ color:var(--signal); } .veto-layer.flag .vl-state::before{ background:var(--signal); box-shadow:0 0 8px var(--signal); }
+.veto-layer.veto{ border-color:var(--risk); box-shadow:0 0 28px -8px rgba(244,73,95,0.7); }
+.veto-layer.veto .vl-state{ color:var(--risk); } .veto-layer.veto .vl-state::before{ background:var(--risk); box-shadow:0 0 8px var(--risk); }
+.veto-layer.pass{ border-color:var(--estate); }
+.veto-layer.pass .vl-state{ color:var(--estate); } .veto-layer.pass .vl-state::before{ background:var(--estate); box-shadow:0 0 8px var(--estate); }
+.veto-term{ background:#02030a; border:1px solid var(--hairline-2); border-radius:var(--r); overflow:hidden; box-shadow:0 40px 90px -42px #000; }
+.veto-term-head{ display:flex; align-items:center; gap:13px; padding:12px 17px; background:rgba(13,20,44,0.7); border-bottom:1px solid var(--hairline); }
+.vt-dots{ display:flex; gap:6px; } .vt-dots i{ width:10px; height:10px; border-radius:50%; }
+.vt-dots i:nth-child(1){ background:#f4495f; } .vt-dots i:nth-child(2){ background:#f5a623; } .vt-dots i:nth-child(3){ background:#21d07a; }
+.vt-title{ font-family:var(--mono); font-size:0.7rem; color:var(--ink-3); flex-grow:1; letter-spacing:0.04em; }
+.vt-replay{ font-family:var(--mono); font-size:0.66rem; font-weight:700; color:var(--nexus); background:rgba(76,201,255,0.08); border:1px solid var(--hairline-2); border-radius:6px; padding:5px 12px; cursor:pointer; transition:background .2s; }
+.vt-replay:hover{ background:rgba(76,201,255,0.18); }
+.veto-term-body{ padding:22px 24px; font-family:var(--mono); font-size:0.8rem; line-height:1.95; min-height:450px; position:relative; }
+.veto-line{ opacity:0; transform:translateY(3px); transition:opacity .25s,transform .25s; white-space:pre-wrap; color:var(--ink-2); }
+.veto-line.show{ opacity:1; transform:none; }
+.veto-line .st{ display:inline-block; width:78px; color:var(--nexus); font-weight:700; }
+.veto-line .ar{ color:var(--ink-4); } .veto-line .dim{ color:var(--ink-3); }
+.veto-line .warn{ color:var(--signal); } .veto-line .bad{ color:var(--risk); font-weight:700; }
+.veto-line .good{ color:var(--estate); } .veto-line .rule{ color:var(--ink-4); }
+.veto-line.caret::after{ content:"▋"; color:var(--nexus); animation:vbl 1s steps(1) infinite; }
+@keyframes vbl{ 50%{ opacity:0; } }
+.veto-stamp{
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-12deg) scale(1.7);
+  font-family:var(--display); font-weight:700; font-size:2.5rem; letter-spacing:0.05em;
+  color:var(--risk); border:4px solid var(--risk); border-radius:9px; padding:6px 24px;
+  opacity:0; pointer-events:none; text-transform:uppercase; background:rgba(6,3,8,0.55);
+  box-shadow:0 0 46px rgba(244,73,95,0.4);
+}
+.veto-stamp.show{ animation:vst .5s cubic-bezier(.2,1.5,.4,1) forwards; }
+@keyframes vst{ to{ opacity:0.97; transform:translate(-50%,-50%) rotate(-12deg) scale(1); } }
+.veto-foot{ display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-top:16px; }
+.veto-foot .vf{ border:1px solid var(--hairline); border-radius:var(--r); padding:18px 20px; background:var(--panel); opacity:0.34; transition:opacity .5s,border-color .5s; }
+.veto-foot .vf.lit{ opacity:1; }
+.veto-foot .vf.blocked.lit{ border-color:rgba(244,73,95,0.4); }
+.veto-foot .vf.executed.lit{ border-color:rgba(33,208,122,0.4); }
+.veto-foot .vf .vfk{ font-family:var(--mono); font-size:0.62rem; letter-spacing:0.13em; text-transform:uppercase; margin-bottom:7px; color:var(--ink-3); }
+.veto-foot .vf.blocked .vfk{ color:var(--risk); } .veto-foot .vf.executed .vfk{ color:var(--estate); }
+.veto-foot .vf h4{ font-size:0.95rem; margin-bottom:4px; }
+.veto-foot .vf p{ font-size:0.79rem; color:var(--ink-3); }
+@media (max-width:680px){ .veto-layers,.veto-foot{ grid-template-columns:1fr; } .veto-term-body{ font-size:0.72rem; } }
+
 @media (max-width:1180px){
   .nav-links{ display:none; }
+  .rail{ display:none; }
   .hero-grid{ grid-template-columns:1fr; gap:50px; }
   .hero-visual{ max-width:520px; margin:0 auto; }
   .fly-grid{ grid-template-columns:1fr; }
@@ -517,48 +522,52 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
   .srp-stage:nth-child(4)::after{ display:none; }
   .dcp-row{ grid-template-columns:1fr 1fr; }
   .div-grid{ grid-template-columns:repeat(2,1fr); }
-  .snap-grid{ grid-template-columns:1fr; }
-  .gov-grid{ grid-template-columns:1fr; }
+  .ext-grid{ grid-template-columns:repeat(2,1fr); }
+  .deep-head{ flex-direction:column; align-items:flex-start; }
+  .snap-grid,.gov-grid{ grid-template-columns:1fr; }
   .uc-grid{ grid-template-columns:1fr 1fr; }
   .demo-flow{ grid-template-columns:repeat(3,1fr); gap:24px 8px; }
   .demo-step:nth-child(3)::after{ display:none; }
   .stats-strip{ grid-template-columns:repeat(3,1fr); }
+  .infra-row{ grid-template-columns:repeat(2,1fr); }
+  .infra-base,.sov-grid{ grid-template-columns:1fr; }
+  .cap-viz{ grid-template-columns:1fr; gap:26px; padding:26px; }
   .cta-card{ grid-template-columns:1fr; gap:32px; }
 }
 @media (max-width:680px){
   section{ padding:64px 0; }
-  .hero{ padding:120px 0 60px; }
-  .container{ padding:0 20px; }
+  .hero{ padding:120px 0 56px; }
+  .container,.wide{ padding:0 20px; }
   .srp-loop{ grid-template-columns:1fr 1fr; }
   .srp-stage::after{ display:none; }
-  .dcp-row{ grid-template-columns:1fr; }
-  .div-grid{ grid-template-columns:1fr; }
-  .uc-grid{ grid-template-columns:1fr; }
+  .dcp-row,.div-grid,.uc-grid,.infra-row,.ext-grid{ grid-template-columns:1fr; }
   .demo-flow{ grid-template-columns:1fr 1fr; }
   .demo-step::after{ display:none; }
   .stats-strip{ grid-template-columns:1fr 1fr; }
-  .cta-card{ padding:36px 26px; }
+  .mf-contrast{ grid-template-columns:1fr; }
+  .mf-side.old{ border-radius:var(--r-lg) var(--r-lg) 0 0; }
+  .mf-side.new{ border-radius:0 0 var(--r-lg) var(--r-lg); border-left:1px solid var(--hairline); }
+  .mf-vs{ width:100%; height:42px; border-left:1px solid var(--hairline); border-right:1px solid var(--hairline); }
+  .cta-card{ padding:34px 24px; }
   .cta-checks{ grid-template-columns:1fr; }
-  .foot-grid{ flex-direction:column; gap:24px; }
+  .foot-grid{ flex-direction:column; gap:22px; }
   h1{ font-size:2.4rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===================== NAV ===================== -->
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="#platform">MIZOKI<span class="three">3</span></a>
     <ul class="nav-links">
-      <li><a href="#platform">Platform <span class="caret">▾</span></a></li>
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#flywheel">Flywheel</a></li>
+      <li><a href="#orchestration">Orchestration</a></li>
+      <li><a href="#divisions">Divisions</a></li>
       <li><a href="#nexus">Nexus</a></li>
-      <li><a href="#divisions">Divisions <span class="caret">▾</span></a></li>
-      <li><a href="#architecture">Architecture</a></li>
-      <li><a href="#usecases">Use Cases</a></li>
       <li><a href="#governance">Governance</a></li>
-      <li><a href="#demo">Resources <span class="caret">▾</span></a></li>
-      <li><a href="#contact">About</a></li>
+      <li><a href="#infrastructure">Architecture</a></li>
     </ul>
     <div class="nav-right">
       <a class="nav-signin" href="#contact">Sign In</a>
@@ -567,9 +576,25 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
   </div>
 </header>
 
+<nav class="rail" aria-hidden="true">
+  <a href="#platform" data-l="Platform"></a>
+  <a href="#manifesto" data-l="Premise"></a>
+  <a href="#overview" data-l="Overview"></a>
+  <a href="#flywheel" data-l="Flywheel"></a>
+  <a href="#orchestration" data-l="Orchestration"></a>
+  <a href="#architecture" data-l="Control Plane"></a>
+  <a href="#veto" data-l="The Veto"></a>
+  <a href="#divisions" data-l="Divisions"></a>
+  <a href="#nexus" data-l="Nexus"></a>
+  <a href="#memory" data-l="Knowledge Graph"></a>
+  <a href="#governance" data-l="Governance"></a>
+  <a href="#infrastructure" data-l="Architecture"></a>
+  <a href="#contact" data-l="Pilot"></a>
+</nav>
+
 <main>
 
-<!-- ===================== HERO ===================== -->
+<!-- HERO -->
 <section class="hero" id="platform">
   <div class="container">
     <div class="hero-grid">
@@ -577,21 +602,25 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
         <div class="hero-eyebrow eyebrow">Autonomous Strategic Intelligence Infrastructure</div>
         <h1>One Intelligence.<br/>Many Domains.<br/><span class="cm">Shared Causal Memory.</span></h1>
         <p class="hero-lede">
-          MIZOKI3 unifies legal, financial, operational, and customer intelligence into a single
-          autonomous decision system. Built on a Temporal-Causal Knowledge Graph and governed by a
-          Decision Control Plane that separates proposal from authorization — and refuses to act on
-          correlation alone.
+          MIZOKI3 unifies legal, financial, operational, and customer intelligence — and every other
+          corporate division — into a single autonomous decision system. Built on a Temporal-Causal
+          Knowledge Graph and governed by a Decision Control Plane that separates proposal from
+          authorization and refuses to act on correlation alone.
         </p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#nexus">Explore the Platform <span class="arr">→</span></a>
+          <a class="btn btn-primary" href="#flywheel">Explore the Platform <span class="arr">→</span></a>
           <a class="btn btn-ghost" href="#orchestration">
             <span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
             Watch Overview
           </a>
         </div>
+        <div class="hero-trust">
+          <span class="t"><span class="d"></span>Zero-Trust Deployment</span>
+          <span class="t"><span class="d"></span>Customer-Managed Encryption</span>
+          <span class="t"><span class="d"></span>Audit-Ready by Default</span>
+        </div>
       </div>
 
-      <!-- NEXUS BRAIN -->
       <div class="hero-visual reveal">
         <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
@@ -601,10 +630,8 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
               <stop offset="100%" stop-color="#4cc9ff" stop-opacity="0"/>
             </radialGradient>
           </defs>
-          <!-- network backdrop -->
           <circle cx="300" cy="300" r="250" fill="none" stroke="rgba(120,150,230,0.08)"/>
           <circle cx="300" cy="300" r="180" fill="none" stroke="rgba(120,150,230,0.10)"/>
-          <!-- spokes -->
           <g stroke-width="1.2" fill="none" opacity="0.5">
             <line x1="300" y1="300" x2="300" y2="110" stroke="#a855f7"/>
             <line x1="300" y1="300" x2="135" y2="215" stroke="#21d07a"/>
@@ -612,13 +639,11 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
             <line x1="300" y1="300" x2="175" y2="445" stroke="#f5a623"/>
             <line x1="300" y1="300" x2="425" y2="445" stroke="#f4495f"/>
           </g>
-          <!-- scattered nodes -->
           <g fill="#4cc9ff" opacity="0.5">
             <circle cx="220" cy="160" r="2"/><circle cx="400" cy="150" r="1.6"/>
             <circle cx="490" cy="320" r="2"/><circle cx="110" cy="330" r="1.6"/>
             <circle cx="250" cy="500" r="2"/><circle cx="380" cy="510" r="1.6"/>
           </g>
-          <!-- core -->
           <circle cx="300" cy="300" r="95" fill="url(#brainCore)" opacity="0.6"/>
           <circle cx="300" cy="300" r="56" fill="#070b1c" stroke="rgba(76,201,255,0.5)" stroke-width="1.5"/>
           <circle cx="300" cy="300" r="56" fill="none" stroke="#4cc9ff" stroke-width="1" opacity="0">
@@ -627,30 +652,24 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           </circle>
           <text x="300" y="296" font-family="Sora" font-size="20" font-weight="700" fill="#fff" text-anchor="middle">NEXUS</text>
           <text x="300" y="316" font-family="JetBrains Mono" font-size="9" fill="#9aa6c8" text-anchor="middle" letter-spacing="1.5">THE BRAIN</text>
-
-          <!-- division nodes -->
-          <!-- COUNSEL top -->
           <g>
             <circle cx="300" cy="110" r="30" fill="#070b1c" stroke="#a855f7" stroke-width="1.6"/>
             <path d="M300 96v26M289 104h22M291 104l-4 9a4 4 0 008 0zM309 104l-4 9a4 4 0 008 0z" fill="none" stroke="#a855f7" stroke-width="1.6" stroke-linecap="round"/>
             <text x="300" y="62" font-family="Sora" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">COUNSEL</text>
             <text x="300" y="78" font-family="Inter" font-size="9.5" fill="#9aa6c8" text-anchor="middle">Legal Intelligence</text>
           </g>
-          <!-- ESTATE upper-left -->
           <g>
             <circle cx="135" cy="215" r="30" fill="#070b1c" stroke="#21d07a" stroke-width="1.6"/>
             <path d="M135 201l11 7v14h-22v-14z" fill="none" stroke="#21d07a" stroke-width="1.6" stroke-linejoin="round"/>
             <text x="135" y="166" font-family="Sora" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">ESTATE</text>
             <text x="135" y="182" font-family="Inter" font-size="9.5" fill="#9aa6c8" text-anchor="middle">Wealth &amp; Trust</text>
           </g>
-          <!-- CAPITAL upper-right -->
           <g>
             <circle cx="465" cy="215" r="30" fill="#070b1c" stroke="#34a6ff" stroke-width="1.6"/>
             <path d="M453 224h24M455 224v-9M461 224v-9M467 224v-9M473 224v-9M453 215l12-7 12 7" fill="none" stroke="#34a6ff" stroke-width="1.6" stroke-linejoin="round"/>
             <text x="465" y="166" font-family="Sora" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">CAPITAL</text>
             <text x="465" y="182" font-family="Inter" font-size="9.5" fill="#9aa6c8" text-anchor="middle">Financial &amp; Banking</text>
           </g>
-          <!-- SIGNAL lower-left -->
           <g>
             <circle cx="175" cy="445" r="30" fill="#070b1c" stroke="#f5a623" stroke-width="1.6"/>
             <circle cx="175" cy="445" r="11" fill="none" stroke="#f5a623" stroke-width="1.6"/>
@@ -658,7 +677,6 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
             <text x="175" y="498" font-family="Sora" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">SIGNAL</text>
             <text x="175" y="514" font-family="Inter" font-size="9.5" fill="#9aa6c8" text-anchor="middle">Acquisition &amp; Customer</text>
           </g>
-          <!-- RISK lower-right -->
           <g>
             <circle cx="425" cy="445" r="30" fill="#070b1c" stroke="#f4495f" stroke-width="1.6"/>
             <path d="M425 432l11 5v8c0 7-5 11-11 13-6-2-11-6-11-13v-8z" fill="none" stroke="#f4495f" stroke-width="1.6" stroke-linejoin="round"/>
@@ -671,16 +689,63 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
   </div>
 </section>
 
-<!-- ===================== FLYWHEEL ===================== -->
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div class="container">
+    <div class="chapter-marker reveal" style="justify-content:center"><span class="ln"></span><span class="num">01</span><span>The Premise</span><span class="ln r"></span></div>
+    <h2 class="reveal">You cannot run a $10B enterprise<br/>on <span class="strike">correlation.</span></h2>
+    <p class="mf-body reveal">
+      Standard generative AI predicts the next token by semantic similarity. It runs on
+      <span class="hot">correlation</span> — which guarantees hallucination. MIZOKI3 runs on
+      <span class="hot">causation</span>. By enforcing a Temporal-Causal Knowledge Graph, every legal
+      clause and financial covenant becomes <em class="serif">executable enterprise physics</em> — a
+      constraint the system cannot violate, not a suggestion it might ignore.
+    </p>
+    <div class="mf-contrast reveal">
+      <div class="mf-side old">
+        <div class="tag">Correlation AI</div>
+        <h4>Predicts what looks likely</h4>
+        <p>Pattern-matches plausible output. Fluent, confident, and structurally unable to know when it is wrong.</p>
+      </div>
+      <div class="mf-vs">vs</div>
+      <div class="mf-side new">
+        <div class="tag">MIZOKI3 — Causal</div>
+        <h4>Proves what is permitted</h4>
+        <p>Reasons over a governed causal graph. Every action is checked against covenants, policy, and lineage before it executes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <div class="chapter-marker" style="justify-content:center"><span class="ln"></span><span class="num">02</span><span>The Complete Picture</span><span class="ln r"></span></div>
+      <h2>One System, <em class="serif">End to End.</em></h2>
+      <div class="sub">From fragmented enterprise, legal, financial, operational, and customer data to verified autonomous strategic action — the whole platform at a glance.</div>
+    </div>
+    <div class="canvas cyan reveal">
+      <img src="assets/01-hero-system.png" alt="MIZOKI3 system architecture — the full platform at a glance" loading="lazy" />
+      <div class="canvas-cap"><span>System architecture</span> · Nexus · five domain lenses · governed autonomy</div>
+    </div>
+    <div class="canvas violet reveal" style="margin-top:54px">
+      <img src="assets/02-editorial-overview.png" alt="MIZOKI3 editorial overview — how every layer connects" loading="lazy" />
+      <div class="canvas-cap"><span>Editorial overview</span> · how data, reasoning, governance, and action connect</div>
+    </div>
+  </div>
+</section>
+
+<!-- FLYWHEEL -->
 <section class="flywheel" id="flywheel">
   <div class="container">
     <div class="sec-head reveal">
+      <div class="chapter-marker"><span class="ln"></span><span class="num">03</span><span>The Compounding Engine</span></div>
       <h2>The MIZOKI3 Flywheel</h2>
       <div class="sub">Every interaction compounds the intelligence of the whole.</div>
     </div>
 
     <div class="fly-grid">
-      <!-- steps -->
       <div class="fly-steps reveal stagger">
         <div class="fly-step" style="--i:0"><div class="dot">1</div><div><h4>Signal Enters</h4><p>New data or event is captured across any domain.</p></div></div>
         <div class="fly-step" style="--i:1"><div class="dot">2</div><div><h4>Graph Updates</h4><p>Knowledge Graph and relationships update in real time.</p></div></div>
@@ -689,7 +754,6 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
         <div class="fly-step" style="--i:4"><div class="dot">5</div><div><h4>Lasting Memory</h4><p>Outcomes are learned and strengthen the whole system.</p></div></div>
       </div>
 
-      <!-- visual -->
       <div class="fly-visual reveal">
         <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
@@ -701,7 +765,6 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
               <path d="M0 0L8 4L0 8z" fill="#5b8cff"/>
             </marker>
           </defs>
-          <!-- compounding arcs -->
           <g fill="none" stroke="#5b8cff" stroke-width="2" opacity="0.7" marker-end="url(#flyArr)">
             <path d="M250 92 A158 158 0 0 1 400 207"/>
             <path d="M404 230 A158 158 0 0 1 330 392"/>
@@ -709,29 +772,21 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
             <path d="M120 325 A158 158 0 0 1 110 175"/>
             <path d="M125 155 A158 158 0 0 1 228 96"/>
           </g>
-          <!-- core -->
           <circle cx="250" cy="250" r="78" fill="url(#flyCore)"/>
           <circle cx="250" cy="250" r="48" fill="#070b1c" stroke="rgba(76,201,255,0.5)" stroke-width="1.4"/>
           <text x="250" y="246" font-family="Sora" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">NEXUS</text>
-          <text x="250" y="262" font-family="JetBrains Mono" font-size="7" fill="#9aa6c8" text-anchor="middle">SHARED CAUSAL</text>
-          <text x="250" y="272" font-family="JetBrains Mono" font-size="7" fill="#9aa6c8" text-anchor="middle">MEMORY</text>
-          <!-- 5 nodes -->
+          <text x="250" y="261" font-family="JetBrains Mono" font-size="7" fill="#9aa6c8" text-anchor="middle">SHARED CAUSAL</text>
+          <text x="250" y="271" font-family="JetBrains Mono" font-size="7" fill="#9aa6c8" text-anchor="middle">MEMORY</text>
           <g font-family="Sora" font-size="10" font-weight="600" fill="#fff" text-anchor="middle">
-            <circle cx="250" cy="78" r="24" fill="#070b1c" stroke="#a855f7" stroke-width="1.6"/>
-            <text x="250" y="82">CNSL</text>
-            <circle cx="412" cy="196" r="24" fill="#070b1c" stroke="#34a6ff" stroke-width="1.6"/>
-            <text x="412" y="200">CAP</text>
-            <circle cx="350" cy="388" r="24" fill="#070b1c" stroke="#f4495f" stroke-width="1.6"/>
-            <text x="350" y="392">RISK</text>
-            <circle cx="150" cy="388" r="24" fill="#070b1c" stroke="#f5a623" stroke-width="1.6"/>
-            <text x="150" y="392">SGNL</text>
-            <circle cx="88" cy="196" r="24" fill="#070b1c" stroke="#21d07a" stroke-width="1.6"/>
-            <text x="88" y="200">EST</text>
+            <circle cx="250" cy="78" r="24" fill="#070b1c" stroke="#a855f7" stroke-width="1.6"/><text x="250" y="82">CNSL</text>
+            <circle cx="412" cy="196" r="24" fill="#070b1c" stroke="#34a6ff" stroke-width="1.6"/><text x="412" y="200">CAP</text>
+            <circle cx="350" cy="388" r="24" fill="#070b1c" stroke="#f4495f" stroke-width="1.6"/><text x="350" y="392">RISK</text>
+            <circle cx="150" cy="388" r="24" fill="#070b1c" stroke="#f5a623" stroke-width="1.6"/><text x="150" y="392">SGNL</text>
+            <circle cx="88" cy="196" r="24" fill="#070b1c" stroke="#21d07a" stroke-width="1.6"/><text x="88" y="200">EST</text>
           </g>
         </svg>
       </div>
 
-      <!-- compounding result -->
       <div class="fly-result reveal">
         <h4>Compounding Result</h4>
         <ul>
@@ -744,7 +799,6 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
       </div>
     </div>
 
-    <!-- stats -->
     <div class="stats-strip reveal">
       <div class="stat"><div class="lbl">Active Signals</div><div class="val">18,742</div><div class="delta up">↑ 24% vs yesterday</div></div>
       <div class="stat"><div class="lbl">Simulations Run</div><div class="val">3,982</div><div class="delta up">↑ 31% vs yesterday</div></div>
@@ -755,106 +809,152 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
   </div>
 </section>
 
-<!-- ===================== SRPVDAL ORCHESTRATION ===================== -->
+<!-- SRPVDAL ORCHESTRATION -->
 <section id="orchestration">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="section-tag" style="color:var(--nexus)">SRPVDAL Orchestration</div>
-      <h2 style="margin-top:8px">The 7-Stage Autonomous Decision Loop</h2>
+      <div class="chapter-marker"><span class="ln"></span><span class="num">04</span><span>SRPVDAL Orchestration</span></div>
+      <h2>The 7-Stage Autonomous Decision Loop</h2>
+      <div class="sub">Each gate narrows uncertainty before the system commits resources.</div>
     </div>
 
     <div class="srp-loop reveal stagger">
       <div class="srp-stage" style="--i:0">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8a6 6 0 010 8.5M7.8 7.8a6 6 0 000 8.5M19 5a10 10 0 010 14M5 5a10 10 0 000 14"/></svg></div>
-        <div class="srp-num">01</div><h4>Sense</h4>
-        <p>Capture signals from all sources across all domains.</p>
+        <div class="srp-num">01</div><h4>Sense</h4><p>Capture signals from all sources across all domains.</p>
       </div>
       <div class="srp-stage" style="--i:1">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M6 8v3a2 2 0 002 2h8a2 2 0 002-2V8M12 13v3"/></svg></div>
-        <div class="srp-num">02</div><h4>Reason</h4>
-        <p>Interpret signals through temporal-causal models.</p>
+        <div class="srp-num">02</div><h4>Reason</h4><p>Interpret signals through temporal-causal models.</p>
       </div>
       <div class="srp-stage" style="--i:2">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></div>
-        <div class="srp-num">03</div><h4>Plan</h4>
-        <p>Generate strategies, options, and action plans.</p>
+        <div class="srp-num">03</div><h4>Plan</h4><p>Generate strategies, options, and action plans.</p>
       </div>
       <div class="srp-stage" style="--i:3">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3 8-8 9-5-1-8-4-8-9V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="srp-num">04</div><h4>Validate</h4>
-        <p>Verify facts, test assumptions, and run simulations.</p>
+        <div class="srp-num">04</div><h4>Validate</h4><p>Verify facts, test assumptions, and run simulations.</p>
       </div>
       <div class="srp-stage" style="--i:4">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div>
-        <div class="srp-num">05</div><h4>Decide</h4>
-        <p>Select the best course of action with confidence.</p>
+        <div class="srp-num">05</div><h4>Decide</h4><p>Select the best course of action with confidence.</p>
       </div>
       <div class="srp-stage" style="--i:5">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"/></svg></div>
-        <div class="srp-num">06</div><h4>Act</h4>
-        <p>Execute with precision through the Decision Control Plane.</p>
+        <div class="srp-num">06</div><h4>Act</h4><p>Execute with precision through the Decision Control Plane.</p>
       </div>
       <div class="srp-stage" style="--i:6">
         <div class="srp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 0115-6.7M21 12a9 9 0 01-15 6.7M21 5v5h-5M3 19v-5h5"/></svg></div>
-        <div class="srp-num">07</div><h4>Learn</h4>
-        <p>Record outcomes and continuously improve.</p>
+        <div class="srp-num">07</div><h4>Learn</h4><p>Record outcomes and continuously improve.</p>
       </div>
+    </div>
+
+    <div class="canvas cyan reveal">
+      <img src="assets/04-orchestration-framework.png" alt="MIZOKI3 orchestration framework — how the seven stages are coordinated" loading="lazy" />
+      <div class="canvas-cap"><span>The orchestration framework</span> · how the loop is coordinated, gated, and governed</div>
+    </div>
+
+    <div class="canvas cyan reveal" style="margin-top:54px">
+      <img src="assets/03-canonical-loop.png" alt="MIZOKI3 canonical orchestration loop — the seven cognitive functions" loading="lazy" />
+      <div class="canvas-cap"><span>The canonical loop</span> · Sense → Reason → Plan → Validate → Decide → Act → Learn</div>
     </div>
   </div>
 </section>
 
-<!-- ===================== DECISION CONTROL PLANE ===================== -->
+<!-- DECISION CONTROL PLANE -->
 <section id="architecture">
   <div class="container">
     <div class="sec-head reveal">
-      <div class="section-tag" style="color:var(--risk)">Decision Control Plane (DCP)</div>
-      <h2 style="margin-top:8px">Separates Proposal from Authorization</h2>
+      <div class="chapter-marker"><span class="ln"></span><span class="num">05</span><span>Decision Control Plane</span></div>
+      <h2>Separates Proposal from Authorization</h2>
+      <div class="sub">No autonomous decision executes without verification, simulation, and authorization.</div>
     </div>
 
     <div class="dcp-row reveal stagger">
       <div class="dcp-card propose" style="--i:0">
         <div class="dcp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5M9 13h6M9 17h4"/></svg></div>
-        <h4>Propose</h4>
-        <p>Agents generate options and recommendations.</p>
+        <h4>Propose</h4><p>Agents generate options and recommendations.</p>
       </div>
       <div class="dcp-card verify" style="--i:1">
         <div class="dcp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3 8-8 9-5-1-8-4-8-9V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h4>Verify</h4>
-        <p>Independent verification by Risk, Policy, and Compliance agents.</p>
+        <h4>Verify</h4><p>Independent verification by Risk, Policy, and Compliance agents.</p>
       </div>
       <div class="dcp-card authorize" style="--i:2">
         <div class="dcp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M3 21c0-3.5 2.7-6 6-6 1.4 0 2.7.4 3.7 1.1M16 16l2.5 2.5L23 14"/></svg></div>
-        <h4>Authorize</h4>
-        <p>Human or policy-based authorization at the right threshold.</p>
+        <h4>Authorize</h4><p>Human or policy-based authorization at the right threshold.</p>
       </div>
       <div class="dcp-card execute" style="--i:3">
         <div class="dcp-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 9l3 3-3 3M13 15h4"/></svg></div>
-        <h4>Execute</h4>
-        <p>Action is executed, monitored, and logged.</p>
+        <h4>Execute</h4><p>Action is executed, monitored, and logged.</p>
       </div>
     </div>
 
     <div class="dcp-note reveal">
-      <span>No action is taken without verification, simulation, and authorization.</span>
+      <span>Every consequential output is verified, simulated, and authorized before it acts.</span>
       <a class="lk" href="console/index.html">Open the live Control Plane →</a>
+    </div>
+
+    <div class="canvas violet reveal" style="margin-top:48px">
+      <img src="assets/05-governance.png" alt="MIZOKI3 governance framework — DCP, Verification &amp; Arbitration, Decision Eligibility Layer" loading="lazy" />
+      <div class="canvas-cap"><span>Governed autonomy</span> · inputs → loop → outcomes, mediated by three control layers</div>
     </div>
   </div>
 </section>
 
-<!-- ===================== DIVISIONS ===================== -->
+<!-- VERIFICATION & ARBITRATION — VETO TRACE -->
+<section id="veto">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="chapter-marker"><span class="ln"></span><span class="num">06</span><span>Verification &amp; Arbitration</span></div>
+      <h2>The moat isn't the loop. <em class="serif">It's the veto.</em></h2>
+      <div class="sub">Any system can run an agent loop. MIZOKI3 can stop one — mathematically — before it acts. Below, a $5M distribution is vetoed against a covenant it would have breached. Decision ACT-991, traced live.</div>
+    </div>
+
+    <div class="veto-wrap reveal">
+      <div class="veto-layers">
+        <div class="veto-layer" id="vl-dcp"><div class="vl-tag">Control Layer 01</div><h4>Decision Control Plane</h4><div class="vl-state">Standby</div></div>
+        <div class="veto-layer" id="vl-va"><div class="vl-tag">Control Layer 02</div><h4>Verification &amp; Arbitration</h4><div class="vl-state">Standby</div></div>
+        <div class="veto-layer" id="vl-del"><div class="vl-tag">Control Layer 03</div><h4>Decision Eligibility</h4><div class="vl-state">Standby</div></div>
+      </div>
+
+      <div class="veto-term">
+        <div class="veto-term-head">
+          <span class="vt-dots"><i></i><i></i><i></i></span>
+          <span class="vt-title">srpvdal — execution trace · ACT-991</span>
+          <button class="vt-replay" id="vetoReplay" type="button">▸ Replay</button>
+        </div>
+        <div class="veto-term-body" id="vetoBody"></div>
+      </div>
+
+      <div class="veto-foot">
+        <div class="vf blocked" id="vf-blocked">
+          <div class="vfk">✕ Blocked before execution</div>
+          <h4>Option A — distribute $5.0M now</h4>
+          <p>Would have driven liquidity to $7.0M against a $10.0M covenant floor. Never reached the channel.</p>
+        </div>
+        <div class="vf executed" id="vf-exec">
+          <div class="vfk">✓ Executed</div>
+          <h4>Option B — defer one quarter</h4>
+          <p>Covenant preserved, liquidity held at $12.0M. Outcome written back to shared causal memory.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVISIONS -->
 <section id="divisions">
   <div class="container">
     <div class="sec-head reveal">
-      <h2>One Brain. Five Domain Lenses.</h2>
-      <div class="sub">All powered by the same Nexus.</div>
+      <div class="chapter-marker"><span class="ln"></span><span class="num">07</span><span>One Brain. Many Domain Lenses.</span></div>
+      <h2>Specialized Intelligence. <em class="serif">Shared Substrate.</em></h2>
+      <div class="sub">Five flagship divisions ship with the platform — each running the identical loop on the identical Nexus. A clause signed in Counsel instantly recalibrates liquidity risk in Capital.</div>
     </div>
 
     <div class="div-grid reveal stagger">
-      <!-- COUNSEL -->
       <article class="div-card counsel" style="--i:0">
         <div class="div-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 7h14M7 7l-3 7a4 4 0 008 0zM17 7l-3 7a4 4 0 008 0z"/></svg></div>
-        <div class="div-name">MIZOKI3 COUNSEL</div>
-        <h3>Legal Intelligence</h3>
+        <div class="div-name">MIZOKI3 COUNSEL</div><h3>Legal Intelligence</h3>
         <ul class="div-feats">
           <li><span class="ck">✓</span>Contract &amp; agreement analysis</li>
           <li><span class="ck">✓</span>Litigation intelligence &amp; strategy</li>
@@ -862,13 +962,11 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           <li><span class="ck">✓</span>Regulatory &amp; compliance mapping</li>
           <li><span class="ck">✓</span>Fiduciary duty monitoring</li>
         </ul>
-        <a class="div-explore" href="#nexus">Explore Counsel <span class="arr">→</span></a>
+        <a class="div-explore" href="#deep-counsel">Explore Counsel <span class="arr">→</span></a>
       </article>
-      <!-- ESTATE -->
       <article class="div-card estate" style="--i:1">
         <div class="div-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
-        <div class="div-name">MIZOKI3 ESTATE</div>
-        <h3>Wealth, Trust &amp; Tax Intelligence</h3>
+        <div class="div-name">MIZOKI3 ESTATE</div><h3>Wealth, Trust &amp; Tax Intelligence</h3>
         <ul class="div-feats">
           <li><span class="ck">✓</span>Trust &amp; estate structure mapping</li>
           <li><span class="ck">✓</span>Tax exposure &amp; scenario modeling</li>
@@ -876,13 +974,11 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           <li><span class="ck">✓</span>Fiduciary behavior intelligence</li>
           <li><span class="ck">✓</span>Multi-generational simulations</li>
         </ul>
-        <a class="div-explore" href="#nexus">Explore Estate <span class="arr">→</span></a>
+        <a class="div-explore" href="#deep-estate">Explore Estate <span class="arr">→</span></a>
       </article>
-      <!-- CAPITAL -->
       <article class="div-card capital" style="--i:2">
         <div class="div-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21v-9M10 21v-9M14 21v-9M19 21v-9M3 12l9-6 9 6"/></svg></div>
-        <div class="div-name">MIZOKI3 CAPITAL</div>
-        <h3>Financial &amp; Banking Intelligence</h3>
+        <div class="div-name">MIZOKI3 CAPITAL</div><h3>Financial &amp; Banking Intelligence</h3>
         <ul class="div-feats">
           <li><span class="ck">✓</span>Banking &amp; lending relationship maps</li>
           <li><span class="ck">✓</span>Covenant &amp; obligation monitoring</li>
@@ -890,13 +986,11 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           <li><span class="ck">✓</span>Capital allocation optimization</li>
           <li><span class="ck">✓</span>Refinancing &amp; restructuring intel</li>
         </ul>
-        <a class="div-explore" href="#governance">Explore Capital <span class="arr">→</span></a>
+        <a class="div-explore" href="#deep-capital">Explore Capital <span class="arr">→</span></a>
       </article>
-      <!-- SIGNAL -->
       <article class="div-card signal" style="--i:3">
         <div class="div-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>
-        <div class="div-name">MIZOKI3 SIGNAL</div>
-        <h3>Acquisition &amp; Customer Intelligence</h3>
+        <div class="div-name">MIZOKI3 SIGNAL</div><h3>Acquisition &amp; Customer Intelligence</h3>
         <ul class="div-feats">
           <li><span class="ck">✓</span>Causal attribution (not correlation)</li>
           <li><span class="ck">✓</span>Customer intent &amp; journey mapping</li>
@@ -904,13 +998,11 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           <li><span class="ck">✓</span>ROAS optimization with simulation</li>
           <li><span class="ck">✓</span>Autonomous budget reallocation</li>
         </ul>
-        <a class="div-explore" href="#nexus">Explore Signal <span class="arr">→</span></a>
+        <a class="div-explore" href="#deep-signal">Explore Signal <span class="arr">→</span></a>
       </article>
-      <!-- RISK -->
       <article class="div-card risk" style="--i:4">
         <div class="div-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l9 5v6c0 6-4 9-9 11-5-2-9-5-9-11V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="div-name">MIZOKI3 RISK</div>
-        <h3>Verification &amp; Compliance Intelligence</h3>
+        <div class="div-name">MIZOKI3 RISK</div><h3>Verification &amp; Compliance Intelligence</h3>
         <ul class="div-feats">
           <li><span class="ck">✓</span>Cross-agent verification &amp; arbitration</li>
           <li><span class="ck">✓</span>Policy &amp; regulatory compliance</li>
@@ -918,32 +1010,163 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           <li><span class="ck">✓</span>Counterfactual &amp; stress testing</li>
           <li><span class="ck">✓</span>Audit functions &amp; audit trails</li>
         </ul>
-        <a class="div-explore" href="console/index.html">Explore Risk <span class="arr">→</span></a>
+        <a class="div-explore" href="#deep-risk">Explore Risk <span class="arr">→</span></a>
       </article>
+    </div>
+
+    <!-- EXTENSIBLE — every corporate division -->
+    <div class="ext-head reveal">
+      <span class="badge">Extensible by design</span>
+      <h3>One framework. <em class="serif">Every division.</em></h3>
+      <p>Counsel, Estate, Capital, Signal, and Risk ship as flagship lenses — but the architecture is open. Any corporate division runs the identical SRPVDAL loop on the identical Nexus and shares the same causal memory. The more divisions on the graph, the stronger the flywheel turns.</p>
+    </div>
+    <div class="ext-grid reveal stagger">
+      <div class="ext-card" style="--i:0">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.4 2.7-6 6-6s6 2.6 6 6M16 7a3 3 0 010 6M18 20c0-2.2-.8-4-2-5"/></svg></div>
+        <div><h4>People &amp; HR</h4><p>Talent, retention &amp; org-design intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:1">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18l-2 13H5z"/><path d="M8 7V5a4 4 0 018 0v2"/></svg></div>
+        <div><h4>Procurement</h4><p>Vendor, sourcing &amp; spend intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:2">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M1 16V8h13v8M14 11h5l3 3v2h-8M5 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z"/></svg></div>
+        <div><h4>Supply Chain</h4><p>Logistics, inventory &amp; disruption intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:3">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l9 4v6c0 5-4 9-9 10-5-1-9-5-9-10V6z"/><path d="M12 7v5M12 16h.01"/></svg></div>
+        <div><h4>IT &amp; Security</h4><p>Infrastructure, threat &amp; access intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:4">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+        <div><h4>Operations</h4><p>Process, throughput &amp; efficiency intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:5">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 3h6v6l4 9a2 2 0 01-2 3H7a2 2 0 01-2-3l4-9z"/><path d="M9 13h6"/></svg></div>
+        <div><h4>R&amp;D &amp; Product</h4><p>Innovation pipeline &amp; roadmap intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:6">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22c5-4 8-8 8-13a8 8 0 10-16 0c0 5 3 9 8 13z"/><path d="M9 12c1.5 1.5 4.5 1.5 6 0"/></svg></div>
+        <div><h4>ESG &amp; Sustainability</h4><p>Impact, reporting &amp; compliance intelligence.</p></div>
+      </div>
+      <div class="ext-card" style="--i:7">
+        <div class="ext-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9l5-4 5 4v10M14 19v-7l5-3v10M2 19h20"/></svg></div>
+        <div><h4>Investor Relations</h4><p>Capital-markets &amp; stakeholder intelligence.</p></div>
+      </div>
+    </div>
+    <div class="ext-foot reveal">
+      <span>Your division isn't listed? It still runs the same loop.</span>
+      <a class="lk" href="#contact">Scope a custom lens →</a>
+    </div>
+
+    <!-- DEEP DIVES -->
+    <div class="deep counsel reveal" id="deep-counsel">
+      <div class="deep-head">
+        <div class="left">
+          <div class="loop-badge"><span class="ring"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span><span class="tx">Runs the <b>Canonical Loop</b> on shared memory</span></div>
+          <div class="marker">Division 01 — Counsel</div>
+          <h3>Contracts, obligations, evidence — <span class="serif">reasoned and governed.</span></h3>
+        </div>
+        <div class="right">Unifies legal knowledge, contracts, obligations, rules, and evidence relationships into a governed intelligence layer that reasons, validates, and supports better decisions — autonomously.</div>
+      </div>
+      <div class="deep-canvas"><img src="assets/07-legal-cell.png" alt="MIZOKI3 Counsel — legal intelligence deep dive" loading="lazy" /></div>
+    </div>
+
+    <div class="deep estate reveal" id="deep-estate">
+      <div class="deep-head">
+        <div class="left">
+          <div class="loop-badge"><span class="ring"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span><span class="tx">Runs the <b>Canonical Loop</b> on shared memory</span></div>
+          <div class="marker">Division 02 — Estate</div>
+          <h3>Intelligence for <span class="serif">what matters most.</span></h3>
+        </div>
+        <div class="right">Unifies family, stakeholders, trusts, entities, holdings, and ownership lines into one model of trust, governance, and succession — surfacing concentration risk and control gaps in real time.</div>
+      </div>
+      <div class="deep-canvas"><img src="assets/08-estate-cell.png" alt="MIZOKI3 Estate — wealth, trust and tax intelligence deep dive" loading="lazy" /></div>
+    </div>
+
+    <div class="deep capital reveal" id="deep-capital">
+      <div class="deep-head">
+        <div class="left">
+          <div class="loop-badge"><span class="ring"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span><span class="tx">Runs the <b>Canonical Loop</b> on shared memory</span></div>
+          <div class="marker">Division 03 — Capital</div>
+          <h3>Causal foresight over <span class="serif">capital structures.</span></h3>
+        </div>
+        <div class="right">Maps treasury telemetry directly against the covenants Counsel ingests — forecasting liquidity stress before a mathematical breach occurs. Capital proposes; it never authorizes alone.</div>
+      </div>
+      <div class="deep-canvas">
+        <div class="cap-viz">
+          <svg class="chart" viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="capBar" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#34a6ff" stop-opacity="0.9"/><stop offset="100%" stop-color="#34a6ff" stop-opacity="0.25"/></linearGradient>
+              <linearGradient id="capBreach" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4495f" stop-opacity="0.9"/><stop offset="100%" stop-color="#f4495f" stop-opacity="0.2"/></linearGradient>
+            </defs>
+            <line x1="56" y1="20" x2="56" y2="250" stroke="rgba(120,150,230,0.2)" stroke-width="1"/>
+            <line x1="56" y1="250" x2="430" y2="250" stroke="rgba(120,150,230,0.2)" stroke-width="1"/>
+            <line x1="56" y1="110" x2="430" y2="110" stroke="#4cc9ff" stroke-width="1.5" stroke-dasharray="6 4"/>
+            <text x="430" y="104" font-family="JetBrains Mono" font-size="10" fill="#4cc9ff" text-anchor="end">COV-01 FLOOR</text>
+            <rect x="96" y="50" width="80" height="200" rx="4" fill="url(#capBar)"/>
+            <text x="136" y="270" font-family="JetBrains Mono" font-size="10" fill="#9aa6c8" text-anchor="middle">RESERVES</text>
+            <text x="136" y="42" font-family="Sora" font-size="14" font-weight="600" fill="#34a6ff" text-anchor="middle">12M</text>
+            <rect x="216" y="170" width="80" height="80" rx="4" fill="rgba(52,166,255,0.18)" stroke="#34a6ff" stroke-width="1" stroke-dasharray="4 3"/>
+            <text x="256" y="270" font-family="JetBrains Mono" font-size="10" fill="#9aa6c8" text-anchor="middle">DRAW</text>
+            <text x="256" y="162" font-family="Sora" font-size="13" font-weight="500" fill="#9aa6c8" text-anchor="middle">proposal</text>
+            <rect x="336" y="166" width="80" height="84" rx="4" fill="url(#capBreach)"/>
+            <text x="376" y="270" font-family="JetBrains Mono" font-size="10" fill="#f4495f" text-anchor="middle">PROJECTED</text>
+            <text x="376" y="158" font-family="Sora" font-size="14" font-weight="600" fill="#f4495f" text-anchor="middle">7M</text>
+            <line x1="376" y1="110" x2="376" y2="166" stroke="#f4495f" stroke-width="1" stroke-dasharray="2 2"/>
+          </svg>
+          <div class="read">
+            <h4>Liquidity vs. Covenant — ACT-991</h4>
+            <div class="vr"><span class="k">Treasury reserves</span><span class="v">$12,000,000</span></div>
+            <div class="vr"><span class="k">Proposed distribution</span><span class="v">&minus;$5,000,000</span></div>
+            <div class="vr"><span class="k">Covenant minimum</span><span class="v floor">$10,000,000</span></div>
+            <div class="vr"><span class="k">Projected liquidity</span><span class="v breach">$7,000,000</span></div>
+            <div class="verdict"><b>Breach forecast &mdash; $3M deficit.</b> Capital surfaces the conflict before it commits. Authorization withheld and routed to Risk.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deep signal reveal" id="deep-signal">
+      <div class="deep-head">
+        <div class="left">
+          <div class="loop-badge"><span class="ring"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span><span class="tx">Runs the <b>Canonical Loop</b> on shared memory</span></div>
+          <div class="marker">Division 04 — Signal</div>
+          <h3>Autonomous omni-source <span class="serif">customer acquisition.</span></h3>
+        </div>
+        <div class="right">Acquisition decisions powered by unified signals, causal reasoning, and real-time intent. Search, social, video, display, email — fused into one decision surface that learns and compounds.</div>
+      </div>
+      <div class="deep-canvas"><img src="assets/10-media-cell.png" alt="MIZOKI3 Signal — acquisition and customer intelligence deep dive" loading="lazy" /></div>
+    </div>
+
+    <div class="deep risk reveal" id="deep-risk">
+      <div class="deep-head">
+        <div class="left">
+          <div class="loop-badge"><span class="ring"><span class="d on"></span><span class="d on"></span><span class="d on"></span><span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span></span><span class="tx">Runs the <b>Canonical Loop</b> on shared memory</span></div>
+          <div class="marker">Division 05 — Risk · The Core Governor</div>
+          <h3>Risk is not beside the system. <span class="serif">Risk governs it.</span></h3>
+        </div>
+        <div class="right">Every consequential output passes through cross-agent verification, hallucination arbitration, and policy gating before authorization. Risk holds the veto over every other division.</div>
+      </div>
+      <div class="deep-canvas"><img src="assets/09-risk-cell.png" alt="MIZOKI3 Risk — verification and compliance intelligence deep dive" loading="lazy" /></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== LIVE NEXUS SNAPSHOT ===================== -->
+<!-- LIVE NEXUS SNAPSHOT -->
 <section id="nexus">
   <div class="container">
     <div class="sec-head reveal">
+      <div class="chapter-marker"><span class="ln"></span><span class="num">08</span><span>The Central Nervous System</span></div>
       <h2>Live Nexus Snapshot</h2>
-      <div class="sub">Real-time view of enterprise intelligence.</div>
+      <div class="sub">Real-time view of enterprise intelligence — one connected graph of people, assets, and obligations.</div>
     </div>
 
     <div class="snap-grid">
-      <!-- graph -->
       <div class="snap-panel reveal">
         <div class="snap-graph">
           <svg viewBox="0 0 700 440" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <radialGradient id="acmeCore" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#4cc9ff" stop-opacity="0.55"/>
-                <stop offset="100%" stop-color="#4cc9ff" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <!-- edges -->
+            <defs><radialGradient id="acmeCore" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4cc9ff" stop-opacity="0.55"/><stop offset="100%" stop-color="#4cc9ff" stop-opacity="0"/></radialGradient></defs>
             <g stroke-width="1.3" fill="none" opacity="0.55" stroke-dasharray="3 4">
               <line x1="350" y1="220" x2="190" y2="95"  stroke="#a855f7"/>
               <line x1="350" y1="220" x2="470" y2="80"  stroke="#a855f7"/>
@@ -953,12 +1176,10 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
               <line x1="350" y1="220" x2="170" y2="360" stroke="#f5a623"/>
               <line x1="350" y1="220" x2="110" y2="225" stroke="#34a6ff"/>
             </g>
-            <!-- core -->
             <circle cx="350" cy="220" r="70" fill="url(#acmeCore)"/>
             <circle cx="350" cy="220" r="40" fill="#070b1c" stroke="rgba(76,201,255,0.55)" stroke-width="1.5"/>
             <text x="350" y="216" font-family="Sora" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Acme</text>
             <text x="350" y="231" font-family="Sora" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Holdings</text>
-            <!-- entity nodes -->
             <g font-family="Inter" font-size="10" fill="#cdd5ee" text-anchor="middle">
               <g><rect x="128" y="78" width="124" height="30" rx="6" fill="rgba(168,85,247,0.12)" stroke="#a855f7" stroke-width="1"/><text x="190" y="97">Litigation Matter A</text></g>
               <g><rect x="408" y="64" width="124" height="30" rx="6" fill="rgba(168,85,247,0.12)" stroke="#a855f7" stroke-width="1"/><text x="470" y="83">Operating Agreement</text></g>
@@ -968,12 +1189,9 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
               <g><rect x="108" y="345" width="120" height="30" rx="6" fill="rgba(245,166,35,0.12)" stroke="#f5a623" stroke-width="1"/><text x="168" y="364">Ad Campaign Q2</text></g>
               <g><rect x="42" y="210" width="104" height="30" rx="6" fill="rgba(52,166,255,0.12)" stroke="#34a6ff" stroke-width="1"/><text x="94" y="229">Loan Facility</text></g>
             </g>
-            <!-- node dots -->
             <g fill="#fff">
-              <circle cx="190" cy="95" r="3"/><circle cx="470" cy="80" r="3"/>
-              <circle cx="595" cy="150" r="3"/><circle cx="596" cy="300" r="3"/>
-              <circle cx="470" cy="370" r="3"/><circle cx="168" cy="360" r="3"/>
-              <circle cx="94" cy="225" r="3"/>
+              <circle cx="190" cy="95" r="3"/><circle cx="470" cy="80" r="3"/><circle cx="595" cy="150" r="3"/>
+              <circle cx="596" cy="300" r="3"/><circle cx="470" cy="370" r="3"/><circle cx="168" cy="360" r="3"/><circle cx="94" cy="225" r="3"/>
             </g>
           </svg>
         </div>
@@ -985,8 +1203,6 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
           <div class="feed-item"><span class="tdot" style="background:var(--signal)"></span><div><div class="ftime">12m ago</div><div class="ftext">Ad budget reallocated <span class="ent">· +18% ROAS impact</span></div></div></div>
         </div>
       </div>
-
-      <!-- side -->
       <div class="snap-side reveal">
         <div class="snap-stats">
           <div class="snap-stat"><div class="lbl">Active Signals</div><div class="row"><span class="val">18,742</span><span class="delta up">↑ 24%</span></div></div>
@@ -1001,23 +1217,42 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
         </div>
       </div>
     </div>
+
+    <div class="canvas cyan reveal" style="margin-top:54px">
+      <img src="assets/11-nexus.png" alt="MIZOKI3 Nexus — cross-domain orchestration core" loading="lazy" />
+      <div class="canvas-cap"><span>Nexus orchestration core</span> · one brain · many lenses · shared causal memory</div>
+    </div>
   </div>
 </section>
 
-<!-- ===================== GOVERNANCE — CSE + DEL ===================== -->
+<!-- KNOWLEDGE GRAPH -->
+<section id="memory">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="chapter-marker"><span class="ln"></span><span class="num">09</span><span>The Memory of the System</span></div>
+      <h2>The Temporal-Causal <em class="serif">Knowledge Graph.</em></h2>
+      <div class="sub">People, systems, data, policies, and events connected into one living network — giving every division context, lineage, and explainability.</div>
+    </div>
+    <div class="canvas violet reveal">
+      <img src="assets/06-knowledge-graph.png" alt="MIZOKI3 Temporal-Causal Knowledge Graph — temporal, causal, versioned shared memory" loading="lazy" />
+      <div class="canvas-cap"><span>Shared causal memory</span> · temporal · causal · versioned · governed</div>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE — CSE + DEL -->
 <section id="governance">
   <div class="container">
     <div class="sec-head center reveal">
+      <div class="chapter-marker" style="justify-content:center"><span class="ln"></span><span class="num">10</span><span>Governed Autonomy</span><span class="ln r"></span></div>
       <h2>Governed. Verifiable. Enterprise-Ready.</h2>
       <div class="sub">Every consequential decision is simulated against alternatives — and held to a higher standard before it reaches autonomy.</div>
     </div>
 
     <div class="gov-grid">
-      <!-- CSE -->
       <div class="gov-panel cse reveal">
-        <div class="gtag">Counterfactual Simulation Engine</div>
+        <div class="gtag">Counterfactual Simulation Engine — CSE</div>
         <h3>See the future before you choose it.</h3>
-        <div class="gsub">CSE</div>
         <ul class="gov-list">
           <li><span class="ck">✓</span>Simulate multiple scenarios and alternatives</li>
           <li><span class="ck">✓</span>Compare outcomes vs. a no-action baseline</li>
@@ -1027,40 +1262,31 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
         </ul>
         <div class="cse-chart">
           <svg viewBox="0 0 460 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <!-- axes -->
             <line x1="48" y1="14" x2="48" y2="190" stroke="rgba(120,150,230,0.2)"/>
             <line x1="48" y1="115" x2="430" y2="115" stroke="rgba(120,150,230,0.25)" stroke-dasharray="3 3"/>
             <line x1="48" y1="190" x2="430" y2="190" stroke="rgba(120,150,230,0.2)"/>
-            <text x="40" y="30" font-family="JetBrains Mono" font-size="8" fill="#6c7799" text-anchor="end">+$10M</text>
-            <text x="40" y="119" font-family="JetBrains Mono" font-size="8" fill="#6c7799" text-anchor="end">$0</text>
-            <text x="40" y="188" font-family="JetBrains Mono" font-size="8" fill="#6c7799" text-anchor="end">−$10M</text>
-            <!-- option A -->
+            <text x="40" y="30" font-family="JetBrains Mono" font-size="8" fill="#6c7799" text-anchor="end">+10M</text>
+            <text x="40" y="119" font-family="JetBrains Mono" font-size="8" fill="#6c7799" text-anchor="end">0</text>
+            <text x="40" y="188" font-family="JetBrains Mono" font-size="8" fill="#6c7799" text-anchor="end">-10M</text>
             <polyline points="48,112 144,96 240,78 336,58 426,40" fill="none" stroke="#34a6ff" stroke-width="2.4"/>
-            <!-- option B -->
             <polyline points="48,112 144,108 240,100 336,92 426,84" fill="none" stroke="#21d07a" stroke-width="2.4"/>
-            <!-- do nothing -->
             <polyline points="48,112 144,116 240,120 336,124 426,128" fill="none" stroke="#9aa6c8" stroke-width="2" stroke-dasharray="4 3"/>
-            <!-- downside -->
             <polyline points="48,112 144,128 240,146 336,162 426,176" fill="none" stroke="#f4495f" stroke-width="2.4"/>
-            <!-- labels -->
-            <text x="430" y="38" font-family="Inter" font-size="9" fill="#34a6ff">Refinance A  +$4.2M</text>
-            <text x="430" y="82" font-family="Inter" font-size="9" fill="#21d07a">Refinance B  +$1.6M</text>
-            <text x="430" y="126" font-family="Inter" font-size="9" fill="#9aa6c8">Do Nothing  −$0.8M</text>
-            <text x="430" y="174" font-family="Inter" font-size="9" fill="#f4495f">Downside  −$3.7M</text>
+            <text x="430" y="38" font-family="Inter" font-size="9" fill="#34a6ff">Refinance A +4.2M</text>
+            <text x="430" y="82" font-family="Inter" font-size="9" fill="#21d07a">Refinance B +1.6M</text>
+            <text x="430" y="126" font-family="Inter" font-size="9" fill="#9aa6c8">Do Nothing -0.8M</text>
+            <text x="430" y="174" font-family="Inter" font-size="9" fill="#f4495f">Downside -3.7M</text>
             <g font-family="JetBrains Mono" font-size="7.5" fill="#6c7799" text-anchor="middle">
-              <text x="48" y="205">Y0</text><text x="144" y="205">Y1</text><text x="240" y="205">Y2</text>
-              <text x="336" y="205">Y3</text><text x="426" y="205">Y4</text>
+              <text x="48" y="205">Y0</text><text x="144" y="205">Y1</text><text x="240" y="205">Y2</text><text x="336" y="205">Y3</text><text x="426" y="205">Y4</text>
             </g>
           </svg>
         </div>
         <div class="cse-foot">Example: refinancing decision — every consequential choice is simulated against alternatives and a no-action baseline.</div>
       </div>
 
-      <!-- DEL -->
       <div class="gov-panel del reveal">
-        <div class="gtag">Decision Eligibility Layer</div>
+        <div class="gtag">Decision Eligibility Layer — DEL</div>
         <h3>Autonomy with a higher standard.</h3>
-        <div class="gsub">DEL</div>
         <ul class="gov-list">
           <li><span class="ck">✓</span>Prohibits action on correlation alone</li>
           <li><span class="ck">✓</span>Requires causal grounding</li>
@@ -1071,17 +1297,9 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
         </ul>
         <div class="del-gauge">
           <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs>
-              <linearGradient id="gauge" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stop-color="#f4495f"/>
-                <stop offset="50%" stop-color="#f5a623"/>
-                <stop offset="100%" stop-color="#21d07a"/>
-              </linearGradient>
-            </defs>
+            <defs><linearGradient id="gauge" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f4495f"/><stop offset="50%" stop-color="#f5a623"/><stop offset="100%" stop-color="#21d07a"/></linearGradient></defs>
             <path d="M30 140 A110 110 0 0 1 250 140" fill="none" stroke="rgba(120,150,230,0.12)" stroke-width="16" stroke-linecap="round"/>
-            <path d="M30 140 A110 110 0 0 1 250 140" fill="none" stroke="url(#gauge)" stroke-width="16" stroke-linecap="round"
-                  stroke-dasharray="345" stroke-dashoffset="48"/>
-            <!-- needle at 87/100 → ~ -23deg from right; angle = 180 - 1.566*87 ≈ 44deg above horizontal from center -->
+            <path d="M30 140 A110 110 0 0 1 250 140" fill="none" stroke="url(#gauge)" stroke-width="16" stroke-linecap="round" stroke-dasharray="345" stroke-dashoffset="48"/>
             <g transform="rotate(-23 140 140)">
               <line x1="140" y1="140" x2="232" y2="140" stroke="#f3f5fc" stroke-width="3" stroke-linecap="round"/>
               <circle cx="140" cy="140" r="8" fill="#070b1c" stroke="#f3f5fc" stroke-width="2"/>
@@ -1097,83 +1315,103 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
   </div>
 </section>
 
-<!-- ===================== USE CASES ===================== -->
+<!-- INFRASTRUCTURE -->
+<section id="infrastructure">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div class="chapter-marker"><span class="ln"></span><span class="num">11</span><span>Fiduciary-Grade Infrastructure</span></div>
+      <h2>Data sovereignty, <em class="serif">provable in code.</em></h2>
+      <div class="sub">MIZOKI3 ships as Terraform — a zero-trust cloud the enterprise provisions, owns, and audits. Proprietary contracts and capital telemetry never touch a public endpoint.</div>
+    </div>
+
+    <div class="infra-diagram reveal">
+      <div class="infra-perim">
+        <span class="plabel">Zero-Trust GCP VPC · us-central1 · Private Subnet Only</span>
+        <div class="infra-row">
+          <div class="infra-node graph">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 7l4 10M17 7l-4 10"/></svg></div>
+            <div class="svc">BigQuery + Neo4j</div><h4>TCKG Substrate</h4>
+            <p>Bi-temporal causal graph in Neo4j, unified analytics in BigQuery. CMEK-encrypted.</p>
+          </div>
+          <div class="infra-node bus">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="1.5" fill="currentColor"/><circle cx="14" cy="12" r="1.5" fill="currentColor"/><circle cx="10" cy="18" r="1.5" fill="currentColor"/></svg></div>
+            <div class="svc">Cloud Pub/Sub</div><h4>Nexus Event Bus</h4>
+            <p>Cross-domain updates in real time — Counsel updates Capital the instant a covenant changes.</p>
+          </div>
+          <div class="infra-node orch">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg></div>
+            <div class="svc">Google Cloud Run</div><h4>SRPVDAL Orchestrator</h4>
+            <p>32 FastAPI cells run the canonical loop. Internal-only ingress — sealed from the public internet.</p>
+          </div>
+          <div class="infra-node ai">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L3 7v5c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z"/><circle cx="12" cy="11" r="2.5"/></svg></div>
+            <div class="svc">Vertex AI</div><h4>Isolated Reasoning</h4>
+            <p>Current-generation Claude on Vertex AI, scoped by IAM. Prompts and contracts never leave the project.</p>
+          </div>
+        </div>
+      </div>
+      <div class="infra-base">
+        <div class="b"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="t"><strong>Cloud KMS</strong>Customer-managed key · 90-day rotation</div></div>
+        <div class="b"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L3 7v5c0 5 4 9 9 10 5-1 9-5 9-10V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="t"><strong>IAM + Workload Identity</strong>Strict identity on every internal hop</div></div>
+        <div class="b"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="t"><strong>VPC Service Controls</strong>Data-exfiltration perimeter · enterprise SLA</div></div>
+      </div>
+    </div>
+
+    <div class="sov-grid reveal stagger">
+      <div class="sov-card" style="--i:0">
+        <div class="n">i</div><h4>Network-isolated reasoning</h4>
+        <p>Every Cloud Run cell sets <code>ingress = INTERNAL_ONLY</code>. The entire reasoning loop runs in a private subnet — no public endpoint to the brain.</p>
+      </div>
+      <div class="sov-card" style="--i:1">
+        <div class="n">ii</div><h4>Owned, not rented</h4>
+        <p>Delivered as Terraform. The enterprise provisions it in their own GCP project, holds the Cloud KMS keys, and audits every line.</p>
+      </div>
+      <div class="sov-card" style="--i:2">
+        <div class="n">iii</div><h4>No training leakage</h4>
+        <p>Reasoning routes through Claude on Vertex AI under IAM scope. Private contracts and capital telemetry are never used to train foundation models.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO FLOW -->
+<section id="demo">
+  <div class="container">
+    <div class="sec-head center reveal">
+      <h2>See MIZOKI3 in Action</h2>
+      <div class="sub">From fragmented data to verified strategic action — explore the autonomous flow.</div>
+    </div>
+    <div class="demo-flow reveal stagger">
+      <div class="demo-step" style="--i:0"><div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg></div><div class="demo-num">01</div><h4>Upload</h4><p>Connect documents, CRM, emails, and more.</p></div>
+      <div class="demo-step" style="--i:1"><div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg></div><div class="demo-num">02</div><h4>Nexus Ingests</h4><p>Signals are mapped to the Knowledge Graph.</p></div>
+      <div class="demo-step" style="--i:2"><div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18l5-6 4 4 7-9"/><circle cx="4" cy="18" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="13" cy="16" r="1.6"/><circle cx="20" cy="7" r="1.6"/></svg></div><div class="demo-num">03</div><h4>Analyze &amp; Simulate</h4><p>Agents run causal models and counterfactuals.</p></div>
+      <div class="demo-step" style="--i:3"><div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3 8-8 9-5-1-8-4-8-9V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="demo-num">04</div><h4>Review &amp; Authorize</h4><p>Proposals verified and ready for approval.</p></div>
+      <div class="demo-step" style="--i:4"><div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"/></svg></div><div class="demo-num">05</div><h4>Execute</h4><p>Actions taken with DCP authorization and monitoring.</p></div>
+      <div class="demo-step" style="--i:5"><div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12a9 9 0 0115-6.7M21 12a9 9 0 01-15 6.7M21 5v5h-5M3 19v-5h5"/></svg></div><div class="demo-num">06</div><h4>Learn</h4><p>Outcomes recorded. The system improves continuously.</p></div>
+    </div>
+    <div class="demo-foot reveal">From fragmented data to verified strategic action — in one autonomous system.</div>
+  </div>
+</section>
+
+<!-- USE CASES -->
 <section id="usecases">
   <div class="container">
     <div class="sec-head reveal">
       <h2>Built for the Most Demanding Enterprises</h2>
       <div class="sub">One autonomous decision system, deployed where the stakes are highest.</div>
     </div>
-
     <div class="uc-grid reveal stagger">
-      <div class="uc-card" style="--i:0">
-        <div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 7h14M7 7l-3 7a4 4 0 008 0zM17 7l-3 7a4 4 0 008 0z"/></svg></div>
-        <div><h4>Law Firms &amp; Legal Departments</h4><p>Litigation strategy, contracts, compliance, and risk.</p></div>
-      </div>
-      <div class="uc-card" style="--i:1">
-        <div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
-        <div><h4>Family Offices &amp; Wealth Managers</h4><p>Estate, tax, trust, and multi-generational planning.</p></div>
-      </div>
-      <div class="uc-card" style="--i:2">
-        <div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21v-9M10 21v-9M14 21v-9M19 21v-9M3 12l9-6 9 6"/></svg></div>
-        <div><h4>Banks &amp; Financial Institutions</h4><p>Risk, lending, compliance, and capital optimization.</p></div>
-      </div>
-      <div class="uc-card" style="--i:3">
-        <div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 20h18M6 20v-6M11 20V8M16 20v-9M21 20V5"/></svg></div>
-        <div><h4>Private Equity &amp; Portfolio Companies</h4><p>Operational intelligence and value creation.</p></div>
-      </div>
-      <div class="uc-card" style="--i:4">
-        <div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="8" height="13"/><rect x="13" y="3" width="8" height="18"/><path d="M6 12h2M6 16h2M16 7h2M16 11h2M16 15h2"/></svg></div>
-        <div><h4>Enterprises &amp; Operating Companies</h4><p>Strategy, operations, risk, and growth.</p></div>
-      </div>
-      <div class="uc-card" style="--i:5">
-        <div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l9 5v6c0 6-4 9-9 11-5-2-9-5-9-11V7z"/><path d="M12 8v5M12 16h.01"/></svg></div>
-        <div><h4>Government &amp; Regulated Industries</h4><p>Compliance, audit, and mission assurance.</p></div>
-      </div>
+      <div class="uc-card" style="--i:0"><div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 7h14M7 7l-3 7a4 4 0 008 0zM17 7l-3 7a4 4 0 008 0z"/></svg></div><div><h4>Law Firms &amp; Legal Departments</h4><p>Litigation strategy, contracts, compliance, and risk.</p></div></div>
+      <div class="uc-card" style="--i:1"><div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div><div><h4>Family Offices &amp; Wealth Managers</h4><p>Estate, tax, trust, and multi-generational planning.</p></div></div>
+      <div class="uc-card" style="--i:2"><div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21h18M5 21v-9M10 21v-9M14 21v-9M19 21v-9M3 12l9-6 9 6"/></svg></div><div><h4>Banks &amp; Financial Institutions</h4><p>Risk, lending, compliance, and capital optimization.</p></div></div>
+      <div class="uc-card" style="--i:3"><div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 20h18M6 20v-6M11 20V8M16 20v-9M21 20V5"/></svg></div><div><h4>Private Equity &amp; Portfolio Companies</h4><p>Operational intelligence and value creation.</p></div></div>
+      <div class="uc-card" style="--i:4"><div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="8" width="8" height="13"/><rect x="13" y="3" width="8" height="18"/><path d="M6 12h2M6 16h2M16 7h2M16 11h2M16 15h2"/></svg></div><div><h4>Enterprises &amp; Operating Companies</h4><p>Strategy, operations, risk, and growth.</p></div></div>
+      <div class="uc-card" style="--i:5"><div class="uc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l9 5v6c0 6-4 9-9 11-5-2-9-5-9-11V7z"/><path d="M12 8v5M12 16h.01"/></svg></div><div><h4>Government &amp; Regulated Industries</h4><p>Compliance, audit, and mission assurance.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== DEMO FLOW ===================== -->
-<section class="demo" id="demo">
-  <div class="container">
-    <div class="sec-head center reveal">
-      <h2>See MIZOKI3 in Action</h2>
-      <div class="sub">From fragmented data to verified strategic action — explore the autonomous flow.</div>
-    </div>
-
-    <div class="demo-flow reveal stagger">
-      <div class="demo-step" style="--i:0">
-        <div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg></div>
-        <div class="demo-num">01</div><h4>Upload</h4><p>Connect documents, CRM, emails, and more.</p>
-      </div>
-      <div class="demo-step" style="--i:1">
-        <div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 7l3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></svg></div>
-        <div class="demo-num">02</div><h4>Nexus Ingests</h4><p>Signals are mapped to the Knowledge Graph.</p>
-      </div>
-      <div class="demo-step" style="--i:2">
-        <div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 18l5-6 4 4 7-9"/><circle cx="4" cy="18" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="13" cy="16" r="1.6"/><circle cx="20" cy="7" r="1.6"/></svg></div>
-        <div class="demo-num">03</div><h4>Analyze &amp; Simulate</h4><p>Agents run causal models and counterfactuals.</p>
-      </div>
-      <div class="demo-step" style="--i:3">
-        <div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3 8-8 9-5-1-8-4-8-9V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <div class="demo-num">04</div><h4>Review &amp; Authorize</h4><p>Proposals verified and ready for approval.</p>
-      </div>
-      <div class="demo-step" style="--i:4">
-        <div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 2L4 14h7l-2 8 9-12h-7l2-8z"/></svg></div>
-        <div class="demo-num">05</div><h4>Execute</h4><p>Actions taken with DCP authorization and monitoring.</p>
-      </div>
-      <div class="demo-step" style="--i:5">
-        <div class="demo-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12a9 9 0 0115-6.7M21 12a9 9 0 01-15 6.7M21 5v5h-5M3 19v-5h5"/></svg></div>
-        <div class="demo-num">06</div><h4>Learn</h4><p>Outcomes recorded. The system improves continuously.</p>
-      </div>
-    </div>
-
-    <div class="demo-foot reveal">From fragmented data to verified strategic action — in one autonomous system.</div>
-  </div>
-</section>
-
-<!-- ===================== CTA ===================== -->
+<!-- CTA -->
 <section id="contact">
   <div class="container">
     <div class="cta-card reveal">
@@ -1197,7 +1435,6 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
 
 </main>
 
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="container">
     <div class="foot-grid">
@@ -1206,10 +1443,11 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
         <p>Autonomous Strategic Intelligence Infrastructure</p>
       </div>
       <div class="foot-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Security</a>
-        <a href="#">Careers</a>
+        <a href="#orchestration">Platform</a>
+        <a href="#divisions">Divisions</a>
+        <a href="#governance">Governance</a>
+        <a href="console/index.html">Control Plane</a>
+        <a href="#infrastructure">Architecture</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -1225,23 +1463,91 @@ footer{ border-top:1px solid var(--hairline); padding:50px 0 32px; }
 </footer>
 
 <script>
-// reveal on scroll
 const io = new IntersectionObserver((es) => {
   es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// active nav
 const navLinks = document.querySelectorAll('.nav-links a');
+const railLinks = document.querySelectorAll('.rail a');
 const secs = document.querySelectorAll('section[id]');
-const navObs = new IntersectionObserver((es) => {
+const obs = new IntersectionObserver((es) => {
   es.forEach(e => {
     if (e.isIntersecting){
-      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+      const id = '#' + e.target.id;
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+      railLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
     }
   });
-}, { threshold: 0.4 });
-secs.forEach(s => navObs.observe(s));
+}, { threshold: 0.35 });
+secs.forEach(s => obs.observe(s));
+
+// ===== V&A veto trace =====
+(function(){
+  const body = document.getElementById('vetoBody');
+  if(!body) return;
+  const replay = document.getElementById('vetoReplay');
+  const L = { dcp:document.getElementById('vl-dcp'), va:document.getElementById('vl-va'), del:document.getElementById('vl-del') };
+  const vfB = document.getElementById('vf-blocked'), vfE = document.getElementById('vf-exec');
+
+  function set(k,cls,txt){
+    const el=L[k]; if(!el) return;
+    el.classList.remove('on','flag','veto','pass'); el.classList.add(cls);
+    el.querySelector('.vl-state').textContent=txt;
+  }
+  function stamp(){
+    const s=document.createElement('div'); s.className='veto-stamp show'; s.textContent='Vetoed';
+    body.appendChild(s);
+  }
+
+  const S = [
+    {h:'<span class="dim">$ srpvdal trace --decision ACT-991</span>', d:520},
+    {h:'<span class="st">SENSE</span><span class="ar">▸</span> ingest — treasury telemetry · COV-01 covenant terms', d:620},
+    {h:'<span class="st">REASON</span><span class="ar">▸</span> Capital cell proposes <span class="dim">distribute $5.0M to equity</span>', d:680},
+    {h:'<span class="st">PLAN</span><span class="ar">▸</span> option A <span class="dim">distribute now</span> │ option B <span class="dim">defer one quarter</span>', d:640},
+    {h:'<span class="st">VALIDATE</span><span class="ar">▸</span> Counterfactual Simulation Engine — 4 scenarios modeled', d:520, fn:()=>set('va','on','Verifying')},
+    {h:'<span class="dim">         ▸ cross-domain check — Counsel + Estate cells engaged</span>', d:760},
+    {h:'<span class="rule">────────────────────────────────────────────</span>', d:360},
+    {h:'<span class="st warn">V&amp;A</span><span class="warn">⚠ Verification &amp; Arbitration — CONFLICT DETECTED</span>', d:720, fn:()=>set('va','flag','Conflict')},
+    {h:'<span class="dim">         ▸ reserves $12.0M − distribution $5.0M = $7.0M</span>', d:520},
+    {h:'<span class="dim">         ▸ COV-01 minimum liquidity = </span><span class="warn">$10.0M</span>', d:520},
+    {h:'<span class="dim">         ▸ projected covenant breach </span><span class="bad">−$3.0M</span><span class="dim"> · p = 0.97</span>', d:760},
+    {h:'<span class="st bad">DEL</span><span class="bad">✕ Decision Eligibility — score 0.31 · below threshold</span>', d:720, fn:()=>set('del','veto','Ineligible')},
+    {h:'<span class="rule">────────────────────────────────────────────</span>', d:360},
+    {h:'<span class="st bad">DCP</span><span class="bad">✕ OPTION A VETOED — authorization withheld</span>', d:760, fn:()=>{set('dcp','veto','Vetoed'); stamp();}},
+    {h:'<span class="st">DECIDE</span><span class="ar">▸</span> re-route to <span class="good">option B</span> — covenant preserved', d:620, fn:()=>vfB.classList.add('lit')},
+    {h:'<span class="st good">ACT</span><span class="good">✓ executed — distribution deferred · liquidity held $12.0M</span>', d:640, fn:()=>{set('dcp','pass','Authorized'); vfE.classList.add('lit');}},
+    {h:'<span class="st">LEARN</span><span class="ar">▸</span> outcome recorded — breach pattern reinforced in graph', d:600},
+    {h:'<span class="dim">$ </span>', d:0, caret:true}
+  ];
+
+  let runId = 0;
+  function run(){
+    const myId = ++runId;
+    body.innerHTML = '';
+    Object.values(L).forEach(el=>{ el.classList.remove('on','flag','veto','pass'); el.querySelector('.vl-state').textContent='Standby'; });
+    vfB.classList.remove('lit'); vfE.classList.remove('lit');
+    let i = 0;
+    (function next(){
+      if(myId !== runId || i >= S.length) return;
+      const step = S[i++];
+      const line = document.createElement('div');
+      line.className = 'veto-line' + (step.caret ? ' caret' : '');
+      line.innerHTML = step.h;
+      body.appendChild(line);
+      requestAnimationFrame(()=>line.classList.add('show'));
+      if(step.fn) step.fn();
+      body.scrollTop = body.scrollHeight;
+      setTimeout(next, step.d || 1);
+    })();
+  }
+
+  const vio = new IntersectionObserver((es)=>{
+    es.forEach(e=>{ if(e.isIntersecting){ run(); vio.unobserve(e.target); } });
+  }, { threshold:0.35 });
+  vio.observe(body);
+  replay.addEventListener('click', run);
+})();
 </script>
 
 </body>
