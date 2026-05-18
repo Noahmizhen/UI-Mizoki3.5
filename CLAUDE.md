@@ -125,8 +125,9 @@ Naming consolidation: Legal → **Counsel**, Media Acquisition → **Signal**. T
 
 ### `mizoki3-site/` Sub-Tree (2026-05-17)
 - `mizoki3-site/console/index.html` — standalone Decision Control Plane (Risk Arbitration Console UI). Sidebar carries Counsel/Estate/Capital/Signal/Risk + Nexus TCKG substrate + Decision Control. SRPVDAL execution trace, TCKG subgraph SVG, decision queue.
-- `mizoki3-site/infrastructure/main.tf` — Terraform module for the fiduciary substrate (zero-trust VPC, Neptune TCKG, MSK serverless event bus, EKS for SRPVDAL/LangGraph orchestration, Bedrock IAM isolation, KMS).
-  - **Outstanding:** the Bedrock IAM policy still pins `claude-3-5-sonnet-20240620-v1:0`. Bump to the current approved Claude model on Bedrock before any production apply.
+- `mizoki3-site/infrastructure/main.tf` — Google Cloud Terraform module for the fiduciary substrate. Matches the actual stack: private VPC, Cloud Spanner with the GoogleSQL property-graph schema for TCKG, Pub/Sub event bus, Cloud Run for SRPVDAL/LangGraph orchestration, Vertex AI Model Garden for Claude reasoning isolation (publisher-model IAM condition pinning), Cloud KMS for encryption.
+  - **Outstanding:** the Vertex AI binding pins `claude-3-5-sonnet-v2@20241022`. Bump to the current approved Claude model on Vertex AI Model Garden before any production apply.
+  - **Migration note:** an earlier draft of this file used AWS (Bedrock, Neptune, MSK, EKS) — replaced 2026-05-18 because the website and orchestration actually run on Cloud Run, and reasoning runs on Vertex AI, not Bedrock.
 
 ### Flask Routes for Console + Infrastructure (2026-05-17)
 Added in `app.py` (mirrors the `/blog/` and `/11/` patterns):
