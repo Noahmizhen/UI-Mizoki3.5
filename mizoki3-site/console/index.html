@@ -334,6 +334,51 @@ body::before{
 .q-item .qstat.exec{color:var(--emerald);background:rgba(62,224,193,0.1);border:1px solid rgba(62,224,193,0.3);}
 .q-item .qstat.review{color:var(--amber);background:rgba(245,177,74,0.1);border:1px solid rgba(245,177,74,0.3);}
 
+/* live terminal */
+.term-panel{
+  margin-top:20px;background:rgba(2,3,9,0.92);
+  border:1px solid var(--hairline-2);border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.term-bar{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 18px;background:rgba(10,14,30,0.7);
+  border-bottom:1px solid var(--hairline);
+}
+.term-bar .dots{display:flex;gap:6px;}
+.term-bar .dots span{width:9px;height:9px;border-radius:50%;}
+.term-bar .dots span:nth-child(1){background:var(--crimson);}
+.term-bar .dots span:nth-child(2){background:var(--amber);}
+.term-bar .dots span:nth-child(3){background:var(--emerald);}
+.term-bar .fn{font-family:var(--mono);font-size:0.7rem;color:var(--ink-3);}
+.term-bar .lv{
+  margin-left:auto;font-family:var(--mono);font-size:0.58rem;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--emerald);
+  display:flex;align-items:center;gap:7px;
+}
+.term-bar .lv .b{
+  width:6px;height:6px;border-radius:50%;background:var(--emerald);
+  box-shadow:0 0 8px var(--emerald);animation:pulse 1.6s ease-in-out infinite;
+}
+.term-out{
+  padding:20px 22px;height:300px;overflow-y:auto;
+  font-family:var(--mono);font-size:0.76rem;line-height:1.85;
+}
+.tl{opacity:0;transform:translateY(6px);animation:tIn 0.2s forwards;color:var(--ink-3);white-space:pre-wrap;word-break:break-word;}
+@keyframes tIn{to{opacity:1;transform:translateY(0);}}
+.tl .ts{color:var(--ink-4);}
+.tl .ly{font-weight:700;}
+.tl .ly.counsel{color:var(--azure);}
+.tl .ly.capital{color:var(--amber);}
+.tl .ly.risk{color:var(--crimson);}
+.tl .ly.nexus,.tl .ly.dcp{color:var(--violet-hot);}
+.tl .ac{color:var(--ink-2);}
+.tl .ms{color:var(--ink-2);}
+.tl.veto .ms{color:var(--crimson);font-weight:600;}
+.tl.reject .ms{color:#fff;font-weight:600;}
+.tcur{display:inline-block;width:7px;height:13px;background:var(--emerald);vertical-align:middle;animation:blink 1s steps(2) infinite;}
+@keyframes blink{0%,50%{opacity:1;}51%,100%{opacity:0;}}
+
 @media (max-width:1100px){
   .workspace{flex-direction:column;}
   .col-side{width:100%;}
@@ -483,6 +528,15 @@ body::before{
           <span class="qstat exec">Executed</span>
         </div>
       </div>
+
+      <div class="term-panel">
+        <div class="term-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <div class="fn">SRPVDAL_Orchestration_Trace.sh</div>
+          <div class="lv"><span class="b"></span>Live Execution</div>
+        </div>
+        <div class="term-out" id="termOut"></div>
+      </div>
     </div>
 
     <!-- SIDE COLUMN -->
@@ -551,6 +605,50 @@ body::before{
       n.toISOString().replace('T',' ').substring(0,19) + ' UTC';
   }
   tick(); setInterval(tick, 1000);
+
+  // Live SRPVDAL execution trace
+  const LINES = [
+    {ly:'COUNSEL',ac:'SENSE',    ms:'Ingesting Legal Amendment AMEND-842…', d:600},
+    {ly:'COUNSEL',ac:'REASON',   ms:'Extracting causal constraints from contract text…', d:800},
+    {ly:'NEXUS',  ac:'MEMORY',   ms:'TCKG updated — executable liquidity covenant COV-01.', d:700},
+    {gap:true,d:220},
+    {ly:'CAPITAL',ac:'PLAN',     ms:'Proposing $5M Q3 dividend against $12M reserves.', d:1300},
+    {ly:'NEXUS',  ac:'SIMULATE', ms:'Initializing Counterfactual Simulation Engine…', d:900},
+    {ly:'NEXUS',  ac:'SIMULATE', ms:'Projected post-action liquidity: $7,000,000', d:850},
+    {ly:'RISK',   ac:'VERIFY',   ms:'Cross-referencing simulated state against TCKG…', d:1100},
+    {gap:true,d:220},
+    {ly:'RISK',   ac:'ARBITRATE',ms:'VETO — causal inconsistency detected.', cls:'veto', d:800},
+    {cont:true,ms:'└─ $7M liquidity violates AMEND-842 minimum ($10M).', cls:'veto', d:420},
+    {gap:true,d:220},
+    {ly:'DCP',    ac:'DECIDE',   ms:'Decision Control Plane — autonomous action REJECTED.', cls:'reject', d:750},
+    {ly:'NEXUS',  ac:'LEARN',    ms:'Arbitration logic written to shared memory.', d:1100}
+  ];
+  const out = document.getElementById('termOut');
+  function st(){
+    const n=new Date(), p=(x,l=2)=>String(x).padStart(l,'0');
+    return `${p(n.getHours())}:${p(n.getMinutes())}:${p(n.getSeconds())}.${p(n.getMilliseconds(),3).slice(0,3)}`;
+  }
+  function lc(l){const k=l.toLowerCase();return ['counsel','capital','risk','nexus','dcp'].includes(k)?k:'nexus';}
+  function render(d){
+    const el=document.createElement('div');
+    el.className='tl'+(d.cls?' '+d.cls:'');
+    if(d.gap){el.innerHTML='&nbsp;';}
+    else if(d.cont){el.innerHTML=`<span class="ts">           </span><span class="ms">${d.ms}</span>`;}
+    else{el.innerHTML=`<span class="ts">[${st()}]</span> [<span class="ly ${lc(d.ly)}">${d.ly.padEnd(7)}</span>] [<span class="ac">${d.ac.padEnd(9)}</span>] <span class="ms">${d.ms}</span>`;}
+    out.appendChild(el); out.scrollTop=out.scrollHeight;
+  }
+  function run(i){
+    if(i>=LINES.length){
+      const c=document.createElement('div');
+      c.className='tl';
+      c.innerHTML='<span class="ts">['+st()+']</span> <span class="tcur"></span>';
+      out.appendChild(c); out.scrollTop=out.scrollHeight;
+      setTimeout(()=>{out.innerHTML='';run(0);},6500);
+      return;
+    }
+    setTimeout(()=>{render(LINES[i]);run(i+1);},LINES[i].d);
+  }
+  run(0);
 </script>
 
 </body>
