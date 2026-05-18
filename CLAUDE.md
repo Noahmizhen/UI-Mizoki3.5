@@ -151,8 +151,26 @@ Background: the homepage "Launch the Live Console" button pointed at `console/in
 - Local safety tag `pre-backup-merge-safety` left in place (points at `f747688`) — not pushed; remove with `git tag -d pre-backup-merge-safety` when no longer wanted.
 
 ### Deployment Pipeline Status
-- **Live deploys to Cloud Run go through `./deploy.sh`** (Cloud Build → GCR → `gcloud run deploy`). Service: `mizoki-website`, region `us-central1`, project `spry-bus-425315-p6`.
-- **GitHub Actions auto-deploy is broken** (`.github/workflows/*.yml`) — has been failing on every push since 2026-05-15 because the `GCP_PROJECT_ID` and `GCP_SA_KEY` repo secrets are not configured (`gh secret list` returns empty). The workflow errors at the `google-github-actions/auth@v2` step. To fix: either set the two secrets via `gh secret set`, or migrate the workflow to Workload Identity Federation. Until then, deploys are manual.
+- **Auto-deploy on push to `main` works as of 2026-05-18.** Every push triggers `.github/workflows/deploy-cloudrun.yml`, which builds the Docker image with Cloud Build, pushes to `gcr.io/spry-bus-425315-p6/mizoki-website:<sha>`, and rolls out a new Cloud Run revision. End-to-end run time: ~60 seconds.
+- Service: `mizoki-website`, region `us-central1`, project `spry-bus-425315-p6`. Custom domain: `mizoki3.com`.
+- **Manual fallback:** `./deploy.sh` still works the same way (Cloud Build → GCR → `gcloud run deploy`) when you need to deploy from your laptop without going through git.
+
+#### GitHub Actions auth — Workload Identity Federation
+The workflow authenticates via WIF, not a service-account key. No long-lived secrets in GitHub.
+
+GCP setup (one-time, lives in `spry-bus-425315-p6`):
+- Workload identity pool: `github-actions` (location `global`)
+- OIDC provider: `github`, `issuer-uri=https://token.actions.githubusercontent.com`, `attribute-condition=assertion.repository_owner=='mediaintelligence'`
+- Service account: `miz-oki-website-deployer@spry-bus-425315-p6.iam.gserviceaccount.com`
+  - Roles: `run.admin`, `cloudbuild.builds.builder`, `iam.serviceAccountUser`, `storage.admin`, `serviceusage.serviceUsageAdmin`
+- Binding (`roles/iam.workloadIdentityUser`) is `principalSet://…/attribute.repository/mediaintelligence/mizoki-3-5-website` — scoped to this repo only. No other GitHub repo can impersonate the deployer SA.
+
+Repo secrets (set via `gh secret set`):
+- `GCP_PROJECT_ID` = `spry-bus-425315-p6`
+- `WIF_PROVIDER` = `projects/698171499447/locations/global/workloadIdentityPools/github-actions/providers/github`
+- `WIF_SERVICE_ACCOUNT` = `miz-oki-website-deployer@spry-bus-425315-p6.iam.gserviceaccount.com`
+
+To rotate the trust: delete and recreate the WIF provider in GCP, or revoke the principalSet binding on the deployer SA. To extend to another repo: add another `principalSet://…/attribute.repository/<owner>/<repo>` binding on the SA — don't widen the attribute condition.
 
 ### Verification Standard for May 2026 Changes
 - `python3 -m py_compile mizoki_runtime/runtime.py app.py`
