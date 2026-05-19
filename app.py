@@ -22,8 +22,8 @@ from mizoki_runtime import BossRuntime, create_runtime
 
 
 BASE_DIR = Path(__file__).resolve().parent
-EXTERNAL_DASHBOARD_URL = "https://mizoki.mizoki3.com/dashboard"
-EXTERNAL_LOGIN_URL = "https://mizoki.mizoki3.com/login"
+EXTERNAL_DASHBOARD_URL = "https://miz-oki-command-center-ui-ehqxake3ia-uc.a.run.app/dashboard"
+EXTERNAL_LOGIN_URL = "https://miz-oki-command-center-ui-ehqxake3ia-uc.a.run.app/login"
 TOP_LEVEL_STATIC_EXTENSIONS = {
     ".css",
     ".gif",
