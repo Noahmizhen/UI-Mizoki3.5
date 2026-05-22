@@ -50,11 +50,21 @@ mizoki-website/
 ├── signal.html                   # Domain lens — Signal (renamed from Media Acquisition)
 ├── risk.html                     # Domain lens — Risk
 │
-├── mizoki3-site/
+├── mizoki3-site/                 # CANONICAL — Flask /console + /infrastructure
+│   │                             # routes hard-code this path. Do not rename.
+│   ├── README.md                 # Package documentation (4 deploy options)
 │   ├── console/index.html        # Standalone Decision Control Plane
 │   │                             # (Risk Arbitration Console UI)
-│   └── infrastructure/main.tf    # Terraform for the fiduciary substrate
-│                                 # (VPC, Neptune TCKG, MSK, EKS, Bedrock IAM)
+│   └── infrastructure/main.tf    # Google Cloud Terraform — VPC, Spanner +
+│                                 # Neo4j TCKG, Pub/Sub, Cloud Run orchestrator,
+│                                 # Vertex AI (Claude) reasoning isolation, KMS
+│
+├── MIZOKI3-Site (1)/             # Sibling React/Vite/Tailwind build of the
+│   │                             # same site. Standalone — own Dockerfile,
+│   │                             # nginx.conf, cloudbuild.yaml, infrastructure/
+│   ├── src/components/           # 15 React components
+│   ├── public/console/index.html
+│   └── infrastructure/main.tf
 │
 ├── blog/                         # Thought leadership content
 │   ├── index.html                # Blog listing
@@ -109,6 +119,47 @@ mizoki-website/
 ---
 
 ## Recent Work (May 2026)
+
+### Decision OS Homepage + React Sibling Project + Operational Cleanup (2026-05-22)
+
+**Homepage replaced with the "Decision OS" rebuild.** Merged `claude/add-monitoring-dashboard-ENme0` (1 commit, `6c95d5a`) into main. New `index.html`:
+
+- Tailwind via CDN + lucide icons + Inter / JetBrains Mono (no build step — still drop-in to the Flask static server).
+- Title: *"MIZOKI3 // The Decision OS for Autonomous Enterprise Cognition"*.
+- Hero with animated TCO-KG "Living Brain" visualizer and live telemetry pill.
+- Status Quo vs. MIZOKI3 paradigm comparison.
+- Interactive **7-stage SRPVDAL inspector** (Sense → Reason → Plan → Validate → Decide → Act → Learn) with per-stage payload and metrics.
+- Decision Control Plane authorization scorecard.
+- Tabbed Domain Cells (Counsel / Estate / Capital / Signal / Risk) with deep links to `/counsel`, `/estate`, `/capital`, `/signal`, `/risk`.
+- Architecture & Trust governance cards, Operational KPIs grid.
+- **Decision Replay** flight-recorder timeline.
+- **Interactive Execution Sandbox** terminal with three modes (Liquidity / Compliance / ROAS).
+- Five-division grid + Demo CTA. Live Console pill in the nav links to `/console`.
+
+Naming + email conventions preserved: Counsel/Estate/Capital/Signal/Risk; `hello@mizoki3.com`; `/console` deep link.
+
+**React sibling project added: `MIZOKI3-Site (1)/`** (40 files, 468K). Vite + Tailwind + React + lucide. Self-contained — its own `Dockerfile`, `nginx.conf`, `cloudbuild.yaml`, `package.json`, `vite.config.js`, `tailwind.config.js`, `src/components/`, and a parallel `infrastructure/main.tf`. Treated as a **sibling deliverable**, not a replacement for the Flask static site. Awkward folder name (literal "MIZOKI3-Site (1)") is the downloaded-zip artifact — rename if you want; nothing depends on the path.
+
+Also committed: `preview.html` (standalone single-file design preview), 2 ChatGPT reference screenshots from 2026-05-19.
+
+**Operational cleanup performed earlier on 2026-05-22:**
+
+- **Branch cleanup on the `MIZOKICloudRun` repo** (sibling repo in the same org — not this repo): deleted 4 stale branches that were 0-files-different vs main — `claude/mizoki3-homepage-Rp13x`, `copilot/sub-pr-524`, `copilot/sub-pr-559`, `copilot/sub-pr-559-again`. Only `main` remains.
+- **Restarted the boss agent** on Cloud Run: rolled `boss-agent-adk` from revision `00218-w9m` → `00219-9zh` via `gcloud run services update boss-agent-adk --update-env-vars RESTARTED_AT=…`. The `RESTARTED_AT` env var is the kick mechanism; it doesn't carry meaning. Use the same trick to roll any other service. Of the five boss-related services (`boss-agent`, `boss-agent-adk`, `boss-agent-backend`, `boss-agent-service`, `boss-rewoo-orchestrator`), `boss-agent-adk` is the most active (rev 218+) and the de-facto primary.
+
+#### Operational lore — gotchas worth remembering
+
+- **Watch for accidental `mizoki3-site/` renames.** On 2026-05-22 the folder was renamed by a Finder drag to `mizoki3-site_claude'/` (trailing apostrophe, looks like a typo). The Flask routes `/console`, `/console/<path>`, and `/infrastructure/main.tf` hard-code the canonical path, so a rename breaks the live site instantly. If you see `mizoki3-site/` "deleted" in git status alongside a similar-looking untracked folder, **don't push the deletion** — diff the file SHAs against `origin/main:mizoki3-site/*` first; if they match, it's a recovery, not a content change. Restore with `mv "mizoki3-site_<whatever>" mizoki3-site`.
+- **Google Drive sync makes `git add` on directories with many small files extremely slow** (or hangs entirely — process consumes ~0s of CPU but never returns). If `git add` on a directory like `MIZOKI3-Site (1)/` doesn't finish in a few seconds, kill it (`kill <pid>`), `rm -f .git/index.lock`, and stage the files in smaller batches.
+- **Sign In wiring** lives in two places that must stay in sync: `app.py` constants `EXTERNAL_LOGIN_URL` + `EXTERNAL_DASHBOARD_URL`, and `index.html` `<a class="nav-signin" href="/login">`. Both should point at the command-center Cloud Run service. As of 2026-05-19 the canonical command center is `https://miz-oki-command-center-ui-ehqxake3ia-uc.a.run.app`. The legacy `https://mizoki.mizoki3.com` subdomain is dead — don't restore it.
+
+### Sign In Routing (2026-05-19)
+- Fixed homepage Sign In: `index.html` `nav-signin` now `href="/login"` (was `href="#contact"`, an in-page anchor that scrolled to the contact section — "the weird spot").
+- `app.py` constants `EXTERNAL_LOGIN_URL` and `EXTERNAL_DASHBOARD_URL` updated from the dead `https://mizoki.mizoki3.com` to `https://miz-oki-command-center-ui-ehqxake3ia-uc.a.run.app/{login,dashboard}` — the live command-center UI Cloud Run service.
+- The legacy marketing HTMLs (`investor.html`, `industries.html`, `roi.html`, `walkthrough.html`, `resources.html`, `how-it-works.html`, `sales-one-pager.html`, `demo-opener.html`, `pricing.html`, and the `11/` and `legacy_mizoki_site/` mirrors) still hardcode `https://mizoki.mizoki3.com` in their Login buttons. They all 301 to `/` via `legacy_marketing_page()` so users never see them — flag if you want them scrubbed.
+
+### Python Bytecode Hygiene (2026-05-19)
+Added `__pycache__/`, `*.py[cod]`, `*.pyo` to `.gitignore` and removed 7 previously-tracked `.pyc` files (`app.cpython-313.pyc` and friends). Bytecode no longer pollutes `git status`.
 
 ### Homepage Rebuild to Five-Division MIZOKI3 Design (2026-05-18)
 Full rebuild of `index.html` to match the official MIZOKI3.com mockups:
