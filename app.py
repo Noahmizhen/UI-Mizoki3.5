@@ -227,6 +227,20 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
             mimetype="text/plain",
         )
 
+    @app.route("/1")
+    @app.route("/1/")
+    @app.route("/1/index.html")
+    def app1_home():
+        return send_from_directory(BASE_DIR / "1", "index.html")
+
+    @app.route("/1/<path:filename>")
+    def app1_asset(filename: str):
+        static_dir = BASE_DIR / "1"
+        target = static_dir / filename
+        if not target.is_file():
+            return send_from_directory(static_dir, "index.html")
+        return send_from_directory(static_dir, filename)
+
     @app.route("/login", methods=["GET"])
     @app.route("/login.html", methods=["GET"])
     def login_page():
