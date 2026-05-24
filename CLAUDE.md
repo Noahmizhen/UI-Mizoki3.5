@@ -120,6 +120,33 @@ mizoki-website/
 
 ## Recent Work (May 2026)
 
+### Slotted React Apps + Sweep of Redundant Files / Services (2026-05-24)
+
+**Four React/Vite siblings mounted under `mizoki3.com/<N>/`** via three commits (`04c0cae`, `a1f9b7d`, `ec57378`) that landed during this session:
+
+- `/1/` — Vite-built React app (ChatGPT, single-page rebuild of the marketing site)
+- `/2/` — Vite single-page MIZOKI3 site (Claude, single-page + standalone `console/`)
+- `/3/` — Vite multi-page React+Router app (ChatGPT, the differentiated one: Simulator, Engine, Control Plane, Divisions, Governance, KPIs, Blog, Contact pages with `framer-motion` and `KnowledgeGraphBackground`)
+- `/4/` — Vite single-page React + `console/` (Claude, branded /4/)
+
+**Shipped architecture** (chose this over per-slot Cloud Run services):
+- Each slot is a flat pre-built `<N>/` directory at the repo root, containing `index.html`, `assets/`, and (for /2, /4) `console/`.
+- `app.py` has three routes per slot: `/<N>`, `/<N>/`, `/<N>/<path:filename>`. Catch-all serves `BASE_DIR / "<N>" / filename` if the file exists, else falls back to `BASE_DIR / "<N>" / "index.html"` so React Router can resolve the client-side route.
+- Single Cloud Run service (`mizoki-website`) carries every slot via the existing WIF auto-deploy. No LB url-map changes, no per-slot service to monitor, no Node in the runtime Dockerfile.
+- The dist/ outputs are **committed directly** — externally built (`npm install && npm run build` with `vite.config.js base: '/<N>/'` and React Router `basename="/<N>"`), then the resulting `dist/` contents land in the flat `<N>/` directory.
+
+**Architecture pivot mid-session:** an earlier attempt this session built per-slot standalone Cloud Run services (`mizoki3-v3`, `mizoki3-v4`) wired by `mizoki-lb` URL maps with prefix-strip rewrites. Tossed for being over-engineered relative to the chosen pattern. The `mizoki3-v3` standalone was retained briefly as backup; `mizoki3-v4` was torn down. By end of day both are deleted — see "Cloud Run cleanup" below.
+
+**Sweep of redundant local files / Cloud Run services:**
+- **Deleted folders:** `MIZOKI3-Site (1)/` (orphan Claude React sibling, identical product to the live site), `mizoki-website-all-files/` (13MB stale snapshot of the repo inside the repo — its inner CLAUDE.md only went up to "March 2026"), `legacy_mizoki_site/` (10MB pre-MIZOKI3 backup), `files (19)/` (earlier upload scratch), `Mizoki3_Site_Blog_Meta_ReLU_Deploy_Kit/` (one-time deploy kit).
+- **Deleted source zips:** `mizoki3-final-production-pages_chatgpt.zip` (already extracted as `/3/`), `mizoki3-site-deploy_1.zip`, `Mizoki3_Site_Blog_Meta_ReLU_Deploy_Kit.zip`, `files.zip` (timestamp-only churn, content byte-identical to long-since-deployed state).
+- **Deleted duplicate HTMLs:** `mizoki3_complete_enterprise_terminal{,(1),(1_gemini)}.html` — three byte-identical copies of the same single-file terminal page, not referenced by the live site.
+- **Deleted scratch screenshots:** 17 ChatGPT-generated reference PNGs at the repo root from May 13 / 18 / 19 / 22 (none referenced by served HTML).
+- **Deleted misc scratch:** `Claude Final Sitebudget balance sheet` (Pages doc), `MIZOKI Cannonical Lopp.png` (typo'd reference image), `preview.html` (single-file design preview), `01_relu_gate.png` at the repo root (duplicate of `assets/img/relu-article/01_relu_gate.svg`), `README_Captions_AltText.txt`, `LinkedIn_Meta_ReLU_Article.{pages,txt}` (drafts of the now-shipped blog post), `mizoki3-site.textClipping`.
+- **Cloud Run cleanup:** deleted `mizoki3-v3` and `mizoki3-v4` standalone services. The flat-dir Flask pattern is the only production serving path now.
+
+**Live route verification (post-cleanup):** `/`, `/1`, `/2`, `/3`, `/4`, `/console`, `/infrastructure/main.tf`, `/blog` — all 200 from `mizoki3.com`.
+
 ### Decision OS Homepage + React Sibling Project + Operational Cleanup (2026-05-22)
 
 **Homepage replaced with the "Decision OS" rebuild.** Merged `claude/add-monitoring-dashboard-ENme0` (1 commit, `6c95d5a`) into main. New `index.html`:
