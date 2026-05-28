@@ -59,6 +59,10 @@ Workload Identity must trust this repo:
 
 `Noahmizhen/UI-Mizoki3.5`
 
+The GitHub OIDC provider attribute condition must include this repository (alongside any org repos). Current condition:
+
+`assertion.repository_owner=='mediaintelligence' || assertion.repository=='Noahmizhen/UI-Mizoki3.5'`
+
 ---
 
 ## Manual deploy (laptop)
