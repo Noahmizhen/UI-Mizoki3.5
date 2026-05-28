@@ -3,231 +3,244 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MIZOKI3 — Risk · Verification & Compliance Intelligence</title>
-<meta name="description" content="Serve as the conscience, verifier, and governance layer of the entire system." />
+<title>MIZOKI3 — Risk · Compliance &amp; Resilience</title>
+<meta name="description" content="Verified continuously. Not audited annually — compliance and resilience intelligence from MIZOKI3." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/mizoki3.css" />
-<style>
-  :root { --lens-accent: #b85c5c; }
-  .domain-eyebrow { color: var(--lens-accent); }
-  .anatomy-block .section-label { color: var(--lens-accent); }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/homepage.css" />
+<link rel="stylesheet" href="/assets/css/subpages.css" />
 </head>
-<body>
+<body class="page-sub">
 
-<header class="site-header" id="header">
-  <div class="container header-inner">
-    <a href="/" class="logo">MIZOKI3</a>
-    <nav class="nav">
-      <div class="lens-nav" aria-label="Domain lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal">Signal</a>
-        <a href="/capital">Capital</a>
-        <a href="/risk" class="active">Risk</a>
-        <a href="/estate">Estate</a>
-      </div>
-      <a href="/#how-it-works" class="nav-link hide-mobile">How It Works</a>
-      <a href="/architecture" class="nav-link hide-mobile">Architecture</a>
-      <a href="/console" class="nav-link hide-mobile">Console</a>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+<header class="site-nav is-solid" role="banner">
+  <div class="container nav-inner">
+    <a href="/" class="nav-wordmark">MIZOKI3</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link is-active">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
     </nav>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<div class="mobile-backdrop" aria-hidden="true"></div>
+<nav id="mobile-nav" class="mobile-panel" aria-label="Mobile">
+  <div class="mobile-panel-links">
+    <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link is-active">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+  </div>
+</nav>
+
 <main>
 
-  <section class="domain-hero" aria-labelledby="domain-heading">
-    <div class="container domain-hero-grid">
-      <div class="reveal">
-        <p class="domain-eyebrow">Risk · Verification & Compliance Intelligence</p>
-        <h1 id="domain-heading">Serve as the conscience, verifier, and governance layer of the entire system.</h1>
-        <p class="domain-intro">Risk is not beside the system. Risk governs the system. Every consequential output produced anywhere in MIZOKI3 passes through Risk before it can be authorized to act.</p>
-        <div class="domain-actions">
-          <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Risk%20Demo" class="btn btn-primary">Request a briefing</a>
-          <a href="/#lenses" class="text-link">All lenses</a>
-        </div>
+  <section class="sub-hero section" aria-labelledby="lens-heading">
+    <div
+      class="section-bg section-bg--immediate"
+      style="background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&amp;q=80&amp;auto=format&amp;fit=crop');"
+      role="img"
+      aria-label="Large-scale dam and reservoir suggesting containment and control"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="sub-hero-inner reveal">
+        <p class="breadcrumb"><a href="/">MIZOKI3</a> → <span>Risk</span></p>
+        <p class="accent-label">COMPLIANCE &amp; RESILIENCE</p>
+        <h1 id="lens-heading" class="serif-headline">Verified continuously. Not audited annually.</h1>
+        <p class="sub-hero-lead">Risk transforms compliance from a periodic checklist into a continuous, autonomous process — monitoring regulatory changes, verifying operational alignment, and stress-testing resilience through the same causal graph that governs every enterprise decision.</p>
       </div>
-
-      <aside class="scenario-panel reveal" aria-label="Risk decision example">
-        <div class="scenario-head">
-          <span>Risk · Governed output</span>
-          <span class="verdict-pill vetoed">Vetoed</span>
-        </div>
-        <div class="scenario-body">
-          <p class="scenario-id">AUTH-991</p>
-          <h2 class="scenario-title">Cross-Lens Authorization · ACT-991</h2>
-          <dl class="scenario-meta">
-            <div><dt>Proposal</dt><dd>Capital · Q3 dividend</dd></div>
-            <div><dt>Policy</dt><dd>LIQ-COV-ENFORCE-01</dd></div>
-            <div><dt>Simulation</dt><dd>Post-action $7M vs $10M floor</dd></div>
-            <div><dt>Arbitration</dt><dd>Counsel boundary · Capital proposal</dd></div>
-          </dl>
-          <p class="scenario-outcome">Risk arbitrated Capital's proposal against Counsel-mapped <strong>COV-01</strong> and simulation output. Execution halted with cited policy, deficit arithmetic, and a routed safe alternative — visible in the Decision Control Plane.</p>
-        </div>
-        <div class="scenario-foot">
-          <a href="/console">View in Decision Control Plane →</a>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <section class="bordered" aria-labelledby="anatomy-heading">
+  <section class="section section--solid has-grain" aria-labelledby="capabilities-heading">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Lens anatomy</p>
-        <h2 id="anatomy-heading" class="section-title">What enters. What the graph gains.</h2>
+      <header class="section-head reveal">
+        <p class="accent-label">CAPABILITIES</p>
+        <h2 id="capabilities-heading" class="serif-headline">From periodic audits to continuous governance.</h2>
+        <p class="section-intro">Risk is not a reporting layer bolted onto other lenses. It verifies every consequential proposal in real time — arbitrating contradictions, enforcing policy, and stress-testing resilience before action reaches your systems.</p>
+      </header>
+      <div class="pillars reveal">
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Continuous Compliance Monitoring</span>
+          <p>Regulatory landscapes shift constantly. Risk tracks changes across jurisdictions and regulatory bodies, maps them to your existing obligations through the knowledge graph, and flags gaps or conflicts before they become violations.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Operational Resilience Testing</span>
+          <p>Risk uses counterfactual simulation to test your enterprise against failure scenarios — a vendor defaulting, a system going offline, a regulatory change invalidating a process. Each scenario is modeled through the causal graph, producing actionable intelligence rather than theoretical risk scores.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Cross-Domain Verification</span>
+          <p>Every decision authorized by the DCP is verified by Risk in real time. Legal actions proposed by Counsel, financial movements proposed by Capital, marketing executions proposed by Signal — all pass through Risk verification before reaching your systems.</p>
+        </article>
       </div>
-      <div class="anatomy-grid reveal">
-        <div class="anatomy-block">
-          <p class="section-label">Consumes</p>
-          <h3>The signals that enter Risk.</h3>
-          <ul class="anatomy-list">
-            <li>Cross-agent proposals</li>
-            <li>Policy libraries</li>
-            <li>Regulatory frameworks</li>
+    </div>
+  </section>
+
+  <section class="section section--cinematic" data-parallax aria-labelledby="cross-heading">
+    <div
+      class="section-bg"
+      data-bg="https://images.unsplash.com/photo-1494412519320-aa9dfdfcb74d?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Aerial view of a port with coordinated logistics operations"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+
+      <header class="section-head section-head--center reveal">
+        <p class="accent-label">CROSS-DOMAIN INTELLIGENCE</p>
+        <h2 id="cross-heading" class="serif-headline">Risk doesn&#x27;t audit after the fact. It governs in real time.</h2>
+        <p class="section-intro">When Capital proposes a distribution, Risk arbitrates it against Counsel-mapped covenants and simulation output before execution. When Signal reallocates budget, Risk verifies spend-governance policy. Compliance is not a quarterly report — it is the continuous conscience of the system.</p>
+      </header>
+      <div class="cross-diagram reveal" aria-hidden="true">
+  <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="360" cy="200" r="140" fill="none" stroke="rgba(201,168,85,0.08)" stroke-width="1"/>
+    <line x1="120" y1="320" x2="360" y2="200" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="120" y1="320" x2="120" y2="80" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="120" y1="320" x2="600" y2="80" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="120" y1="320" x2="600" y2="320" stroke="rgba(201,168,85,0.35)" stroke-width="1"/>
+    <circle cx="360" cy="200" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="360" y="205" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Counsel</text><circle cx="120" cy="80" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="120" y="85" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Signal</text><circle cx="600" cy="80" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="600" y="85" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Capital</text><circle cx="120" cy="320" r="36" fill="rgba(201,168,85,0.15)" stroke="rgba(201,168,85,0.55)" stroke-width="1"/><text x="120" y="325" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Risk</text><circle cx="600" cy="320" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="600" y="325" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Estate</text>
+    <text x="360" y="24" text-anchor="middle" fill="#5a6270" font-family="Outfit,sans-serif" font-size="10" letter-spacing="0.12em">SHARED KNOWLEDGE GRAPH</text>
+  </svg>
+</div>
+
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="io-heading">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="accent-label">Lens Anatomy</p>
+        <h2 id="io-heading" class="serif-headline">What enters. What emerges.</h2>
+      </header>
+      <div class="io-grid reveal">
+        <article class="io-card">
+          <h3>Risk Ingests</h3>
+          <ul class="io-list">
+            <li>Regulatory filings &amp; updates</li>
+            <li>Compliance frameworks</li>
+            <li>Audit records</li>
+            <li>Incident reports</li>
             <li>Operational telemetry</li>
-            <li>Authorization histories</li>
-            <li>Confidence distributions</li>
-            <li>Simulation outputs</li>
-            <li>Adversarial signals</li>
+            <li>Vendor risk data</li>
+            <li>Policy documents</li>
+            <li>Insurance documentation</li>
           </ul>
-        </div>
-        <div class="anatomy-block">
-          <p class="section-label">Produces</p>
-          <h3>The intelligence Risk contributes.</h3>
-          <ul class="anatomy-list">
-            <li>Cross-agent verification</li>
-            <li>Hallucination detection</li>
-            <li>Contradiction arbitration</li>
-            <li>Policy enforcement</li>
-            <li>Regulatory compliance scoring</li>
-            <li>Authorization scoring</li>
-            <li>Tail-risk simulation</li>
-            <li>Confidence arbitration</li>
-            <li>Operational governance</li>
+        </article>
+        <div class="io-divider" aria-hidden="true"></div>
+        <article class="io-card">
+          <h3>Risk Produces</h3>
+          <ul class="io-list">
+            <li>Compliance gap analysis</li>
+            <li>Regulatory change impact maps</li>
+            <li>Resilience stress scores</li>
+            <li>Vendor risk assessments</li>
+            <li>Policy violation alerts</li>
+            <li>Audit trail verification</li>
+            <li>Operational risk forecasts</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="platform-strip" aria-labelledby="platform-heading">
+  <section class="section section--cinematic section--closing" data-parallax aria-labelledby="closing-heading">
+    <div
+      class="section-bg section-bg--closing"
+      data-bg="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Large-scale dam and reservoir suggesting containment and control"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="closing-inner reveal">
+        <h2 id="closing-heading" class="serif-headline">See Risk verify your compliance posture live.</h2>
+        <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Risk%20Briefing" class="btn-closing">Schedule a Briefing</a>
+        <a href="mailto:hello@mizoki3.com" class="closing-email">hello@mizoki3.com</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="cross-nav" aria-label="Continue exploring lenses">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Platform integration</p>
-        <h2 id="platform-heading" class="section-title">Same architecture. Domain-specific reasoning.</h2>
-        <p style="max-width: 36rem; font-size: 0.9375rem;">Risk does not run in isolation. It reads and writes the shared Temporal-Causal Knowledge Graph through the same governed pipeline every lens uses.</p>
-      </div>
-      <div class="platform-grid reveal">
-        <div class="platform-cell">
-          <h4>The Brain</h4>
-          <p>Policy libraries, regulatory frameworks, and authorization histories form the governance substrate — queryable alongside operational graph memory.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Pipeline</h4>
-          <p>Risk sits at Validate and Decide — no proposal reaches Act without cross-agent verification and confidence arbitration.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Gate</h4>
-          <p>Risk is the Gate. Veto decisions include the arithmetic, policy citation, and causal trace — not a black-box refusal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cross-lens">
-    <div class="container cross-lens-inner reveal">
-      <div>
-        <p class="section-label">Reinforces</p>
-        <p>Every layer. Authorizes every consequential action.</p>
-      </div>
-      <div class="cross-links" aria-label="Related lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal">Signal</a>
-        <a href="/capital">Capital</a>
-        <a href="/estate">Estate</a>
+      <header class="cross-nav-head reveal">
+        <p class="accent-label">Continue Exploring</p>
+        <h2 class="serif-headline">One brain. Five lenses.</h2>
+      </header>
+      <div class="cross-nav-grid reveal">
+        <a href="/counsel" class="cross-nav-card">
+          <h4>Counsel</h4>
+          <span>Legal Intelligence</span>
+        </a>
+        <a href="/signal" class="cross-nav-card">
+          <h4>Signal</h4>
+          <span>Marketing Intelligence</span>
+        </a>
+        <a href="/capital" class="cross-nav-card">
+          <h4>Capital</h4>
+          <span>Financial Intelligence</span>
+        </a>
+        <a href="/estate" class="cross-nav-card">
+          <h4>Estate</h4>
+          <span>Trust &amp; Asset Intelligence</span>
+        </a>
       </div>
     </div>
-  </section>
-
-  <section class="cta-wrap" aria-labelledby="cta-heading">
-    <div class="container cta-inner reveal">
-      <div>
-        <h2 id="cta-heading" class="section-title">See Risk in your context</h2>
-        <p>We walk through domain-specific scenarios — obligation mapping, covenant enforcement, causal acquisition, fiduciary governance — on your terms.</p>
-      </div>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Risk%20Demo" class="btn btn-primary">Schedule a Demo</a>
-    </div>
-  </section>
+  </nav>
 
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">MIZOKI3</span>
-        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
-        <div class="trust-row">
-          <span class="trust-pill">Patented Technology</span>
-          <span class="trust-pill">Customer-Managed Encryption</span>
-          <span class="trust-pill">Proprietary Engine</span>
-        </div>
+      <div>
+        <span class="footer-wordmark">MIZOKI3</span>
+        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Lenses</h4>
-        <ul>
+        <h4>Platform</h4>
+        <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>
           <li><a href="/capital">Capital</a></li>
           <li><a href="/risk">Risk</a></li>
           <li><a href="/estate">Estate</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
           <li><a href="/architecture">Architecture</a></li>
-          <li><a href="/console">Console</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
-          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
-        </ul>
+        <h4>Trust</h4>
+        <div class="trust-badges">
+          <span>GDPR</span>
+          <span>Patented Technology</span>
+          <span>Customer-Managed Encryption</span>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
-      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
+    <div class="footer-bar">
+      <span>© 2026 MIZOKI3</span>
+      <div class="footer-legal">
+        <a href="mailto:hello@mizoki3.com?subject=Privacy%20Inquiry">Privacy</a>
+        <a href="mailto:hello@mizoki3.com?subject=Terms%20Inquiry">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  'use strict';
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 16);
-  }, { passive: true });
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
-  }
-})();
-</script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

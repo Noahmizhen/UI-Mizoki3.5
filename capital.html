@@ -4,227 +4,243 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MIZOKI3 — Capital · Financial Intelligence</title>
-<meta name="description" content="Give the enterprise causal foresight over capital." />
+<meta name="description" content="Covenants tracked. Liquidity modeled. Capital governed — financial intelligence from MIZOKI3." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/mizoki3.css" />
-<style>
-  :root { --lens-accent: #b8956a; }
-  .domain-eyebrow { color: var(--lens-accent); }
-  .anatomy-block .section-label { color: var(--lens-accent); }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/homepage.css" />
+<link rel="stylesheet" href="/assets/css/subpages.css" />
 </head>
-<body>
+<body class="page-sub">
 
-<header class="site-header" id="header">
-  <div class="container header-inner">
-    <a href="/" class="logo">MIZOKI3</a>
-    <nav class="nav">
-      <div class="lens-nav" aria-label="Domain lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal">Signal</a>
-        <a href="/capital" class="active">Capital</a>
-        <a href="/risk">Risk</a>
-        <a href="/estate">Estate</a>
-      </div>
-      <a href="/#how-it-works" class="nav-link hide-mobile">How It Works</a>
-      <a href="/architecture" class="nav-link hide-mobile">Architecture</a>
-      <a href="/console" class="nav-link hide-mobile">Console</a>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+<header class="site-nav is-solid" role="banner">
+  <div class="container nav-inner">
+    <a href="/" class="nav-wordmark">MIZOKI3</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link is-active">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
     </nav>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<div class="mobile-backdrop" aria-hidden="true"></div>
+<nav id="mobile-nav" class="mobile-panel" aria-label="Mobile">
+  <div class="mobile-panel-links">
+    <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link is-active">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+  </div>
+</nav>
+
 <main>
 
-  <section class="domain-hero" aria-labelledby="domain-heading">
-    <div class="container domain-hero-grid">
-      <div class="reveal">
-        <p class="domain-eyebrow">Capital · Financial Intelligence</p>
-        <h1 id="domain-heading">Give the enterprise causal foresight over capital.</h1>
-        <p class="domain-intro">Capital reads the language of covenants, treasury, and counterparty behavior — converting financial position into forward-looking pathways the business can actually steer.</p>
-        <div class="domain-actions">
-          <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Capital%20Demo" class="btn btn-primary">Request a briefing</a>
-          <a href="/#lenses" class="text-link">All lenses</a>
-        </div>
+  <section class="sub-hero section" aria-labelledby="lens-heading">
+    <div
+      class="section-bg section-bg--immediate"
+      style="background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&amp;q=80&amp;auto=format&amp;fit=crop');"
+      role="img"
+      aria-label="Financial district skyline at dusk with city lights"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="sub-hero-inner reveal">
+        <p class="breadcrumb"><a href="/">MIZOKI3</a> → <span>Capital</span></p>
+        <p class="accent-label">FINANCIAL INTELLIGENCE</p>
+        <h1 id="lens-heading" class="serif-headline">Covenants tracked. Liquidity modeled. Capital governed.</h1>
+        <p class="sub-hero-lead">Capital gives financial leadership autonomous intelligence grounded in causal evidence — forecasting covenant breaches before they happen, stress-testing liquidity under alternate scenarios, and optimizing allocation through the same governed pipeline that enforces every other enterprise decision.</p>
       </div>
-
-      <aside class="scenario-panel reveal" aria-label="Capital decision example">
-        <div class="scenario-head">
-          <span>Capital · Governed output</span>
-          <span class="verdict-pill vetoed">Vetoed</span>
-        </div>
-        <div class="scenario-body">
-          <p class="scenario-id">ACT-991</p>
-          <h2 class="scenario-title">Q3 Dividend Distribution</h2>
-          <dl class="scenario-meta">
-            <div><dt>Amount</dt><dd>$5,000,000</dd></div>
-            <div><dt>Post-action liquidity</dt><dd>$7,000,000 projected</dd></div>
-            <div><dt>Covenant floor</dt><dd>COV-01 · $10M minimum</dd></div>
-            <div><dt>Deficit</dt><dd>$3M vs boundary</dd></div>
-          </dl>
-          <p class="scenario-outcome">Capital proposed the distribution. Simulation projected liquidity below the <strong>COV-01</strong> floor Counsel had already mapped. Risk vetoed execution and routed to a safe alternative — with arithmetic, not opinion.</p>
-        </div>
-        <div class="scenario-foot">
-          <a href="/console">View in Decision Control Plane →</a>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <section class="bordered" aria-labelledby="anatomy-heading">
+  <section class="section section--solid has-grain" aria-labelledby="capabilities-heading">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Lens anatomy</p>
-        <h2 id="anatomy-heading" class="section-title">What enters. What the graph gains.</h2>
+      <header class="section-head reveal">
+        <p class="accent-label">CAPABILITIES</p>
+        <h2 id="capabilities-heading" class="serif-headline">From spreadsheet snapshots to causal foresight.</h2>
+        <p class="section-intro">Capital does not refresh dashboards on a schedule. It reads covenants, treasury position, and counterparty behavior as living causal nodes — projecting breach probability and liquidity stress before they become crises.</p>
+      </header>
+      <div class="pillars reveal">
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Covenant Breach Forecasting</span>
+          <p>Capital monitors every financial covenant across your credit agreements, tracking the causal factors that drive compliance metrics. When conditions shift — revenue trends, cash flow patterns, market movements — Capital projects the breach probability and timeline before it becomes a crisis.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Liquidity Stress Modeling</span>
+          <p>Counterfactual simulation applied to treasury management. Capital models what happens to your cash position under alternative scenarios — a client defaulting, a revenue line declining, a credit facility tightening — and surfaces the causal chain behind each outcome.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Capital Allocation Optimization</span>
+          <p>Every allocation recommendation flows through the Decision Control Plane. Capital doesn&#x27;t just suggest where to deploy resources — it justifies the recommendation with causal evidence, simulates the alternatives, and verifies compliance with every covenant and policy constraint before authorization.</p>
+        </article>
       </div>
-      <div class="anatomy-grid reveal">
-        <div class="anatomy-block">
-          <p class="section-label">Consumes</p>
-          <h3>The signals that enter Capital.</h3>
-          <ul class="anatomy-list">
-            <li>Banking relationships</li>
-            <li>Loan agreements</li>
-            <li>Covenant structures</li>
-            <li>Treasury telemetry</li>
+    </div>
+  </section>
+
+  <section class="section section--cinematic" data-parallax aria-labelledby="cross-heading">
+    <div
+      class="section-bg"
+      data-bg="https://images.unsplash.com/photo-1514565132-0f8fd0a48f18?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Bridge at night suggesting structural connection"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+
+      <header class="section-head section-head--center reveal">
+        <p class="accent-label">CROSS-DOMAIN INTELLIGENCE</p>
+        <h2 id="cross-heading" class="serif-headline">Financial decisions informed by legal obligations and market signals.</h2>
+        <p class="section-intro">When Counsel maps a new covenant restriction, Capital inherits it as a hard constraint instantly — no manual handoff, no email chain, no spreadsheet update. When Signal detects a shift in customer acquisition costs, Capital factors it into cash flow projections automatically. The knowledge graph makes financial intelligence continuous, not periodic.</p>
+      </header>
+      <div class="cross-diagram reveal" aria-hidden="true">
+  <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="360" cy="200" r="140" fill="none" stroke="rgba(201,168,85,0.08)" stroke-width="1"/>
+    <line x1="600" y1="80" x2="360" y2="200" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="600" y1="80" x2="120" y2="80" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="600" y1="80" x2="120" y2="320" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="600" y1="80" x2="600" y2="320" stroke="rgba(201,168,85,0.35)" stroke-width="1"/>
+    <circle cx="360" cy="200" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="360" y="205" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Counsel</text><circle cx="120" cy="80" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="120" y="85" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Signal</text><circle cx="600" cy="80" r="36" fill="rgba(201,168,85,0.15)" stroke="rgba(201,168,85,0.55)" stroke-width="1"/><text x="600" y="85" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Capital</text><circle cx="120" cy="320" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="120" y="325" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Risk</text><circle cx="600" cy="320" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="600" y="325" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Estate</text>
+    <text x="360" y="24" text-anchor="middle" fill="#5a6270" font-family="Outfit,sans-serif" font-size="10" letter-spacing="0.12em">SHARED KNOWLEDGE GRAPH</text>
+  </svg>
+</div>
+
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="io-heading">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="accent-label">Lens Anatomy</p>
+        <h2 id="io-heading" class="serif-headline">What enters. What emerges.</h2>
+      </header>
+      <div class="io-grid reveal">
+        <article class="io-card">
+          <h3>Capital Ingests</h3>
+          <ul class="io-list">
+            <li>Credit agreements &amp; covenants</li>
+            <li>Treasury data</li>
+            <li>Cash flow statements</li>
             <li>Capital stack composition</li>
-            <li>Cash flow intelligence</li>
-            <li>Financing structures</li>
+            <li>Market data feeds</li>
+            <li>Portfolio positions</li>
+            <li>Banking communications</li>
+            <li>Financial projections</li>
           </ul>
-        </div>
-        <div class="anatomy-block">
-          <p class="section-label">Produces</p>
-          <h3>The intelligence Capital contributes.</h3>
-          <ul class="anatomy-list">
-            <li>Covenant breach forecasting</li>
-            <li>Liquidity stress modeling</li>
+        </article>
+        <div class="io-divider" aria-hidden="true"></div>
+        <article class="io-card">
+          <h3>Capital Produces</h3>
+          <ul class="io-list">
+            <li>Covenant breach forecasts</li>
+            <li>Liquidity stress scenarios</li>
+            <li>Capital allocation recommendations</li>
             <li>Refinancing intelligence</li>
-            <li>Capital allocation optimization</li>
-            <li>Banking relationship scoring</li>
-            <li>Restructuring pathways</li>
-            <li>Negotiation leverage models</li>
+            <li>Cash flow projections</li>
+            <li>Counterparty risk assessments</li>
+            <li>Working capital optimization</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="platform-strip" aria-labelledby="platform-heading">
+  <section class="section section--cinematic section--closing" data-parallax aria-labelledby="closing-heading">
+    <div
+      class="section-bg section-bg--closing"
+      data-bg="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Financial district skyline at dusk with city lights"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="closing-inner reveal">
+        <h2 id="closing-heading" class="serif-headline">See Capital model your liquidity scenarios live.</h2>
+        <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Capital%20Briefing" class="btn-closing">Schedule a Briefing</a>
+        <a href="mailto:hello@mizoki3.com" class="closing-email">hello@mizoki3.com</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="cross-nav" aria-label="Continue exploring lenses">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Platform integration</p>
-        <h2 id="platform-heading" class="section-title">Same architecture. Domain-specific reasoning.</h2>
-        <p style="max-width: 36rem; font-size: 0.9375rem;">Capital does not run in isolation. It reads and writes the shared Temporal-Causal Knowledge Graph through the same governed pipeline every lens uses.</p>
-      </div>
-      <div class="platform-grid reveal">
-        <div class="platform-cell">
-          <h4>The Brain</h4>
-          <p>Treasury position, covenant structures, and counterparty exposure live as causal nodes — not spreadsheet snapshots.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Pipeline</h4>
-          <p>Capital proposals traverse full SRPVDAL: stress-tested liquidity paths before any distribution or allocation reaches the Gate.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Gate</h4>
-          <p>Every capital action is scored against Counsel-mapped covenants and Risk policy — ACT-991 is the canonical veto pattern.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cross-lens">
-    <div class="container cross-lens-inner reveal">
-      <div>
-        <p class="section-label">Reinforces</p>
-        <p>What Capital learns propagates to Estate, Counsel, Signal, and Risk — one intelligence, many domains.</p>
-      </div>
-      <div class="cross-links" aria-label="Related lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal">Signal</a>
-        <a href="/risk">Risk</a>
-        <a href="/estate">Estate</a>
+      <header class="cross-nav-head reveal">
+        <p class="accent-label">Continue Exploring</p>
+        <h2 class="serif-headline">One brain. Five lenses.</h2>
+      </header>
+      <div class="cross-nav-grid reveal">
+        <a href="/counsel" class="cross-nav-card">
+          <h4>Counsel</h4>
+          <span>Legal Intelligence</span>
+        </a>
+        <a href="/signal" class="cross-nav-card">
+          <h4>Signal</h4>
+          <span>Marketing Intelligence</span>
+        </a>
+        <a href="/risk" class="cross-nav-card">
+          <h4>Risk</h4>
+          <span>Compliance &amp; Resilience</span>
+        </a>
+        <a href="/estate" class="cross-nav-card">
+          <h4>Estate</h4>
+          <span>Trust &amp; Asset Intelligence</span>
+        </a>
       </div>
     </div>
-  </section>
-
-  <section class="cta-wrap" aria-labelledby="cta-heading">
-    <div class="container cta-inner reveal">
-      <div>
-        <h2 id="cta-heading" class="section-title">See Capital in your context</h2>
-        <p>We walk through domain-specific scenarios — obligation mapping, covenant enforcement, causal acquisition, fiduciary governance — on your terms.</p>
-      </div>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Capital%20Demo" class="btn btn-primary">Schedule a Demo</a>
-    </div>
-  </section>
+  </nav>
 
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">MIZOKI3</span>
-        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
-        <div class="trust-row">
-          <span class="trust-pill">Patented Technology</span>
-          <span class="trust-pill">Customer-Managed Encryption</span>
-          <span class="trust-pill">Proprietary Engine</span>
-        </div>
+      <div>
+        <span class="footer-wordmark">MIZOKI3</span>
+        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Lenses</h4>
-        <ul>
+        <h4>Platform</h4>
+        <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>
           <li><a href="/capital">Capital</a></li>
           <li><a href="/risk">Risk</a></li>
           <li><a href="/estate">Estate</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
           <li><a href="/architecture">Architecture</a></li>
-          <li><a href="/console">Console</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
-          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
-        </ul>
+        <h4>Trust</h4>
+        <div class="trust-badges">
+          <span>GDPR</span>
+          <span>Patented Technology</span>
+          <span>Customer-Managed Encryption</span>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
-      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
+    <div class="footer-bar">
+      <span>© 2026 MIZOKI3</span>
+      <div class="footer-legal">
+        <a href="mailto:hello@mizoki3.com?subject=Privacy%20Inquiry">Privacy</a>
+        <a href="mailto:hello@mizoki3.com?subject=Terms%20Inquiry">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  'use strict';
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 16);
-  }, { passive: true });
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
-  }
-})();
-</script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

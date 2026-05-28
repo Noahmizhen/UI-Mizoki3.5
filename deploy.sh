@@ -6,9 +6,11 @@
 
 set -euo pipefail
 
-# Bypass gcloud auth config permission issues
-cp -a ~/.config/gcloud /tmp/gcloud || true
-export CLOUDSDK_CONFIG=/tmp/gcloud
+# Canonical production project (mizoki3.com Cloud Run). Override with GCP_PROJECT_ID if needed.
+PROJECT_ID="${GCP_PROJECT_ID:-spry-bus-425315-p6}"
+SERVICE_NAME="${SERVICE_NAME:-mizoki-website}"
+REGION="${REGION:-us-central1}"
+IMAGE_NAME="${IMAGE_NAME:-mizoki-website}"
 
 # Colors for output
 RED='\033[0;31m'
@@ -23,9 +25,7 @@ echo "║         MIZ OKI 3.5 - One-Click Cloud Run Deployment          ║"
 echo "╚════════════════════════════════════════════════════════════════╝"
 echo -e "${NC}"
 
-SERVICE_NAME="${SERVICE_NAME:-mizoki-website}"
-REGION="${REGION:-us-central1}"
-IMAGE_NAME="${IMAGE_NAME:-mizoki-website}"
+GCLOUD="gcloud --project=${PROJECT_ID}"
 
 if ! command -v gcloud >/dev/null 2>&1; then
     echo -e "${RED}Error: gcloud CLI not found. Please install Google Cloud SDK.${NC}"
@@ -33,24 +33,23 @@ if ! command -v gcloud >/dev/null 2>&1; then
     exit 1
 fi
 
-PROJECT_ID="$(gcloud config get-value project 2>/dev/null || true)"
 if [ -z "${PROJECT_ID}" ] || [ "${PROJECT_ID}" = "(unset)" ]; then
     echo -e "${YELLOW}No Google Cloud project configured.${NC}"
     read -r -p "Enter your Google Cloud Project ID: " PROJECT_ID
-    gcloud config set project "${PROJECT_ID}"
+    GCLOUD="gcloud --project=${PROJECT_ID}"
 fi
 
 echo -e "${GREEN}✓ Using project: ${PROJECT_ID}${NC}"
 
 echo -e "\n${CYAN}[1/5] Checking authentication...${NC}"
-if ! gcloud auth print-access-token >/dev/null 2>&1; then
+if ! ${GCLOUD} auth print-access-token >/dev/null 2>&1; then
     echo "Authenticating with Google Cloud..."
     gcloud auth login
 fi
 echo -e "${GREEN}✓ Authenticated${NC}"
 
 echo -e "\n${CYAN}[2/5] Enabling required APIs...${NC}"
-gcloud services enable cloudbuild.googleapis.com containerregistry.googleapis.com run.googleapis.com --quiet
+${GCLOUD} services enable cloudbuild.googleapis.com containerregistry.googleapis.com run.googleapis.com --quiet
 echo -e "${GREEN}✓ APIs enabled${NC}"
 
 echo -e "\n${CYAN}[3/5] Determining source version...${NC}"
@@ -65,11 +64,11 @@ echo -e "${GREEN}✓ Using image tag: ${IMAGE_TAG}${NC}"
 
 echo -e "\n${CYAN}[4/5] Building container with Cloud Build...${NC}"
 echo "This may take 2-3 minutes..."
-gcloud builds submit --tag "${IMAGE_TAG}" --quiet
+${GCLOUD} builds submit --tag "${IMAGE_TAG}" --quiet
 
 echo -e "\n${CYAN}[5/5] Deploying to Cloud Run...${NC}"
-gcloud container images add-tag "${IMAGE_TAG}" "${IMAGE_LATEST}" --quiet || true
-gcloud run deploy "${SERVICE_NAME}" \
+${GCLOUD} container images add-tag "${IMAGE_TAG}" "${IMAGE_LATEST}" --quiet || true
+${GCLOUD} run deploy "${SERVICE_NAME}" \
     --image "${IMAGE_TAG}" \
     --region "${REGION}" \
     --platform managed \
@@ -82,7 +81,7 @@ gcloud run deploy "${SERVICE_NAME}" \
     --concurrency 80 \
     --quiet
 
-SERVICE_URL="$(gcloud run services describe "${SERVICE_NAME}" --region="${REGION}" --format='value(status.url)')"
+SERVICE_URL="$(${GCLOUD} run services describe "${SERVICE_NAME}" --region="${REGION}" --format='value(status.url)')"
 
 echo -e "\n${GREEN}"
 echo "╔════════════════════════════════════════════════════════════════╗"
@@ -104,4 +103,4 @@ echo -e "${YELLOW}To set up a custom domain:${NC}"
 echo "  gcloud run domain-mappings create --service ${SERVICE_NAME} --domain YOUR_DOMAIN --region ${REGION}"
 echo ""
 echo -e "${YELLOW}To view logs:${NC}"
-echo "  gcloud run services logs read ${SERVICE_NAME} --region ${REGION}"
+echo "  ${GCLOUD} run services logs read ${SERVICE_NAME} --region ${REGION}"

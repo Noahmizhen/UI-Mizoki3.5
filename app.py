@@ -10,7 +10,6 @@ from flask import (
     flash,
     jsonify,
     redirect,
-    render_template,
     request,
     send_from_directory,
     session,
@@ -41,14 +40,6 @@ TOP_LEVEL_STATIC_EXTENSIONS = {
     ".xml",
     ".zip",
 }
-ALLOWED_TEMPLATES = {
-    "contact.html",
-    "index.html",
-    "intelligence.html",
-    "vision.html",
-}
-
-
 def _load_demo_users() -> dict[str, str]:
     raw_payload = os.environ.get("MIZOKI_DEMO_USERS_JSON", "").strip()
     if not raw_payload:
@@ -192,6 +183,24 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     def blog_relu_lens_article():
         return send_from_directory(BASE_DIR / "blog", "relu-lens-meta-algorithm.html")
 
+    @app.route("/blog/decision-control-plane")
+    def blog_decision_control_plane_article():
+        return send_from_directory(BASE_DIR / "blog", "decision-control-plane.html")
+
+    @app.route("/blog/adc-decision-framework")
+    def blog_adc_decision_framework_article():
+        return send_from_directory(BASE_DIR / "blog", "adc-decision-framework.html")
+
+    @app.route("/blog/decision-control-plane/")
+    @app.route("/blog/decision-control-plane.html")
+    def legacy_blog_decision_control_plane_article():
+        return redirect(url_for("blog_decision_control_plane_article"), code=301)
+
+    @app.route("/blog/adc-decision-framework/")
+    @app.route("/blog/adc-decision-framework.html")
+    def legacy_blog_adc_decision_framework_article():
+        return redirect(url_for("blog_adc_decision_framework_article"), code=301)
+
     @app.route("/blog/relu-lens-meta-algorithm/")
     @app.route("/blog/relu-lens-meta-algorithm.html")
     @app.route("/blog/meta-relu-gate-go-deep-before-wide")
@@ -205,14 +214,23 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     def blog_post(filename: str):
         return send_from_directory(BASE_DIR / "blog", filename)
 
+    @app.route("/11")
     @app.route("/11/")
-    @app.route("/11/index.html")
-    def v11_home():
-        return send_from_directory(BASE_DIR / "11", "index.html")
-
-    @app.route("/11/<path:filename>")
-    def v11_page(filename: str):
-        return send_from_directory(BASE_DIR / "11", filename)
+    @app.route("/11/<path:_filename>")
+    @app.route("/1")
+    @app.route("/1/")
+    @app.route("/1/<path:_filename>")
+    @app.route("/2")
+    @app.route("/2/")
+    @app.route("/2/<path:_filename>")
+    @app.route("/3")
+    @app.route("/3/")
+    @app.route("/3/<path:_filename>")
+    @app.route("/4")
+    @app.route("/4/")
+    @app.route("/4/<path:_filename>")
+    def legacy_slot_routes(_filename: str = ""):
+        return redirect(url_for("home"), code=301)
 
     @app.route("/console")
     @app.route("/console/")
@@ -231,62 +249,6 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
             "main.tf",
             mimetype="text/plain",
         )
-
-    @app.route("/1")
-    @app.route("/1/")
-    @app.route("/1/index.html")
-    def app1_home():
-        return send_from_directory(BASE_DIR / "1", "index.html")
-
-    @app.route("/1/<path:filename>")
-    def app1_asset(filename: str):
-        static_dir = BASE_DIR / "1"
-        target = static_dir / filename
-        if not target.is_file():
-            return send_from_directory(static_dir, "index.html")
-        return send_from_directory(static_dir, filename)
-
-    @app.route("/2")
-    @app.route("/2/")
-    @app.route("/2/index.html")
-    def app2_home():
-        return send_from_directory(BASE_DIR / "2", "index.html")
-
-    @app.route("/2/<path:filename>")
-    def app2_asset(filename: str):
-        static_dir = BASE_DIR / "2"
-        target = static_dir / filename
-        if not target.is_file():
-            return send_from_directory(static_dir, "index.html")
-        return send_from_directory(static_dir, filename)
-
-    @app.route("/3")
-    @app.route("/3/")
-    @app.route("/3/index.html")
-    def app3_home():
-        return send_from_directory(BASE_DIR / "3", "index.html")
-
-    @app.route("/3/<path:filename>")
-    def app3_asset(filename: str):
-        static_dir = BASE_DIR / "3"
-        target = static_dir / filename
-        if not target.is_file():
-            return send_from_directory(static_dir, "index.html")
-        return send_from_directory(static_dir, filename)
-
-    @app.route("/4")
-    @app.route("/4/")
-    @app.route("/4/index.html")
-    def app4_home():
-        return send_from_directory(BASE_DIR / "4", "index.html")
-
-    @app.route("/4/<path:filename>")
-    def app4_asset(filename: str):
-        static_dir = BASE_DIR / "4"
-        target = static_dir / filename
-        if not target.is_file():
-            return send_from_directory(static_dir, "index.html")
-        return send_from_directory(static_dir, filename)
 
     @app.route("/login", methods=["GET"])
     @app.route("/login.html", methods=["GET"])
@@ -323,12 +285,6 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     @login_required
     def dashboard():
         return redirect(EXTERNAL_DASHBOARD_URL)
-
-    @app.route("/templates/<path:filename>")
-    def serve_template(filename: str):
-        if filename not in ALLOWED_TEMPLATES:
-            abort(404)
-        return render_template(filename)
 
     @app.route("/api/health")
     def api_health():
@@ -505,20 +461,36 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
         return (
             """
             <!DOCTYPE html>
-            <html>
+            <html lang="en">
             <head>
-                <title>404 - Page Not Found</title>
-                <link rel="stylesheet" href="/assets/css/styles.css"/>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>404 — MIZOKI3</title>
+                <link rel="stylesheet" href="/assets/css/homepage.css" />
                 <style>
-                    .error-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
+                    .error-page {
+                        min-height: 100vh;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        padding: 2rem;
+                    }
+                    .error-page h1 {
+                        font-family: var(--serif);
+                        font-size: clamp(3rem, 8vw, 5rem);
+                        color: var(--accent-gold);
+                        margin-bottom: 0.75rem;
+                    }
+                    .error-page p { color: var(--text-secondary); margin-bottom: 1.5rem; }
                 </style>
             </head>
-            <body>
+            <body class="page-sub">
                 <div class="error-page">
                     <div>
-                        <h1 style="font-size: 4rem; color: var(--accent);">404</h1>
-                        <p style="color: var(--muted);">Page not found</p>
-                        <a href="/" class="btn primary" style="margin-top: 1rem;">Go Home</a>
+                        <h1>404</h1>
+                        <p>Page not found.</p>
+                        <a href="/" class="btn-primary">Return Home</a>
                     </div>
                 </div>
             </body>

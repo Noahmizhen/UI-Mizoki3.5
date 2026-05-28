@@ -3,111 +3,258 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Architecture — MIZOKI3</title>
+<title>MIZOKI3 — Technical Architecture</title>
 <meta name="description" content="Technical architecture of the MIZOKI3 autonomous decision intelligence platform — TCO-KG, SRPVDAL, and the Decision Control Plane." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/mizoki3.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/homepage.css" />
+<link rel="stylesheet" href="/assets/css/subpages.css" />
 </head>
-<body>
+<body class="page-sub">
 
-<header class="site-header" id="header">
-  <div class="container header-inner">
-    <a href="/" class="logo">MIZOKI3</a>
-    <nav class="nav">
-      <a href="/#how-it-works" class="nav-link hide-mobile">How It Works</a>
-      <a href="/#lenses" class="nav-link hide-mobile">Lenses</a>
-      <a href="/architecture" class="nav-link active">Architecture</a>
-      <a href="/console" class="nav-link hide-mobile">Console</a>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+<header class="site-nav is-solid" role="banner">
+  <div class="container nav-inner">
+    <a href="/" class="nav-wordmark">MIZOKI3</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link is-active">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
     </nav>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<div class="mobile-backdrop" aria-hidden="true"></div>
+<nav id="mobile-nav" class="mobile-panel" aria-label="Mobile">
+  <div class="mobile-panel-links">
+    <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link is-active">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+  </div>
+</nav>
+
 <main>
 
-  <section class="page-hero">
-    <div class="container reveal">
-      <p class="section-label">Technical Architecture</p>
-      <h1>Three subsystems. One governed decision loop.</h1>
-      <p class="page-hero-lead">MIZOKI3 is a ground-up proprietary decision intelligence platform — not a wrapper on third-party language models. The architecture comprises three integrated subsystems that every domain lens shares.</p>
+  <section class="sub-hero section" aria-labelledby="arch-heading">
+    <div
+      class="section-bg section-bg--immediate"
+      style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&amp;q=80&amp;auto=format&amp;fit=crop');"
+      role="img"
+      aria-label="Modern data center corridor with server racks and ambient lighting"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="sub-hero-inner reveal">
+        <p class="breadcrumb"><a href="/">MIZOKI3</a> → <span>Architecture</span></p>
+        <p class="accent-label">TECHNICAL ARCHITECTURE</p>
+        <h1 id="arch-heading" class="serif-headline">Three subsystems. One governed decision loop.</h1>
+        <p class="sub-hero-lead">MIZOKI3 is a ground-up proprietary platform — not a wrapper on third-party language models. The architecture comprises three integrated subsystems that every domain lens shares.</p>
+      </div>
     </div>
   </section>
 
-  <section class="arch-content bordered">
+  <section class="section section--solid has-grain" aria-labelledby="system-arch-heading">
     <div class="container">
-
+      <header class="section-head reveal">
+        <p class="accent-label">Overview</p>
+        <h2 id="system-arch-heading" class="serif-headline">System Architecture</h2>
+        <p class="section-intro">The Temporal-Causal Knowledge Graph sits at the center. The SRPVDAL pipeline governs every decision cycle. The Decision Control Plane authorizes what reaches your systems — with every domain lens reading and writing the same substrate.</p>
+      </header>
       <div class="arch-diagram-wrap reveal" aria-hidden="true">
-        <svg viewBox="0 0 720 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="0" y="24" width="88" height="40" rx="3" fill="#161c28" stroke="rgba(236,232,224,0.1)"/>
-          <text x="44" y="48" text-anchor="middle" fill="#9a9488" font-family="DM Sans,sans-serif" font-size="11">Signal</text>
-          <path d="M92 44h36" stroke="rgba(236,232,224,0.15)" stroke-width="1"/>
-          <rect x="132" y="24" width="100" height="40" rx="3" fill="rgba(184,149,106,0.1)" stroke="rgba(184,149,106,0.35)"/>
-          <text x="182" y="48" text-anchor="middle" fill="#b8956a" font-family="DM Sans,sans-serif" font-size="11" font-weight="500">The Brain</text>
-          <path d="M236 44h36" stroke="rgba(236,232,224,0.15)" stroke-width="1"/>
-          <rect x="276" y="24" width="100" height="40" rx="3" fill="rgba(184,149,106,0.1)" stroke="rgba(184,149,106,0.35)"/>
-          <text x="326" y="48" text-anchor="middle" fill="#b8956a" font-family="DM Sans,sans-serif" font-size="11" font-weight="500">The Pipeline</text>
-          <path d="M380 44h36" stroke="rgba(236,232,224,0.15)" stroke-width="1"/>
-          <rect x="420" y="24" width="100" height="40" rx="3" fill="rgba(184,149,106,0.1)" stroke="rgba(184,149,106,0.35)"/>
-          <text x="470" y="48" text-anchor="middle" fill="#b8956a" font-family="DM Sans,sans-serif" font-size="11" font-weight="500">The Gate</text>
-          <path d="M524 44h36" stroke="rgba(236,232,224,0.15)" stroke-width="1"/>
-          <rect x="564" y="24" width="72" height="40" rx="3" fill="#161c28" stroke="rgba(236,232,224,0.1)"/>
-          <text x="600" y="48" text-anchor="middle" fill="#9a9488" font-family="DM Sans,sans-serif" font-size="11">Action</text>
-          <path d="M640 44h36" stroke="rgba(236,232,224,0.15)" stroke-width="1"/>
-          <rect x="680" y="24" width="40" height="40" rx="3" fill="#161c28" stroke="rgba(236,232,224,0.1)"/>
-          <text x="700" y="48" text-anchor="middle" fill="#9a9488" font-family="DM Sans,sans-serif" font-size="11">Learn</text>
-          <text x="360" y="12" text-anchor="middle" fill="#5e5952" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="0.08em">GOVERNED DECISION FLOW</text>
-        </svg>
-      </div>
-
-      <article class="arch-block reveal">
-        <p class="section-label">Subsystem 01</p>
-        <h2>TCO-KG — Temporal-Causal Operational Knowledge Graph</h2>
-        <p>A continuously evolving graph that models entities, relationships, obligations, events, and outcomes over time. Counsel maps covenants here. Capital reads liquidity position from here. Signal writes causal attribution edges here.</p>
-        <p>All domain lenses read from and write to this shared substrate — which is why what one lens learns, the others inherit without re-ingestion.</p>
-      </article>
-
-      <article class="arch-block reveal">
-        <p class="section-label">Subsystem 02</p>
-        <h2>SRPVDAL — Seven-Stage Decision Pipeline</h2>
-        <p>Every consequential decision flows through seven stages. Nothing skips a step. Nothing reaches execution without traversing the full loop.</p>
-        <ol>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Sense</strong> — ingest and contextualize signals from domain sources</li>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Reason</strong> — traverse causal relationships in the graph</li>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Plan</strong> — generate constrained candidate actions</li>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Validate</strong> — stress-test against policy and counterfactuals</li>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Decide</strong> — select, defer, or escalate</li>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Act</strong> — execute authorized payloads</li>
-          <li><strong style="color: var(--text-primary); font-weight: 500;">Learn</strong> — update the graph from outcomes</li>
-        </ol>
-      </article>
-
-      <article class="arch-block reveal">
-        <p class="section-label">Subsystem 03</p>
-        <h2>DCP — Decision Control Plane</h2>
-        <p>A non-bypass governance layer between agent proposals and system execution. Every action is scored for causal confidence, policy compliance, and risk before authorization.</p>
-        <p>When the Gate vetoes — as with ACT-991 — the decision includes the arithmetic, policy citation, and causal trace. Not a black-box refusal.</p>
-        <p style="margin-top: 1.25rem;"><a href="/console" class="text-link">Open the Decision Control Plane →</a></p>
-      </article>
-
-      <article class="arch-block reveal">
-        <p class="section-label">Infrastructure</p>
-        <h2>Deployment substrate</h2>
-        <p>The platform runs on Google Cloud: private VPC, Cloud Spanner property-graph schema for TCO-KG, Pub/Sub event bus, Cloud Run orchestration, Vertex AI reasoning isolation, and customer-managed encryption via Cloud KMS.</p>
-        <p><a href="/infrastructure/main.tf" class="text-link">View Terraform module →</a></p>
-      </article>
-
+  <svg viewBox="0 0 900 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <text x="450" y="28" text-anchor="middle" fill="#5a6270" font-family="Outfit,sans-serif" font-size="10" letter-spacing="0.14em">GOVERNED DECISION ARCHITECTURE</text>
+    <circle cx="450" cy="210" r="72" fill="rgba(201,168,85,0.12)" stroke="rgba(201,168,85,0.45)" stroke-width="1"/>
+    <text x="450" y="206" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="13" font-weight="500">TCO-KG</text>
+    <text x="450" y="224" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">The Brain</text>
+    <rect x="60" y="88" width="88" height="36" rx="4" fill="#111827" stroke="rgba(30,42,58,1)"/>
+    <text x="104" y="111" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="11">Counsel</text>
+    <rect x="752" y="88" width="88" height="36" rx="4" fill="#111827" stroke="rgba(30,42,58,1)"/>
+    <text x="796" y="111" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="11">Signal</text>
+    <rect x="60" y="296" width="88" height="36" rx="4" fill="#111827" stroke="rgba(30,42,58,1)"/>
+    <text x="104" y="319" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="11">Risk</text>
+    <rect x="752" y="296" width="88" height="36" rx="4" fill="#111827" stroke="rgba(30,42,58,1)"/>
+    <text x="796" y="319" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="11">Estate</text>
+    <rect x="406" y="356" width="88" height="36" rx="4" fill="#111827" stroke="rgba(30,42,58,1)"/>
+    <text x="450" y="379" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="11">Capital</text>
+    <line x1="148" y1="106" x2="378" y2="190" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
+    <line x1="752" y1="106" x2="522" y2="190" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
+    <line x1="148" y1="314" x2="378" y2="230" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
+    <line x1="752" y1="314" x2="522" y2="230" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
+    <line x1="450" y1="356" x2="450" y2="282" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
+    <ellipse cx="450" cy="210" rx="155" ry="95" fill="none" stroke="rgba(201,168,85,0.2)" stroke-width="1" stroke-dasharray="4 6"/>
+    <text x="640" y="210" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">SRPVDAL</text>
+    <rect x="700" y="178" width="120" height="64" rx="4" fill="rgba(201,168,85,0.1)" stroke="rgba(201,168,85,0.4)" stroke-width="1"/>
+    <text x="760" y="206" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="12" font-weight="500">DCP</text>
+    <text x="760" y="224" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">The Gate</text>
+    <line x1="522" y1="210" x2="700" y2="210" stroke="rgba(201,168,85,0.35)" stroke-width="1"/>
+    <rect x="848" y="188" width="52" height="44" rx="4" fill="#111827" stroke="rgba(30,42,58,1)"/>
+    <text x="874" y="216" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">Act</text>
+    <line x1="820" y1="210" x2="848" y2="210" stroke="rgba(201,168,85,0.35)" stroke-width="1"/>
+    <text x="120" y="210" fill="#5a6270" font-family="Outfit,sans-serif" font-size="9" letter-spacing="0.08em">SENSE → LEARN</text>
+  </svg>
+</div>
     </div>
   </section>
 
-  <section class="cta-wrap">
-    <div class="container cta-inner reveal">
-      <div>
-        <h2 class="section-title">Request an architecture briefing</h2>
-        <p>We walk through TCO-KG schema, SRPVDAL execution traces, and DCP authorization logic — tailored to your regulatory and operational context.</p>
+  <section class="section section--cinematic" data-parallax aria-labelledby="tckg-heading">
+    <div
+      class="section-bg"
+      data-bg="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Earth from space suggesting global interconnected data"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <article class="subsystem-block reveal">
+        <p class="accent-label">Subsystem 01</p>
+        <h2 id="tckg-heading" class="serif-headline">Temporal-Causal Knowledge Graph</h2>
+        <p>The graph models entities, relationships, obligations, events, and outcomes over time — tracking not only what happened, but what caused it and what would change under alternate conditions. Causal edges bind legal, financial, marketing, and fiduciary signals into one traversable substrate. Counterfactual simulation runs on the same structure proposals are validated against.</p>
+        <div class="detail-card">
+
+        <ul class="detail-list">
+          <li><strong>Graph schema</strong>Property graph with temporal and causal edge types</li>
+          <li><strong>Storage</strong>Cloud Spanner with graph-native query</li>
+          <li><strong>Update mechanism</strong>Continuous ingestion from all domain lenses</li>
+          <li><strong>Query model</strong>Causal traversal with counterfactual branching</li>
+        </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="srpvdal-heading">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="accent-label">Subsystem 02</p>
+        <h2 id="srpvdal-heading" class="serif-headline">Seven-Stage Decision Pipeline</h2>
+        <p class="section-intro">Every consequential decision flows through seven stages. Nothing skips a step. Nothing reaches execution without traversing the full loop — each stage auditable, each handoff verified.</p>
+      </header>
+      <div class="pipeline-flow reveal">
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">01 · Sense</p>
+          <h4>Sense</h4>
+          <p>Ingest and contextualize signals from every domain source — contracts, treasury, media, compliance, and trust instruments.</p>
+        </article>
+        <div class="pipeline-connector" aria-hidden="true"></div>
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">02 · Reason</p>
+          <h4>Reason</h4>
+          <p>Traverse causal relationships in the knowledge graph to understand what drives outcomes and what would change if conditions shifted.</p>
+        </article>
+        <div class="pipeline-connector" aria-hidden="true"></div>
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">03 · Plan</p>
+          <h4>Plan</h4>
+          <p>Generate constrained candidate actions — each bound by obligations, policies, and simulated alternatives before validation.</p>
+        </article>
+        <div class="pipeline-connector" aria-hidden="true"></div>
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">04 · Validate</p>
+          <h4>Validate</h4>
+          <p>Stress-test proposals against policy libraries, counterfactual simulations, and cross-lens contradictions.</p>
+        </article>
+        <div class="pipeline-connector" aria-hidden="true"></div>
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">05 · Decide</p>
+          <h4>Decide</h4>
+          <p>Select, defer, or escalate through the Decision Control Plane — authorization is explicit, scored, and auditable.</p>
+        </article>
+        <div class="pipeline-connector" aria-hidden="true"></div>
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">06 · Act</p>
+          <h4>Act</h4>
+          <p>Execute only authorized payloads into enterprise systems — nothing reaches production without passing the Gate.</p>
+        </article>
+        <div class="pipeline-connector" aria-hidden="true"></div>
+        <article class="pipeline-step reveal-child">
+          <p class="step-num">07 · Learn</p>
+          <h4>Learn</h4>
+          <p>Update the graph from outcomes — every action compounds institutional memory for the next decision cycle.</p>
+        </article>
+
       </div>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Architecture%20Briefing" class="btn btn-primary">Schedule a Briefing</a>
+    </div>
+  </section>
+
+  <section class="section section--cinematic" data-parallax aria-labelledby="dcp-heading">
+    <div
+      class="section-bg"
+      data-bg="https://images.unsplash.com/photo-1470071458764-e3fb3822ae43?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Horizon at dawn suggesting governance and clarity"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <article class="subsystem-block reveal">
+        <p class="accent-label">Subsystem 03</p>
+        <h2 id="dcp-heading" class="serif-headline">Decision Control Plane</h2>
+        <p>The DCP is a mandatory, non-bypass governance layer between what AI agents recommend and what actually executes. Every action is scored across causal confidence, validation agreement, simulation delta, policy compliance, and historical performance before authorization. When the Gate vetoes, the decision carries the arithmetic, policy citation, and causal trace — not a black-box refusal. Patented.</p>
+        <div class="dcp-dimensions">
+        <article class="dcp-dim reveal-child">
+          <h4>Causal Confidence</h4>
+          <p>Strength of the causal chain supporting the proposed action — weak inference cannot authorize.</p>
+        </article>
+        <article class="dcp-dim reveal-child">
+          <h4>Validation Agreement</h4>
+          <p>Alignment across independent validation agents and cross-lens verification before authorization.</p>
+        </article>
+        <article class="dcp-dim reveal-child">
+          <h4>Simulation Delta</h4>
+          <p>Outcome spread between the proposed action and counterfactual alternatives modeled on the graph.</p>
+        </article>
+        <article class="dcp-dim reveal-child">
+          <h4>Policy Compliance</h4>
+          <p>Conformance to regulatory frameworks, internal policy libraries, and Counsel-mapped obligations.</p>
+        </article>
+        <article class="dcp-dim reveal-child">
+          <h4>Historical Performance</h4>
+          <p>Track record of similar decisions under comparable conditions — institutional memory informs the score.</p>
+        </article>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--solid has-grain" aria-labelledby="infra-heading">
+    <div class="container">
+      <article class="subsystem-block reveal">
+        <p class="accent-label">Infrastructure</p>
+        <h2 id="infra-heading" class="serif-headline">Deployment Infrastructure</h2>
+        <p>The platform runs on Google Cloud: private VPC, Cloud Spanner property-graph schema for TCO-KG, Pub/Sub event bus, Cloud Run orchestration, Vertex AI reasoning isolation, and customer-managed encryption via Cloud KMS. Infrastructure is designed for regulated buyers who require data residency, encryption control, and auditable execution — not a shared multi-tenant wrapper.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--cinematic section--closing" data-parallax aria-labelledby="closing-heading">
+    <div
+      class="section-bg section-bg--closing"
+      data-bg="https://images.unsplash.com/photo-1470071458764-e3fb3822ae43?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Expansive horizon at dawn"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="closing-inner reveal">
+        <h2 id="closing-heading" class="serif-headline">Request a technical architecture briefing.</h2>
+        <p class="closing-sub">We walk through TCO-KG schema, SRPVDAL execution traces, and DCP authorization logic — tailored to your regulatory and operational context.</p>
+        <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Architecture%20Briefing" class="btn-closing">Schedule a Briefing</a>
+        <a href="mailto:hello@mizoki3.com" class="closing-email">hello@mizoki3.com</a>
+      </div>
     </div>
   </section>
 
@@ -116,67 +263,42 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">MIZOKI3</span>
-        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
-        <div class="trust-row">
-          <span class="trust-pill">Patented Technology</span>
-          <span class="trust-pill">Customer-Managed Encryption</span>
-          <span class="trust-pill">Proprietary Engine</span>
-        </div>
+      <div>
+        <span class="footer-wordmark">MIZOKI3</span>
+        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Lenses</h4>
-        <ul>
+        <h4>Platform</h4>
+        <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>
           <li><a href="/capital">Capital</a></li>
           <li><a href="/risk">Risk</a></li>
           <li><a href="/estate">Estate</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
           <li><a href="/architecture">Architecture</a></li>
-          <li><a href="/console">Console</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
-          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
-        </ul>
+        <h4>Trust</h4>
+        <div class="trust-badges">
+          <span>GDPR</span>
+          <span>Patented Technology</span>
+          <span>Customer-Managed Encryption</span>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
-      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
+    <div class="footer-bar">
+      <span>© 2026 MIZOKI3</span>
+      <div class="footer-legal">
+        <a href="mailto:hello@mizoki3.com?subject=Privacy%20Inquiry">Privacy</a>
+        <a href="mailto:hello@mizoki3.com?subject=Terms%20Inquiry">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  'use strict';
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 16);
-  }, { passive: true });
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
-  }
-})();
-</script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

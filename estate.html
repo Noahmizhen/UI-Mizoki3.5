@@ -3,229 +3,244 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MIZOKI3 — Estate · Wealth & Fiduciary Intelligence</title>
-<meta name="description" content="Make multi-generational wealth structures legible, simulatable, and defensible." />
+<title>MIZOKI3 — Estate · Trust &amp; Asset Intelligence</title>
+<meta name="description" content="Structures preserved. Transfers optimized. Legacy governed — estate intelligence from MIZOKI3." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/mizoki3.css" />
-<style>
-  :root { --lens-accent: #9a8bc4; }
-  .domain-eyebrow { color: var(--lens-accent); }
-  .anatomy-block .section-label { color: var(--lens-accent); }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/homepage.css" />
+<link rel="stylesheet" href="/assets/css/subpages.css" />
 </head>
-<body>
+<body class="page-sub">
 
-<header class="site-header" id="header">
-  <div class="container header-inner">
-    <a href="/" class="logo">MIZOKI3</a>
-    <nav class="nav">
-      <div class="lens-nav" aria-label="Domain lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal">Signal</a>
-        <a href="/capital">Capital</a>
-        <a href="/risk">Risk</a>
-        <a href="/estate" class="active">Estate</a>
-      </div>
-      <a href="/#how-it-works" class="nav-link hide-mobile">How It Works</a>
-      <a href="/architecture" class="nav-link hide-mobile">Architecture</a>
-      <a href="/console" class="nav-link hide-mobile">Console</a>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+<header class="site-nav is-solid" role="banner">
+  <div class="container nav-inner">
+    <a href="/" class="nav-wordmark">MIZOKI3</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link is-active">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
     </nav>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<div class="mobile-backdrop" aria-hidden="true"></div>
+<nav id="mobile-nav" class="mobile-panel" aria-label="Mobile">
+  <div class="mobile-panel-links">
+    <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link is-active">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+  </div>
+</nav>
+
 <main>
 
-  <section class="domain-hero" aria-labelledby="domain-heading">
-    <div class="container domain-hero-grid">
-      <div class="reveal">
-        <p class="domain-eyebrow">Estate · Wealth & Fiduciary Intelligence</p>
-        <h1 id="domain-heading">Make multi-generational wealth structures legible, simulatable, and defensible.</h1>
-        <p class="domain-intro">Estate models the long-tail dynamics of trusts, ownership, and beneficiary intent — turning instruments designed to outlive their drafters into a living, queryable substrate.</p>
-        <div class="domain-actions">
-          <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Estate%20Demo" class="btn btn-primary">Request a briefing</a>
-          <a href="/#lenses" class="text-link">All lenses</a>
-        </div>
+  <section class="sub-hero section" aria-labelledby="lens-heading">
+    <div
+      class="section-bg section-bg--immediate"
+      style="background-image: url('https://images.unsplash.com/photo-1564013794819-155d6c4e8f62?w=1920&amp;q=80&amp;auto=format&amp;fit=crop');"
+      role="img"
+      aria-label="Coastal estate property suggesting legacy and permanence"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="sub-hero-inner reveal">
+        <p class="breadcrumb"><a href="/">MIZOKI3</a> → <span>Estate</span></p>
+        <p class="accent-label">TRUST &amp; ASSET INTELLIGENCE</p>
+        <h1 id="lens-heading" class="serif-headline">Structures preserved. Transfers optimized. Legacy governed.</h1>
+        <p class="sub-hero-lead">Estate applies autonomous decision intelligence to the most consequential financial structures — trusts, estates, multi-generational asset strategies, and tax optimization — with the same causal reasoning and governance that governs every other enterprise decision.</p>
       </div>
-
-      <aside class="scenario-panel reveal" aria-label="Estate decision example">
-        <div class="scenario-head">
-          <span>Estate · Governed output</span>
-          <span class="verdict-pill deferred">Conflict surfaced</span>
-        </div>
-        <div class="scenario-body">
-          <p class="scenario-id">TRUST-118</p>
-          <h2 class="scenario-title">Beneficiary Distribution Pathway</h2>
-          <dl class="scenario-meta">
-            <div><dt>Trust</dt><dd>Whitfield Family · Gen II</dd></div>
-            <div><dt>Proposed action</dt><dd>Q4 discretionary distribution</dd></div>
-            <div><dt>Conflict</dt><dd>Class A vs Class B allocation</dd></div>
-            <div><dt>Counsel link</dt><dd>Amendment §4.2 interpretation</dd></div>
-          </dl>
-          <p class="scenario-outcome">Estate surfaced a <strong>beneficiary conflict</strong> before wire initiation. The proposal was deferred to Counsel for §4.2 interpretation — with a full causal trace of why distribution would breach stated intent.</p>
-        </div>
-        <div class="scenario-foot">
-          <a href="/console">View in Decision Control Plane →</a>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <section class="bordered" aria-labelledby="anatomy-heading">
+  <section class="section section--solid has-grain" aria-labelledby="capabilities-heading">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Lens anatomy</p>
-        <h2 id="anatomy-heading" class="section-title">What enters. What the graph gains.</h2>
+      <header class="section-head reveal">
+        <p class="accent-label">CAPABILITIES</p>
+        <h2 id="capabilities-heading" class="serif-headline">From static estate plans to living structural intelligence.</h2>
+        <p class="section-intro">Estate does not archive documents for annual review. It models trusts, beneficiaries, and transfer pathways as a living substrate — recalculating implications when tax law, family circumstances, or market conditions change.</p>
+      </header>
+      <div class="pillars reveal">
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Trust Structure Analysis</span>
+          <p>Estate maps the full topology of trust arrangements — beneficiaries, trustees, distribution schedules, conditions, and constraints — into the knowledge graph. Every structural relationship is tracked causally, so changes in tax law or family circumstances automatically surface their downstream implications.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Tax Strategy Optimization</span>
+          <p>Counterfactual simulation applied to tax planning. Estate models alternate structuring strategies and projects their outcomes across jurisdictions, time horizons, and regulatory scenarios — producing recommendations grounded in causal evidence rather than static assumptions.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Multi-Generational Asset Intelligence</span>
+          <p>Estate tracks asset positions, transfer strategies, and succession plans across generational timelines. When conditions change — a tax law update, a beneficiary event, a market shift — the system recalculates the optimal path and surfaces it through the Decision Control Plane for authorization.</p>
+        </article>
       </div>
-      <div class="anatomy-grid reveal">
-        <div class="anatomy-block">
-          <p class="section-label">Consumes</p>
-          <h3>The signals that enter Estate.</h3>
-          <ul class="anatomy-list">
-            <li>Trusts</li>
-            <li>Amendments</li>
-            <li>Tax positions</li>
-            <li>Estate documents</li>
-            <li>Ownership hierarchies</li>
-            <li>Banking relationships</li>
-            <li>Fiduciary communications</li>
+    </div>
+  </section>
+
+  <section class="section section--cinematic" data-parallax aria-labelledby="cross-heading">
+    <div
+      class="section-bg"
+      data-bg="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Vineyard landscape at golden hour suggesting permanence and value"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+
+      <header class="section-head section-head--center reveal">
+        <p class="accent-label">CROSS-DOMAIN INTELLIGENCE</p>
+        <h2 id="cross-heading" class="serif-headline">Estate decisions informed by every obligation, covenant, and regulatory constraint in the system.</h2>
+        <p class="section-intro">A covenant mapped by Counsel constrains distribution timing in Estate. A liquidity forecast from Capital bounds discretionary transfers. Risk verifies fiduciary compliance before any wire initiates. Wealth structures inherit the full enterprise context — not a siloed planning workbook.</p>
+      </header>
+      <div class="cross-diagram reveal" aria-hidden="true">
+  <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="360" cy="200" r="140" fill="none" stroke="rgba(201,168,85,0.08)" stroke-width="1"/>
+    <line x1="600" y1="320" x2="360" y2="200" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="600" y1="320" x2="120" y2="80" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="600" y1="320" x2="600" y2="80" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="600" y1="320" x2="120" y2="320" stroke="rgba(201,168,85,0.35)" stroke-width="1"/>
+    <circle cx="360" cy="200" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="360" y="205" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Counsel</text><circle cx="120" cy="80" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="120" y="85" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Signal</text><circle cx="600" cy="80" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="600" y="85" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Capital</text><circle cx="120" cy="320" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="120" y="325" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Risk</text><circle cx="600" cy="320" r="36" fill="rgba(201,168,85,0.15)" stroke="rgba(201,168,85,0.55)" stroke-width="1"/><text x="600" y="325" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Estate</text>
+    <text x="360" y="24" text-anchor="middle" fill="#5a6270" font-family="Outfit,sans-serif" font-size="10" letter-spacing="0.12em">SHARED KNOWLEDGE GRAPH</text>
+  </svg>
+</div>
+
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="io-heading">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="accent-label">Lens Anatomy</p>
+        <h2 id="io-heading" class="serif-headline">What enters. What emerges.</h2>
+      </header>
+      <div class="io-grid reveal">
+        <article class="io-card">
+          <h3>Estate Ingests</h3>
+          <ul class="io-list">
+            <li>Trust documents &amp; amendments</li>
+            <li>Estate plans</li>
+            <li>Tax filings &amp; projections</li>
+            <li>Asset registries</li>
             <li>Beneficiary records</li>
+            <li>Insurance policies</li>
+            <li>Property valuations</li>
+            <li>Succession plans</li>
           </ul>
-        </div>
-        <div class="anatomy-block">
-          <p class="section-label">Produces</p>
-          <h3>The intelligence Estate contributes.</h3>
-          <ul class="anatomy-list">
-            <li>Trust restructuring intelligence</li>
-            <li>Tax exposure forecasting</li>
-            <li>Succession pathway simulations</li>
-            <li>Beneficiary conflict mapping</li>
-            <li>Trustee behavior intelligence</li>
-            <li>Liquidity forecasting</li>
-            <li>Estate optimization scenarios</li>
+        </article>
+        <div class="io-divider" aria-hidden="true"></div>
+        <article class="io-card">
+          <h3>Estate Produces</h3>
+          <ul class="io-list">
+            <li>Trust structure maps</li>
+            <li>Tax optimization scenarios</li>
+            <li>Transfer strategy recommendations</li>
+            <li>Beneficiary impact analysis</li>
+            <li>Generational wealth projections</li>
+            <li>Regulatory compliance verification</li>
+            <li>Asset rebalancing intelligence</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="platform-strip" aria-labelledby="platform-heading">
+  <section class="section section--cinematic section--closing" data-parallax aria-labelledby="closing-heading">
+    <div
+      class="section-bg section-bg--closing"
+      data-bg="https://images.unsplash.com/photo-1564013794819-155d6c4e8f62?w=1920&amp;q=80&amp;auto=format&amp;fit=crop"
+      role="img"
+      aria-label="Coastal estate property suggesting legacy and permanence"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="closing-inner reveal">
+        <h2 id="closing-heading" class="serif-headline">See Estate model your trust structures live.</h2>
+        <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Estate%20Briefing" class="btn-closing">Schedule a Briefing</a>
+        <a href="mailto:hello@mizoki3.com" class="closing-email">hello@mizoki3.com</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="cross-nav" aria-label="Continue exploring lenses">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Platform integration</p>
-        <h2 id="platform-heading" class="section-title">Same architecture. Domain-specific reasoning.</h2>
-        <p style="max-width: 36rem; font-size: 0.9375rem;">Estate does not run in isolation. It reads and writes the shared Temporal-Causal Knowledge Graph through the same governed pipeline every lens uses.</p>
-      </div>
-      <div class="platform-grid reveal">
-        <div class="platform-cell">
-          <h4>The Brain</h4>
-          <p>Models trust hierarchies, beneficiary relationships, and cross-entity ownership as a temporal graph — not a folder tree.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Pipeline</h4>
-          <p>Succession and distribution proposals are simulated against tax and fiduciary constraints before Capital or Counsel surfaces them for action.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Gate</h4>
-          <p>Fiduciary deviation alerts and beneficiary conflict scores feed directly into Risk authorization — blocking distributions that violate trust intent.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cross-lens">
-    <div class="container cross-lens-inner reveal">
-      <div>
-        <p class="section-label">Reinforces</p>
-        <p>What Estate learns propagates to Counsel, Capital, and Risk — one intelligence, many domains.</p>
-      </div>
-      <div class="cross-links" aria-label="Related lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal">Signal</a>
-        <a href="/capital">Capital</a>
-        <a href="/risk">Risk</a>
+      <header class="cross-nav-head reveal">
+        <p class="accent-label">Continue Exploring</p>
+        <h2 class="serif-headline">One brain. Five lenses.</h2>
+      </header>
+      <div class="cross-nav-grid reveal">
+        <a href="/counsel" class="cross-nav-card">
+          <h4>Counsel</h4>
+          <span>Legal Intelligence</span>
+        </a>
+        <a href="/signal" class="cross-nav-card">
+          <h4>Signal</h4>
+          <span>Marketing Intelligence</span>
+        </a>
+        <a href="/capital" class="cross-nav-card">
+          <h4>Capital</h4>
+          <span>Financial Intelligence</span>
+        </a>
+        <a href="/risk" class="cross-nav-card">
+          <h4>Risk</h4>
+          <span>Compliance &amp; Resilience</span>
+        </a>
       </div>
     </div>
-  </section>
-
-  <section class="cta-wrap" aria-labelledby="cta-heading">
-    <div class="container cta-inner reveal">
-      <div>
-        <h2 id="cta-heading" class="section-title">See Estate in your context</h2>
-        <p>We walk through domain-specific scenarios — obligation mapping, covenant enforcement, causal acquisition, fiduciary governance — on your terms.</p>
-      </div>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Estate%20Demo" class="btn btn-primary">Schedule a Demo</a>
-    </div>
-  </section>
+  </nav>
 
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">MIZOKI3</span>
-        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
-        <div class="trust-row">
-          <span class="trust-pill">Patented Technology</span>
-          <span class="trust-pill">Customer-Managed Encryption</span>
-          <span class="trust-pill">Proprietary Engine</span>
-        </div>
+      <div>
+        <span class="footer-wordmark">MIZOKI3</span>
+        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Lenses</h4>
-        <ul>
+        <h4>Platform</h4>
+        <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>
           <li><a href="/capital">Capital</a></li>
           <li><a href="/risk">Risk</a></li>
           <li><a href="/estate">Estate</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
           <li><a href="/architecture">Architecture</a></li>
-          <li><a href="/console">Console</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
-          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
-        </ul>
+        <h4>Trust</h4>
+        <div class="trust-badges">
+          <span>GDPR</span>
+          <span>Patented Technology</span>
+          <span>Customer-Managed Encryption</span>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
-      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
+    <div class="footer-bar">
+      <span>© 2026 MIZOKI3</span>
+      <div class="footer-legal">
+        <a href="mailto:hello@mizoki3.com?subject=Privacy%20Inquiry">Privacy</a>
+        <a href="mailto:hello@mizoki3.com?subject=Terms%20Inquiry">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  'use strict';
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 16);
-  }, { passive: true });
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
-  }
-})();
-</script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

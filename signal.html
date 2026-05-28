@@ -4,228 +4,229 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MIZOKI3 — Signal · Marketing Intelligence</title>
-<meta name="description" content="Replace correlation-based marketing with causal autonomous acquisition." />
+<meta name="description" content="Correlation guesses. Causation governs — causal marketing intelligence from MIZOKI3." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/css/mizoki3.css" />
-<style>
-  :root { --lens-accent: #a89070; }
-  .domain-eyebrow { color: var(--lens-accent); }
-  .anatomy-block .section-label { color: var(--lens-accent); }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/homepage.css" />
+<link rel="stylesheet" href="/assets/css/subpages.css" />
 </head>
-<body>
+<body class="page-sub">
 
-<header class="site-header" id="header">
-  <div class="container header-inner">
-    <a href="/" class="logo">MIZOKI3</a>
-    <nav class="nav">
-      <div class="lens-nav" aria-label="Domain lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/signal" class="active">Signal</a>
-        <a href="/capital">Capital</a>
-        <a href="/risk">Risk</a>
-        <a href="/estate">Estate</a>
-      </div>
-      <a href="/#how-it-works" class="nav-link hide-mobile">How It Works</a>
-      <a href="/architecture" class="nav-link hide-mobile">Architecture</a>
-      <a href="/console" class="nav-link hide-mobile">Console</a>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+<header class="site-nav is-solid" role="banner">
+  <div class="container nav-inner">
+    <a href="/" class="nav-wordmark">MIZOKI3</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link is-active">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
     </nav>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+    <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
+<div class="mobile-backdrop" aria-hidden="true"></div>
+<nav id="mobile-nav" class="mobile-panel" aria-label="Mobile">
+  <div class="mobile-panel-links">
+    <a href="/#platform" class="nav-link">Platform</a>
+      <a href="/counsel" class="nav-link">Counsel</a>
+      <a href="/signal" class="nav-link is-active">Signal</a>
+      <a href="/capital" class="nav-link">Capital</a>
+      <a href="/risk" class="nav-link">Risk</a>
+      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
+  </div>
+</nav>
+
 <main>
 
-  <section class="domain-hero" aria-labelledby="domain-heading">
-    <div class="container domain-hero-grid">
-      <div class="reveal">
-        <p class="domain-eyebrow">Signal · Marketing Intelligence</p>
-        <h1 id="domain-heading">Replace correlation-based marketing with causal autonomous acquisition.</h1>
-        <p class="domain-intro">Signal rebuilds growth on causal ground: it learns what actually moves customers, then steers spend, channel, and creative through the same governed reasoning loop the rest of the enterprise uses.</p>
-        <div class="domain-actions">
-          <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Signal%20Demo" class="btn btn-primary">Request a briefing</a>
-          <a href="/#lenses" class="text-link">All lenses</a>
-        </div>
+  <section class="sub-hero section" aria-labelledby="lens-heading">
+    <div
+      class="section-bg section-bg--immediate"
+      style="background-image: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&amp;q=80&amp;auto=format&amp;fit=crop');"
+      role="img"
+      aria-label="Aerial view of a city skyline at dusk with lights beginning to turn on"
+    ></div>
+    <div class="section-overlay section-overlay--heavy"></div>
+    <div class="container section-content">
+      <div class="sub-hero-inner reveal">
+        <p class="breadcrumb"><a href="/">MIZOKI3</a> → <span>Signal</span></p>
+        <p class="accent-label">MARKETING INTELLIGENCE</p>
+        <h1 id="lens-heading" class="serif-headline">Correlation guesses. Causation governs.</h1>
+        <p class="sub-hero-lead">Signal replaces assumption-based marketing with causal autonomous execution — learning what actually moves customers, then steering spend, channel, and creative through the same governed pipeline the rest of the enterprise uses.</p>
       </div>
-
-      <aside class="scenario-panel reveal" aria-label="Signal decision example">
-        <div class="scenario-head">
-          <span>Signal · Governed output</span>
-          <span class="verdict-pill approved">Authorized</span>
-        </div>
-        <div class="scenario-body">
-          <p class="scenario-id">SIG-204</p>
-          <h2 class="scenario-title">Cross-Channel Budget Reallocation</h2>
-          <dl class="scenario-meta">
-            <div><dt>Shift</dt><dd>$120K · Meta → Google Search</dd></div>
-            <div><dt>Causal basis</dt><dd>ReLU threshold exceeded</dd></div>
-            <div><dt>Capital check</dt><dd>Within Q4 spend envelope</dd></div>
-            <div><dt>Risk check</dt><dd>Policy SIG-ALLOC-01</dd></div>
-          </dl>
-          <p class="scenario-outcome">Signal identified a causal activation threshold on Search — not a correlation spike. Capital confirmed envelope headroom. Risk authorized the reallocation with a full audit trail of the causal chain.</p>
-        </div>
-        <div class="scenario-foot">
-          <a href="/console">View in Decision Control Plane →</a>
-        </div>
-      </aside>
     </div>
   </section>
 
-  <section class="bordered" aria-labelledby="anatomy-heading">
+  <section class="section section--solid has-grain" aria-labelledby="capabilities-heading">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Lens anatomy</p>
-        <h2 id="anatomy-heading" class="section-title">What enters. What the graph gains.</h2>
+      <header class="section-head reveal">
+        <p class="accent-label">CAPABILITIES</p>
+        <h2 id="capabilities-heading" class="serif-headline">From attribution guesswork to governed acquisition.</h2>
+        <p class="section-intro">Signal does not report last-click metrics or optimize in a silo. It traces what actually moves customers, then steers spend and creative through the same SRPVDAL pipeline and Decision Control Plane that govern every other enterprise action.</p>
+      </header>
+      <div class="pillars reveal">
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Causal Attribution</span>
+          <p>Signal doesn&#x27;t guess which touchpoint drove a conversion. It traces the causal chain — what actually influenced the outcome, what was incidental, and what would have happened if the touchpoint hadn&#x27;t existed. Attribution built on counterfactual evidence, not last-click correlation.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Autonomous Bid Optimization</span>
+          <p>Media buying decisions flow through the SRPVDAL pipeline and the Decision Control Plane. Every bid adjustment is causally justified, policy-compliant, and scored against simulated alternatives before execution. No black-box automation — governed autonomy.</p>
+        </article>
+        <article class="pillar-card reveal-child">
+          <span class="accent-label">Threshold-Aware Execution</span>
+          <p>Signal understands the activation thresholds and learning stability dynamics of advertising platforms. It doesn&#x27;t fight the algorithm — it works with the platform&#x27;s own optimization mechanics while maintaining causal oversight.</p>
+        </article>
       </div>
-      <div class="anatomy-grid reveal">
-        <div class="anatomy-block">
-          <p class="section-label">Consumes</p>
-          <h3>The signals that enter Signal.</h3>
-          <ul class="anatomy-list">
+    </div>
+  </section>
+
+  <section class="section section--solid has-grain" aria-labelledby="cross-heading">
+    <div class="container">
+
+      <header class="section-head section-head--center reveal">
+        <p class="accent-label">CROSS-DOMAIN INTELLIGENCE</p>
+        <h2 id="cross-heading" class="serif-headline">Marketing decisions bounded by legal reality and financial constraints.</h2>
+        <p class="section-intro">A covenant tracked by Counsel becomes a spending constraint in Signal. A liquidity threshold monitored by Capital becomes a budget ceiling. Signal doesn&#x27;t operate in a marketing silo — it inherits the enterprise&#x27;s full legal and financial context through the shared knowledge graph.</p>
+      </header>
+      <div class="cross-diagram reveal" aria-hidden="true">
+  <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="360" cy="200" r="140" fill="none" stroke="rgba(201,168,85,0.08)" stroke-width="1"/>
+    <line x1="120" y1="80" x2="360" y2="200" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="120" y1="80" x2="600" y2="80" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="120" y1="80" x2="120" y2="320" stroke="rgba(201,168,85,0.35)" stroke-width="1"/><line x1="120" y1="80" x2="600" y2="320" stroke="rgba(201,168,85,0.35)" stroke-width="1"/>
+    <circle cx="360" cy="200" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="360" y="205" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Counsel</text><circle cx="120" cy="80" r="36" fill="rgba(201,168,85,0.15)" stroke="rgba(201,168,85,0.55)" stroke-width="1"/><text x="120" y="85" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Signal</text><circle cx="600" cy="80" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="600" y="85" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Capital</text><circle cx="120" cy="320" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="120" y="325" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Risk</text><circle cx="600" cy="320" r="36" fill="rgba(26,34,53,0.9)" stroke="rgba(30,42,58,1)" stroke-width="1"/><text x="600" y="325" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="12" font-weight="500">Estate</text>
+    <text x="360" y="24" text-anchor="middle" fill="#5a6270" font-family="Outfit,sans-serif" font-size="10" letter-spacing="0.12em">SHARED KNOWLEDGE GRAPH</text>
+  </svg>
+</div>
+
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="io-heading">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="accent-label">Lens Anatomy</p>
+        <h2 id="io-heading" class="serif-headline">What enters. What emerges.</h2>
+      </header>
+      <div class="io-grid reveal">
+        <article class="io-card">
+          <h3>Signal Ingests</h3>
+          <ul class="io-list">
             <li>Meta advertising data</li>
             <li>Google advertising data</li>
             <li>CRM systems</li>
             <li>Customer journey telemetry</li>
             <li>Web analytics</li>
-            <li>Engagement signals</li>
             <li>Conversion events</li>
+            <li>Engagement signals</li>
             <li>Retention data</li>
           </ul>
-        </div>
-        <div class="anatomy-block">
-          <p class="section-label">Produces</p>
-          <h3>The intelligence Signal contributes.</h3>
-          <ul class="anatomy-list">
-            <li>Causal attribution modeling</li>
-            <li>Churn forecasting</li>
-            <li>Lifetime-value prediction</li>
-            <li>Autonomous bid optimization</li>
+        </article>
+        <div class="io-divider" aria-hidden="true"></div>
+        <article class="io-card">
+          <h3>Signal Produces</h3>
+          <ul class="io-list">
+            <li>Causal attribution models</li>
+            <li>Lifetime-value predictions</li>
+            <li>Autonomous bid strategies</li>
             <li>Activation threshold analysis</li>
             <li>Budget reallocation intelligence</li>
-            <li>Customer intent mapping</li>
+            <li>Churn forecasting</li>
+            <li>Customer intent maps</li>
           </ul>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="platform-strip" aria-labelledby="platform-heading">
+  <section class="section section--closing-solid" aria-labelledby="closing-heading">
+    <div class="container section-content">
+      <div class="closing-inner reveal">
+        <h2 id="closing-heading" class="serif-headline">See Signal optimize your acquisition live.</h2>
+        <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Signal%20Briefing" class="btn-closing">Schedule a Briefing</a>
+        <a href="mailto:hello@mizoki3.com" class="closing-email">hello@mizoki3.com</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="cross-nav" aria-label="Continue exploring lenses">
     <div class="container">
-      <div class="reveal" style="margin-bottom: 2rem;">
-        <p class="section-label">Platform integration</p>
-        <h2 id="platform-heading" class="section-title">Same architecture. Domain-specific reasoning.</h2>
-        <p style="max-width: 36rem; font-size: 0.9375rem;">Signal does not run in isolation. It reads and writes the shared Temporal-Causal Knowledge Graph through the same governed pipeline every lens uses.</p>
-      </div>
-      <div class="platform-grid reveal">
-        <div class="platform-cell">
-          <h4>The Brain</h4>
-          <p>Customer journeys and channel interactions become causal edges — spend is linked to verified outcomes, not platform-reported attribution.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Pipeline</h4>
-          <p>Budget shifts require passing Validate against Capital liquidity constraints and Risk spend-governance policy before Act.</p>
-        </div>
-        <div class="platform-cell">
-          <h4>The Gate</h4>
-          <p>Autonomous bid and allocation changes only execute when causal confidence clears threshold — correlation alone never authorizes.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cross-lens">
-    <div class="container cross-lens-inner reveal">
-      <div>
-        <p class="section-label">Reinforces</p>
-        <p>What Signal learns propagates to Capital, Risk, and Counsel — one intelligence, many domains.</p>
-      </div>
-      <div class="cross-links" aria-label="Related lenses">
-        <a href="/counsel">Counsel</a>
-        <a href="/capital">Capital</a>
-        <a href="/risk">Risk</a>
-        <a href="/estate">Estate</a>
+      <header class="cross-nav-head reveal">
+        <p class="accent-label">Continue Exploring</p>
+        <h2 class="serif-headline">One brain. Five lenses.</h2>
+      </header>
+      <div class="cross-nav-grid reveal">
+        <a href="/counsel" class="cross-nav-card">
+          <h4>Counsel</h4>
+          <span>Legal Intelligence</span>
+        </a>
+        <a href="/capital" class="cross-nav-card">
+          <h4>Capital</h4>
+          <span>Financial Intelligence</span>
+        </a>
+        <a href="/risk" class="cross-nav-card">
+          <h4>Risk</h4>
+          <span>Compliance &amp; Resilience</span>
+        </a>
+        <a href="/estate" class="cross-nav-card">
+          <h4>Estate</h4>
+          <span>Trust &amp; Asset Intelligence</span>
+        </a>
       </div>
     </div>
-  </section>
-
-  <section class="cta-wrap" aria-labelledby="cta-heading">
-    <div class="container cta-inner reveal">
-      <div>
-        <h2 id="cta-heading" class="section-title">See Signal in your context</h2>
-        <p>We walk through domain-specific scenarios — obligation mapping, covenant enforcement, causal acquisition, fiduciary governance — on your terms.</p>
-      </div>
-      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Signal%20Demo" class="btn btn-primary">Schedule a Demo</a>
-    </div>
-  </section>
+  </nav>
 
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <span class="logo">MIZOKI3</span>
-        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
-        <div class="trust-row">
-          <span class="trust-pill">Patented Technology</span>
-          <span class="trust-pill">Customer-Managed Encryption</span>
-          <span class="trust-pill">Proprietary Engine</span>
-        </div>
+      <div>
+        <span class="footer-wordmark">MIZOKI3</span>
+        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Lenses</h4>
-        <ul>
+        <h4>Platform</h4>
+        <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>
           <li><a href="/capital">Capital</a></li>
           <li><a href="/risk">Risk</a></li>
           <li><a href="/estate">Estate</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <ul>
           <li><a href="/architecture">Architecture</a></li>
-          <li><a href="/console">Console</a></li>
           <li><a href="/blog/">Blog</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
-          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
-        </ul>
+        <h4>Trust</h4>
+        <div class="trust-badges">
+          <span>GDPR</span>
+          <span>Patented Technology</span>
+          <span>Customer-Managed Encryption</span>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
-      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
+    <div class="footer-bar">
+      <span>© 2026 MIZOKI3</span>
+      <div class="footer-legal">
+        <a href="mailto:hello@mizoki3.com?subject=Privacy%20Inquiry">Privacy</a>
+        <a href="mailto:hello@mizoki3.com?subject=Terms%20Inquiry">Terms</a>
+      </div>
     </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  'use strict';
-  document.getElementById('year').textContent = new Date().getFullYear();
-  var header = document.getElementById('header');
-  window.addEventListener('scroll', function () {
-    header.classList.toggle('scrolled', window.scrollY > 16);
-  }, { passive: true });
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
-  }
-})();
-</script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>
