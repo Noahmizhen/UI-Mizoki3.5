@@ -1,56 +1,53 @@
-# MIZOKI3 — Site
+# MIZOKI3 — Marketing Site
 
-Marketing site for **MIZOKI3 — Autonomous Strategic Intelligence Infrastructure**.
+Production site for **mizoki3.com** — homepage, five domain lenses, architecture, blog, and Decision Control Plane console.
 
-## Stack
+**Stack:** Python Flask + Gunicorn on Google Cloud Run. HTML/CSS/JS front end with a Python build step for subpages.
 
-Pure static HTML / CSS / JS. No build step required for browsing — the site runs as-is.
+**Canonical repo:** [github.com/Noahmizhen/UI-Mizoki3.5](https://github.com/Noahmizhen/UI-Mizoki3.5)
 
-```
-.
-├── index.html           # Hero, animated Nexus, brain, 5 domains, flywheel, category, positioning
-├── counsel.html         # Legal Intelligence
-├── estate.html          # Wealth, Trust & Tax Intelligence
-├── capital.html         # Banking & Financial Intelligence
-├── signal.html          # Autonomous Acquisition Intelligence
-├── risk.html            # Verification & Compliance Intelligence
-├── assets/
-│   ├── css/styles.css   # Shared dark cinematic theme
-│   └── js/nexus.js      # Animated SVG hero (vanilla JS, no deps)
-└── _build_domains.py    # Regenerates the 5 domain pages from a single template
-```
+---
 
-## Local preview
+## Quick start (local)
 
 ```bash
-python3 -m http.server 8000
-# open http://localhost:8000
+python3 _build_site.py
+PORT=8890 python3 app.py
+# http://127.0.0.1:8890
 ```
 
-## Editing domain pages
+See **[DEPLOY.md](./DEPLOY.md)** for editing content, tests, GCP deploy, and handoff details.
 
-The five domain pages share a template. Edit copy / lists in `_build_domains.py` and regenerate:
+---
+
+## Structure
+
+```
+index.html              # Homepage
+counsel.html …          # Domain lens pages (generated)
+architecture.html       # Technical architecture (generated)
+blog/                   # Insights + articles
+_build_site.py          # Regenerates lens/architecture/blog HTML
+_build_site_data.py     # Page content data
+assets/css/homepage.css # Homepage design system
+assets/css/subpages.css # Subpages + blog articles
+assets/js/homepage.js   # Homepage (nav, canvas graph, scroll)
+assets/js/site.js       # Subpages (nav, reveals)
+mizoki3-site/console/   # /console Decision Control Plane
+app.py                  # Flask server + API routes
+```
+
+Regenerate subpages after editing `_build_site_data.py` or `blog/_content/`:
 
 ```bash
-python3 _build_domains.py
+python3 _build_site.py
 ```
 
-## Deployment
+---
 
-The site is fully static, so any of the following work:
+## Deploy
 
-- **GitHub Pages** — enable Pages on `main`, set folder to root.
-- **Vercel / Netlify** — drag-and-drop or connect the repo, no build command.
-- **Cloudflare Pages** — same.
+- **Auto:** push to `main` → GitHub Actions → Cloud Run (`mizoki-website`, `us-central1`, project `spry-bus-425315-p6`)
+- **Manual:** `./deploy.sh`
 
-## Design language
-
-- Dark, cinematic, technical
-- Inter (body) + JetBrains Mono (eyebrows / labels / code)
-- Cyan / violet gradient accent on the Nexus brand line
-- Per-domain accent colors:
-  - Counsel — cyan
-  - Estate — violet
-  - Capital — emerald
-  - Signal — amber
-  - Risk — rose
+Full instructions: **[DEPLOY.md](./DEPLOY.md)**
