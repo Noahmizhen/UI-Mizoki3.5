@@ -1,1341 +1,1090 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MIZOKI3 // The Decision OS for Autonomous Enterprise Cognition</title>
-<meta name="description" content="MIZOKI3 turns fragmented enterprise data into governed autonomous decision intelligence with a temporal-causal knowledge graph, the SRPVDAL pipeline, and the Decision Control Plane." />
+<title>MIZOKI3 — Autonomous Decision Intelligence</title>
+<meta name="description" content="MIZOKI3 is the governed autonomous decision layer for enterprise. AI that decides and acts — with compliance, causal proof, and a complete audit trail." />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/lucide@latest"></script>
-
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: {
-          sans: ['Inter', 'sans-serif'],
-          mono: ['JetBrains Mono', 'monospace'],
-        },
-        colors: {
-          cyberBg: '#02040a',
-          cyberPanel: '#07101d',
-          cyberCyan: '#22d3ee',
-          cyberGold: '#fbbf24',
-          cyberEmerald: '#34d399',
-          cyberRed: '#f87171',
-          cyberViolet: '#a855f7',
-          cyberIndigo: '#6366f1',
-        },
-        boxShadow: {
-          'neon-cyan': '0 0 20px rgba(34, 211, 238, 0.25)',
-          'neon-gold': '0 0 20px rgba(251, 191, 36, 0.22)',
-          'neon-emerald': '0 0 20px rgba(52, 211, 153, 0.22)',
-          'neon-violet': '0 0 20px rgba(168, 85, 247, 0.22)',
-          'neon-rose': '0 0 20px rgba(248, 113, 113, 0.20)',
-        }
-      }
-    }
-  }
-</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 
 <style>
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #02040a; }
-  ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 999px; }
-  ::-webkit-scrollbar-thumb:hover { background: #334155; }
-
-  @keyframes scan {
-    0% { transform: translateY(-100%); opacity: 0; }
-    15% { opacity: 0.8; }
-    85% { opacity: 0.8; }
-    100% { transform: translateY(100%); opacity: 0; }
+  :root {
+    --bg-base: #0a0d12;
+    --bg-surface: #111620;
+    --bg-raised: #161c28;
+    --bg-inset: #0d1118;
+    --text-primary: #ece8e0;
+    --text-secondary: #9a9488;
+    --text-muted: #5e5952;
+    --accent: #b8956a;
+    --accent-soft: rgba(184, 149, 106, 0.1);
+    --accent-line: rgba(184, 149, 106, 0.35);
+    --line: rgba(236, 232, 224, 0.07);
+    --line-strong: rgba(236, 232, 224, 0.12);
+    --critical: #b85c5c;
+    --critical-soft: rgba(184, 92, 92, 0.12);
+    --success: #6a9478;
+    --info: #6a85a8;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "DM Sans", system-ui, sans-serif;
+    --max: 1200px;
+    --section-y: clamp(5rem, 10vw, 7rem);
+    --radius-sm: 3px;
+    --radius-md: 6px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .animate-scan { animation: scan 5s ease-in-out infinite; }
 
-  @keyframes orbit-cw  { to { transform: rotate(360deg); } }
-  @keyframes orbit-ccw { to { transform: rotate(-360deg); } }
-  .animate-orbit-cw  { animation: orbit-cw  45s linear infinite; }
-  .animate-orbit-ccw { animation: orbit-ccw 60s linear infinite; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-  .glow-cyan    { background: radial-gradient(circle, rgba(34,211,238,0.15) 0%, transparent 70%); }
-  .glow-gold    { background: radial-gradient(circle, rgba(251,191,36,0.10) 0%, transparent 75%); }
-  .glow-indigo  { background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%); }
-  .glow-emerald { background: radial-gradient(circle, rgba(52,211,153,0.10) 0%, transparent 70%); }
+  body {
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    background: var(--bg-base);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent-soft); color: var(--text-primary); }
+  a { color: inherit; text-decoration: none; }
+  svg { display: block; max-width: 100%; }
+
+  .container {
+    width: min(100% - 2.5rem, var(--max));
+    margin-inline: auto;
+  }
+
+  /* —— Header —— */
+  .site-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    transition: background 0.25s, border-color 0.25s;
+  }
+  .site-header.scrolled {
+    background: rgba(10, 13, 18, 0.9);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+  .logo {
+    font-family: var(--sans);
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .nav-link {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--text-primary); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.625rem 1.25rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #120f0c;
+  }
+  .btn-primary:hover { background: #c9a67a; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-ghost:hover { border-color: var(--accent-line); }
+  .text-link {
+    font-size: 0.875rem;
+    color: var(--accent);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .text-link:hover { border-color: var(--accent-line); }
+
+  /* —— Hero —— */
+  .hero {
+    padding: 5.5rem 0 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 3.5rem;
+    align-items: center;
+    padding: 2rem 0 3.5rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+  .hero-lead {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    max-width: 28rem;
+    margin-bottom: 2rem;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+  }
+
+  /* Product proof panel — Palantir "show the software" */
+  .product-panel {
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.5s var(--ease), border-color 0.5s;
+  }
+  .product-panel.gate-active {
+    border-color: rgba(184, 92, 92, 0.35);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45), 0 0 48px rgba(184, 92, 92, 0.08);
+  }
+  .product-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-inset);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .product-panel-head span:last-child {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--success);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--success);
+  }
+  .product-panel-body {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    min-height: 380px;
+  }
+  .ontology-pane {
+    padding: 1.25rem;
+    border-right: 1px solid var(--line);
+    background: var(--bg-inset);
+    display: flex;
+    flex-direction: column;
+  }
+  .pane-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .ontology-canvas-wrap {
+    flex: 1;
+    position: relative;
+    height: 260px;
+    min-height: 260px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 90% 80% at 50% 50%, rgba(184,149,106,0.08), transparent 65%),
+      var(--bg-inset);
+    border: 1px solid var(--line);
+  }
+  .graph-live-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 2;
+    font-size: 0.5625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.45rem;
+    border-radius: var(--radius-sm);
+    color: var(--success);
+    background: rgba(106, 148, 120, 0.12);
+    border: 1px solid rgba(106, 148, 120, 0.35);
+    pointer-events: none;
+  }
+  .graph-live-badge::before {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--success);
+    margin-right: 0.35rem;
+    vertical-align: middle;
+    animation: live-pulse 2s ease-in-out infinite;
+  }
+  @keyframes live-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+  #tckgCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+  }
+  .graph-phase-hint {
+    font-size: 0.6875rem;
+    color: var(--text-muted);
+    margin-top: 0.65rem;
+    min-height: 1.25rem;
+    line-height: 1.4;
+    transition: color 0.3s;
+  }
+  .graph-phase-hint::before {
+    content: "▸ ";
+    color: var(--accent);
+  }
+  .ontology-pane.graph-paused .graph-phase-hint::before {
+    content: "❚❚ ";
+  }
+  .graph-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .graph-legend span { display: flex; align-items: center; gap: 0.35rem; }
+  .graph-legend i {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .dcp-pane {
+    padding: 1.25rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .dcp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .dcp-id {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
+  }
+  .dcp-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+  .verdict {
+    flex-shrink: 0;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-sm);
+    color: var(--critical);
+    background: var(--critical-soft);
+    border: 1px solid rgba(184, 92, 92, 0.3);
+  }
+  .dcp-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.8125rem;
+  }
+  .dcp-meta dt {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.15rem;
+  }
+  .dcp-meta dd { color: var(--text-primary); font-weight: 500; }
+
+  .trace-list {
+    list-style: none;
+    flex: 1;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+  .trace-list li {
+    display: flex;
+    gap: 0.65rem;
+    padding: 0.5rem 0.25rem;
+    margin-left: -0.25rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    transition: background 0.35s var(--ease), color 0.35s;
+  }
+  .trace-list li:last-child { border-bottom: none; }
+  .trace-list li strong { color: var(--text-primary); font-weight: 500; }
+  .trace-stage {
+    flex-shrink: 0;
+    width: 4.5rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 0.1rem;
+  }
+  .trace-list li.veto { border-left: 2px solid var(--critical); padding-left: 0.5rem; margin-left: -0.5rem; }
+  .trace-list li.trace-active {
+    background: rgba(184, 149, 106, 0.06);
+    color: var(--text-primary);
+  }
+  .trace-list li.veto.trace-active {
+    background: var(--critical-soft);
+  }
+  .trace-list li.trace-active .trace-stage { color: var(--accent); }
+  .trace-list li.veto.trace-active .trace-stage { color: var(--critical); }
+
+  .product-panel-foot {
+    padding: 0.65rem 1rem;
+    border-top: 1px solid var(--line);
+    background: var(--bg-inset);
+    text-align: right;
+  }
+  .product-panel-foot a {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .product-panel-foot a:hover { text-decoration: underline; }
+
+  /* Credibility */
+  .cred-band {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--line);
+    padding: 1.25rem 0;
+  }
+  .cred-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+  .cred-statement {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    max-width: 22rem;
+    line-height: 1.5;
+  }
+  .cred-divider {
+    width: 1px;
+    height: 2rem;
+    background: var(--line-strong);
+  }
+  .cred-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  /* Sections */
+  section { padding: var(--section-y) 0; }
+  section.bordered { border-top: 1px solid var(--line); }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Shift */
+  .shift-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .shift-prose {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  .shift-prose p + p { margin-top: 1rem; }
+  .shift-prose em { font-style: normal; color: var(--text-primary); }
+
+  .shift-aside {
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--line-strong);
+    border-left: 2px solid var(--accent);
+    background: var(--bg-surface);
+  }
+  .shift-quote {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.45;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+  .shift-aside p:last-child {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* Pillars */
+  .section-pillars { background: var(--bg-surface); }
+
+  .arch-diagram {
+    margin: 2rem 0 2.5rem;
+    padding: 1.75rem 1.5rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--bg-base);
+    overflow-x: auto;
+  }
+  .arch-diagram-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .arch-diagram-head span:first-child {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .flow-stage-pill {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--line-strong);
+    color: var(--accent);
+    background: var(--accent-soft);
+    min-width: 10rem;
+    text-align: center;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .arch-diagram svg { min-width: 560px; margin: 0 auto; display: block; }
+  .flow-node {
+    transition: fill 0.4s var(--ease), stroke 0.4s var(--ease);
+  }
+  [data-flow-step].flow-active .flow-node {
+    fill: rgba(184,149,106,0.12);
+    stroke: rgba(184,149,106,0.45);
+  }
+  [data-flow-step].flow-current .flow-node {
+    fill: rgba(184,149,106,0.2);
+    stroke: rgba(184,149,106,0.7);
+  }
+  .flow-node-label { transition: fill 0.4s; }
+  [data-flow-step].flow-active .flow-node-label { fill: #b8956a; }
+  [data-flow-step]:not(.flow-active) .flow-node-label { fill: #9a9488; }
+  .flow-connector {
+    stroke: rgba(236,232,224,0.12);
+    stroke-width: 1;
+    transition: stroke 0.4s;
+  }
+  .flow-connector-active {
+    stroke: rgba(184,149,106,0.5);
+    stroke-dasharray: 6 4;
+    animation: flow-dash 1.2s linear infinite;
+  }
+  @keyframes flow-dash {
+    to { stroke-dashoffset: -20; }
+  }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .pillar {
+    padding: 2rem 1.75rem;
+    background: var(--bg-raised);
+    transition: background 0.2s;
+  }
+  .pillar:hover { background: #1a2130; }
+  .pillar-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-bottom: 1.25rem;
+    color: var(--accent);
+  }
+  .pillar h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .pillar p { font-size: 0.9375rem; line-height: 1.6; }
+  .pillars-footer { margin-top: 2rem; }
+
+  /* Lenses */
+  .lenses-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+    align-items: end;
+  }
+  .lenses-head p { font-size: 0.9375rem; max-width: 26rem; }
+
+  .lenses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .lens-card {
+    padding: 1.75rem;
+    background: var(--bg-surface);
+    display: flex;
+    flex-direction: column;
+    transition: background 0.2s;
+  }
+  .lens-card:hover { background: var(--bg-raised); }
+  .lens-card.span-2 { grid-column: span 1; }
+  .lenses-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-top: none;
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    overflow: hidden;
+  }
+  .lens-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .lens-tagline {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .lens-desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+  .lens-link {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  .lens-link:hover { color: var(--accent); }
+
+  /* CTA */
+  .cta-wrap {
+    padding: var(--section-y) 0;
+    border-top: 1px solid var(--line);
+  }
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding: 2.5rem 0;
+  }
+  .cta-inner .section-title { margin-bottom: 0.5rem; }
+  .cta-inner p { font-size: 0.9375rem; max-width: 28rem; }
+
+  /* Footer */
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding: 3rem 0 2rem;
+    background: var(--bg-surface);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .footer-brand p { font-size: 0.875rem; max-width: 17rem; margin-top: 0.65rem; }
+  .footer-col h4 {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.85rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li + li { margin-top: 0.4rem; }
+  .footer-col a { font-size: 0.875rem; color: var(--text-secondary); transition: color 0.2s; }
+  .footer-col a:hover { color: var(--text-primary); }
+  .trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .trust-pill {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    padding: 0.3rem 0.55rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+  }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .product-panel-body { grid-template-columns: 1fr; }
+    .ontology-pane { border-right: none; border-bottom: 1px solid var(--line); }
+    .shift-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .pillars { grid-template-columns: 1fr; }
+    .lenses-grid { grid-template-columns: 1fr; }
+    .lenses-row-2 { grid-template-columns: 1fr; border-radius: 0; border-top: 1px solid var(--line); }
+    .lenses-head { grid-template-columns: 1fr; }
+    .cta-inner { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cred-divider { display: none; }
+  }
+  @media (max-width: 768px) {
+    .nav-link { display: none; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .dcp-meta { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .flow-connector-active { animation: none; stroke-dasharray: none; }
+    .graph-live-badge::before { animation: none; opacity: 1; }
+  }
 </style>
 </head>
+<body>
 
-<body class="bg-cyberBg text-slate-100 font-sans selection:bg-cyan-500/30 selection:text-cyan-200 overflow-x-hidden antialiased">
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">MIZOKI3</a>
+    <nav class="nav">
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#lenses" class="nav-link">Lenses</a>
+      <a href="/architecture" class="nav-link">Architecture</a>
+      <a href="/console" class="nav-link">Console</a>
+      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+    </nav>
+  </div>
+</header>
 
-  <div class="fixed inset-0 pointer-events-none z-0">
-    <div class="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#111827_1px,transparent_1px),linear-gradient(to_bottom,#111827_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_65%,transparent_100%)] opacity-20"></div>
-    <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full glow-cyan filter blur-[120px] opacity-75"></div>
-    <div class="absolute bottom-[-15%] right-[-10%] w-[60%] h-[60%] rounded-full glow-indigo filter blur-[150px] opacity-60"></div>
-    <div class="absolute top-[40%] right-[10%] w-[45%] h-[45%] rounded-full glow-gold filter blur-[130px] opacity-40"></div>
-    <div class="absolute bottom-[10%] left-[20%] w-[35%] h-[35%] rounded-full glow-emerald filter blur-[120px] opacity-30"></div>
+<main>
+
+  <section class="hero" aria-label="Introduction">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="hero-eyebrow">Autonomous Decision Intelligence</p>
+        <h1>When AI acts, every decision has a reason.</h1>
+        <p class="hero-lead">
+          MIZOKI3 is the autonomous decision layer for enterprise — AI that does not merely recommend, but decides and executes, with governance and an audit trail that holds up to scrutiny.
+        </p>
+        <div class="hero-actions">
+          <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+          <a href="#how-it-works" class="text-link">How It Works</a>
+        </div>
+      </div>
+
+      <div class="product-panel reveal" aria-label="Decision Control Plane preview">
+        <div class="product-panel-head">
+          <span>Decision Control Plane</span>
+          <span><span class="live-dot"></span> Operational · Interactive</span>
+        </div>
+        <div class="product-panel-body">
+          <div class="ontology-pane" id="tckgPane">
+            <p class="pane-label">Temporal-Causal Knowledge Graph</p>
+            <div class="ontology-canvas-wrap">
+              <span class="graph-live-badge">Live trace</span>
+              <canvas id="tckgCanvas" aria-label="Interactive knowledge graph showing ACT-991 causal trace from Counsel covenant mapping through Capital proposal to Risk gate veto"></canvas>
+            </div>
+            <p class="graph-phase-hint" id="graphPhaseHint">Counsel maps obligation into graph memory</p>
+            <div class="graph-legend" aria-hidden="true">
+              <span><i style="background:#6b85a8"></i> Counsel</span>
+              <span><i style="background:#b8956a"></i> Capital</span>
+              <span><i style="background:#b85c5c"></i> Risk Gate</span>
+            </div>
+          </div>
+          <div class="dcp-pane">
+            <p class="pane-label">Authorization Request</p>
+            <div class="dcp-header">
+              <div>
+                <p class="dcp-id">ACT-991</p>
+                <h2 class="dcp-title">Q3 Dividend Distribution</h2>
+              </div>
+              <span class="verdict">Vetoed</span>
+            </div>
+            <dl class="dcp-meta">
+              <div><dt>Proposed by</dt><dd>Capital Intelligence</dd></div>
+              <div><dt>Amount</dt><dd>$5,000,000</dd></div>
+              <div><dt>Reserves</dt><dd>$12,000,000</dd></div>
+              <div><dt>Boundary</dt><dd>AMEND-842 · COV-01</dd></div>
+            </dl>
+            <ul class="trace-list" id="dcpTrace">
+              <li data-trace="0"><span class="trace-stage">Sense</span><span>Counsel mapped <strong>COV-01</strong> liquidity floor into graph memory.</span></li>
+              <li data-trace="1"><span class="trace-stage">Simulate</span><span>Post-action liquidity projected at <strong>$7,000,000</strong>.</span></li>
+              <li class="veto" data-trace="2"><span class="trace-stage">Gate</span><span><strong>Execution halted.</strong> $3M deficit vs covenant minimum — routed to safe alternative.</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="product-panel-foot">
+          <a href="/console">Open full console →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cred-band">
+    <div class="container cred-row reveal">
+      <p class="cred-statement">Four years in development. Patented proprietary architecture — not a wrapper on third-party models.</p>
+      <div class="cred-divider" aria-hidden="true"></div>
+      <div class="cred-tags">
+        <span>Patented</span>
+        <span>Customer-managed encryption</span>
+        <span>Full audit trail</span>
+        <span>Pre-launch enterprise pilots</span>
+      </div>
+    </div>
   </div>
 
-  <header class="sticky top-0 z-50 border-b border-white/5 bg-cyberBg/75 backdrop-blur-xl">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="/" class="flex items-center space-x-3 group">
-        <div class="p-1.5 rounded-lg border border-cyan-500/20 bg-cyan-950/30 text-cyberCyan group-hover:border-cyan-400 group-hover:text-cyan-400 transition-all duration-300">
-          <i data-lucide="globe-lock" class="w-6 h-6"></i>
+  <section id="the-shift" class="bordered" aria-labelledby="shift-heading">
+    <div class="container">
+      <div class="shift-grid reveal">
+        <div>
+          <p class="section-label">The Shift</p>
+          <h2 id="shift-heading" class="section-title">From recommendation to execution</h2>
+          <div class="shift-prose">
+            <p>Enterprise AI is moving from recommendation to execution. The gap is not intelligence — it is governance.</p>
+            <p>AI agents can already reason, plan, and act. What they cannot do is prove why they acted, guarantee compliance, or learn from outcomes in a way the organization can trust.</p>
+            <p><em>That is what we built.</em></p>
+          </div>
         </div>
-        <span class="text-xl font-black tracking-widest text-white">MIZOKI<span class="text-cyberCyan group-hover:text-cyan-400 transition-all duration-300">3</span></span>
-      </a>
-      <nav class="hidden lg:flex items-center space-x-10 text-xs font-bold tracking-[0.2em] text-slate-400 uppercase">
-        <a href="#engine" class="hover:text-cyberCyan transition-colors">The Engine</a>
-        <a href="#dcp" class="hover:text-cyberCyan transition-colors">Control Plane</a>
-        <a href="#lenses" class="hover:text-cyberCyan transition-colors">Domain Cells</a>
-        <a href="#replay" class="hover:text-cyberCyan transition-colors">Replay</a>
-        <a href="#sandbox" class="hover:text-cyberCyan transition-colors">Sandbox</a>
-      </nav>
-      <div class="flex items-center space-x-4">
-        <a href="/console" class="hidden sm:inline-flex items-center space-x-2 px-4 py-2 border border-white/10 rounded-xl hover:bg-white/5 transition-all duration-300 text-xs font-bold tracking-wider text-slate-300">
-          <span class="flex h-2 w-2 relative">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyberCyan opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyberCyan"></span>
-          </span>
-          <span>Live Console</span>
-        </a>
-        <a href="#demo" class="px-5 py-2.5 text-xs font-black uppercase tracking-widest text-black bg-gradient-to-r from-cyberGold via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-neon-gold">
-          Executive Demo
-        </a>
+        <aside class="shift-aside">
+          <p class="shift-quote">"The question is no longer whether AI can act. It is whether you can defend every action it takes."</p>
+          <p>MIZOKI3 closes the governance gap between agent capability and enterprise accountability — with causal proof, not post-hoc explanation.</p>
+        </aside>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="relative z-10">
-
-    <!-- ============================ HERO ============================ -->
-    <section class="relative min-h-[calc(100vh-80px)] flex items-center py-20 px-6 border-b border-white/5">
-      <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-16 items-center">
-
-        <div class="lg:col-span-6 space-y-8">
-          <div class="inline-flex items-center space-x-3 px-3.5 py-1.5 text-xs font-bold tracking-widest border rounded-full text-cyberCyan border-cyan-500/30 bg-cyan-950/40 backdrop-blur-md">
-            <span class="flex h-2.5 w-2.5 relative">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyberCyan opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyberCyan"></span>
-            </span>
-            <span>VERIFIABLE AUTONOMY ONLINE</span>
-          </div>
-
-          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
-            The Decision OS<br />for Autonomous<br />
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyberCyan via-blue-400 to-cyberIndigo">
-              Enterprise Cognition.
-            </span>
-          </h1>
-
-          <p class="text-slate-300 text-lg md:text-xl leading-relaxed max-w-2xl">
-            MIZOKI3 transforms fragmented enterprise data into governed autonomous decision intelligence using a temporal-causal knowledge graph, seven phased decision controllers, multi-agent reasoning, and a non-bypass Decision Control Plane.
-          </p>
-
-          <div class="flex flex-col sm:flex-row items-center gap-4">
-            <a href="#demo" class="w-full sm:w-auto flex items-center justify-center px-8 py-4 text-sm font-bold text-black uppercase tracking-widest bg-white hover:bg-slate-100 transition-all rounded-xl duration-300 shadow-[0_4px_30px_rgba(255,255,255,0.15)] hover:shadow-[0_4px_40px_rgba(255,255,255,0.25)]">
-              <span>Request Executive Demo</span>
-              <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
-            </a>
-            <a href="#engine" class="w-full sm:w-auto flex items-center justify-center px-8 py-4 text-sm font-bold text-white uppercase tracking-widest border border-white/10 bg-white/[0.02] hover:bg-white/[0.07] transition-all rounded-xl duration-300">
-              <i data-lucide="play" class="mr-2 w-4 h-4 text-cyberGold fill-cyberGold"></i>
-              <span>Explore The Engine</span>
-            </a>
-          </div>
-
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/5">
-            <div class="border-l-2 border-cyberCyan/50 pl-4">
-              <b class="block text-2xl font-black text-white">Weeks → Mins</b>
-              <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Decision Velocity</span>
-            </div>
-            <div class="border-l-2 border-cyberGold/50 pl-4">
-              <b class="block text-2xl font-black text-white">7 PDCs</b>
-              <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Governed Pipeline</span>
-            </div>
-            <div class="border-l-2 border-cyberIndigo/50 pl-4">
-              <b class="block text-2xl font-black text-white">32 Cells</b>
-              <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Micro-Engine Mesh</span>
-            </div>
-            <div class="border-l-2 border-cyberEmerald/50 pl-4">
-              <b class="block text-2xl font-black text-white">100% Trace</b>
-              <span class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">Replayable Audit</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right: TCO-KG Living Brain visual -->
-        <div class="lg:col-span-6 relative flex justify-center">
-          <div class="relative w-full max-w-[520px] aspect-square rounded-[2rem] border border-white/10 bg-gradient-to-b from-slate-950 to-cyberBg p-8 overflow-hidden shadow-2xl">
-
-            <div class="absolute top-0 inset-x-0 h-10 border-b border-white/5 bg-black/40 flex items-center justify-between px-6 font-mono text-[9px] text-slate-500 tracking-widest z-10">
-              <div class="flex items-center space-x-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-cyberCyan animate-pulse"></span>
-                <span>TCO-KG // GRAPH_CORE_ACTIVE</span>
-              </div>
-              <span>NODES: 14,291</span>
-            </div>
-
-            <div class="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyberCyan to-transparent animate-scan z-10 pointer-events-none"></div>
-
-            <div class="relative w-full h-full flex items-center justify-center pt-8">
-              <div class="absolute w-[280px] h-[280px] border border-dashed border-white/5 rounded-full animate-orbit-cw"></div>
-              <div class="absolute w-[380px] h-[380px] border border-dashed border-cyan-500/10 rounded-full animate-orbit-ccw"></div>
-
-              <div class="z-10 relative flex flex-col items-center justify-center w-36 h-36 rounded-full border border-cyberCyan/40 bg-black/60 shadow-neon-cyan text-center p-4">
-                <i data-lucide="network" class="w-7 h-7 text-cyberCyan mb-1.5 animate-pulse"></i>
-                <span class="font-mono text-[10px] text-cyberCyan tracking-wider font-bold">TCO-KG</span>
-                <span class="font-mono text-[8px] text-slate-500 uppercase tracking-widest mt-0.5">Living Brain</span>
-              </div>
-
-              <!-- 5 Domain nodes -->
-              <a href="/counsel" class="absolute top-12 left-10 z-20 flex items-center space-x-2 bg-slate-900/90 border border-cyberCyan/30 px-3 py-1.5 rounded-xl text-xs font-bold text-cyberCyan shadow-sm cursor-pointer hover:border-cyberCyan transition-all duration-300">
-                <i data-lucide="scale" class="w-3.5 h-3.5"></i>
-                <span>Counsel</span>
-              </a>
-              <a href="/estate" class="absolute bottom-20 left-6 z-20 flex items-center space-x-2 bg-slate-900/90 border border-cyberViolet/30 px-3 py-1.5 rounded-xl text-xs font-bold text-cyberViolet shadow-sm cursor-pointer hover:border-cyberViolet transition-all duration-300">
-                <i data-lucide="landmark" class="w-3.5 h-3.5"></i>
-                <span>Estate</span>
-              </a>
-              <a href="/capital" class="absolute top-20 right-8 z-20 flex items-center space-x-2 bg-slate-900/90 border border-cyberEmerald/30 px-3 py-1.5 rounded-xl text-xs font-bold text-cyberEmerald shadow-sm cursor-pointer hover:border-cyberEmerald transition-all duration-300">
-                <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
-                <span>Capital</span>
-              </a>
-              <a href="/signal" class="absolute bottom-24 right-6 z-20 flex items-center space-x-2 bg-slate-900/90 border border-cyberGold/30 px-3 py-1.5 rounded-xl text-xs font-bold text-cyberGold shadow-sm cursor-pointer hover:border-cyberGold transition-all duration-300">
-                <i data-lucide="radio-tower" class="w-3.5 h-3.5"></i>
-                <span>Signal</span>
-              </a>
-              <a href="/risk" class="absolute top-[48%] right-2 z-20 flex items-center space-x-2 bg-slate-900/90 border border-cyberRed/30 px-3 py-1.5 rounded-xl text-xs font-bold text-cyberRed shadow-sm cursor-pointer hover:border-cyberRed transition-all duration-300">
-                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
-                <span>Risk</span>
-              </a>
-              <a href="#dcp" class="absolute bottom-10 left-[40%] z-20 flex items-center space-x-2 bg-slate-900/90 border border-cyberCyan/50 px-3 py-1.5 rounded-xl text-xs font-bold text-cyberCyan shadow-neon-cyan cursor-pointer hover:border-cyan-400 transition-all duration-300">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                <span>DCP Gate</span>
-              </a>
-            </div>
-
-            <div class="absolute bottom-4 inset-x-6 grid grid-cols-3 gap-2 font-mono text-[9px] text-slate-500 tracking-wider">
-              <div class="border-t border-white/5 pt-2">
-                <span>DCP STATUS</span>
-                <b class="block text-cyberEmerald mt-0.5">ACTIVE-GATE</b>
-              </div>
-              <div class="border-t border-white/5 pt-2">
-                <span>CAUSAL EDGES</span>
-                <b class="block text-white mt-0.5">8,412,983</b>
-              </div>
-              <div class="border-t border-white/5 pt-2">
-                <span>VERIFY RATE</span>
-                <b class="block text-cyberCyan mt-0.5">100% PASS</b>
-              </div>
-            </div>
-          </div>
-        </div>
-
+  <section id="how-it-works" class="section-pillars bordered" aria-labelledby="pillars-heading">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">How It Works</p>
+        <h2 id="pillars-heading" class="section-title">Three layers of governed autonomy</h2>
       </div>
-    </section>
 
-    <!-- ============================ STATUS QUO vs PARADIGM ============================ -->
-    <section class="py-32 px-6 border-b border-white/5 bg-[#010206]">
-      <div class="max-w-7xl mx-auto">
-        <div class="max-w-3xl mb-16">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">Enterprise Realignment</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight leading-tight">Can AI make decisions, or just propose them?</h2>
-          <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-4">
-            Most modern AI tools summarize, generate, and draft. True enterprise operations require accountability, compliance boundaries, and a continuously learning state.
-          </p>
+      <div class="arch-diagram reveal" id="srpvdalDiagram">
+        <div class="arch-diagram-head">
+          <span>Governed decision flow</span>
+          <span class="flow-stage-pill" id="flowStagePill">Signal ingested</span>
         </div>
-
-        <div class="grid md:grid-cols-2 gap-8 items-stretch">
-
-          <div class="p-8 md:p-10 border border-cyberRed/15 bg-cyberRed/[0.01] rounded-3xl flex flex-col justify-between">
-            <div>
-              <div class="inline-flex items-center space-x-2 px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-cyberRed/10 border border-cyberRed/20 text-cyberRed rounded-full mb-6">
-                <span>The Status Quo</span>
-              </div>
-              <h3 class="text-2xl font-black text-white mb-4">Probabilistic Disconnect</h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                Legacy tools function without a unified structure, producing fragmented choices that lack audit trails and context verification.
-              </p>
-              <div class="space-y-4 text-sm">
-                <div class="flex items-start space-x-3 text-slate-300">
-                  <div class="p-1 rounded bg-cyberRed/10 border border-cyberRed/25 text-cyberRed flex-shrink-0 mt-0.5">
-                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                  </div>
-                  <span><b>Correlation trap.</b> Tools detect patterns but cannot prove why outcomes happen, triggering faulty action logic.</span>
-                </div>
-                <div class="flex items-start space-x-3 text-slate-300">
-                  <div class="p-1 rounded bg-cyberRed/10 border border-cyberRed/25 text-cyberRed flex-shrink-0 mt-0.5">
-                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                  </div>
-                  <span><b>Disconnected agents.</b> Scattered AI agents function as silos with no shared memory or global state.</span>
-                </div>
-                <div class="flex items-start space-x-3 text-slate-300">
-                  <div class="p-1 rounded bg-cyberRed/10 border border-cyberRed/25 text-cyberRed flex-shrink-0 mt-0.5">
-                    <i data-lucide="x" class="w-3.5 h-3.5"></i>
-                  </div>
-                  <span><b>Blind execution.</b> Payloads run inside third-party APIs without a non-bypass validation gate.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="p-8 md:p-10 border border-cyberCyan/20 bg-cyan-950/[0.04] rounded-3xl flex flex-col justify-between shadow-neon-cyan">
-            <div>
-              <div class="inline-flex items-center space-x-2 px-3 py-1 text-[10px] font-bold uppercase tracking-wider bg-cyberCyan/10 border border-cyberCyan/20 text-cyberCyan rounded-full mb-6">
-                <span>The MIZOKI3 Paradigm</span>
-              </div>
-              <h3 class="text-2xl font-black text-white mb-4">Governed Orchestration</h3>
-              <p class="text-slate-400 text-sm leading-relaxed mb-8">
-                MIZOKI3 places safety, causal evidence, and cryptographic accountability at the center of every execution path.
-              </p>
-              <div class="space-y-4 text-sm">
-                <div class="flex items-start space-x-3 text-slate-300">
-                  <div class="p-1 rounded bg-cyberCyan/10 border border-cyberCyan/25 text-cyberCyan flex-shrink-0 mt-0.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  </div>
-                  <span><b>Causal memory.</b> Shared operational memory traces people, systems, agreements, events, actions, outcomes, provenance, and time.</span>
-                </div>
-                <div class="flex items-start space-x-3 text-slate-300">
-                  <div class="p-1 rounded bg-cyberCyan/10 border border-cyberCyan/25 text-cyberCyan flex-shrink-0 mt-0.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  </div>
-                  <span><b>Counterfactual simulation.</b> Alternate action DAGs are evaluated against structural, financial, and policy criteria before any tool runs.</span>
-                </div>
-                <div class="flex items-start space-x-3 text-slate-300">
-                  <div class="p-1 rounded bg-cyberCyan/10 border border-cyberCyan/25 text-cyberCyan flex-shrink-0 mt-0.5">
-                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                  </div>
-                  <span><b>Decision Control Plane.</b> A non-bypass gatekeeper separates agent proposals from API execution payloads.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+        <svg viewBox="0 0 720 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g data-flow-step="0">
+            <rect class="flow-node" x="0" y="24" width="88" height="40" rx="3" fill="#161c28" stroke="rgba(236,232,224,0.1)"/>
+            <text class="flow-node-label" x="44" y="48" text-anchor="middle" fill="#9a9488" font-family="DM Sans,sans-serif" font-size="11">Signal</text>
+          </g>
+          <line class="flow-connector" data-flow-connector="0" x1="92" y1="44" x2="128" y2="44"/>
+          <g data-flow-step="1">
+            <rect class="flow-node" x="132" y="24" width="100" height="40" rx="3" fill="rgba(184,149,106,0.1)" stroke="rgba(184,149,106,0.35)"/>
+            <text class="flow-node-label" x="182" y="48" text-anchor="middle" fill="#b8956a" font-family="DM Sans,sans-serif" font-size="11" font-weight="500">The Brain</text>
+          </g>
+          <line class="flow-connector" data-flow-connector="1" x1="236" y1="44" x2="272" y2="44"/>
+          <g data-flow-step="2">
+            <rect class="flow-node" x="276" y="24" width="100" height="40" rx="3" fill="rgba(184,149,106,0.1)" stroke="rgba(184,149,106,0.35)"/>
+            <text class="flow-node-label" x="326" y="48" text-anchor="middle" fill="#b8956a" font-family="DM Sans,sans-serif" font-size="11" font-weight="500">The Pipeline</text>
+          </g>
+          <line class="flow-connector" data-flow-connector="2" x1="380" y1="44" x2="416" y2="44"/>
+          <g data-flow-step="3">
+            <rect class="flow-node" x="420" y="24" width="100" height="40" rx="3" fill="rgba(184,149,106,0.1)" stroke="rgba(184,149,106,0.35)"/>
+            <text class="flow-node-label" x="470" y="48" text-anchor="middle" fill="#b8956a" font-family="DM Sans,sans-serif" font-size="11" font-weight="500">The Gate</text>
+          </g>
+          <line class="flow-connector" data-flow-connector="3" x1="524" y1="44" x2="560" y2="44"/>
+          <g data-flow-step="4">
+            <rect class="flow-node" x="564" y="24" width="72" height="40" rx="3" fill="#161c28" stroke="rgba(236,232,224,0.1)"/>
+            <text class="flow-node-label" x="600" y="48" text-anchor="middle" fill="#9a9488" font-family="DM Sans,sans-serif" font-size="11">Action</text>
+          </g>
+          <line class="flow-connector" data-flow-connector="4" x1="640" y1="44" x2="676" y2="44"/>
+          <g data-flow-step="5">
+            <rect class="flow-node" x="680" y="24" width="40" height="40" rx="3" fill="#161c28" stroke="rgba(236,232,224,0.1)"/>
+            <text class="flow-node-label" x="700" y="48" text-anchor="middle" fill="#9a9488" font-family="DM Sans,sans-serif" font-size="11">Learn</text>
+          </g>
+        </svg>
       </div>
-    </section>
 
-    <!-- ============================ SRPVDAL ENGINE ============================ -->
-    <section id="engine" class="py-32 px-6 border-b border-white/5">
-      <div class="max-w-7xl mx-auto">
-
-        <div class="flex flex-col md:flex-row items-start md:items-end justify-between mb-20 gap-6">
-          <div>
-            <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">System Core Architecture</span>
-            <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">The SRPVDAL Loop</h2>
-          </div>
-          <p class="text-slate-400 max-w-lg text-sm md:text-base leading-relaxed">
-            Every incoming signal moves through an auditable 7-stage engine. Select a stage to inspect its operational objective, simulated payload, and live telemetry.
-          </p>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-8 items-stretch">
-
-          <!-- Left: Stage selector -->
-          <div class="lg:col-span-5 space-y-3 flex flex-col justify-center">
-            <button onclick="selectEngineStage(0)" id="stage-btn-0" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 bg-cyan-950/20 border-cyan-500/40 shadow-neon-cyan">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-cyberCyan text-black transition-all">S</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-white">01. Sense</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-cyberCyan/10 text-cyberCyan border border-cyan-500/20 uppercase">Observe</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-cyberCyan transition-all"></i>
-            </button>
-
-            <button onclick="selectEngineStage(1)" id="stage-btn-1" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all">R</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-slate-400">02. Reason</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase">Infer</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-slate-700 transition-all"></i>
-            </button>
-
-            <button onclick="selectEngineStage(2)" id="stage-btn-2" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all">P</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-slate-400">03. Plan</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase">Propose</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-slate-700 transition-all"></i>
-            </button>
-
-            <button onclick="selectEngineStage(3)" id="stage-btn-3" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all">V</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-slate-400">04. Validate / Verify</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase">Stress-Test</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-slate-700 transition-all"></i>
-            </button>
-
-            <button onclick="selectEngineStage(4)" id="stage-btn-4" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all">D</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-slate-400">05. Decide</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase">Choose</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-slate-700 transition-all"></i>
-            </button>
-
-            <button onclick="selectEngineStage(5)" id="stage-btn-5" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all">A</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-slate-400">06. Act</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase">Execute</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-slate-700 transition-all"></i>
-            </button>
-
-            <button onclick="selectEngineStage(6)" id="stage-btn-6" class="engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]">
-              <div class="tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all">L</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-sm tracking-wide text-slate-400">07. Learn</span>
-                  <span class="text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase">Compound</span>
-                </div>
-              </div>
-              <i data-lucide="chevron-right" class="w-4 h-4 ml-2 text-slate-700 transition-all"></i>
-            </button>
-          </div>
-
-          <!-- Right: Live Inspector -->
-          <div class="lg:col-span-7 relative border border-white/10 rounded-3xl bg-gradient-to-b from-slate-950 to-[#030306] p-8 flex flex-col justify-between overflow-hidden min-h-[500px]">
-            <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-cyberCyan/60 to-transparent animate-scan pointer-events-none"></div>
-
-            <div class="flex items-center justify-between border-b border-white/5 pb-4 font-mono text-[10px] text-slate-500 tracking-widest">
-              <div class="flex items-center space-x-2">
-                <span class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span>
-                <span id="inspector-node-title">NODE_MONITOR // SENSE_01</span>
-              </div>
-              <span class="text-cyberCyan">VERIFIED_TRACE</span>
-            </div>
-
-            <div class="my-auto py-8">
-              <div class="flex items-center space-x-4 mb-6">
-                <div id="inspector-icon" class="p-3 bg-cyan-950/60 border border-cyberCyan/30 rounded-2xl text-cyberCyan shadow-neon-cyan transition-all duration-300">
-                  <i data-lucide="eye" class="w-6 h-6"></i>
-                </div>
-                <div>
-                  <span id="inspector-step" class="font-mono text-xs text-cyberCyan block tracking-widest uppercase">Phase 01 // Observe</span>
-                  <h3 id="inspector-name" class="text-2xl font-black tracking-wide text-white">Sense Module</h3>
-                </div>
-              </div>
-
-              <p id="inspector-desc" class="text-slate-300 text-base leading-relaxed max-w-xl mb-6">
-                Ingest and contextualize multi-source live event streams, system performance parameters, transactional logs, and external market factors in real time, building an atomic data layer.
-              </p>
-
-              <div class="p-4 rounded-xl bg-black/40 border border-white/5 font-mono text-xs text-slate-400 overflow-x-auto">
-                <div class="flex justify-between items-center mb-2 text-[10px] text-slate-600 border-b border-white/5 pb-2">
-                  <span>SIMULATED_JSON_PAYLOAD</span>
-                  <span class="text-cyberCyan">OK</span>
-                </div>
-                <pre id="inspector-json" class="text-[11px] leading-relaxed text-slate-300 font-medium select-all">{
-  "event_source": "Enterprise_API_Stream",
-  "data_lineage": "GCS_Verified",
-  "encryption_type": "SHA-256",
-  "status": "ingested_real_time"
-}</pre>
-              </div>
-            </div>
-
-            <div class="border-t border-white/5 pt-6 grid grid-cols-3 gap-6 font-mono text-[11px]">
-              <div>
-                <span class="text-slate-500 uppercase tracking-wider block mb-1">Latency Overhead</span>
-                <b id="indicator-latency" class="text-cyberCyan text-sm font-bold">142ms</b>
-              </div>
-              <div>
-                <span class="text-slate-500 uppercase tracking-wider block mb-1">Causal Edge Match</span>
-                <b id="indicator-confidence" class="text-cyberGold text-sm font-bold">94.2%</b>
-              </div>
-              <div>
-                <span class="text-slate-500 uppercase tracking-wider block mb-1">Audit Policy Gate</span>
-                <b class="text-cyberEmerald text-sm font-bold flex items-center">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5 mr-1 text-cyberEmerald"></i> SECURE
-                </b>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="pillars reveal">
+        <article class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <circle cx="16" cy="16" r="4"/><circle cx="6" cy="8" r="2.5"/><circle cx="26" cy="8" r="2.5"/>
+            <circle cx="6" cy="24" r="2.5"/><circle cx="26" cy="24" r="2.5"/>
+            <path d="M8.5 9.5L13 13M23.5 9.5L19 13M8.5 22.5L13 19M23.5 22.5L19 19"/>
+          </svg>
+          <h3>The Brain</h3>
+          <p>A living map of how your business works — what connects to what, what causes what, and what happens if you change course.</p>
+        </article>
+        <article class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 16h5l3-8 4 16 3-8h9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>The Pipeline</h3>
+          <p>Every decision flows through seven stages — from sensing a signal to executing an action to measuring the outcome. Nothing skips a step.</p>
+        </article>
+        <article class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="6" y="14" width="20" height="14" rx="2"/><path d="M11 14V10a5 5 0 0110 0v4" stroke-linecap="round"/>
+          </svg>
+          <h3>The Gate</h3>
+          <p>AI proposes. The Gate authorizes. No action reaches your systems without passing governance checks for compliance, causal confidence, and risk.</p>
+        </article>
       </div>
-    </section>
 
-    <!-- ============================ DECISION CONTROL PLANE ============================ -->
-    <section id="dcp" class="py-32 px-6 border-b border-white/5 bg-[#010206]">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12 items-center">
-        <div class="lg:col-span-6 space-y-6">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberGold uppercase block">Decision Control Plane</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">Agents may propose.<br/>The DCP authorizes.</h2>
-          <p class="text-slate-400 text-base md:text-lg leading-relaxed">
-            The DCP is the non-bypass governance layer that separates recommendation from execution while keeping records, knowledge graph, and vector memory in sync. Every action that reaches an enterprise API has crossed this gate.
-          </p>
-          <div class="grid grid-cols-2 gap-4 pt-4">
-            <a href="/console" class="flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-cyberCyan text-black text-xs font-black uppercase tracking-widest hover:bg-cyan-400 transition-all shadow-neon-cyan">
-              <i data-lucide="terminal" class="w-4 h-4"></i>
-              <span>Launch Console</span>
-            </a>
-            <a href="#replay" class="flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl border border-white/10 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all">
-              <i data-lucide="rewind" class="w-4 h-4"></i>
-              <span>See Replay</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-6 p-8 border border-cyberGold/20 bg-amber-950/[0.04] rounded-3xl shadow-neon-gold">
-          <div class="flex items-center justify-between mb-6 pb-4 border-b border-white/5 font-mono text-[10px] text-slate-500 tracking-widest">
-            <span>AUTHORIZATION_SCORE</span>
-            <span class="text-cyberEmerald">APPROVED</span>
-          </div>
-          <div class="flex items-baseline space-x-3 mb-8">
-            <span class="text-5xl md:text-6xl font-black text-white">0.942</span>
-            <span class="text-cyberGold text-sm font-mono">/ 1.000</span>
-          </div>
-          <div class="space-y-4">
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400 font-mono">α &nbsp;Causal Confidence</span>
-                <span class="text-cyberCyan font-mono font-bold">94%</span>
-              </div>
-              <div class="h-1 bg-slate-800 rounded"><div class="h-full bg-cyberCyan rounded" style="width:94%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400 font-mono">β &nbsp;Verification Agreement</span>
-                <span class="text-cyberEmerald font-mono font-bold">100%</span>
-              </div>
-              <div class="h-1 bg-slate-800 rounded"><div class="h-full bg-cyberEmerald rounded" style="width:100%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400 font-mono">γ &nbsp;Simulation Delta</span>
-                <span class="text-cyberGold font-mono font-bold">+18.6%</span>
-              </div>
-              <div class="h-1 bg-slate-800 rounded"><div class="h-full bg-cyberGold rounded" style="width:86%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400 font-mono">δ &nbsp;Policy Compliance</span>
-                <span class="text-cyberEmerald font-mono font-bold">100%</span>
-              </div>
-              <div class="h-1 bg-slate-800 rounded"><div class="h-full bg-cyberEmerald rounded" style="width:100%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-xs mb-1">
-                <span class="text-slate-400 font-mono">ε &nbsp;Historical Performance</span>
-                <span class="text-cyberViolet font-mono font-bold">91%</span>
-              </div>
-              <div class="h-1 bg-slate-800 rounded"><div class="h-full bg-cyberViolet rounded" style="width:91%"></div></div>
-            </div>
-          </div>
-        </div>
+      <div class="pillars-footer reveal">
+        <a href="/architecture" class="text-link">Read the technical architecture →</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============================ TEMPORAL-CAUSAL MEMORY ============================ -->
-    <section class="py-32 px-6 border-b border-white/5">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 max-w-3xl mx-auto">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberViolet uppercase block mb-3">The Brain</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">Temporal-Causal Memory</h2>
-          <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-4">
-            Unlike isolated LLM prompts, MIZOKI3 builds a continuously evolving knowledge graph. Memories form, causal links expand, and decision trails evolve based on live enterprise telemetry.
-          </p>
+  <section id="lenses" class="bordered" aria-labelledby="lenses-heading">
+    <div class="container">
+      <div class="lenses-head reveal">
+        <div>
+          <p class="section-label">Domain Intelligence</p>
+          <h2 id="lenses-heading" class="section-title">Five lenses. One shared memory.</h2>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div class="p-8 border border-white/10 bg-black/30 rounded-2xl hover:border-cyberViolet/40 hover:bg-violet-950/10 transition-all duration-300 group">
-            <div class="w-12 h-12 bg-violet-950/40 border border-cyberViolet/20 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-neon-violet transition-all">
-              <i data-lucide="history" class="w-5 h-5 text-cyberViolet"></i>
-            </div>
-            <h4 class="text-white font-bold text-lg mb-2">Temporal Memory</h4>
-            <p class="text-slate-500 text-sm leading-relaxed">Understands time-based causality and historical operational context across every entity.</p>
-          </div>
-          <div class="p-8 border border-white/10 bg-black/30 rounded-2xl hover:border-cyberViolet/40 hover:bg-violet-950/10 transition-all duration-300 group">
-            <div class="w-12 h-12 bg-violet-950/40 border border-cyberViolet/20 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-neon-violet transition-all">
-              <i data-lucide="git-merge" class="w-5 h-5 text-cyberViolet"></i>
-            </div>
-            <h4 class="text-white font-bold text-lg mb-2">Counterfactuals</h4>
-            <p class="text-slate-500 text-sm leading-relaxed">Tests alternate futures and risks before taking real-world action.</p>
-          </div>
-          <div class="p-8 border border-white/10 bg-black/30 rounded-2xl hover:border-cyberViolet/40 hover:bg-violet-950/10 transition-all duration-300 group">
-            <div class="w-12 h-12 bg-violet-950/40 border border-cyberViolet/20 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-neon-violet transition-all">
-              <i data-lucide="activity" class="w-5 h-5 text-cyberViolet"></i>
-            </div>
-            <h4 class="text-white font-bold text-lg mb-2">Self-Healing</h4>
-            <p class="text-slate-500 text-sm leading-relaxed">Continuously updates confidence scores and relationship weights over time.</p>
-          </div>
-          <div class="p-8 border border-white/10 bg-black/30 rounded-2xl hover:border-cyberViolet/40 hover:bg-violet-950/10 transition-all duration-300 group">
-            <div class="w-12 h-12 bg-violet-950/40 border border-cyberViolet/20 rounded-xl flex items-center justify-center mb-6 group-hover:shadow-neon-violet transition-all">
-              <i data-lucide="database" class="w-5 h-5 text-cyberViolet"></i>
-            </div>
-            <h4 class="text-white font-bold text-lg mb-2">Context Awareness</h4>
-            <p class="text-slate-500 text-sm leading-relaxed">Maintains operational understanding across all siloed enterprise systems.</p>
-          </div>
-        </div>
+        <p>Each lens applies the same governed decision architecture to a distinct domain of enterprise operations. What one lens learns, the others inherit.</p>
       </div>
-    </section>
 
-    <!-- ============================ DOMAIN CELLS ============================ -->
-    <section id="lenses" class="py-32 px-6 border-b border-white/5 bg-[#030307]">
-      <div class="max-w-7xl mx-auto">
-
-        <div class="max-w-3xl mb-16">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">Multi-Lens Architecture</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">One Brain. Five Lenses.</h2>
-          <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-4">
-            Domain Cells operate over a unified temporal-causal knowledge graph. Each specialized lens handles its own logic while contributing to a coordinated whole.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap border-b border-white/5 mb-12 gap-2">
-          <button onclick="selectDomainCell('counsel')" id="cell-btn-counsel" class="cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-cyberCyan text-white bg-white/[0.02] transition-all duration-300">
-            Counsel
-          </button>
-          <button onclick="selectDomainCell('estate')" id="cell-btn-estate" class="cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-500 hover:text-slate-300 transition-all duration-300">
-            Estate
-          </button>
-          <button onclick="selectDomainCell('capital')" id="cell-btn-capital" class="cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-500 hover:text-slate-300 transition-all duration-300">
-            Capital
-          </button>
-          <button onclick="selectDomainCell('signal')" id="cell-btn-signal" class="cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-500 hover:text-slate-300 transition-all duration-300">
-            Signal
-          </button>
-          <button onclick="selectDomainCell('risk')" id="cell-btn-risk" class="cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-500 hover:text-slate-300 transition-all duration-300">
-            Risk
-          </button>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-12 items-center bg-black/40 border border-white/5 p-8 md:p-12 rounded-3xl backdrop-blur-sm shadow-xl">
-
-          <div class="lg:col-span-6 space-y-6">
-            <span id="domain-cell-tag" class="text-xs font-mono text-cyberCyan uppercase tracking-widest block">// COUNSEL_CELL</span>
-            <h3 id="domain-cell-title" class="text-2xl md:text-3xl font-black text-white">Counsel — Legal Intelligence</h3>
-            <p id="domain-cell-tagline" class="text-cyberGold text-xs font-bold uppercase tracking-wider">Autonomous Contract & Obligation Governance</p>
-            <p id="domain-cell-desc" class="text-slate-300 text-sm md:text-base leading-relaxed">
-              Unifies distributed legal knowledge, multi-party contract obligations, corporate policy frameworks, and regulatory evidence pipelines into a real-time decision landscape.
-            </p>
-            <div class="space-y-3 font-mono text-xs text-slate-400 pt-4 border-t border-white/5">
-              <div class="flex items-center"><span class="w-1.5 h-1.5 bg-cyberCyan rounded-full mr-3"></span><span id="domain-cell-feat1">Automated compliance mapping</span></div>
-              <div class="flex items-center"><span class="w-1.5 h-1.5 bg-cyberCyan rounded-full mr-3"></span><span id="domain-cell-feat2">Continuous obligation tracking</span></div>
-              <div class="flex items-center"><span class="w-1.5 h-1.5 bg-cyberCyan rounded-full mr-3"></span><span id="domain-cell-feat3">Active risk-mitigation validation</span></div>
-            </div>
-            <a id="domain-cell-link" href="/counsel" class="inline-flex items-center space-x-2 mt-4 text-cyberCyan text-xs font-black uppercase tracking-widest hover:text-cyan-300 transition-colors">
-              <span>Open Counsel Lens</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-
-          <div class="lg:col-span-6 border border-white/10 bg-slate-950 p-6 rounded-2xl font-mono text-xs text-slate-400 flex flex-col justify-between min-h-[300px] shadow-2xl">
-            <div class="space-y-4">
-              <div class="flex justify-between text-[10px] text-slate-600 border-b border-white/5 pb-2">
-                <span>SHARED_MEMORY_VERIFICATION</span>
-                <span class="text-cyberEmerald">ONLINE</span>
-              </div>
-              <div class="space-y-2 text-[11px] leading-relaxed">
-                <div class="text-slate-500">Connecting shared memory core...</div>
-                <div class="text-cyberCyan">&gt; CONNECTED TO NEXUS CORE ORCHESTRATOR</div>
-                <div id="domain-terminal-action" class="text-slate-300">&gt; Ingesting regulatory policy changes...</div>
-                <div class="text-cyberEmerald">&gt; Context security signature verified. State 200.</div>
-              </div>
-            </div>
-            <div class="border-t border-white/5 pt-4 text-[10px] text-slate-500 flex justify-between">
-              <span id="domain-terminal-id">CELL_ID: COUNSEL_CELL_04</span>
-              <span>VER: 3.5.1</span>
-            </div>
-          </div>
-
-        </div>
+      <div class="lenses-grid reveal">
+        <article class="lens-card">
+          <h3 class="lens-name">Counsel</h3>
+          <p class="lens-tagline">Legal intelligence</p>
+          <p class="lens-desc">Maps contracts, obligations, and regulatory exposure into a continuously updated legal landscape. Surfaces contradictions, tracks covenant boundaries, and scores litigation pathways before they become liabilities.</p>
+          <a href="/counsel" class="lens-link">Explore Counsel →</a>
+        </article>
+        <article class="lens-card">
+          <h3 class="lens-name">Signal</h3>
+          <p class="lens-tagline">Marketing intelligence</p>
+          <p class="lens-desc">Connects spend to causal outcomes — not correlation. Autonomous bid optimization and media allocation grounded in what actually drives revenue, not what the platform reports.</p>
+          <a href="/signal" class="lens-link">Explore Signal →</a>
+        </article>
+        <article class="lens-card">
+          <h3 class="lens-name">Capital</h3>
+          <p class="lens-tagline">Financial intelligence</p>
+          <p class="lens-desc">Models liquidity, covenant compliance, and capital allocation under stress. Flags breaches before execution, not after the wire transfer clears.</p>
+          <a href="/capital" class="lens-link">Explore Capital →</a>
+        </article>
       </div>
-    </section>
-
-    <!-- ============================ ARCHITECTURE & TRUST ============================ -->
-    <section class="py-32 px-6 border-b border-white/5">
-      <div class="max-w-7xl mx-auto">
-        <div class="max-w-2xl mb-20">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">Enterprise Governance</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white">System Security & Trust</h2>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="p-8 border border-white/5 bg-white/[0.01] rounded-3xl relative group hover:border-white/10 transition-colors">
-            <div class="absolute top-0 left-8 w-12 h-[1.5px] bg-cyberCyan"></div>
-            <i data-lucide="scale" class="w-8 h-8 text-cyberCyan mb-6"></i>
-            <h4 class="text-lg font-bold text-white mb-3">Context Sufficiency Match</h4>
-            <p class="text-sm text-slate-400 leading-relaxed">Verifies context validity, data pipelines, asset parameters, and access credentials before approving execution payloads.</p>
-          </div>
-          <div class="p-8 border border-white/5 bg-white/[0.01] rounded-3xl relative group hover:border-white/10 transition-colors">
-            <div class="absolute top-0 left-8 w-12 h-[1.5px] bg-cyberGold"></div>
-            <i data-lucide="file-check" class="w-8 h-8 text-cyberGold mb-6"></i>
-            <h4 class="text-lg font-bold text-white mb-3">Explainable Rationale</h4>
-            <p class="text-sm text-slate-400 leading-relaxed">Traces decisions step-by-step to show why specific actions were run and how alternates were scored and verified.</p>
-          </div>
-          <div class="p-8 border border-white/5 bg-white/[0.01] rounded-3xl relative group hover:border-white/10 transition-colors">
-            <div class="absolute top-0 left-8 w-12 h-[1.5px] bg-cyberIndigo"></div>
-            <i data-lucide="history" class="w-8 h-8 text-cyberIndigo mb-6"></i>
-            <h4 class="text-lg font-bold text-white mb-3">Immutable Audit Ledger</h4>
-            <p class="text-sm text-slate-400 leading-relaxed">Logs processing states, validation records, and manual bypasses to a tamper-proof registry built for compliance.</p>
-          </div>
-        </div>
+      <div class="lenses-row-2 reveal">
+        <article class="lens-card">
+          <h3 class="lens-name">Risk</h3>
+          <p class="lens-tagline">Verification and compliance</p>
+          <p class="lens-desc">Arbitrates every proposed action against policy, precedent, and regulatory boundaries. When the system says no, it shows the arithmetic — not an opinion.</p>
+          <a href="/risk" class="lens-link">Explore Risk →</a>
+        </article>
+        <article class="lens-card">
+          <h3 class="lens-name">Estate</h3>
+          <p class="lens-tagline">Wealth and fiduciary intelligence</p>
+          <p class="lens-desc">Unifies trust structures, tax exposure, and asset relationships across entities and generations. Tracks fiduciary obligations and surfaces deviations before they become disputes.</p>
+          <a href="/estate" class="lens-link">Explore Estate →</a>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============================ OPERATIONAL KPIs ============================ -->
-    <section id="kpis" class="py-32 px-6 border-b border-white/5 bg-[#010206]">
-      <div class="max-w-7xl mx-auto">
-        <div class="max-w-2xl mb-20">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">Measurement Standards</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white">Operational KPIs</h2>
-        </div>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="border-l border-white/10 pl-6 py-2">
-            <i data-lucide="clock" class="w-5 h-5 text-cyberCyan mb-3"></i>
-            <div class="text-xs font-mono text-slate-500 tracking-widest uppercase mb-1">Decision Latency</div>
-            <p class="text-sm text-slate-400">Processing speed from signal intake to verified network execution.</p>
-          </div>
-          <div class="border-l border-white/10 pl-6 py-2">
-            <i data-lucide="gauge" class="w-5 h-5 text-cyberGold mb-3"></i>
-            <div class="text-xs font-mono text-slate-500 tracking-widest uppercase mb-1">Decision Confidence</div>
-            <p class="text-sm text-slate-400">Algorithmic confidence scored against system limits and risk parameters.</p>
-          </div>
-          <div class="border-l border-white/10 pl-6 py-2">
-            <i data-lucide="shield-alert" class="w-5 h-5 text-cyberRed mb-3"></i>
-            <div class="text-xs font-mono text-slate-500 tracking-widest uppercase mb-1">Override Frequency</div>
-            <p class="text-sm text-slate-400">Rate of tasks routed to human-in-the-loop validation.</p>
-          </div>
-          <div class="border-l border-white/10 pl-6 py-2">
-            <i data-lucide="bar-chart-3" class="w-5 h-5 text-cyberEmerald mb-3"></i>
-            <div class="text-xs font-mono text-slate-500 tracking-widest uppercase mb-1">Outcome Delta</div>
-            <p class="text-sm text-slate-400">Measured lift of autonomous decisions vs manual execution baselines.</p>
-          </div>
-          <div class="border-l border-white/10 pl-6 py-2">
-            <i data-lucide="rotate-cw" class="w-5 h-5 text-cyberIndigo mb-3"></i>
-            <div class="text-xs font-mono text-slate-500 tracking-widest uppercase mb-1">Learning Velocity</div>
-            <p class="text-sm text-slate-400">Speed and calibration rate of model adaptation driven by feedback telemetry.</p>
-          </div>
-          <div class="border-l border-white/10 pl-6 py-2">
-            <i data-lucide="file-check" class="w-5 h-5 text-cyberViolet mb-3"></i>
-            <div class="text-xs font-mono text-slate-500 tracking-widest uppercase mb-1">Audit Completeness</div>
-            <p class="text-sm text-slate-400">Validation rate of loops carrying end-to-end cryptographic lineage.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ DECISION REPLAY ============================ -->
-    <section id="replay" class="py-32 px-6 border-b border-white/5">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center mb-16">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">The Flight Recorder</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Every decision is explainable.</h2>
-          <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-            Replay signals, reasoning, simulations, rejected paths, policy checks, confidence scoring, and final execution logs — end to end.
-          </p>
-        </div>
-
-        <div class="relative p-6 md:p-10 border border-white/10 bg-black rounded-3xl shadow-2xl text-left overflow-hidden">
-          <div class="absolute left-[3.25rem] md:left-[4.25rem] top-16 bottom-16 w-px bg-gradient-to-b from-cyberCyan/50 via-cyberIndigo/50 via-cyberGold/50 to-cyberEmerald/50"></div>
-
-          <div class="relative flex items-start gap-6 mb-8">
-            <div class="z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-slate-700 flex items-center justify-center shrink-0">
-              <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-            </div>
-            <div class="flex-1 bg-white/[0.03] border border-white/5 p-5 rounded-xl">
-              <div class="flex flex-wrap items-baseline gap-x-4 mb-2">
-                <span class="font-mono text-xs text-slate-500">T − 04s</span>
-                <span class="font-black uppercase tracking-widest text-sm text-slate-200">Signal Ingested</span>
-              </div>
-              <p class="text-slate-400 text-sm">Operational, legal, market, signal, and finance telemetry detected. Trust 14B concentration spike flagged across APAC nodes.</p>
-            </div>
-          </div>
-
-          <div class="relative flex items-start gap-6 mb-8">
-            <div class="z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-cyberIndigo/40 flex items-center justify-center shrink-0">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyberIndigo"></span>
-            </div>
-            <div class="flex-1 bg-white/[0.03] border border-white/5 p-5 rounded-xl">
-              <div class="flex flex-wrap items-baseline gap-x-4 mb-2">
-                <span class="font-mono text-xs text-slate-500">T − 03s</span>
-                <span class="font-black uppercase tracking-widest text-sm text-cyberIndigo">World View Built</span>
-              </div>
-              <p class="text-slate-400 text-sm">The temporal-causal graph retrieves prior events, entities, contracts, and outcomes — three counter-measures evaluated against historical causality.</p>
-            </div>
-          </div>
-
-          <div class="relative flex items-start gap-6 mb-8">
-            <div class="z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-cyberGold/40 flex items-center justify-center shrink-0">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyberGold"></span>
-            </div>
-            <div class="flex-1 bg-white/[0.03] border border-white/5 p-5 rounded-xl">
-              <div class="flex flex-wrap items-baseline gap-x-4 mb-2">
-                <span class="font-mono text-xs text-slate-500">T − 02s</span>
-                <span class="font-black uppercase tracking-widest text-sm text-cyberGold">PlanBlueprint Generated</span>
-              </div>
-              <p class="text-slate-400 text-sm">Alternate action DAGs created without tool execution. Constraint-aware routing tested against trust rules and capital limits.</p>
-            </div>
-          </div>
-
-          <div class="relative flex items-start gap-6 mb-8">
-            <div class="z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-cyberRed/40 flex items-center justify-center shrink-0">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyberRed"></span>
-            </div>
-            <div class="flex-1 bg-white/[0.03] border border-white/5 p-5 rounded-xl">
-              <div class="flex flex-wrap items-baseline gap-x-4 mb-2">
-                <span class="font-mono text-xs text-slate-500">T − 01s</span>
-                <span class="font-black uppercase tracking-widest text-sm text-cyberRed">Verification Gate</span>
-              </div>
-              <p class="text-slate-400 text-sm">Path B rejected — internal risk threshold exceeded by 4.2%. Path A signed by Counsel and Risk verifiers, authorized by DCP.</p>
-            </div>
-          </div>
-
-          <div class="relative flex items-start gap-6 mb-8">
-            <div class="z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-cyberCyan flex items-center justify-center shrink-0 shadow-neon-cyan">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyberCyan"></span>
-            </div>
-            <div class="flex-1 bg-white/[0.03] border border-white/5 p-5 rounded-xl">
-              <div class="flex flex-wrap items-baseline gap-x-4 mb-2">
-                <span class="font-mono text-xs text-slate-500">T − 00s</span>
-                <span class="font-black uppercase tracking-widest text-sm text-cyberCyan">Autonomous Execution</span>
-              </div>
-              <p class="text-slate-400 text-sm">Hedge executed across 3 portfolios. Capital reallocated. Confirmation dispatched to Nexus.</p>
-            </div>
-          </div>
-
-          <div class="relative flex items-start gap-6">
-            <div class="z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black border-2 border-cyberEmerald/40 flex items-center justify-center shrink-0 shadow-neon-emerald">
-              <span class="w-2.5 h-2.5 rounded-full bg-cyberEmerald"></span>
-            </div>
-            <div class="flex-1 bg-white/[0.03] border border-white/5 p-5 rounded-xl">
-              <div class="flex flex-wrap items-baseline gap-x-4 mb-2">
-                <span class="font-mono text-xs text-slate-500">T + 90s</span>
-                <span class="font-black uppercase tracking-widest text-sm text-cyberEmerald">Learning Update</span>
-              </div>
-              <p class="text-slate-400 text-sm">Causal lift measured at +0.45% versus estimate. Graph edge weights recalibrated. Skill promoted to reusable runbook.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ EXECUTION SANDBOX ============================ -->
-    <section id="sandbox" class="py-32 px-6 border-b border-white/5 bg-[#010206]">
-      <div class="max-w-7xl mx-auto">
-
-        <div class="max-w-3xl mb-16">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">Interactive Playground</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white">Execution Sandbox</h2>
-          <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-4">
-            Initialize a real-time operational simulation to watch the SRPVDAL cycle build a PlanBlueprint, enforce compliance, calculate margins, and execute a dynamic pathway.
-          </p>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-8 items-stretch">
-
-          <div class="lg:col-span-5 p-8 border border-white/10 bg-slate-950/60 rounded-3xl flex flex-col justify-between">
-            <div class="space-y-6">
-              <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest block">// CONTROL_DASHBOARD</span>
-              <h3 class="text-xl font-black text-white">Select Scenario</h3>
-
-              <div class="space-y-3">
-                <button onclick="activateSandboxScenario('liquidity')" id="scenario-btn-liquidity" class="scenario-btn w-full text-left p-4 rounded-xl border border-cyberCyan bg-cyan-950/20 text-white transition-all duration-300">
-                  <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-sm text-white">Liquidity Reserve Gap</span>
-                    <span class="text-[9px] font-mono text-cyberCyan bg-cyberCyan/10 border border-cyberCyan/20 px-2 py-0.5 rounded uppercase">Capital</span>
-                  </div>
-                  <p class="text-[11px] text-slate-400 leading-normal">Trust entity triggers a concentration limit breach, requiring automated mitigation routing.</p>
-                </button>
-
-                <button onclick="activateSandboxScenario('compliance')" id="scenario-btn-compliance" class="scenario-btn w-full text-left p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] text-slate-400 transition-all duration-300">
-                  <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-sm text-slate-300">Compliance Limit Breach</span>
-                    <span class="text-[9px] font-mono text-cyberRed bg-cyberRed/10 border border-cyberRed/20 px-2 py-0.5 rounded uppercase">Counsel</span>
-                  </div>
-                  <p class="text-[11px] text-slate-400 leading-normal">A regulatory update triggers validation checks on active digital media contracts.</p>
-                </button>
-
-                <button onclick="activateSandboxScenario('market')" id="scenario-btn-market" class="scenario-btn w-full text-left p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] text-slate-400 transition-all duration-300">
-                  <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-sm text-slate-300">ROAS Slippage Arbitrage</span>
-                    <span class="text-[9px] font-mono text-cyberGold bg-cyberGold/10 border border-cyberGold/20 px-2 py-0.5 rounded uppercase">Signal</span>
-                  </div>
-                  <p class="text-[11px] text-slate-400 leading-normal">Pre-bid telemetry signals budget allocation shifts to maximize margin coverage.</p>
-                </button>
-              </div>
-            </div>
-
-            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row gap-3">
-              <button onclick="triggerSandboxSimulation()" id="simulate-run-btn" class="flex-1 py-3 text-xs font-black text-black bg-cyberCyan rounded-xl tracking-widest uppercase hover:bg-cyan-400 transition-all duration-300 shadow-neon-cyan flex items-center justify-center">
-                <i data-lucide="play" class="w-3.5 h-3.5 mr-2 fill-current"></i>
-                <span>Execute Simulation</span>
-              </button>
-              <button onclick="resetSandboxTerminal()" class="px-5 py-3 text-xs font-bold text-slate-400 border border-white/10 rounded-xl hover:bg-white/5 transition-all duration-300 uppercase tracking-wider">
-                Reset
-              </button>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 relative border border-white/10 rounded-3xl bg-slate-950 flex flex-col justify-between p-8 overflow-hidden min-h-[480px] shadow-2xl">
-            <div class="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-cyberCyan/60 to-transparent animate-scan pointer-events-none"></div>
-
-            <div class="flex items-center justify-between border-b border-white/5 pb-4 font-mono text-[10px] text-slate-500 tracking-widest">
-              <div class="flex items-center space-x-2">
-                <span id="sandbox-pulsar" class="w-2 h-2 rounded-full bg-cyberCyan animate-pulse"></span>
-                <span id="sandbox-terminal-title">SANDBOX // TERMINAL_ACTIVE</span>
-              </div>
-              <span id="sandbox-status-text" class="text-cyberCyan">READY_TO_RUN</span>
-            </div>
-
-            <div id="sandbox-log-box" class="my-auto py-6 font-mono text-[11px] leading-relaxed text-slate-300 space-y-3 h-64 overflow-y-auto">
-              <div class="text-slate-500">System initialization complete. Select a scenario and press Execute Simulation to begin trace routing.</div>
-              <div class="text-slate-500">&gt;_ Waiting for stimulus trigger.</div>
-            </div>
-
-            <div class="border-t border-white/5 pt-6 grid grid-cols-3 gap-6 font-mono text-[11px] text-slate-500">
-              <div>
-                <span>SIM_CONFIDENCE</span>
-                <b id="sandbox-conf-val" class="block text-slate-400 text-sm font-bold mt-1">--</b>
-              </div>
-              <div>
-                <span>SIM_LATENCY</span>
-                <b id="sandbox-lat-val" class="block text-slate-400 text-sm font-bold mt-1">--</b>
-              </div>
-              <div>
-                <span>SYS_HEALTH</span>
-                <b class="block text-cyberEmerald text-sm font-bold mt-1 flex items-center">
-                  <span class="w-1.5 h-1.5 rounded-full bg-cyberEmerald mr-1.5"></span> NOMINAL
-                </b>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ DIVISIONS ============================ -->
-    <section class="py-32 px-6 border-b border-white/5">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 max-w-3xl mx-auto">
-          <span class="text-xs font-black tracking-[0.3em] text-cyberCyan uppercase block mb-3">One Intelligence. Five Divisions.</span>
-          <h2 class="text-3xl md:text-5xl font-black text-white">Strategic Intelligence Infrastructure</h2>
-          <p class="text-slate-400 text-sm md:text-base leading-relaxed mt-4">
-            Purpose-built autonomous divisions designed for institutional scale, extreme governance, and unyielding precision.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-          <a href="/counsel" class="p-8 border border-white/10 bg-slate-900/20 hover:bg-cyan-950/20 hover:border-cyberCyan/40 transition-all duration-300 rounded-2xl group hover:-translate-y-1">
-            <div class="inline-flex p-3 bg-black border border-cyan-500/30 rounded-xl group-hover:shadow-neon-cyan transition-all mb-5">
-              <i data-lucide="scale" class="w-6 h-6 text-cyberCyan"></i>
-            </div>
-            <h4 class="text-white font-black tracking-wider uppercase text-sm mb-1">Counsel</h4>
-            <p class="text-slate-500 text-xs">Legal reasoning and evidence memory.</p>
-          </a>
-          <a href="/estate" class="p-8 border border-white/10 bg-slate-900/20 hover:bg-violet-950/20 hover:border-cyberViolet/40 transition-all duration-300 rounded-2xl group hover:-translate-y-1">
-            <div class="inline-flex p-3 bg-black border border-violet-500/30 rounded-xl group-hover:shadow-neon-violet transition-all mb-5">
-              <i data-lucide="landmark" class="w-6 h-6 text-cyberViolet"></i>
-            </div>
-            <h4 class="text-white font-black tracking-wider uppercase text-sm mb-1">Estate</h4>
-            <p class="text-slate-500 text-xs">Trust, tax, estate, and asset intelligence.</p>
-          </a>
-          <a href="/capital" class="p-8 border border-white/10 bg-slate-900/20 hover:bg-emerald-950/20 hover:border-cyberEmerald/40 transition-all duration-300 rounded-2xl group hover:-translate-y-1">
-            <div class="inline-flex p-3 bg-black border border-emerald-500/30 rounded-xl group-hover:shadow-neon-emerald transition-all mb-5">
-              <i data-lucide="trending-up" class="w-6 h-6 text-cyberEmerald"></i>
-            </div>
-            <h4 class="text-white font-black tracking-wider uppercase text-sm mb-1">Capital</h4>
-            <p class="text-slate-500 text-xs">Risk, credit, markets, and portfolio intelligence.</p>
-          </a>
-          <a href="/signal" class="p-8 border border-white/10 bg-slate-900/20 hover:bg-amber-950/20 hover:border-cyberGold/40 transition-all duration-300 rounded-2xl group hover:-translate-y-1">
-            <div class="inline-flex p-3 bg-black border border-amber-500/30 rounded-xl group-hover:shadow-neon-gold transition-all mb-5">
-              <i data-lucide="radio-tower" class="w-6 h-6 text-cyberGold"></i>
-            </div>
-            <h4 class="text-white font-black tracking-wider uppercase text-sm mb-1">Signal</h4>
-            <p class="text-slate-500 text-xs">Autonomous acquisition and omnichannel growth.</p>
-          </a>
-          <a href="/risk" class="p-8 border border-white/10 bg-slate-900/20 hover:bg-rose-950/20 hover:border-cyberRed/40 transition-all duration-300 rounded-2xl group hover:-translate-y-1">
-            <div class="inline-flex p-3 bg-black border border-rose-500/30 rounded-xl group-hover:shadow-neon-rose transition-all mb-5">
-              <i data-lucide="shield-alert" class="w-6 h-6 text-cyberRed"></i>
-            </div>
-            <h4 class="text-white font-black tracking-wider uppercase text-sm mb-1">Risk</h4>
-            <p class="text-slate-500 text-xs">Verification, compliance, and resilience.</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================ DEMO CTA ============================ -->
-    <section id="demo" class="py-32 px-6 bg-[#020308]">
-      <div class="max-w-5xl mx-auto text-center space-y-8">
-        <span class="text-xs font-black tracking-[0.3em] text-cyberGold uppercase block">Live Interactive Replay</span>
-        <h2 class="text-4xl sm:text-6xl font-black text-white leading-[1.1]">The beginning of <br/>autonomous enterprise cognition.</h2>
-        <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
-          Stop summarizing data. Start orchestrating outcomes. Replay one high-stakes decision from signal intake to causal reasoning, PlanBlueprint, verification, DCP authorization, action, and learning update.
-        </p>
-
-        <div id="demo-notification" class="inline-flex items-center space-x-3 p-4 rounded-2xl border border-cyberCyan/30 bg-cyan-950/30 text-cyberCyan text-xs font-mono opacity-0 transition-all duration-500 transform translate-y-4">
-          <i data-lucide="info" class="w-4 h-4"></i>
-          <span>EXECUTIVE DEMO READY. CONTACT hello@mizoki3.com TO SCHEDULE.</span>
-        </div>
-
-        <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
-          <button onclick="triggerDemoToast()" class="px-8 py-4 text-xs font-black uppercase tracking-widest text-black bg-cyberCyan hover:bg-cyan-400 rounded-xl transition-all duration-300 shadow-neon-cyan">
-            Initialize Live Session Replay
-          </button>
-          <a href="mailto:hello@mizoki3.com" class="px-8 py-4 text-xs font-black uppercase tracking-widest text-white border border-white/10 hover:bg-white/5 rounded-xl transition-all duration-300">
-            Talk to the Team
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="border-t border-white/5 bg-[#010103] py-16 px-6">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-slate-500 tracking-wider">
-      <div class="flex items-center space-x-3">
-        <i data-lucide="globe-lock" class="w-5 h-5 text-cyberCyan"></i>
-        <span>MIZOKI3 // VERIFIABLE AUTONOMOUS DECISION INTELLIGENCE</span>
-      </div>
-      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
-        <a href="#engine" class="hover:text-cyberCyan transition-colors">Engine</a>
-        <a href="#dcp" class="hover:text-cyberCyan transition-colors">Control Plane</a>
-        <a href="#lenses" class="hover:text-cyberCyan transition-colors">Domain Cells</a>
-        <a href="#sandbox" class="hover:text-cyberCyan transition-colors">Sandbox</a>
-        <a href="/console" class="hover:text-cyberCyan transition-colors">Console</a>
-        <a href="/blog/" class="hover:text-cyberCyan transition-colors">Blog</a>
-      </div>
+  <section class="cta-wrap" aria-labelledby="cta-heading">
+    <div class="container cta-inner reveal">
       <div>
-        <span>&copy; <span id="footer-year">2026</span> MIZOKI3. hello@mizoki3.com</span>
+        <h2 id="cta-heading" class="section-title">Ready to move from recommendation to execution</h2>
+        <p>Built for enterprises that require AI to act with accountability — not just answer questions.</p>
+      </div>
+      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">MIZOKI3</span>
+        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
+        <div class="trust-row">
+          <span class="trust-pill">Patented Technology</span>
+          <span class="trust-pill">Customer-Managed Encryption</span>
+          <span class="trust-pill">Proprietary Engine</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Lenses</h4>
+        <ul>
+          <li><a href="/counsel">Counsel</a></li>
+          <li><a href="/signal">Signal</a></li>
+          <li><a href="/capital">Capital</a></li>
+          <li><a href="/risk">Risk</a></li>
+          <li><a href="/estate">Estate</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="/architecture">Architecture</a></li>
+          <li><a href="/console">Console</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
+          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
+      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
+    </div>
+  </div>
+</footer>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      document.getElementById('footer-year').textContent = new Date().getFullYear();
-    });
+<script src="/assets/js/tckg-hero.js?v=2"></script>
+<script src="/assets/js/srpvdal-flow.js?v=2"></script>
+<script>
+(function () {
+  'use strict';
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ===== SRPVDAL Engine =====
-    const engineStages = [
-      {
-        node: "NODE_MONITOR // SENSE_01",
-        step: "Phase 01 // Observe",
-        name: "Sense Module",
-        icon: "eye",
-        desc: "Ingest and contextualize multi-source live event streams, system performance, transactional logs, and external market factors in real time, building an atomic data layer with no legacy disruption.",
-        latency: "142ms",
-        confidence: "94.2%",
-        json: `{\n  "event_source": "Enterprise_API_Stream",\n  "data_lineage": "GCS_Verified",\n  "encryption_type": "SHA-256",\n  "status": "ingested_real_time"\n}`
-      },
-      {
-        node: "NODE_MONITOR // REASON_02",
-        step: "Phase 02 // Infer",
-        name: "Reason Module",
-        icon: "brain-circuit",
-        desc: "Construct temporal-causal relationships using multi-agent graph reasoning. Parse connections between legacy rules, active compliance frameworks, and fast-moving transactional realities.",
-        latency: "165ms",
-        confidence: "95.8%",
-        json: `{\n  "causal_graph_resolved": true,\n  "resolved_links": 8412983,\n  "temporal_window_seconds": 60,\n  "reasoning_model": "TCKG_V4_Core"\n}`
-      },
-      {
-        node: "NODE_MONITOR // PLAN_03",
-        step: "Phase 03 // Propose",
-        name: "Plan Module",
-        icon: "git-merge",
-        desc: "Structure alternate, resource-allocated workflow pathways as PlanBlueprints. Actions are organized as directed acyclic graphs representing the required operations without launching active calls.",
-        latency: "110ms",
-        confidence: "93.1%",
-        json: `{\n  "plan_blueprints_generated": 3,\n  "selected_pathway_id": "REWOO_PATH_A",\n  "rerouting_actions_count": 4,\n  "execution_integrity": "OK"\n}`
-      },
-      {
-        node: "NODE_MONITOR // VALIDATE_04",
-        step: "Phase 04 // Stress-Test",
-        name: "Validate Module",
-        icon: "shield-check",
-        desc: "Run automated cross-model validation and compliance checks. Challenge actions against legal frameworks, dynamic spend boundaries, and security thresholds.",
-        latency: "185ms",
-        confidence: "98.9%",
-        json: `{\n  "compliance_check": "100%_PASS",\n  "regulatory_matching": "COUNSEL_COMPLIANT",\n  "verification_keys": "CRYPTO_KEY_SHA256",\n  "policy_agreement": "SIGNED"\n}`
-      },
-      {
-        node: "NODE_MONITOR // DECIDE_05",
-        step: "Phase 05 // Choose",
-        name: "Decide Module",
-        icon: "layers",
-        desc: "Slice proposed alternatives to identify optimal outcomes. If metrics fall outside target levels, flag the decision for human-in-the-loop audit paths.",
-        latency: "95ms",
-        confidence: "96.4%",
-        json: `{\n  "selection_confidence": 94.2,\n  "authority_level": "AUTONOMOUS",\n  "outcome_variance_delta": "+18.6%",\n  "action_authorized": true\n}`
-      },
-      {
-        node: "NODE_MONITOR // ACT_06",
-        step: "Phase 06 // Execute",
-        name: "Act Module",
-        icon: "zap",
-        desc: "Deploy executed commands through secured enterprise APIs. The integration operates with cryptographic safety parameters, verifying status and feedback payloads.",
-        latency: "210ms",
-        confidence: "100%",
-        json: `{\n  "api_endpoint": "https://api.core.mizoki3.com/v1",\n  "payload_delivered": true,\n  "transaction_hash": "tx_0x9fA4b29...",\n  "response_status_code": 200\n}`
-      },
-      {
-        node: "NODE_MONITOR // LEARN_07",
-        step: "Phase 07 // Compound",
-        name: "Learn Module",
-        icon: "activity",
-        desc: "Capture empirical action results and compare them with initial expectations. Feed parameters directly back into the knowledge graph to compound organizational memory.",
-        latency: "155ms",
-        confidence: "92.5%",
-        json: `{\n  "actual_versus_estimated_delta": "+0.45%",\n  "graph_weights_recalibrated": true,\n  "feedback_loops_integrated": 1,\n  "learning_cycle_complete": true\n}`
-      }
-    ];
+  var header = document.getElementById('header');
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('scrolled', window.scrollY > 16);
+  }, { passive: true });
 
-    function selectEngineStage(index) {
-      const buttons = document.querySelectorAll('.engine-tab-btn');
-      buttons.forEach((btn, idx) => {
-        const iconBox = btn.querySelector('.tab-icon-box');
-        const textLabel = btn.querySelector('.font-bold');
-        const badge = btn.querySelector('.font-mono');
-        const chevron = btn.querySelector('[data-lucide="chevron-right"]');
-        if (idx === index) {
-          btn.className = "engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 bg-cyan-950/20 border-cyan-500/40 shadow-neon-cyan";
-          if (iconBox) iconBox.className = "tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-cyberCyan text-black transition-all";
-          if (textLabel) textLabel.className = "font-bold text-sm tracking-wide text-white";
-          if (badge) badge.className = "text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-cyberCyan/10 text-cyberCyan border border-cyan-500/20 uppercase";
-          if (chevron) chevron.style.color = "#22d3ee";
-        } else {
-          btn.className = "engine-tab-btn w-full flex items-center p-4 rounded-2xl border text-left transition-all duration-300 border-white/5 bg-white/[0.01] hover:bg-white/[0.03]";
-          if (iconBox) iconBox.className = "tab-icon-box flex items-center justify-center w-10 h-10 rounded-xl mr-4 font-mono text-sm font-bold bg-slate-900 text-slate-400 border border-white/5 transition-all";
-          if (textLabel) textLabel.className = "font-bold text-sm tracking-wide text-slate-400";
-          if (badge) badge.className = "text-[9px] font-mono tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-500 uppercase";
-          if (chevron) chevron.style.color = "#334155";
-        }
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
       });
-
-      const stage = engineStages[index];
-      document.getElementById('inspector-node-title').textContent = stage.node;
-      document.getElementById('inspector-step').textContent = stage.step;
-      document.getElementById('inspector-name').textContent = stage.name;
-      document.getElementById('inspector-desc').textContent = stage.desc;
-      document.getElementById('inspector-json').textContent = stage.json;
-      document.getElementById('indicator-latency').textContent = stage.latency;
-      document.getElementById('indicator-confidence').textContent = stage.confidence;
-      document.getElementById('inspector-icon').innerHTML = `<i data-lucide="${stage.icon}" class="w-6 h-6"></i>`;
-      lucide.createIcons();
-    }
-
-    // ===== Domain Cells =====
-    const domainCells = {
-      counsel: {
-        tag: "// COUNSEL_CELL",
-        title: "Counsel — Legal Intelligence",
-        tagline: "Autonomous Contract & Obligation Governance",
-        desc: "Unifies distributed legal knowledge, multi-party contract obligations, corporate policy frameworks, and regulatory evidence pipelines into a real-time decision landscape.",
-        features: ["Automated compliance mapping", "Continuous obligation tracking", "Active risk-mitigation validation"],
-        action: "&gt; Ingesting regulatory policy changes...",
-        id: "CELL_ID: COUNSEL_CELL_04",
-        href: "/counsel",
-        linkLabel: "Open Counsel Lens"
-      },
-      estate: {
-        tag: "// ESTATE_CELL",
-        title: "Estate — Wealth, Trust & Tax",
-        tagline: "Multi-Tiered Asset & Holding Tracing",
-        desc: "Constructs relational graphs of entity lines, trust structures, asset balances, and generational allocations. Exposes risk concentrations and liquidity anomalies automatically.",
-        features: ["Asset consolidation analysis", "Dynamic tax-rule compliance", "Concentration threshold warnings"],
-        action: "&gt; Modeling fiduciary ownership paths...",
-        id: "CELL_ID: ESTATE_CELL_12",
-        href: "/estate",
-        linkLabel: "Open Estate Lens"
-      },
-      capital: {
-        tag: "// CAPITAL_CELL",
-        title: "Capital — Banking & Markets",
-        tagline: "Portfolio, Credit & Liquidity Intelligence",
-        desc: "Models capital allocation across portfolios, credit exposures, and market positions. Detects concentration spikes and routes mitigations through the DCP.",
-        features: ["Pre-trade scenario simulation", "Liquidity & covenant monitoring", "Cross-portfolio risk attribution"],
-        action: "&gt; Resolving capital flow corridors...",
-        id: "CELL_ID: CAPITAL_CELL_07",
-        href: "/capital",
-        linkLabel: "Open Capital Lens"
-      },
-      signal: {
-        tag: "// SIGNAL_CELL",
-        title: "Signal — Autonomous Acquisition",
-        tagline: "Omnichannel Acquisition Arbitrage",
-        desc: "Directs automated customer-acquisition budgets based on causal attribution, margin calculations, and pre-bid validation checks that protect dynamic spend.",
-        features: ["Pre-bid margin matching", "Causal attribution & ROAS lift", "Automated platform budget scaling"],
-        action: "&gt; Aligning omnichannel spend corridors...",
-        id: "CELL_ID: SIGNAL_CELL_18",
-        href: "/signal",
-        linkLabel: "Open Signal Lens"
-      },
-      risk: {
-        tag: "// RISK_CELL",
-        title: "Risk — Verification & Resilience",
-        tagline: "Operational Threat & Compliance Modeling",
-        desc: "Transforms business continuity profiles into live simulations. Maps dependencies across vendors, internal workflows, data pipes, and physical facilities.",
-        features: ["Real-time supply chain telemetry", "Counterfactual crisis simulations", "Automated fallback triggering"],
-        action: "&gt; Simulating outage and recovery paths...",
-        id: "CELL_ID: RISK_CELL_09",
-        href: "/risk",
-        linkLabel: "Open Risk Lens"
-      }
-    };
-
-    function selectDomainCell(key) {
-      const buttons = document.querySelectorAll('.cell-tab-btn');
-      buttons.forEach(btn => {
-        if (btn.id === `cell-btn-${key}`) {
-          btn.className = "cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-cyberCyan text-white bg-white/[0.02] transition-all duration-300";
-        } else {
-          btn.className = "cell-tab-btn px-6 py-4 text-xs font-black uppercase tracking-widest border-b-2 border-transparent text-slate-500 hover:text-slate-300 transition-all duration-300";
-        }
-      });
-      const cell = domainCells[key];
-      document.getElementById('domain-cell-tag').textContent = cell.tag;
-      document.getElementById('domain-cell-title').textContent = cell.title;
-      document.getElementById('domain-cell-tagline').textContent = cell.tagline;
-      document.getElementById('domain-cell-desc').textContent = cell.desc;
-      document.getElementById('domain-cell-feat1').textContent = cell.features[0];
-      document.getElementById('domain-cell-feat2').textContent = cell.features[1];
-      document.getElementById('domain-cell-feat3').textContent = cell.features[2];
-      document.getElementById('domain-terminal-action').innerHTML = cell.action;
-      document.getElementById('domain-terminal-id').textContent = cell.id;
-      const link = document.getElementById('domain-cell-link');
-      link.href = cell.href;
-      link.querySelector('span').textContent = cell.linkLabel;
-    }
-
-    // ===== Sandbox =====
-    let activeScenario = 'liquidity';
-    const scenarios = {
-      liquidity: {
-        title: "SANDBOX // LIQUIDITY_ALERT_RESOLVED",
-        conf: "94.2%",
-        latency: "142ms",
-        logs: [
-          '<span class="text-slate-500">&gt; Triggering concentration limit analysis.</span>',
-          '<span class="text-cyberCyan">&gt; Signal ingested: cash concentration spike on Trust 14B.</span>',
-          '<span class="text-slate-400">&gt; Resolving TCO-KG: trust linkages and capital limits loaded.</span>',
-          '<span class="text-cyberGold">&gt; Plan formulated: alternate PlanBlueprint for cash deployment.</span>',
-          '<span class="text-cyberEmerald">&gt; Validate: DCP gate matches plan against fiduciary rules. Pass.</span>',
-          '<span class="text-cyberCyan">&gt; Execute: action deployed. Capital reallocated. Reserve balanced.</span>',
-          '<span class="text-emerald-400">&gt; Learn: outcome registered. Causal weights re-aligned.</span>'
-        ]
-      },
-      compliance: {
-        title: "SANDBOX // COMPLIANCE_BREACH_MITIGATED",
-        conf: "98.1%",
-        latency: "185ms",
-        logs: [
-          '<span class="text-slate-500">&gt; Monitoring regulatory rule updates.</span>',
-          '<span class="text-cyberCyan">&gt; Signal ingested: new SEC ruling imported from federal stream.</span>',
-          '<span class="text-slate-400">&gt; Resolving TCO-KG: affected legal obligations identified.</span>',
-          '<span class="text-cyberGold">&gt; Plan formulated: PlanBlueprint for agreement adjustments.</span>',
-          '<span class="text-cyberEmerald">&gt; Validate: legal verification aligned. Safety metrics secure.</span>',
-          '<span class="text-cyberCyan">&gt; Execute: action deployed. Contract metadata updated.</span>',
-          '<span class="text-emerald-400">&gt; Learn: compliance state saved to immutable registry.</span>'
-        ]
-      },
-      market: {
-        title: "SANDBOX // ROAS_ARBITRAGE_BALANCED",
-        conf: "92.8%",
-        latency: "115ms",
-        logs: [
-          '<span class="text-slate-500">&gt; Fetching omnichannel spend telemetry.</span>',
-          '<span class="text-cyberCyan">&gt; Signal ingested: campaign ROI slipped below -1.5% margin limit.</span>',
-          '<span class="text-slate-400">&gt; Resolving TCO-KG: audience and platform metrics mapped.</span>',
-          '<span class="text-cyberGold">&gt; Plan formulated: shift $250k budget allocation.</span>',
-          '<span class="text-cyberEmerald">&gt; Validate: cross-checks confirm platform limits. Pass.</span>',
-          '<span class="text-cyberCyan">&gt; Execute: budget reallocated via platform APIs.</span>',
-          '<span class="text-emerald-400">&gt; Learn: attribution monitored. Learning model updated.</span>'
-        ]
-      }
-    };
-
-    function activateSandboxScenario(key) {
-      activeScenario = key;
-      document.querySelectorAll('.scenario-btn').forEach(btn => {
-        if (btn.id === `scenario-btn-${key}`) {
-          btn.className = "scenario-btn w-full text-left p-4 rounded-xl border border-cyberCyan bg-cyan-950/20 text-white transition-all duration-300";
-          const text = btn.querySelector('.font-bold');
-          if (text) text.className = "font-bold text-sm text-white";
-        } else {
-          btn.className = "scenario-btn w-full text-left p-4 rounded-xl border border-white/5 bg-white/[0.01] hover:bg-white/[0.03] text-slate-400 transition-all duration-300";
-          const text = btn.querySelector('.font-bold');
-          if (text) text.className = "font-bold text-sm text-slate-300";
-        }
-      });
-      const logBox = document.getElementById('sandbox-log-box');
-      logBox.innerHTML = `<div class="text-slate-500">Selected scenario "${key}". Ready for execution trace.</div>`;
-      document.getElementById('sandbox-conf-val').textContent = "--";
-      document.getElementById('sandbox-lat-val').textContent = "--";
-      document.getElementById('sandbox-status-text').textContent = "READY_TO_RUN";
-      document.getElementById('sandbox-status-text').className = "text-cyberCyan";
-      document.getElementById('sandbox-pulsar').className = "w-2 h-2 rounded-full bg-cyberCyan animate-pulse";
-    }
-
-    function triggerSandboxSimulation() {
-      const btn = document.getElementById('simulate-run-btn');
-      btn.disabled = true;
-      btn.innerHTML = '<span>Simulating...</span>';
-
-      const logBox = document.getElementById('sandbox-log-box');
-      logBox.innerHTML = '';
-
-      const scenario = scenarios[activeScenario];
-      let currentStep = 0;
-
-      document.getElementById('sandbox-status-text').textContent = "EXECUTING_LOOP";
-      document.getElementById('sandbox-status-text').className = "text-cyberGold";
-      document.getElementById('sandbox-pulsar').className = "w-2 h-2 rounded-full bg-cyberGold animate-ping";
-
-      const interval = setInterval(() => {
-        if (currentStep < scenario.logs.length) {
-          logBox.innerHTML += `<div>${scenario.logs[currentStep]}</div>`;
-          logBox.scrollTop = logBox.scrollHeight;
-          currentStep++;
-        } else {
-          clearInterval(interval);
-          btn.disabled = false;
-          btn.innerHTML = '<i data-lucide="play" class="w-3.5 h-3.5 mr-2 fill-current"></i><span>Execute Simulation</span>';
-          lucide.createIcons();
-          document.getElementById('sandbox-terminal-title').textContent = scenario.title;
-          document.getElementById('sandbox-conf-val').textContent = scenario.conf;
-          document.getElementById('sandbox-lat-val').textContent = scenario.latency;
-          document.getElementById('sandbox-status-text').textContent = "CYCLE_SUCCESS";
-          document.getElementById('sandbox-status-text').className = "text-cyberEmerald";
-          document.getElementById('sandbox-pulsar').className = "w-2 h-2 rounded-full bg-cyberEmerald animate-pulse";
-        }
-      }, 700);
-    }
-
-    function resetSandboxTerminal() {
-      activateSandboxScenario(activeScenario);
-    }
-
-    // ===== Demo toast =====
-    function triggerDemoToast() {
-      const toast = document.getElementById('demo-notification');
-      toast.classList.remove('opacity-0', 'translate-y-4');
-      toast.classList.add('opacity-100', 'translate-y-0');
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-4');
-        toast.classList.remove('opacity-100', 'translate-y-0');
-      }, 5000);
-    }
-  </script>
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
+</script>
 </body>
 </html>

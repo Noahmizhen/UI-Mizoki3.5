@@ -159,7 +159,7 @@
       ctx.shadowBlur = 0;
 
       ctx.fillStyle = '#e4e4e7';
-      ctx.font = "600 12px 'Inter', sans-serif";
+      ctx.font = "600 11px 'JetBrains Mono', monospace";
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       const labelDist = 32;

@@ -153,6 +153,11 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     def risk():
         return serve_page("risk.html")
 
+    @app.route("/architecture")
+    @app.route("/architecture.html")
+    def architecture():
+        return serve_page("architecture.html")
+
     @app.route("/how-it-works.html")
     @app.route("/platform.html")
     @app.route("/security.html")

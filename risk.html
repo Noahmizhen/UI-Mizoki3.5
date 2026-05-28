@@ -1,118 +1,233 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MIZOKI3 — Risk · Verification & Compliance Intelligence</title>
-  <meta name="description" content="Serve as the conscience, verifier, and governance layer of the entire system." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MIZOKI3 — Risk · Verification & Compliance Intelligence</title>
+<meta name="description" content="Serve as the conscience, verifier, and governance layer of the entire system." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/css/mizoki3.css" />
+<style>
+  :root { --lens-accent: #b85c5c; }
+  .domain-eyebrow { color: var(--lens-accent); }
+  .anatomy-block .section-label { color: var(--lens-accent); }
+</style>
 </head>
 <body>
 
-  <header class="site-header">
+<header class="site-header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">MIZOKI3</a>
     <nav class="nav">
-      <a href="index.html" class="brand">MIZOKI3</a>
-      <ul class="nav-links">
-        <li><a href="counsel.html">Counsel</a></li>
-        <li><a href="estate.html">Estate</a></li>
-        <li><a href="capital.html">Capital</a></li>
-        <li><a href="signal.html">Signal</a></li>
-        <li><a href="risk.html" class="active">Risk</a></li>
-      </ul>
+      <div class="lens-nav" aria-label="Domain lenses">
+        <a href="/counsel">Counsel</a>
+        <a href="/signal">Signal</a>
+        <a href="/capital">Capital</a>
+        <a href="/risk" class="active">Risk</a>
+        <a href="/estate">Estate</a>
+      </div>
+      <a href="/#how-it-works" class="nav-link hide-mobile">How It Works</a>
+      <a href="/architecture" class="nav-link hide-mobile">Architecture</a>
+      <a href="/console" class="nav-link hide-mobile">Console</a>
+      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request" class="btn btn-primary">Schedule a Demo</a>
     </nav>
-  </header>
+  </div>
+</header>
 
-  <div class="domain-accent accent-risk"></div>
+<main>
 
-  <section class="domain-hero" style="--domain-glow: rgba(244, 63, 94, 0.15);">
+  <section class="domain-hero" aria-labelledby="domain-heading">
+    <div class="container domain-hero-grid">
+      <div class="reveal">
+        <p class="domain-eyebrow">Risk · Verification & Compliance Intelligence</p>
+        <h1 id="domain-heading">Serve as the conscience, verifier, and governance layer of the entire system.</h1>
+        <p class="domain-intro">Risk is not beside the system. Risk governs the system. Every consequential output produced anywhere in MIZOKI3 passes through Risk before it can be authorized to act.</p>
+        <div class="domain-actions">
+          <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Risk%20Demo" class="btn btn-primary">Request a briefing</a>
+          <a href="/#lenses" class="text-link">All lenses</a>
+        </div>
+      </div>
+
+      <aside class="scenario-panel reveal" aria-label="Risk decision example">
+        <div class="scenario-head">
+          <span>Risk · Governed output</span>
+          <span class="verdict-pill vetoed">Vetoed</span>
+        </div>
+        <div class="scenario-body">
+          <p class="scenario-id">AUTH-991</p>
+          <h2 class="scenario-title">Cross-Lens Authorization · ACT-991</h2>
+          <dl class="scenario-meta">
+            <div><dt>Proposal</dt><dd>Capital · Q3 dividend</dd></div>
+            <div><dt>Policy</dt><dd>LIQ-COV-ENFORCE-01</dd></div>
+            <div><dt>Simulation</dt><dd>Post-action $7M vs $10M floor</dd></div>
+            <div><dt>Arbitration</dt><dd>Counsel boundary · Capital proposal</dd></div>
+          </dl>
+          <p class="scenario-outcome">Risk arbitrated Capital's proposal against Counsel-mapped <strong>COV-01</strong> and simulation output. Execution halted with cited policy, deficit arithmetic, and a routed safe alternative — visible in the Decision Control Plane.</p>
+        </div>
+        <div class="scenario-foot">
+          <a href="/console">View in Decision Control Plane →</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bordered" aria-labelledby="anatomy-heading">
     <div class="container">
-      <div class="label" style="color: var(--accent-rose);">// MIZOKI3 RISK · Verification & Compliance Intelligence</div>
-      <h1>Serve as the conscience, verifier, and governance layer of the entire system.</h1>
-      <p class="mission">Risk is not beside the system. Risk governs the system. Every consequential output produced anywhere in MIZOKI3 passes through Risk before it can be authorized to act.</p>
-      <div class="hero-cta" style="margin-top: 36px;">
-        <a href="index.html#layers" class="btn btn-ghost">← All domains</a>
-        <a href="index.html#brain" class="btn btn-ghost">Inside the Brain</a>
+      <div class="reveal" style="margin-bottom: 2rem;">
+        <p class="section-label">Lens anatomy</p>
+        <h2 id="anatomy-heading" class="section-title">What enters. What the graph gains.</h2>
+      </div>
+      <div class="anatomy-grid reveal">
+        <div class="anatomy-block">
+          <p class="section-label">Consumes</p>
+          <h3>The signals that enter Risk.</h3>
+          <ul class="anatomy-list">
+            <li>Cross-agent proposals</li>
+            <li>Policy libraries</li>
+            <li>Regulatory frameworks</li>
+            <li>Operational telemetry</li>
+            <li>Authorization histories</li>
+            <li>Confidence distributions</li>
+            <li>Simulation outputs</li>
+            <li>Adversarial signals</li>
+          </ul>
+        </div>
+        <div class="anatomy-block">
+          <p class="section-label">Produces</p>
+          <h3>The intelligence Risk contributes.</h3>
+          <ul class="anatomy-list">
+            <li>Cross-agent verification</li>
+            <li>Hallucination detection</li>
+            <li>Contradiction arbitration</li>
+            <li>Policy enforcement</li>
+            <li>Regulatory compliance scoring</li>
+            <li>Authorization scoring</li>
+            <li>Tail-risk simulation</li>
+            <li>Confidence arbitration</li>
+            <li>Operational governance</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="platform-strip" aria-labelledby="platform-heading">
+    <div class="container">
+      <div class="reveal" style="margin-bottom: 2rem;">
+        <p class="section-label">Platform integration</p>
+        <h2 id="platform-heading" class="section-title">Same architecture. Domain-specific reasoning.</h2>
+        <p style="max-width: 36rem; font-size: 0.9375rem;">Risk does not run in isolation. It reads and writes the shared Temporal-Causal Knowledge Graph through the same governed pipeline every lens uses.</p>
+      </div>
+      <div class="platform-grid reveal">
+        <div class="platform-cell">
+          <h4>The Brain</h4>
+          <p>Policy libraries, regulatory frameworks, and authorization histories form the governance substrate — queryable alongside operational graph memory.</p>
+        </div>
+        <div class="platform-cell">
+          <h4>The Pipeline</h4>
+          <p>Risk sits at Validate and Decide — no proposal reaches Act without cross-agent verification and confidence arbitration.</p>
+        </div>
+        <div class="platform-cell">
+          <h4>The Gate</h4>
+          <p>Risk is the Gate. Veto decisions include the arithmetic, policy citation, and causal trace — not a black-box refusal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cross-lens">
+    <div class="container cross-lens-inner reveal">
+      <div>
+        <p class="section-label">Reinforces</p>
+        <p>Every layer. Authorizes every consequential action.</p>
+      </div>
+      <div class="cross-links" aria-label="Related lenses">
+        <a href="/counsel">Counsel</a>
+        <a href="/signal">Signal</a>
+        <a href="/capital">Capital</a>
+        <a href="/estate">Estate</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-wrap" aria-labelledby="cta-heading">
+    <div class="container cta-inner reveal">
+      <div>
+        <h2 id="cta-heading" class="section-title">See Risk in your context</h2>
+        <p>We walk through domain-specific scenarios — obligation mapping, covenant enforcement, causal acquisition, fiduciary governance — on your terms.</p>
+      </div>
+      <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Risk%20Demo" class="btn btn-primary">Schedule a Demo</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
   <div class="container">
-    <div class="domain-anatomy">
-      <div class="anatomy-block">
-        <div class="eyebrow" style="color: var(--accent-rose);">Consumes</div>
-        <h3 style="margin-bottom: 24px;">The signals that enter Risk.</h3>
-        <ul class="clean">
-          <li>Cross-agent proposals</li>
-          <li>Policy libraries</li>
-          <li>Regulatory frameworks</li>
-          <li>Operational telemetry</li>
-          <li>Authorization histories</li>
-          <li>Confidence distributions</li>
-          <li>Simulation outputs</li>
-          <li>Adversarial signals</li>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo">MIZOKI3</span>
+        <p>Patented autonomous decision intelligence. Proprietary architecture — not a wrapper on third-party models.</p>
+        <div class="trust-row">
+          <span class="trust-pill">Patented Technology</span>
+          <span class="trust-pill">Customer-Managed Encryption</span>
+          <span class="trust-pill">Proprietary Engine</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Lenses</h4>
+        <ul>
+          <li><a href="/counsel">Counsel</a></li>
+          <li><a href="/signal">Signal</a></li>
+          <li><a href="/capital">Capital</a></li>
+          <li><a href="/risk">Risk</a></li>
+          <li><a href="/estate">Estate</a></li>
         </ul>
       </div>
-      <div class="anatomy-block">
-        <div class="eyebrow" style="color: var(--accent-rose);">Produces</div>
-        <h3 style="margin-bottom: 24px;">The intelligence Risk contributes to the graph.</h3>
-        <ul class="clean">
-          <li>Cross-agent verification</li>
-          <li>Hallucination detection</li>
-          <li>Contradiction arbitration</li>
-          <li>Policy enforcement</li>
-          <li>Regulatory compliance scoring</li>
-          <li>Authorization scoring</li>
-          <li>Tail-risk simulation</li>
-          <li>Confidence arbitration</li>
-          <li>Operational governance</li>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="/architecture">Architecture</a></li>
+          <li><a href="/console">Console</a></li>
+          <li><a href="/blog/">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@mizoki3.com">hello@mizoki3.com</a></li>
+          <li><a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Demo%20Request">Schedule a Demo</a></li>
         </ul>
       </div>
     </div>
-  </div>
-
-  <div class="reinforces-block">
-    <div class="container">
-      <div class="label">// Reinforces</div>
-      <div class="layers">Every layer. Authorizes every consequential action.</div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> MIZOKI3 — Patented Autonomous Decision Intelligence</span>
+      <a href="/login" class="text-link" style="font-size: inherit;">Sign In</a>
     </div>
   </div>
+</footer>
 
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">MIZOKI3</div>
-          <div class="footer-tag">// One intelligence. Many domains. Shared causal memory.</div>
-        </div>
-        <div class="footer-col">
-          <h5>Domains</h5>
-          <ul>
-            <li><a href="counsel.html">Counsel</a></li>
-            <li><a href="estate.html">Estate</a></li>
-            <li><a href="capital.html">Capital</a></li>
-            <li><a href="signal.html">Signal</a></li>
-            <li><a href="risk.html">Risk</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Architecture</h5>
-          <ul>
-            <li><a href="index.html#brain">Nexus</a></li>
-            <li><a href="index.html#brain">SRPVDAL</a></li>
-            <li><a href="index.html#brain">Decision Control Plane</a></li>
-            <li><a href="index.html#flywheel">Flywheel</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© MIZOKI3 · MediaIntelligence.ai</span>
-        <span>// Autonomous Decision Infrastructure</span>
-      </div>
-    </div>
-  </footer>
-
+<script>
+(function () {
+  'use strict';
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var header = document.getElementById('header');
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('scrolled', window.scrollY > 16);
+  }, { passive: true });
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
+</script>
 </body>
 </html>
