@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import html
+import sys
 from pathlib import Path
 
 from _build_site_data import (
@@ -45,6 +46,16 @@ def page_head(title: str, description: str) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}" />
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MIZOKI3" />
+<meta property="og:title" content="{esc(title)}" />
+<meta property="og:description" content="{esc(description)}" />
+<meta property="og:image" content="https://mizoki3.com/assets/img/og-default.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{esc(title)}" />
+<meta name="twitter:description" content="{esc(description)}" />
+<meta name="twitter:image" content="https://mizoki3.com/assets/img/og-default.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="{FONTS_URL}" rel="stylesheet" />
@@ -186,45 +197,24 @@ def render_closing_cta(
 """
 
 
-def cross_diagram_svg(center_slug: str) -> str:
-    """Five-lens cross-domain diagram with center lens highlighted."""
-    positions = {
-        "counsel": (360, 200),
-        "signal": (120, 80),
-        "capital": (600, 80),
-        "risk": (120, 320),
-        "estate": (600, 320),
-    }
-    center = positions[center_slug]
-    lines = []
-    for slug, (x, y) in positions.items():
-        if slug == center_slug:
-            continue
-        lines.append(
-            f'<line x1="{center[0]}" y1="{center[1]}" x2="{x}" y2="{y}" '
-            f'stroke="rgba(201,168,85,0.35)" stroke-width="1"/>'
+def cross_panel_html(center_slug: str) -> str:
+    """Enterprise wireframe panel listing the concrete cross-domain constraints
+    flowing in/out of the active lens (replaces the abstract knowledge graph)."""
+    panel = LENS_PAGES[center_slug]["cross_panel"]
+    rows = []
+    for row in panel["rows"]:
+        rows.append(
+            f'<li><span class="ledger__name">{esc(row["name"])}</span>'
+            f'<span class="ledger__state is-{esc(row["chip"])}">{esc(row["status"])}</span></li>'
         )
-
-    nodes = []
-    for slug, (x, y) in positions.items():
-        title = LENS_PAGES[slug]["title"]
-        is_center = slug == center_slug
-        fill = "rgba(201,168,85,0.15)" if is_center else "rgba(26,34,53,0.9)"
-        stroke = "rgba(201,168,85,0.55)" if is_center else "rgba(30,42,58,1)"
-        text_fill = "#c9a855" if is_center else "#8a919e"
-        nodes.append(
-            f'<circle cx="{x}" cy="{y}" r="36" fill="{fill}" stroke="{stroke}" stroke-width="1"/>'
-            f'<text x="{x}" y="{y + 5}" text-anchor="middle" fill="{text_fill}" '
-            f'font-family="Outfit,sans-serif" font-size="12" font-weight="500">{esc(title)}</text>'
-        )
-
-    return f"""<div class="cross-diagram reveal" aria-hidden="true">
-  <svg viewBox="0 0 720 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="360" cy="200" r="140" fill="none" stroke="rgba(201,168,85,0.08)" stroke-width="1"/>
-    {''.join(lines)}
-    {''.join(nodes)}
-    <text x="360" y="24" text-anchor="middle" fill="#5a6270" font-family="Outfit,sans-serif" font-size="10" letter-spacing="0.12em">SHARED KNOWLEDGE GRAPH</text>
-  </svg>
+    return f"""<div class="cross-panel reveal" aria-hidden="true">
+  <div class="wire">
+    <div class="wire__bar"><span class="wire__dot"></span>{esc(panel["title"])}</div>
+    <ul class="ledger">
+      {''.join(rows)}
+    </ul>
+  </div>
+  <p class="cross-panel__note">Representative scenario tailored for enterprise risk mitigation.</p>
 </div>"""
 
 
@@ -298,7 +288,7 @@ def render_cross_section(slug: str, page: dict) -> str:
         <h2 id="cross-heading" class="serif-headline">{esc(page["cross_headline"])}</h2>
         <p class="section-intro">{esc(page["cross_body"])}</p>
       </header>
-      {cross_diagram_svg(slug)}
+      {cross_panel_html(slug)}
 """
     if page.get("cross_solid"):
         return f"""
@@ -656,7 +646,24 @@ def write_file(path: Path, content: str) -> None:
     print(f"  wrote {path.relative_to(OUT)}")
 
 
-def main() -> None:
+def main(force: bool = False) -> None:
+    """LEGACY full-site generator. DO NOT use this to regenerate the blog.
+
+    This generator is out of sync with the live site: ``BLOG_POSTS`` only
+    contains a subset of the published posts and ``render_blog`` emits a
+    simplified index, so a full run would overwrite the hand-maintained
+    ``blog/index.html`` and drop posts from the listing. Regenerate individual
+    pages via the ``render_*`` functions instead (e.g. ``render_lens(slug)``).
+    A full run requires an explicit ``--force`` flag.
+    """
+    if not force:
+        print(
+            "Refusing to run: _build_site.py is a LEGACY generator that is out "
+            "of sync with the live site and would overwrite the hand-maintained "
+            "blog (blog/index.html) and drop posts. Regenerate individual pages "
+            "via the render_* functions, or pass --force only if you are certain."
+        )
+        return
     print("Generating MIZOKI3 subpages…")
     for slug in LENS_ORDER:
         write_file(OUT / f"{slug}.html", render_lens(slug))
@@ -668,4 +675,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    main(force="--force" in sys.argv)

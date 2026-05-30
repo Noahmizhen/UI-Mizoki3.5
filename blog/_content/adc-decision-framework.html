@@ -12,28 +12,7 @@
 
             <p>Most AI agent stacks follow a deceptively simple loop: observe, reason, execute, repeat. That pattern works in demos. In production it fails because it collapses distinct responsibilities — understanding, option generation, verification, authorization, execution, and learning — into a single opaque step.</p>
 
-            <div class="comparison-grid">
-                <div class="comparison-card bad">
-                    <h4>Direct-Execute Agents</h4>
-                    <ul>
-                        <li>Pattern detected → action taken</li>
-                        <li>Correlation treated as causation</li>
-                        <li>No mandatory validation checkpoint</li>
-                        <li>Outcomes explained after damage is done</li>
-                        <li>Institutional memory lives in logs, not the graph</li>
-                    </ul>
-                </div>
-                <div class="comparison-card good">
-                    <h4>Autonomous Decision Controller</h4>
-                    <ul>
-                        <li>Every stage explicit and logged</li>
-                        <li>Causation required before authorization</li>
-                        <li>Validation and DCP gate before execution</li>
-                        <li>Bounded, reversible actions only</li>
-                        <li>Every outcome compounds into TCO-KG memory</li>
-                    </ul>
-                </div>
-            </div>
+            <p>The fix is not better prompts or more guardrails bolted onto execution. It is structural: each of those responsibilities becomes an explicit, logged stage the system must satisfy in order. Pattern detection never becomes action on its own; correlation never stands in for causation; nothing reaches production without a validation checkpoint and an authorization decision behind it. Skip any one stage, and trust collapses.</p>
 
             <div class="highlight-box">
                 <p><strong>An ADC does not react. It reasons through a governed loop — and refuses to act when the loop cannot be completed with confidence.</strong></p>
@@ -112,13 +91,9 @@
 
             <h3>5. Decide — Are we authorized to act?</h3>
 
-            <p>Only after validation does the proposal reach the <strong>Decision Control Plane</strong>. The DCP scores authorization across causal confidence, validation agreement, simulation delta, policy compliance, and historical performance.</p>
+            <p>Only after validation does the proposal reach the <strong>Decision Control Plane</strong> — the authorization gate at the center of the loop. The DCP weighs five dimensions before it grants execution: causal confidence, validation agreement, simulation delta, policy compliance, and historical performance.</p>
 
-            <div class="formula-box">
-                <code>Authorization_Score = α(Causal_Confidence) + β(Validation_Agreement) + γ(Simulation_Delta) + δ(Policy_Compliance) + ε(Historical_Performance)</code>
-            </div>
-
-            <p>Possible outcomes: recommend only, require human approval, execute autonomously, defer, or veto. Every outcome carries the arithmetic, policy citations, and causal trace — not a black-box refusal.</p>
+            <p>Possible outcomes: recommend only, require human approval, execute autonomously, defer, or veto. Every outcome carries the scoring arithmetic, policy citations, and causal trace — not a black-box refusal. We break down exactly how that authorization score is computed in <a href="/blog/decision-control-plane">Why Agents Need a Decision Control Plane</a>.</p>
 
             <hr>
 

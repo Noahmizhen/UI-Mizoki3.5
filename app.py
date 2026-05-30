@@ -191,6 +191,22 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     def blog_adc_decision_framework_article():
         return send_from_directory(BASE_DIR / "blog", "adc-decision-framework.html")
 
+    @app.route("/blog/crm-history-book-crystal-ball")
+    def blog_crm_history_book_article():
+        return send_from_directory(BASE_DIR / "blog", "crm-history-book-crystal-ball.html")
+
+    @app.route("/blog/meta-ad-secret-150b")
+    def blog_meta_ad_secret_article():
+        return send_from_directory(BASE_DIR / "blog", "meta-ad-secret-150b.html")
+
+    @app.route("/blog/fifty-million-marketing-mistake")
+    def blog_fifty_million_marketing_mistake_article():
+        return send_from_directory(BASE_DIR / "blog", "fifty-million-marketing-mistake.html")
+
+    @app.route("/blog/twelve-million-decision-problem")
+    def blog_twelve_million_decision_problem_article():
+        return send_from_directory(BASE_DIR / "blog", "twelve-million-decision-problem.html")
+
     @app.route("/blog/decision-control-plane/")
     @app.route("/blog/decision-control-plane.html")
     def legacy_blog_decision_control_plane_article():
@@ -200,6 +216,26 @@ def create_app(runtime: BossRuntime | None = None) -> Flask:
     @app.route("/blog/adc-decision-framework.html")
     def legacy_blog_adc_decision_framework_article():
         return redirect(url_for("blog_adc_decision_framework_article"), code=301)
+
+    @app.route("/blog/crm-history-book-crystal-ball/")
+    @app.route("/blog/crm-history-book-crystal-ball.html")
+    def legacy_blog_crm_history_book_article():
+        return redirect(url_for("blog_crm_history_book_article"), code=301)
+
+    @app.route("/blog/meta-ad-secret-150b/")
+    @app.route("/blog/meta-ad-secret-150b.html")
+    def legacy_blog_meta_ad_secret_article():
+        return redirect(url_for("blog_meta_ad_secret_article"), code=301)
+
+    @app.route("/blog/fifty-million-marketing-mistake/")
+    @app.route("/blog/fifty-million-marketing-mistake.html")
+    def legacy_blog_fifty_million_marketing_mistake_article():
+        return redirect(url_for("blog_fifty_million_marketing_mistake_article"), code=301)
+
+    @app.route("/blog/twelve-million-decision-problem/")
+    @app.route("/blog/twelve-million-decision-problem.html")
+    def legacy_blog_twelve_million_decision_problem_article():
+        return redirect(url_for("blog_twelve_million_decision_problem_article"), code=301)
 
     @app.route("/blog/relu-lens-meta-algorithm/")
     @app.route("/blog/relu-lens-meta-algorithm.html")

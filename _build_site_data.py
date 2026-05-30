@@ -60,6 +60,14 @@ LENS_PAGES: dict[str, dict] = {
         ),
         "cross_image": "https://images.unsplash.com/photo-1487958449943-2429d8be8626?w=1920&q=80&auto=format&fit=crop",
         "cross_aria": "Modern architectural interior suggesting interconnected corridors",
+        "cross_panel": {
+            "title": "Counsel · Obligation Broadcast",
+            "rows": [
+                {"name": "Covenant COV-01 → Capital · financial limit", "status": "Synced", "chip": "sync"},
+                {"name": "Reg. change → Risk · compliance rule", "status": "Synced", "chip": "sync"},
+                {"name": "Exclusivity clause → Signal · spend boundary", "status": "Synced", "chip": "sync"},
+            ],
+        },
         "ingests": [
             "Contracts & amendments",
             "Litigation filings & discovery",
@@ -138,6 +146,13 @@ LENS_PAGES: dict[str, dict] = {
         ),
         "cross_image": "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1920&q=80&auto=format&fit=crop",
         "cross_aria": "Highway interchange at night with light trails suggesting flow",
+        "cross_panel": {
+            "title": "Signal · Cross-Domain Context",
+            "rows": [
+                {"name": "Counsel · covenant → spend frozen on Entity X", "status": "Enforced", "chip": "enforced"},
+                {"name": "Capital · liquidity floor → budget ceiling $2.0M", "status": "Enforced", "chip": "enforced"},
+            ],
+        },
         "cross_solid": True,
         "ingests": [
             "Meta advertising data",
@@ -222,6 +237,13 @@ LENS_PAGES: dict[str, dict] = {
         ),
         "cross_image": "https://images.unsplash.com/photo-1514565132-0f8fd0a48f18?w=1920&q=80&auto=format&fit=crop",
         "cross_aria": "Bridge at night suggesting structural connection",
+        "cross_panel": {
+            "title": "Capital · Cross-Domain Context",
+            "rows": [
+                {"name": "Counsel · covenant → hard allocation limit", "status": "Enforced", "chip": "enforced"},
+                {"name": "Signal · CAC +18% → cash-flow forecast updated", "status": "Synced", "chip": "sync"},
+            ],
+        },
         "ingests": [
             "Credit agreements & covenants",
             "Treasury data",
@@ -301,6 +323,13 @@ LENS_PAGES: dict[str, dict] = {
         ),
         "cross_image": "https://images.unsplash.com/photo-1494412519320-aa9dfdfcb74d?w=1920&q=80&auto=format&fit=crop",
         "cross_aria": "Aerial view of a port with coordinated logistics operations",
+        "cross_panel": {
+            "title": "Risk · Verification Queue",
+            "rows": [
+                {"name": "Capital · $4.0M distribution → checked vs COV-01", "status": "Flag", "chip": "flag"},
+                {"name": "Signal · budget reallocation → spend policy verified", "status": "Pass", "chip": "pass"},
+            ],
+        },
         "ingests": [
             "Regulatory filings & updates",
             "Compliance frameworks",
@@ -381,6 +410,14 @@ LENS_PAGES: dict[str, dict] = {
         ),
         "cross_image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1920&q=80&auto=format&fit=crop",
         "cross_aria": "Vineyard landscape at golden hour suggesting permanence and value",
+        "cross_panel": {
+            "title": "Estate · Cross-Domain Context",
+            "rows": [
+                {"name": "Counsel · covenant → distribution timing limit", "status": "Enforced", "chip": "enforced"},
+                {"name": "Capital · liquidity forecast → transfer ceiling", "status": "Enforced", "chip": "enforced"},
+                {"name": "Risk · fiduciary check → required before wire", "status": "Pending", "chip": "pending"},
+            ],
+        },
         "ingests": [
             "Trust documents & amendments",
             "Estate plans",
