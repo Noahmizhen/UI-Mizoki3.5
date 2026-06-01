@@ -4,16 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MIZOKI3 — How an Autonomous Decision Controller Thinks</title>
-<meta name="description" content="A plain-English guide to the seven-stage reasoning loop behind disciplined autonomous execution — from sensing a signal to measuring an outcome." />
+<meta name="description" content="A plain-English guide to the five-stage reasoning loop behind disciplined autonomous execution — from sensing a signal to measuring an outcome." />
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MIZOKI3" />
 <meta property="og:title" content="MIZOKI3 — How an Autonomous Decision Controller Thinks" />
-<meta property="og:description" content="A plain-English guide to the seven-stage reasoning loop behind disciplined autonomous execution — from sensing a signal to measuring an outcome." />
+<meta property="og:description" content="A plain-English guide to the five-stage reasoning loop behind disciplined autonomous execution — from sensing a signal to measuring an outcome." />
 <meta property="og:image" content="https://mizoki3.com/assets/img/og-default.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="MIZOKI3 — How an Autonomous Decision Controller Thinks" />
-<meta name="twitter:description" content="A plain-English guide to the seven-stage reasoning loop behind disciplined autonomous execution — from sensing a signal to measuring an outcome." />
+<meta name="twitter:description" content="A plain-English guide to the five-stage reasoning loop behind disciplined autonomous execution — from sensing a signal to measuring an outcome." />
 <meta name="twitter:image" content="https://mizoki3.com/assets/img/og-default.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -28,11 +28,7 @@
     <a href="/" class="nav-wordmark">MIZOKI3</a>
     <nav class="nav-links" aria-label="Primary">
       <a href="/#platform" class="nav-link">Platform</a>
-      <a href="/counsel" class="nav-link">Counsel</a>
-      <a href="/signal" class="nav-link">Signal</a>
-      <a href="/capital" class="nav-link">Capital</a>
-      <a href="/risk" class="nav-link">Risk</a>
-      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/#lenses" class="nav-link">Solutions</a>
       <a href="/architecture" class="nav-link">Architecture</a>
       <a href="/blog/" class="nav-link is-active">Blog</a>
     </nav>
@@ -47,11 +43,7 @@
 <nav id="mobile-nav" class="mobile-panel" aria-label="Mobile">
   <div class="mobile-panel-links">
     <a href="/#platform" class="nav-link">Platform</a>
-      <a href="/counsel" class="nav-link">Counsel</a>
-      <a href="/signal" class="nav-link">Signal</a>
-      <a href="/capital" class="nav-link">Capital</a>
-      <a href="/risk" class="nav-link">Risk</a>
-      <a href="/estate" class="nav-link">Estate</a>
+      <a href="/#lenses" class="nav-link">Solutions</a>
       <a href="/architecture" class="nav-link">Architecture</a>
       <a href="/blog/" class="nav-link is-active">Blog</a>
     <a href="mailto:hello@mizoki3.com?subject=MIZOKI3%20Executive%20Demo%20Request" class="nav-cta">Request Demo</a>
@@ -66,7 +58,7 @@
         <p class="breadcrumb"><a href="/blog/">MIZOKI3</a> → <a href="/blog/">Insights</a> → <span>Decision Intelligence</span></p>
         <p class="accent-label accent-label--gold">Decision Intelligence</p>
         <h1 class="serif-headline">How an Autonomous Decision Controller Thinks</h1>
-        <p class="article-subtitle">A plain-English guide to the seven stages that power disciplined autonomous execution.</p>
+        <p class="article-subtitle">A plain-English guide to the five stages that power disciplined autonomous execution.</p>
         <p class="article-meta">March 2026 · 10 min read</p>
       </header>
 
@@ -76,7 +68,7 @@
 
             <p>Very few systems can safely <strong>decide and act</strong> — with evidence, constraints, and an audit trail that survives regulatory scrutiny.</p>
 
-            <p>That gap is where the <strong>Autonomous Decision Controller (ADC)</strong> lives. An ADC is not a chatbot with API access. It is a governed reasoning engine that walks every decision through the same seven-stage discipline a senior operator would use — Sense, Reason, Plan, Validate, Decide, Act, Learn — but at machine speed, with perfect memory, and without skipping steps.</p>
+            <p>That gap is where the <strong>Autonomous Decision Controller (ADC)</strong> lives. An ADC is not a chatbot with API access. It is a governed reasoning engine that walks every decision through the same five-stage discipline a senior operator would use — Sense, Reason, Decide, Act, Learn — but at machine speed, with perfect memory, and without skipping steps.</p>
 
             <p>This article explains how an ADC thinks, stage by stage, and why that structure is what makes autonomous execution trustworthy in production.</p>
 
@@ -94,19 +86,15 @@
 
             <hr>
 
-            <h2>The Seven-Stage Reasoning Loop</h2>
+            <h2>The Five-Stage Reasoning Loop</h2>
 
-            <p>MIZOKI3 implements this discipline as <strong>SRPVDAL</strong>: Sense → Reason → Plan → Validate → Decide → Act → Learn. Each stage is a hard checkpoint. The ADC cannot advance without satisfying the prior stage's outputs.</p>
+            <p>MIZOKI3 implements this discipline as <strong>SRDAL</strong>: Sense → Reason → Decide → Act → Learn. Each stage is a hard checkpoint — and validation and authorization are enforced at the Decide stage by the Gate. The ADC cannot advance without satisfying the prior stage's outputs.</p>
 
             <div class="pipeline-visual">
                 <div class="pipeline-stages">
                     <span class="pipeline-stage">Sense</span>
                     <span class="pipeline-arrow">&rarr;</span>
                     <span class="pipeline-stage">Reason</span>
-                    <span class="pipeline-arrow">&rarr;</span>
-                    <span class="pipeline-stage">Plan</span>
-                    <span class="pipeline-arrow">&rarr;</span>
-                    <span class="pipeline-stage">Validate</span>
                     <span class="pipeline-arrow">&rarr;</span>
                     <span class="pipeline-stage">Decide</span>
                     <span class="pipeline-arrow">&rarr;</span>
@@ -130,25 +118,21 @@
 
             <hr>
 
-            <h3>2. Reason — What is actually going on?</h3>
+            <h3>2. Reason — What is going on, and what could we do?</h3>
 
             <p>Reason traverses the graph to separate pattern from coincidence. It asks whether this situation resembles prior cases, which entities and obligations are implicated, and what causal chains could explain the signal.</p>
 
             <p>This is where <strong>correlation</strong> lives — fast pattern matching across history. Reason produces hypotheses, not actions. The ADC is explicitly forbidden from executing at this stage; it is building understanding, not authority.</p>
 
-            <hr>
+            <p>Reason also generates a bounded set of candidate actions. Each option is constrained by policies, obligations mapped by Counsel, liquidity envelopes from Capital, and exposure limits from Risk.</p>
 
-            <h3>3. Plan — What could we do?</h3>
-
-            <p>Plan generates a bounded set of candidate actions. Each option is constrained by policies, obligations mapped by Counsel, liquidity envelopes from Capital, and exposure limits from Risk.</p>
-
-            <p>Examples at this stage might include: increase media spend on a proven creative, defer a distribution until covenant headroom clears, escalate to human review, or explicitly do nothing. Plan separates <em>thinking</em> from <em>doing</em> — the step most agent frameworks skip entirely.</p>
+            <p>Examples at this stage might include: increase media spend on a proven creative, defer a distribution until covenant headroom clears, escalate to human review, or explicitly do nothing. This separates <em>thinking</em> from <em>doing</em> — the step most agent frameworks skip entirely.</p>
 
             <hr>
 
-            <h3>4. Validate — Would this action actually cause the outcome we want?</h3>
+            <h3>3. Decide — Validate, then authorize at the Gate</h3>
 
-            <p>Validation is the discipline layer — and the one most platforms omit. Here the ADC stress-tests each candidate against:</p>
+            <p>Decision is the discipline layer — and the one most platforms omit. Before anything is authorized, the ADC stress-tests each candidate against:</p>
 
             <ul>
                 <li><strong>Counterfactual simulation</strong> — what happens if we act, if we act differently, or if we do nothing?</li>
@@ -161,17 +145,13 @@
                 <p><strong>If causation cannot be established, the ADC refuses autonomous execution.</strong> That refusal is a feature — it is where safety lives.</p>
             </div>
 
-            <hr>
-
-            <h3>5. Decide — Are we authorized to act?</h3>
-
-            <p>Only after validation does the proposal reach the <strong>Decision Control Plane</strong> — the authorization gate at the center of the loop. The DCP weighs five dimensions before it grants execution: causal confidence, validation agreement, simulation delta, policy compliance, and historical performance.</p>
+            <p>Only after this validation does the proposal reach the heart of the <strong>Decision Control Plane</strong> — the authorization gate at the center of the loop. The DCP weighs five dimensions before it grants execution: causal confidence, validation agreement, simulation delta, policy compliance, and historical performance.</p>
 
             <p>Possible outcomes: recommend only, require human approval, execute autonomously, defer, or veto. Every outcome carries the scoring arithmetic, policy citations, and causal trace — not a black-box refusal. We break down exactly how that authorization score is computed in <a href="/blog/decision-control-plane">Why Agents Need a Decision Control Plane</a>.</p>
 
             <hr>
 
-            <h3>6. Act — Execute with bounds</h3>
+            <h3>4. Act — Execute with bounds</h3>
 
             <p>If and only if the DCP authorizes, the ADC executes — within predefined envelopes. Actions are bounded in magnitude, reversible where possible, and paired with rollback plans. Nothing reaches production systems without passing the Gate.</p>
 
@@ -179,11 +159,11 @@
 
             <hr>
 
-            <h3>7. Learn — Compound institutional memory</h3>
+            <h3>5. Learn — Compound institutional memory</h3>
 
             <p>After execution, the ADC measures outcomes against predictions and writes the delta back into the TCO-KG. What worked, under what conditions, with what side effects — all become nodes and edges the next decision cycle can traverse.</p>
 
-            <p>Learning is not a batch retraining job scheduled quarterly. It is continuous graph enrichment: every authorized action makes the next Sense→Reason pass smarter, the next Validate pass stricter, and the next Decide pass better calibrated.</p>
+            <p>Learning is not a batch retraining job scheduled quarterly. It is continuous graph enrichment: every authorized action makes the next Sense→Reason pass smarter and the next Decide pass better calibrated.</p>
 
             <hr>
 
@@ -195,11 +175,11 @@
 
             <h3>Correlation and Causation, Kept Separate</h3>
 
-            <p>Correlation helps the system notice patterns quickly in Reason. Causation decides whether acting is justified in Validate. The ADC never confuses the two — that separation is intentional, and rare in production AI systems.</p>
+            <p>Correlation helps the system notice patterns quickly in Reason. Causation decides whether acting is justified at the Decide stage and the Gate. The ADC never confuses the two — that separation is intentional, and rare in production AI systems.</p>
 
             <h3>Checkpoints, Not Alarms</h3>
 
-            <p>The seven stages are guardrails, not error messages. They ensure no step is skipped, no action is unjustified, and no learning is lost — even when signals disappear, privacy rules change, or markets shift without warning.</p>
+            <p>The five stages are guardrails, not error messages. They ensure no step is skipped, no action is unjustified, and no learning is lost — even when signals disappear, privacy rules change, or markets shift without warning.</p>
 
             <hr>
 
@@ -243,11 +223,11 @@
     <div class="footer-grid">
       <div>
         <span class="footer-wordmark">MIZOKI3</span>
-        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <p class="footer-tagline">Autonomous Decision Intelligence.<br />Outcomes Compounded.</p>
         <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Platform</h4>
+        <h4>Example Domains</h4>
         <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>

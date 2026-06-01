@@ -6,7 +6,7 @@ LENS_PAGES: dict[str, dict] = {
     "counsel": {
         "slug": "counsel",
         "title": "Counsel",
-        "label": "LEGAL INTELLIGENCE",
+        "label": "EXAMPLE ADC · LEGAL INTELLIGENCE",
         "tag": "Legal Intelligence",
         "meta_description": "Obligation mapped. Exposure quantified. Position verified — governed legal intelligence from MIZOKI3.",
         "hero_image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&q=80&auto=format&fit=crop",
@@ -15,7 +15,8 @@ LENS_PAGES: dict[str, dict] = {
         "hero_body": (
             "Counsel transforms the unstructured weight of contracts, correspondence, and litigation "
             "into a continuously updated decision landscape — mapping every obligation, detecting every "
-            "contradiction, and scoring every pathway before action is taken."
+            "contradiction, and scoring every pathway before action is taken. It transforms "
+            "fragmented legal knowledge into governed, auditable decision intelligence."
         ),
         "capabilities_label": "CAPABILITIES",
         "capabilities_headline": "From raw legal complexity to governed intelligence.",
@@ -92,7 +93,7 @@ LENS_PAGES: dict[str, dict] = {
     "signal": {
         "slug": "signal",
         "title": "Signal",
-        "label": "MARKETING INTELLIGENCE",
+        "label": "EXAMPLE ADC · MARKETING INTELLIGENCE",
         "tag": "Marketing Intelligence",
         "meta_description": "Correlation guesses. Causation governs — causal marketing intelligence from MIZOKI3.",
         "hero_image": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1920&q=80&auto=format&fit=crop",
@@ -101,13 +102,14 @@ LENS_PAGES: dict[str, dict] = {
         "hero_body": (
             "Signal replaces assumption-based marketing with causal autonomous execution — learning what "
             "actually moves customers, then steering spend, channel, and creative through the same governed "
-            "pipeline the rest of the enterprise uses."
+            "pipeline the rest of the enterprise uses. It replaces correlation-based guesswork "
+            "with governed marketing decisions that prove their own ROI."
         ),
         "capabilities_label": "CAPABILITIES",
         "capabilities_headline": "From attribution guesswork to governed acquisition.",
         "capabilities_intro": (
             "Signal does not report last-click metrics or optimize in a silo. It traces what actually "
-            "moves customers, then steers spend and creative through the same SRPVDAL pipeline and Decision "
+            "moves customers, then steers spend and creative through the same SRDAL loop and Decision "
             "Control Plane that govern every other enterprise action."
         ),
         "capabilities": [
@@ -123,7 +125,7 @@ LENS_PAGES: dict[str, dict] = {
             {
                 "title": "Autonomous Bid Optimization",
                 "body": (
-                    "Media buying decisions flow through the SRPVDAL pipeline and the Decision Control Plane. "
+                    "Media buying decisions flow through the SRDAL loop and the Decision Control Plane. "
                     "Every bid adjustment is causally justified, policy-compliant, and scored against simulated "
                     "alternatives before execution. No black-box automation — governed autonomy."
                 ),
@@ -180,7 +182,7 @@ LENS_PAGES: dict[str, dict] = {
     "capital": {
         "slug": "capital",
         "title": "Capital",
-        "label": "FINANCIAL INTELLIGENCE",
+        "label": "EXAMPLE ADC · FINANCIAL INTELLIGENCE",
         "tag": "Financial Intelligence",
         "meta_description": "Covenants tracked. Liquidity modeled. Capital governed — financial intelligence from MIZOKI3.",
         "hero_image": "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80&auto=format&fit=crop",
@@ -190,7 +192,7 @@ LENS_PAGES: dict[str, dict] = {
             "Capital gives financial leadership autonomous intelligence grounded in causal evidence — "
             "forecasting covenant breaches before they happen, stress-testing liquidity under alternate "
             "scenarios, and optimizing allocation through the same governed pipeline that enforces every "
-            "other enterprise decision."
+            "other enterprise decision. Causal evidence, not spreadsheet assumptions."
         ),
         "capabilities_label": "CAPABILITIES",
         "capabilities_headline": "From spreadsheet snapshots to causal foresight.",
@@ -269,7 +271,7 @@ LENS_PAGES: dict[str, dict] = {
     "risk": {
         "slug": "risk",
         "title": "Risk",
-        "label": "COMPLIANCE & RESILIENCE",
+        "label": "EXAMPLE ADC · COMPLIANCE & RESILIENCE",
         "tag": "Compliance & Resilience",
         "meta_description": "Verified continuously. Not audited annually — compliance and resilience intelligence from MIZOKI3.",
         "hero_image": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1920&q=80&auto=format&fit=crop",
@@ -278,7 +280,8 @@ LENS_PAGES: dict[str, dict] = {
         "hero_body": (
             "Risk transforms compliance from a periodic checklist into a continuous, autonomous process — "
             "monitoring regulatory changes, verifying operational alignment, and stress-testing resilience "
-            "through the same causal graph that governs every enterprise decision."
+            "through the same causal graph that governs every enterprise decision. It connects "
+            "compliance obligations to live enterprise operations through the shared knowledge graph."
         ),
         "capabilities_label": "CAPABILITIES",
         "capabilities_headline": "From periodic audits to continuous governance.",
@@ -355,7 +358,7 @@ LENS_PAGES: dict[str, dict] = {
     "estate": {
         "slug": "estate",
         "title": "Estate",
-        "label": "TRUST & ASSET INTELLIGENCE",
+        "label": "EXAMPLE ADC · TRUST & ASSET INTELLIGENCE",
         "tag": "Trust & Asset Intelligence",
         "meta_description": "Structures preserved. Transfers optimized. Legacy governed — estate intelligence from MIZOKI3.",
         "hero_image": "https://images.unsplash.com/photo-1564013794819-155d6c4e8f62?w=1920&q=80&auto=format&fit=crop",
@@ -364,7 +367,8 @@ LENS_PAGES: dict[str, dict] = {
         "hero_body": (
             "Estate applies autonomous decision intelligence to the most consequential financial structures — "
             "trusts, estates, multi-generational asset strategies, and tax optimization — with the same causal "
-            "reasoning and governance that governs every other enterprise decision."
+            "reasoning and governance that governs every other enterprise decision. It applies "
+            "governed autonomous reasoning to wealth preservation and transfer."
         ),
         "capabilities_label": "CAPABILITIES",
         "capabilities_headline": "From static estate plans to living structural intelligence.",
@@ -445,7 +449,7 @@ LENS_PAGES: dict[str, dict] = {
 ARCHITECTURE_PAGE = {
     "meta_description": (
         "Technical architecture of the MIZOKI3 autonomous decision intelligence platform — "
-        "TCO-KG, SRPVDAL, and the Decision Control Plane."
+        "the Adaptive Enterprise Ontology, TCO-KG, SRDAL, and the Decision Control Plane."
     ),
     "hero_image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80&auto=format&fit=crop",
     "hero_aria": "Modern data center corridor with server racks and ambient lighting",
@@ -457,41 +461,31 @@ ARCHITECTURE_PAGE = {
     "closing_aria": "Expansive horizon at dawn",
 }
 
-SRPVDAL_STAGES = [
+SRDAL_STAGES = [
     {
         "num": "01",
         "name": "Sense",
-        "description": "Ingest and contextualize signals from every domain source — contracts, treasury, media, compliance, and trust instruments.",
+        "description": "Ingest and contextualize signals from every connected source — systems, documents, workflows, and metrics across the company.",
     },
     {
         "num": "02",
         "name": "Reason",
-        "description": "Traverse causal relationships in the knowledge graph to understand what drives outcomes and what would change if conditions shifted.",
+        "description": "Traverse causal relationships in the knowledge graph to understand what drives outcomes, weigh options, and shape candidate actions.",
     },
     {
         "num": "03",
-        "name": "Plan",
-        "description": "Generate constrained candidate actions — each bound by obligations, policies, and simulated alternatives before validation.",
+        "name": "Decide",
+        "description": "Score candidates against policy, simulation, and history, then authorize, defer, or escalate through the Decision Control Plane — explicit and auditable.",
     },
     {
         "num": "04",
-        "name": "Validate",
-        "description": "Stress-test proposals against policy libraries, counterfactual simulations, and cross-lens contradictions.",
+        "name": "Act",
+        "description": "Execute only authorized actions into enterprise systems — bounded, reversible, and nothing reaches production without passing the Gate.",
     },
     {
         "num": "05",
-        "name": "Decide",
-        "description": "Select, defer, or escalate through the Decision Control Plane — authorization is explicit, scored, and auditable.",
-    },
-    {
-        "num": "06",
-        "name": "Act",
-        "description": "Execute only authorized payloads into enterprise systems — nothing reaches production without passing the Gate.",
-    },
-    {
-        "num": "07",
         "name": "Learn",
-        "description": "Update the graph from outcomes — every action compounds institutional memory for the next decision cycle.",
+        "description": "Write outcomes back to the graph — every decision compounds institutional memory and makes the next cycle smarter.",
     },
 ]
 
@@ -558,15 +552,15 @@ BLOG_POSTS = [
         "href": "/blog/adc-decision-framework.html",
         "title": "How an Autonomous Decision Controller Thinks",
         "tag": "Decision Intelligence",
-        "subtitle": "A plain-English guide to the seven stages that power disciplined autonomous execution.",
+        "subtitle": "A plain-English guide to the five stages that power disciplined autonomous execution.",
         "date": "March 2026",
         "read_time": "10 min read",
         "meta_description": (
-            "A plain-English guide to the seven-stage reasoning loop behind disciplined autonomous "
+            "A plain-English guide to the five-stage reasoning loop behind disciplined autonomous "
             "execution — from sensing a signal to measuring an outcome."
         ),
         "excerpt": (
-            "A plain-English walkthrough of the seven-stage reasoning loop behind disciplined "
+            "A plain-English walkthrough of the five-stage reasoning loop behind disciplined "
             "autonomous execution — from signal to governed action."
         ),
     },

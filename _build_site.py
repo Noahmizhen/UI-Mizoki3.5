@@ -11,7 +11,7 @@ from _build_site_data import (
     BLOG_POSTS,
     DCP_DIMENSIONS,
     LENS_PAGES,
-    SRPVDAL_STAGES,
+    SRDAL_STAGES,
 )
 
 OUT = Path(__file__).parent
@@ -19,11 +19,7 @@ LENS_ORDER = ["counsel", "signal", "capital", "risk", "estate"]
 
 NAV_ITEMS = [
     ("Platform", "/#platform"),
-    ("Counsel", "/counsel"),
-    ("Signal", "/signal"),
-    ("Capital", "/capital"),
-    ("Risk", "/risk"),
-    ("Estate", "/estate"),
+    ("Solutions", "/#lenses"),
     ("Architecture", "/architecture"),
     ("Blog", "/blog/"),
 ]
@@ -110,11 +106,11 @@ def render_footer() -> str:
     <div class="footer-grid">
       <div>
         <span class="footer-wordmark">MIZOKI3</span>
-        <p class="footer-tagline">Patented Autonomous Decision Intelligence.</p>
+        <p class="footer-tagline">Autonomous Decision Intelligence.<br />Outcomes Compounded.</p>
         <a href="mailto:hello@mizoki3.com" class="footer-email">hello@mizoki3.com</a>
       </div>
       <div class="footer-col">
-        <h4>Platform</h4>
+        <h4>Example Domains</h4>
         <ul class="footer-links">
           <li><a href="/counsel">Counsel</a></li>
           <li><a href="/signal">Signal</a></li>
@@ -241,7 +237,7 @@ def arch_diagram_svg() -> str:
     <line x1="752" y1="314" x2="522" y2="230" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
     <line x1="450" y1="356" x2="450" y2="282" stroke="rgba(201,168,85,0.25)" stroke-width="1"/>
     <ellipse cx="450" cy="210" rx="155" ry="95" fill="none" stroke="rgba(201,168,85,0.2)" stroke-width="1" stroke-dasharray="4 6"/>
-    <text x="640" y="210" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">SRPVDAL</text>
+    <text x="640" y="210" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">SRDAL</text>
     <rect x="700" y="178" width="120" height="64" rx="4" fill="rgba(201,168,85,0.1)" stroke="rgba(201,168,85,0.4)" stroke-width="1"/>
     <text x="760" y="206" text-anchor="middle" fill="#c9a855" font-family="Outfit,sans-serif" font-size="12" font-weight="500">DCP</text>
     <text x="760" y="224" text-anchor="middle" fill="#8a919e" font-family="Outfit,sans-serif" font-size="10">The Gate</text>
@@ -271,7 +267,7 @@ def render_cross_nav(current_slug: str) -> str:
     <div class="container">
       <header class="cross-nav-head reveal">
         <p class="accent-label">Continue Exploring</p>
-        <h2 class="serif-headline">One brain. Five lenses.</h2>
+        <h2 class="serif-headline">One brain. Every department.</h2>
       </header>
       <div class="cross-nav-grid reveal">
 {chr(10).join(cards)}
@@ -414,9 +410,9 @@ def render_architecture() -> str:
     arch = ARCHITECTURE_PAGE
 
     pipeline_steps = []
-    for i, stage in enumerate(SRPVDAL_STAGES):
+    for i, stage in enumerate(SRDAL_STAGES):
         connector = ""
-        if i < len(SRPVDAL_STAGES) - 1:
+        if i < len(SRDAL_STAGES) - 1:
             connector = '        <div class="pipeline-connector" aria-hidden="true"></div>\n'
         pipeline_steps.append(
             f"""        <article class="pipeline-step reveal-child">
@@ -472,9 +468,19 @@ def render_architecture() -> str:
       <header class="section-head reveal">
         <p class="accent-label">Overview</p>
         <h2 id="system-arch-heading" class="serif-headline">System Architecture</h2>
-        <p class="section-intro">The Temporal-Causal Knowledge Graph sits at the center. The SRPVDAL pipeline governs every decision cycle. The Decision Control Plane authorizes what reaches your systems — with every domain lens reading and writing the same substrate.</p>
+        <p class="section-intro">The Adaptive Enterprise Ontology maps your real org structure into a living knowledge graph. The SRDAL loop governs every decision cycle. The Decision Control Plane authorizes what reaches your systems — with every department, workflow, and ADC reading and writing the same substrate.</p>
       </header>
       {arch_diagram_svg()}
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="ontology-heading">
+    <div class="container">
+      <article class="subsystem-block reveal">
+        <p class="accent-label">Subsystem 01</p>
+        <h2 id="ontology-heading" class="serif-headline">Adaptive Enterprise Ontology</h2>
+        <p>MIZOKI3 does not assume a fixed set of departments. The Adaptive Enterprise Integration Layer ingests your systems — CRM, ERP, email, Drive, ads, accounting, internal tools, APIs — and a Department Discovery Engine detects your real structure from org charts, permissions, job titles, folders, and workflow tools. The Adaptive Ontology Builder then maps each department, role, system, workflow, KPI, risk, and policy into the graph — 5 departments or 19, regional units, product pods, or custom teams. The platform becomes company-native, not template-bound.</p>
+      </article>
     </div>
   </section>
 
@@ -488,9 +494,9 @@ def render_architecture() -> str:
     <div class="section-overlay section-overlay--heavy"></div>
     <div class="container section-content">
       <article class="subsystem-block reveal">
-        <p class="accent-label">Subsystem 01</p>
+        <p class="accent-label">Subsystem 02</p>
         <h2 id="tckg-heading" class="serif-headline">Temporal-Causal Knowledge Graph</h2>
-        <p>The graph models entities, relationships, obligations, events, and outcomes over time — tracking not only what happened, but what caused it and what would change under alternate conditions. Causal edges bind legal, financial, marketing, and fiduciary signals into one traversable substrate. Counterfactual simulation runs on the same structure proposals are validated against.</p>
+        <p>A living map of cause and effect. The graph models entities, relationships, obligations, events, and outcomes over time — tracking not just what happened, but what caused it and what would happen if conditions changed. Causal edges bind legal, financial, marketing, and fiduciary signals into one traversable substrate, and counterfactual simulation runs on the same structure proposals are validated against. Every decision makes the system smarter.</p>
         <div class="detail-card">
 {tckg_details}
         </div>
@@ -498,12 +504,12 @@ def render_architecture() -> str:
     </div>
   </section>
 
-  <section class="section section--solid" aria-labelledby="srpvdal-heading">
+  <section class="section section--solid" aria-labelledby="srdal-heading">
     <div class="container">
       <header class="section-head reveal">
-        <p class="accent-label">Subsystem 02</p>
-        <h2 id="srpvdal-heading" class="serif-headline">Seven-Stage Decision Pipeline</h2>
-        <p class="section-intro">Every consequential decision flows through seven stages. Nothing skips a step. Nothing reaches execution without traversing the full loop — each stage auditable, each handoff verified.</p>
+        <p class="accent-label">Subsystem 03</p>
+        <h2 id="srdal-heading" class="serif-headline">Five-Stage Decision Loop (SRDAL)</h2>
+        <p class="section-intro">Five stages. Zero shortcuts. Every decision flows through Sense, Reason, Decide, Act, and Learn — each stage auditable, each handoff verified. Validation and authorization happen at the Gate, so no action is taken without causal justification and policy compliance.</p>
       </header>
       <div class="pipeline-flow reveal">
 {"".join(pipeline_steps)}
@@ -521,12 +527,22 @@ def render_architecture() -> str:
     <div class="section-overlay section-overlay--heavy"></div>
     <div class="container section-content">
       <article class="subsystem-block reveal">
-        <p class="accent-label">Subsystem 03</p>
+        <p class="accent-label">Subsystem 04</p>
         <h2 id="dcp-heading" class="serif-headline">Decision Control Plane</h2>
-        <p>The DCP is a mandatory, non-bypass governance layer between what AI agents recommend and what actually executes. Every action is scored across causal confidence, validation agreement, simulation delta, policy compliance, and historical performance before authorization. When the Gate vetoes, the decision carries the arithmetic, policy citation, and causal trace — not a black-box refusal. Patented.</p>
+        <p>AI proposes. The Gate authorizes. The DCP is a mandatory, non-bypass governance layer between what AI agents recommend and what actually executes. Every action is scored on causal confidence, compliance, simulation outcomes, and historical performance before it touches enterprise systems. When the Gate vetoes, the decision carries the arithmetic, policy citation, and causal trace — not a black-box refusal. Patented.</p>
         <div class="dcp-dimensions">
 {dcp_dims}
         </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--solid" aria-labelledby="adc-heading">
+    <div class="container">
+      <article class="subsystem-block reveal">
+        <p class="accent-label">Subsystem 05</p>
+        <h2 id="adc-heading" class="serif-headline">ADC / Agent Layer</h2>
+        <p>For every discovered domain, MIZOKI3 deploys a specialized Autonomous Decision Controller — each with its own goals, policies, data permissions, workflow map, autonomy level, and audit trail. Department, workflow, compliance, customer, forecasting, and executive-intelligence agents coordinate through the SRDAL loop and a shared causal graph, so a marketing signal that ripples into the sales pipeline, the finance forecast, and customer support is reasoned about as one cross-department decision — not five disconnected workflows.</p>
       </article>
     </div>
   </section>
@@ -543,7 +559,7 @@ def render_architecture() -> str:
 """
         + render_closing_cta(
             "Request a technical architecture briefing.",
-            body="We walk through TCO-KG schema, SRPVDAL execution traces, and DCP authorization logic — tailored to your regulatory and operational context.",
+            body="We walk through Adaptive Ontology mapping, TCO-KG schema, SRDAL execution traces, and DCP authorization logic — tailored to your regulatory and operational context.",
             cta_label="Schedule a Briefing",
             mail_subject="MIZOKI3%20Architecture%20Briefing",
             bg_url=arch["closing_image"],
